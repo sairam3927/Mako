@@ -19,13 +19,13 @@ export class HaplotypesComponent implements OnInit {
     }
   ngOnInit() {
     this.List = [
-      {id: "1" , Case: "rs4846048",Level:"",Message:"This genotype is normal."},
-      {id: "2" , Case: "rs1537514",Level:"",Message:"This genotype associates with congenital lactase deficiency. You will definitely transmit a copy of the mutation to your child." },
-      {id: "3" , Case: "rs868014",Level:"",Message:"Having this genotype, you can transmit a copy of the mutation to your child, with 50% chances." },
-      {id: "4" , Case: "rs2274976",Level:"",Message:"This genotype is normal." },
-      {id: "5" , Case: "tvc.novel.1",Level:"",Message:"This genotype is normal." },
-      {id: "6" , Case: "tvc.novel.2",Level:"",Message:"Having this genotype, you can transmit a copy of the mutation to your child, with 50% chances.." },
-      {id: "7" , Case: "rs1801131",Level:"",Message:"This genotype associates with congenital lactase deficiency. You will definitely transmit a copy of the mutation to your child." }
+      {id: "1" , RowReference:"rs1230025", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."},
+      {id: "2" , RowReference:"rs13123099 ", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
+      {id: "3" , RowReference:"rs17033  ", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
+      {id: "4" , RowReference:"rs13133908 ", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)." },
+      {id: "5" , RowReference:"rs1230025", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation." },
+      {id: "6" , RowReference:"rs13123099", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."  },
+      {id: "7" , RowReference:"rs17033", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."}
     ];
   }
 
