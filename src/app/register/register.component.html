@@ -53,97 +53,156 @@
     </div>
   
   </mat-sidenav-container> -->
+<div class="col-sm-12" style="background-color: white;border-left: 2px solid red;left: 8px;">
+  <div class="col-sm-1" style="padding-left:0px !important">
+    <img src="/src/assets/img/ColorStripBG.jpg" alt="" style="max-height: 890px">
+  </div>
+  <div class="col-sm-11">
+    <div class="col-sm-12">
+      <div class="col-sm-7" style="text-align: right;color: #c3c3c3;font-size: 40px;top: 13px;">
+        Nutritional DNA
+      </div>
+      <div class="col-sm-4"
+        style="text-align: left;top: 25px;left: 20px;color: #6ec1e4;font-size: 23px;font-weight: 500;">POWERED BY MAKO
+        MEDICAL
 
-<div class="col-sm-12" style="background-color: white;border-left: 2px solid red;left: 10px">
-  <div class="col-sm-12">
-    <div class="col-sm-6" style="text-align: right;color: #c3c3c3;font-size: 40px;top: 13px;">
-      Nutritional DNA
+      </div>
+      <div class="col-sm-1">
+        <img src="/src/assets/img/MakoSharkBlue.png" alt="">
+      </div>
     </div>
-    <div class="col-sm-4"
-      style="text-align: left;top: 25px;left: 20px;color: #50c7c7;font-size: 23px;font-weight: 500;">POWERED BY MAKO
-      MEDICAL
+    <div class="col-sm-12 text-center" style="top: 2px;color: black;">
+      <p style="font-size: 22px;">Nutrigenetics testing Optimizes your nutritional intake by providing personalized
+        nutrient<br>
+        targets based on your unique genetic makeup.</p>
     </div>
-    <div class="col-sm-2">
-        <img src="/src/assets/img/Makofish1.jpg" alt="" style="width:50%">
+    <div class="col-sm-12 text-center" style="top:10px">
+      <p style="font-size: 15px;margin: 4px 0 30px;color: gray;">The Nutritional DNA test,powered by Mako Medical,is
+        quite simply,the next evolution in Precision Nutrition.We
+        analyze 72 genes and 218 unique genetic variations<br> to provide individuals with their personal Recommended
+        Daily Nutrient and Micronutrient needs.</p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" style="top: 60px;right: 64px;">
+        <img src="/src/assets/img/Nutrit-DNA-Sprinter.jpg" alt="" style="width:120%">
+      </div>
+      <div class="col-sm-6" style="border-left: 2px solid #d6d6d6;top: 10px">
+        <form [formGroup]="form" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60">
+          <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
+            <span class="box-content-header" style="font-size: 16px;font-weight: 600;">REGISTRATION</span>
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Full Name" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Address" formControlName="password" type="text">
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Sample ID" formControlName="confirmPassword" type="text">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Mobile No" formControlName="confirmPassword" type="text">
+            </mat-form-field>
+
+            <mat-radio-group class="w-100" aria-label="Select an option">
+              <mat-radio-button value="male" style="margin-right: 5px" (click)="setradio('Male')" ngModel><small
+                  style="font-size: 14px;color: gray;">Male</small></mat-radio-button>
+              <mat-radio-button value="female" (click)="setradio('Female')" ngModel><small
+                  style="font-size: 14px;color: gray;">Female</small></mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="w-100">
+              <input matInput [matDatepicker]="picker" placeholder="D.O.B">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Age" formControlName="confirmPassword" type="text">
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <mat-label>Ethnicity</mat-label>
+              <mat-select>
+                <mat-option>Non-Hispanic White</mat-option>
+                <mat-option>Hispanic</mat-option>
+                <mat-option>African American</mat-option>
+                <mat-option>Asian</mat-option>
+                <mat-option>Other</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="FEDEX AWB" formControlName="name">
+            </mat-form-field>
+
+            <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')">Inculde lactating / Pregnancy
+              Analysis</mat-checkbox>
+            <div class="col-sm-12">
+              <button mat-raised-button color="primary" class="pull-left mat-elevation-z12 box-button login"
+                style="background-color: #229494 !important;top:15px;margin-bottom:20px" type="submit">
+                REGISTER
+              </button>
+              <button mat-raised-button routerLink="/login" color="primary"
+                class="pull-right mat-elevation-z12 box-button login"
+                style="background-color: #229494 !important;top:15px;margin-bottom:20px" type="submit">
+                SIGN IN
+              </button>
+
+            </div>
+
+            <!-- <button mat-raised-button color="primary" class="mat-elevation-z12 box-button" type="submit"
+          style="background-color: #229494 !important;top:15px;margin-bottom:20px">REGISTER</button> -->
+          </mat-card>
+
+        </form>
+
+      </div>
     </div>
   </div>
-  <div class="col-sm-12 text-center" style="top: 2px;color: black;">
-    <p style="font-size: 22px;">Nutrigenetics testing Optimizes your nutritional intake by providing personalized
-      nutrient<br>
-      targets based on your unique genetic makeup.</p>
+</div>
+<div class="col-sm-12" style="background-color: #3a3a3a;padding:50px">
+  <!-- <div class="col-sm-1"></div> -->
+  <div class="col-sm-4" style="color: white">
+    <h4 style="font-weight: 700">Contact Mako</h4>
+    <p>
+      Copyright © 2019 Mako Medical Laboratories, LLC
+      8461 Garvey Dr., Raleigh, NC 27616
+      1.844.MAKOLAB (1.844.625.6522)
+    </p>
   </div>
-  <div class="col-sm-12 text-center" style="top:10px">
-    <p style="font-size: 15px;margin: 4px 0 30px;color: gray;">The Nutritional DNA test,powered by Mako Medical,is
-      quite simply,the next evolution in Precision Nutrition.We
-      analyze 72 genes and 218 unique genetic variations<br> to provide individuals with their personal Recommended
-      Daily Nutrient and Micronutrient needs.</p>
+  <div class="col-sm-4" style="color: white">
+    <h4 style="font-weight: 700">Why Mako?</h4>
+    <p>
+      Mako Medical Laboratories has quickly become one of the most desired laboratories in the United States. Winning
+      over 12 major awards—it has become a diagnostic partner for businesses, physicians, urgent care facilities, and
+      many hospitals around the United States.
+    </p>
   </div>
-  <div class="row">
-    <div class="col-sm-6" style="left:80px">
-      <img src="/src/assets/img/register_img.png" alt="" style="width:80%">
-    </div>
-    <div class="col-sm-6" style="border-left: 2px solid #d6d6d6;top: 10px">
-      <form [formGroup]="form" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60"
-        >
-        <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
-          <span class="box-content-header" style="font-size: 16px;font-weight: 600;">REGISTRATION</span>
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Full Name" formControlName="name">
-          </mat-form-field>
-
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Email" formControlName="email">
-          </mat-form-field>
-
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Address" formControlName="password" type="text">
-          </mat-form-field>
-
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Sample ID" formControlName="confirmPassword" type="text">
-          </mat-form-field>
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Mobile No" formControlName="confirmPassword" type="text">
-          </mat-form-field>
-
-          <mat-radio-group class="w-100" aria-label="Select an option">
-            <mat-radio-button value="male"  style="margin-right: 5px" (click)="setradio('Male')" ngModel><small style="font-size: 14px;color: gray;">Male</small></mat-radio-button>
-            <mat-radio-button value="female" (click)="setradio('Female')" ngModel><small style="font-size: 14px;color: gray;">Female</small></mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field  class="w-100">
-            <input matInput [matDatepicker]="picker" placeholder="D.O.B">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field class="w-100">
-            <input matInput placeholder="Age" formControlName="confirmPassword" type="text">
-          </mat-form-field>
-
-          <mat-form-field  class="w-100"> 
-            <mat-label>Ethnicity</mat-label>
-            <mat-select>
-              <mat-option>Non-Hispanic White</mat-option>
-              <mat-option>Hispanic</mat-option>
-              <mat-option>African American</mat-option>
-              <mat-option>Asian</mat-option>
-              <mat-option>Other</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="w-100">
-            <input matInput placeholder="FEDEX AWB" formControlName="name">
-          </mat-form-field>
-
-          <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')">Inculde lactating / Pregnancy Analysis</mat-checkbox>
-
-          <button mat-raised-button color="primary" class="mat-elevation-z12 box-button" type="submit"
-          style="background-color: #229494 !important;top:15px">REGISTER</button>
-        </mat-card>
-        
-      </form>
-
-    </div>
+  <div class="col-sm-4" style="color: white">
+    <h4 style="font-weight: 700">Additional Services</h4>
+    <ul style="margin-left: 14px;">
+      <li>
+        Blood Testing
+      </li>
+      <li>
+        Genomic Testing
+      </li>
+      <li>
+        Urine Toxicology
+      </li>
+      <li>
+        Clinical Trials and Research
+      </li>
+      <li>
+        Document Management
+      </li>
+    </ul>
   </div>
+  <!-- <div class="col-sm-1"></div> -->
 </div>
