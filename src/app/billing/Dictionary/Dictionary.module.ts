@@ -25,6 +25,7 @@ import { ScopeUploadCSVComponent } from './Scope/upload-csv/upload-csv.component
 import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
+import { TestsComponent } from './tests/tests.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
@@ -35,11 +36,11 @@ export const routes = [
   { path: 'Personal', component: PersonalComponent, data: { breadcrumb: 'Personal Data' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
   { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'ALGO REF' } },
-  { path: 'Tests', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
+  { path: 'Tests', component: TestsComponent , data: { breadcrumb: 'ALGO REF' } },
 ];
 
 @NgModule({
-  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent ],
+  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent ],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
