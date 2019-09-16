@@ -30,13 +30,12 @@
                         <tr class="tr-grid-header">
                             <th>Document Title</th>
                             <th class="text-center">Upload Date</th>
-                            <th>Samples</th>
+                            <th class="text-center" >Samples</th>
                             <th class="text-center">Total Records</th>
                             <th class="text-center">Duplicates</th>
                             <th class="text-center">Out of Scope</th>
                             <th class="text-center">Incomplete</th>
                             <th class="text-center">Processed</th>
-                            <th class="text-center">Download </th>
                             <th class="text-center">Delete</th>
                         </tr>
                     </thead>
@@ -52,15 +51,10 @@
                             <td class="text-center">{{item.Incomplete}}</td>
                             <td class="text-center">{{item.Processed}}</td>
                             <td class="text-center">
-                                <a title="Download" style="margin-right: 10px; cursor: pointer;" title="Download">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                            <td class="text-center">
                                 <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
                                     [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
                                     (cancel)="cancelClicked = true">
-                                    <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+                                    <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                                 </a>
                             </td>
                         </tr>

@@ -21,13 +21,13 @@ export class ScopeComponent implements OnInit {
     }
   ngOnInit() {
     this.List = [
-      {id: "1" , AllelName: "rs4846048",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted."},
-      {id: "2" , AllelName: "rs1537514",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "3" , AllelName: "rs868014",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "4" , AllelName: "rs2274976",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "5" , AllelName: "tvc.novel.1",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "6" , AllelName: "tvc.novel.2",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "7" , AllelName: "rs1801131",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." }
+      {id: "1" , AllelName: "rs4846048",Gene:"LCT",Used:"checked",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted."},
+      {id: "2" , AllelName: "rs1537514",Gene:"TPK ",Used:"",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
+      {id: "3" , AllelName: "rs868014",Gene:"ADA ",Used:"",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
+      {id: "4" , AllelName: "rs2274976",Gene:"TPK",Used:"checked",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
+      {id: "5" , AllelName: "tvc.novel.1",Gene:"ADA ",Used:"checked",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
+      {id: "6" , AllelName: "tvc.novel.2",Gene:"LCT",Used:"",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
+      {id: "7" , AllelName: "rs1801131",Gene:"TPK",Used:"checked",description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." }
     ];
   }
 

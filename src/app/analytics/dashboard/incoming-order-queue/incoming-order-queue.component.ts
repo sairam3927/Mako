@@ -85,7 +85,7 @@ export class IncomingOrderQueueComponent implements OnInit {
     let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
       data: id,
       height: 'auto',
-      width: '700px',
+      width: '500px',
       autoFocus: false,
 
     });
