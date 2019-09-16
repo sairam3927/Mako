@@ -23,6 +23,12 @@
                         <li routerLinkActive="active"><a mat-raised-button
                                 [routerLink]="['/mako/billing/Dictionary/Algorithm']"
                                 style="margin-right: 10px!important; padding: 0px 10px;">ALGO REF</a></li>
+                        <li routerLinkActive="active"><a mat-raised-button
+                                [routerLink]="['/mako/billing/Dictionary/haplotypes']"
+                                style="margin-right: 10px!important; padding: 0px 10px;">Haplotypes </a></li>
+                        <li routerLinkActive="active"><a mat-raised-button
+                                [routerLink]="['/mako/billing/Dictionary/Tests']"
+                                style="margin-right: 10px!important; padding: 0px 10px;">Tests</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +49,8 @@
                         class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
-                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="addUploadDialog()">
+                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                        (click)="addUploadDialog()">
                         <mat-icon>backup</mat-icon> Upload
                     </button>
                     <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
@@ -62,77 +69,77 @@
 </div>
 
 <div fxLayout="row wrap" style="margin-bottom: 8px;">
-        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
-            <mat-card class="filter">
-                <mat-card-content>
-                    <div class="row col-sm-12">
-                        <div class="col-sm-4">
-                            <div class="col-sm-4 newMarginClass">
-                                Allen Name :
-                            </div>
-                            <div class="col-sm-8">
-                                <mat-select placeholder="--Select by Allele Name--" class="form-control">
-                                    <mat-option *ngFor="let option of List" [value]="">{{option.AllelName}}</mat-option>
-                                </mat-select>
-                            </div>
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+        <mat-card class="filter">
+            <mat-card-content>
+                <div class="row col-sm-12">
+                    <div class="col-sm-4">
+                        <div class="col-sm-4 newMarginClass">
+                            Allen Name :
                         </div>
-                        <div class="col-sm-4">
-                            <div class="col-sm-4 newMarginClass">
-                                Test :
-                            </div>
-                            <div class="col-sm-8">
-                                <mat-select placeholder="--Select by Condition--" class="form-control">
-                                    <mat-option *ngFor="let option of List" [value]="">{{option.Test}}</mat-option>
-                                </mat-select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-sm-4 newMarginClass">
-                                Gene :
-                            </div>
-                            <div class="col-sm-8">
-                                <mat-select placeholder="--Select by Category--" class="form-control">
-                                    <mat-option *ngFor="let option of List" [value]="">{{option.Parameter}}</mat-option>
-                                </mat-select>
-                            </div>
+                        <div class="col-sm-8">
+                            <mat-select placeholder="--Select by Allele Name--" class="form-control">
+                                <mat-option *ngFor="let option of List" [value]="">{{option.AllelName}}</mat-option>
+                            </mat-select>
                         </div>
                     </div>
-                    <div class="row col-sm-12" style="margin-top: 17px;">
-                        <div class="col-sm-4">
-                            <!-- <div class="col-sm-4 newMarginClass">
+                    <div class="col-sm-4">
+                        <div class="col-sm-4 newMarginClass">
+                            Test :
+                        </div>
+                        <div class="col-sm-8">
+                            <mat-select placeholder="--Select by Condition--" class="form-control">
+                                <mat-option *ngFor="let option of List" [value]="">{{option.Test}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4 newMarginClass">
+                            Gene :
+                        </div>
+                        <div class="col-sm-8">
+                            <mat-select placeholder="--Select by Category--" class="form-control">
+                                <mat-option *ngFor="let option of List" [value]="">{{option.Parameter}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm-12" style="margin-top: 17px;">
+                    <div class="col-sm-4">
+                        <!-- <div class="col-sm-4 newMarginClass">
                                 Completion Date :
                             </div> -->
-                            <div class="col-sm-8">
-                                <!-- <div class="input-icon right">
+                        <div class="col-sm-8">
+                            <!-- <div class="input-icon right">
                                     <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
                                     <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
                                         [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" [(ngModel)]="dates">
                                     <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
                                 </div> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <!-- <div class="col-sm-5" style="top:10px">
-                                Lactating/ Pregnant :
-                            </div> -->
-                            <div class="col-sm-7" style="top:10px">
-                                <!-- <mat-checkbox></mat-checkbox> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-8">
-                                <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
-                                <button type="button"
-                                    class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
-                            </div>
                         </div>
                     </div>
-    
-                </mat-card-content>
-            </mat-card>
-        </div>
+                    <div class="col-sm-4">
+                        <!-- <div class="col-sm-5" style="top:10px">
+                                Lactating/ Pregnant :
+                            </div> -->
+                        <div class="col-sm-7" style="top:10px">
+                            <!-- <mat-checkbox></mat-checkbox> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
+                            <button type="button"
+                                class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
     </div>
+</div>
 
 <div fxLayout="row wrap" style="margin-right: 7px;">
     <div class="table-responsive" style="margin-left: 15px;margin-top: 10px">
