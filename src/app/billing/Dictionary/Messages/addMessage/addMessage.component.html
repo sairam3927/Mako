@@ -1,4 +1,87 @@
-<h1 mat-dialog-title align="center" >Add Message</h1><hr>
+<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+        Add Message</h3>
+    
+<form class="form-horizontal" novalidate >
+        <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+            <div  class="col-sm-12 ">
+                    <div class="form-group"> 
+                            <label class="control-label col-sm-4 add-member-label">Row Reference : </label>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <input type="text" class="form-control" placeholder="Enter Row Reference" required>
+                            </div>
+                          </div>
+          
+                          <div class="form-group">
+                                  <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
+                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="text" class="form-control" placeholder="Enter Allele Name" required>
+                                  </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Category : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Category" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Condition : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Condition" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Message : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Message" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Target Resolution : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Target Resolution" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Target Message : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Target Message" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">TBD : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter TBD" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Comment : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Comment" required>
+                              </div>
+                          </div>
+            </div>
+        </div>
+    
+        <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+            <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button" (click)="close()">
+            <mat-icon>cancel</mat-icon>
+            <span>&nbsp;Cancel</span>
+        </button>
+            <button mat-raised-button class="add-hover btn-success" type="submit">
+            <mat-icon>send</mat-icon>
+            <span>&nbsp;Save</span>
+        </button>
+        </mat-dialog-actions>
+</form>
+
+<!-- <h1 mat-dialog-title align="center" >Add Message</h1><hr>
 <div mat-dialog-content align="center" style="margin-bottom: 30px;">
         <form class="form-horizontal" novalidate >
                 
@@ -6,11 +89,6 @@
                   <label class="control-label col-sm-4 add-member-label">Row Reference : </label>
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                       <input type="text" class="form-control" placeholder="Enter Row Reference" required>
-                        <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                            <div *ngIf="addLastName.errors.required">
-                                Last name is required
-                            </div>
-                        </div> -->
                   </div>
                 </div>
 
@@ -18,11 +96,6 @@
                         <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                             <input type="text" class="form-control" placeholder="Enter Allele Name" required>
-                              <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                                  <div *ngIf="addLastName.errors.required">
-                                      Last name is required
-                                  </div>
-                              </div> -->
                         </div>
                 </div>
 
@@ -30,11 +103,6 @@
                     <label class="control-label col-sm-4 add-member-label">Category : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Category" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -42,11 +110,6 @@
                     <label class="control-label col-sm-4 add-member-label">Condition : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Condition" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -54,11 +117,6 @@
                     <label class="control-label col-sm-4 add-member-label">Message : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Message" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -66,11 +124,6 @@
                     <label class="control-label col-sm-4 add-member-label">Target Resolution : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Target Resolution" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -78,11 +131,6 @@
                     <label class="control-label col-sm-4 add-member-label">Target Message : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Target Message" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -90,11 +138,6 @@
                     <label class="control-label col-sm-4 add-member-label">TBD : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter TBD" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
 
@@ -102,71 +145,12 @@
                     <label class="control-label col-sm-4 add-member-label">Comment : </label>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <input type="text" class="form-control" placeholder="Enter Comment" required>
-                          <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
-                              <div *ngIf="addLastName.errors.required">
-                                  Last name is required
-                              </div>
-                          </div> -->
                     </div>
                 </div>
                 
-                <!-- <div class="form-group">
-                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">DOB : </label>
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <div class="input-icon right">
-                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                            <input class="form-control" placeholder="MM/DD/YYYY" formControlName="addDob" class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1" required>
-                            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                        </div>
-                        <div *ngIf="!addDob.valid && (addDob.dirty || addDob.touched)" class="error-text">
-                            <div *ngIf="addDob.errors.required">
-                                Date of birth is required
-                            </div>
-                        </div>  
-                  </div>
-                </div> -->
-                <!-- <div class="form-group">
-                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                       <input type="text" class="form-control" placeholder="Enter Industry"> 
-                      <mat-select color="primary" placeholder="--Select Ordering Physician--" formControlName="addReferringPhysician" class="form-control" required>
-                        <mat-option [value]="0">Domenic Vinci</mat-option>
-                        <mat-option [value]="1">Brad Kewalramani</mat-option>
-                        <mat-option [value]="2">Kipling Morton</mat-option>
-                        <mat-option [value]="3">Michael Persaud</mat-option>
-                        <mat-option [value]="4">Dan McCarthy</mat-option>
-                    </mat-select>
-                    <div *ngIf="!addReferringPhysician.valid && (addReferringPhysician.dirty || addReferringPhysician.touched)" class="error-text">
-                        <div *ngIf="addReferringPhysician.errors.required">
-                            Referring Physician is required
-                        </div>
-                    </div>  
-                  </div>
-                </div> -->
-                <!-- <div class="form-group">
-                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Received Date : </label>
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <div class="input-icon right">
-                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
-                            <input class="form-control" placeholder="MM/DD/YYYY" formControlName="addReceivedDate" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" required>
-                            <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-                        </div>
-                        <div *ngIf="!addReceivedDate.valid && (addReceivedDate.dirty || addReceivedDate.touched)" class="error-text">
-                            <div *ngIf="addReceivedDate.errors.required">
-                                Received date is required
-                            </div>
-                        </div>  
-                  </div>
-                </div> -->
-                <!-- <div class="form-group">
-                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Select Document : </label>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margins">
-                        <input type="file" accept="image/*" placeholder="Upload file..." style="margin-top: 3px;">
-                    </div>
-                </div> -->
             </form>
 </div>
 <mat-dialog-actions align="end">
     <button mat-raised-button class="add-dark-hover btn-success" (click)="close()"> Submit</button>
     <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
-</mat-dialog-actions> 
+</mat-dialog-actions>  -->

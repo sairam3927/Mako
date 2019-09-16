@@ -1,4 +1,36 @@
-<h1 mat-dialog-title align="center" >Upload Document</h1><hr>
+<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+    Upload Document</h3>
+
+<form class="form-horizontal" novalidate >
+    <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+        <div  class="col-sm-12 ">
+            <div class="form-group" >
+                <label class=" col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="margin-top: 5px">Document Name : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" id="email" formControlName="addFirstName" placeholder="Enter Document Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+              <label class=" col-lg-4 col-md-4 col-sm-4 col-xs-4 ">Choose File : </label>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <input class="pull-left" type="file"   />
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button" (click)="close()">
+        <mat-icon>cancel</mat-icon>
+        <span>&nbsp;Cancel</span>
+    </button>
+        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <mat-icon>send</mat-icon>
+        <span>&nbsp;Save</span>
+    </button>
+    </mat-dialog-actions>
+</form>
+<!-- <h1 mat-dialog-title align="center" >Upload Document</h1><hr>
 <div mat-dialog-content align="center" style="margin-bottom: 30px;">
 
   <form class="form-horizontal" novalidate style="overflow: hidden;" >
@@ -6,11 +38,6 @@
         <label class=" col-lg-3 col-md-3 col-sm-3 col-xs-3 ">Document Name : </label>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
             <input type="text" class="form-control" id="email" formControlName="addFirstName" placeholder="Enter Document Name" required>
-            <!-- <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
-                <div *ngIf="addFirstName.errors.required">
-                    First name is required
-                </div>
-            </div> -->
         </div>
     </div>
     <div class="form-group">
@@ -24,4 +51,4 @@
 <mat-dialog-actions align="end">
     <button mat-raised-button class="add-dark-hover btn-success" (click)="close()"> Submit</button>
     <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
-</mat-dialog-actions> 
+</mat-dialog-actions>  -->
