@@ -21,42 +21,48 @@
     </div>
 </div>
 
-<!-- <div fxLayout="row wrap" style="margin-bottom:10px">
-        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100"> 
-                    <div class="row col-sm-12" class="flex-p" >
-                        <div class="col-sm-3">
-                            <input  type="text" class="form-control"  placeholder="" required>
-                        </div>
-                        <div class="col-lg-1">
-                            <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
-                        </div>
-                        <div class="col-lg-8" >
-                            <div   fxLayout="row" style="float: right !important;" >
-                                            <div style="margin-right: 10px !important;">
-                                                <button mat-raised-button  class="pull-right add-hover btn-success" (click)="addPatientDataDialog()">
-                                                    <mat-icon>backup</mat-icon> Upload CSV
-                                                </button>
-                                            </div>
-                                            <div >
-                                                <button mat-raised-button class="pull-right add-hover btn-success" >
-                                                    <mat-icon>cloud_download</mat-icon> Download Sample 
-                                                </button>
-                                            </div>
-                             </div>     
-                        </div>
-                </div>
-    </div>
-</div> -->
+<div fxLayout="row wrap" style="margin-bottom:10px">
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100"> 
+
+                <div class="row col-sm-12" class="flex-p" >
+                    <div class="col-sm-2">
+                        <input  type="text" class="form-control"  placeholder="" required>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="add-hover btn btn-success  pull-left">Search</button>
+                    </div>
+                    <div class="col-lg-8" >
+                        <div   fxLayout="row" style="float: right !important;" >
+                                
+                                        <div style="margin-right: 10px !important;">
+                                            <button mat-raised-button  class="pull-right add-hover btn-success" >
+                                                <mat-icon>add_comment</mat-icon> Add Test
+                                            </button>
+                                        </div>
+                                   
+                                        <!-- <div >
+                                            <button mat-raised-button class="pull-right add-hover btn-success" >
+                                                <mat-icon>cloud_download</mat-icon> Download Sample 
+                                            </button>
+                                        </div> -->
+                         </div>     
+                               
+                    </div>
+            </div>
+</div>
+</div>
 
 <div fxLayout="row wrap">
     <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th class="text-center" >Haplotype</th>
-                    <th >Case</th>
-                    <th  class="text-center" >Level 1</th>
-                    <th >Message</th>
+                    <th  >Test Name</th>
+                    <th >Locus</th>
+                    <th  class="text-center" >Gene</th>
+                    <th class="text-center"  >Genotype</th>
+                    <th >Comment</th>
+                    <th >Recommendation </th>
                     <!-- <th class="text-center" >Action</th> -->
                     
                 </tr>
@@ -64,12 +70,14 @@
             <tbody>
                 <tr *ngFor="let item of List">
                     
-                    <td class="text-center">
-                        -
+                    <td >
+                        {{item.TestName}}
                     </td>
-                    <td >{{item.Case}}</td>
-                    <td class="text-center" >{{item.Level}}</td>
-                    <td >{{item.Message}}</td>
+                    <td  >{{item.Locus}}</td>
+                    <td class="text-center" >{{item.Gene}}</td>
+                    <td class="text-center"  >{{item.Genotype}}</td>
+                    <td >{{item.Comment}}</td>
+                    <td >{{item.Recommendation}}</td>
                     <!-- <td class="text-center" >
                         <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
                           <i class="fa fa-edit"></i>

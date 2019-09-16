@@ -19,13 +19,13 @@ export class HaplotypesComponent implements OnInit {
     }
   ngOnInit() {
     this.List = [
-      {id: "1" , Case: "rs4846048",Level:"",Message:"The anchor position for this RefSNP."},
-      {id: "2" , Case: "rs1537514",Level:"",Message:"The anchor position for this RefSNP." },
-      {id: "3" , Case: "rs868014",Level:"",Message:"The anchor position for this RefSNP." },
-      {id: "4" , Case: "rs2274976",Level:"",Message:"The anchor position for this RefSNP." },
-      {id: "5" , Case: "tvc.novel.1",Level:"",Message:"The anchor position for this RefSNP." },
-      {id: "6" , Case: "tvc.novel.2",Level:"",Message:"The anchor position for this RefSNP." },
-      {id: "7" , Case: "rs1801131",Level:"",Message:"The anchor position for this RefSNP." }
+      {id: "1" , Case: "rs4846048",Level:"",Message:"This genotype is normal."},
+      {id: "2" , Case: "rs1537514",Level:"",Message:"This genotype associates with congenital lactase deficiency. You will definitely transmit a copy of the mutation to your child." },
+      {id: "3" , Case: "rs868014",Level:"",Message:"Having this genotype, you can transmit a copy of the mutation to your child, with 50% chances." },
+      {id: "4" , Case: "rs2274976",Level:"",Message:"This genotype is normal." },
+      {id: "5" , Case: "tvc.novel.1",Level:"",Message:"This genotype is normal." },
+      {id: "6" , Case: "tvc.novel.2",Level:"",Message:"Having this genotype, you can transmit a copy of the mutation to your child, with 50% chances.." },
+      {id: "7" , Case: "rs1801131",Level:"",Message:"This genotype associates with congenital lactase deficiency. You will definitely transmit a copy of the mutation to your child." }
     ];
   }
 
