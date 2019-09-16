@@ -1,20 +1,20 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
     Upload Patient Data</h3>
 
-<form >
-    <div mat-dialog-content>
-        <div  class="col-sm-12 no-padding">
-            <div class="form-group col-sm-8">
-                <label class="col-sm-12 control-label">Choose File : </label>
-                <div class="col-sm-12">
-                    <input type="file" name="image"  />
+<form class="form-horizontal" novalidate >
+    <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+        <div  class="col-sm-12 ">
+            <div class="form-group">
+                <label class=" col-lg-4 col-md-4 col-sm-4 col-xs-4 ">Choose File : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="file"   />
                 </div>
-            </div>
+              </div>
         </div>
     </div>
 
     <mat-dialog-actions align="center" style="padding-top: 17px !important;">
-        <button mat-raised-button class="add-dark-hover btn-default" type="button" (click)="close()">
+        <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button" (click)="close()">
         <mat-icon>cancel</mat-icon>
         <span>&nbsp;Cancel</span>
     </button>

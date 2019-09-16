@@ -10,7 +10,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 export class PersonalComponent implements OnInit {
 
   List:any;
-  imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
+  selectedValueStepType:string = "2"; 
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
@@ -21,12 +21,21 @@ export class PersonalComponent implements OnInit {
     public dialogRef: MatDialogRef<PersonalComponent>) {
     }
   ngOnInit() {
-
-    this.List = [
-      {id:"1",rowRef:"Age : ",value:"text"},
-      {id:"2",rowRef:"Sex : ",value:"gender"},
-      {id:"3",rowRef:"Pregnant / Lactating : ",value:"p/l"},
-    ]
+    // if (this.selectedValueStepType == '2') {
+      this.List = [
+        {id:"1",rowRef:"Age : ",value:"text"},
+        {id:"2",rowRef:"Sex : ",value:"gender"},
+        {id:'3',rowRef:"Ethnicity : ",value:"DD"},
+        {id:"4",rowRef:"Pregnant / Lactating : ",value:"p/l"},
+      ];
+    // }else{
+    //   this.List = [
+    //     {id:"1",rowRef:"Age : ",value:"text"},
+    //     {id:"2",rowRef:"Sex : ",value:"gender"},
+    //     {id:'3',rowRef:"Ethnicity : ",value:"DD"},
+    //   ];
+    // }
+    
   }
 
   deletePatientOrder(){
