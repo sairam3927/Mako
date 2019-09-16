@@ -36,10 +36,15 @@
                                 
                                         <div style="margin-right: 10px !important;">
                                             <button mat-raised-button  class="pull-right add-hover btn-success" >
-                                                <mat-icon>add_comment</mat-icon> Add Haplotype
+                                                <mat-icon>add_comment</mat-icon> Add Test
                                             </button>
                                         </div>
-                                
+                                   
+                                        <!-- <div >
+                                            <button mat-raised-button class="pull-right add-hover btn-success" >
+                                                <mat-icon>cloud_download</mat-icon> Download Sample 
+                                            </button>
+                                        </div> -->
                          </div>     
                                
                     </div>
@@ -52,12 +57,12 @@
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th >Row Reference/ Allele Name</th>
-                    <th >Gene</th>
-                    <!-- <th  class="text-center" >Level 1</th> -->
-                    <th >Call </th>
-                    <th >Comment </th>
-                    <th >Recommendation  </th>
+                    <th  >Test Name</th>
+                    <th >Locus</th>
+                    <th  class="text-center" >Gene</th>
+                    <th class="text-center"  >Genotype</th>
+                    <th >Comment</th>
+                    <th >Recommendation </th>
                     <!-- <th class="text-center" >Action</th> -->
                     
                 </tr>
@@ -66,13 +71,13 @@
                 <tr *ngFor="let item of List">
                     
                     <td >
-                        {{item.RowReference}}
+                        {{item.TestName}}
                     </td>
-                    <td >{{item.Gene}}</td>
-                    <!-- <td >{{item.Level}}</td>  -->
-                    <td >{{item.Call}}</td> 
-                    <td >{{item.Comment}}</td> 
-                    <td >{{item.Recommendation}}</td>                    
+                    <td  >{{item.Locus}}</td>
+                    <td class="text-center" >{{item.Gene}}</td>
+                    <td class="text-center"  >{{item.Genotype}}</td>
+                    <td >{{item.Comment}}</td>
+                    <td >{{item.Recommendation}}</td>
                     <!-- <td class="text-center" >
                         <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
                           <i class="fa fa-edit"></i>
