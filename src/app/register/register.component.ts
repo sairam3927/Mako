@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppSettings } from '../app.settings';
 import { emailValidator, matchingPasswords } from '../theme/utils/app-validators';
 import { Settings } from '../app.settings.model';
@@ -12,8 +12,19 @@ import { Settings } from '../app.settings.model';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
- public form: FormGroup;
+  public form: FormGroup;
   public settings: Settings;
+  private selectedLink: string = "Male";
+  setradio(e: string): void {
+    this.selectedLink = e;
+  }
+  isSelected(name: string): boolean {
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+      return false;
+    }
+    return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+  }
+  
   constructor(public appSettings: AppSettings, public fb: FormBuilder, public router: Router) {
     // this.settings = this.appSettings.settings;
     this.form = this.fb.group({
@@ -21,7 +32,7 @@ export class RegisterComponent implements OnInit {
       'email': [null, Validators.compose([Validators.required, emailValidator])],
       'password': ['', Validators.required],
       'confirmPassword': ['', Validators.required]
-    }, {validator: matchingPasswords('password', 'confirmPassword')});
+    }, { validator: matchingPasswords('password', 'confirmPassword') });
   }
 
   public onSubmit(values: Object): void {
@@ -30,7 +41,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
+
     // this.settings.loadingSpinner = false;
   }
 
