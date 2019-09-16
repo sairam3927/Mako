@@ -1,0 +1,24 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+          
+      <div class="row wrap" >
+        <div class="col-lg-12">
+          <div class="pills w-100 flex-p">
+            <ul class="nav nav-pills">
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary']" style="margin-right: 20px!important; padding: 0px 10px;"><mat-icon>outlined_flag</mat-icon>Dictionary </a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/SamplePatientData']" style="margin-right: 20px!important; padding: 0px 10px;" ><mat-icon>outlined_flag</mat-icon> Sample Data </a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Algorithm']" style="margin-right: 20px!important; padding: 0px 10px;" ><mat-icon>outlined_flag</mat-icon> Algorithm </a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations']" style="margin-right: 20px!important; padding: 0px 10px;" ><mat-icon>outlined_flag</mat-icon> Calculations </a></li>
+              <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank" style="margin-right: 20px!important; padding: 0px 10px;"><mat-icon>outlined_flag</mat-icon> Detailed Report</a></li>
+              <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank"><mat-icon>outlined_flag</mat-icon> Summary Report</a></li>
+            </ul>                               
+          </div>
+        </div>
+      </div>
+    
+        </div>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

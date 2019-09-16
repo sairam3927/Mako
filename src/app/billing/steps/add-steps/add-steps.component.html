@@ -1,0 +1,171 @@
+<h1 mat-dialog-title align="center">Add Step</h1>
+<hr>
+<div mat-dialog-content align="center" style="margin-bottom: 30px;">
+    <form class="form-horizontal" novalidate style="overflow: hidden;">
+        <div class="form-group" style="margin-bottom:10px">
+            <label class="control-label col-sm-2 ">Step Title : </label>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <input type="text" style="width:50%" class="pull-left form-control" placeholder="Step Title" required>
+                <!-- <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
+                            <div *ngIf="addFirstName.errors.required">
+                                First name is required
+                            </div>
+                        </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 ">Step Type : </label>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType" class="pull-left"
+                    style="margin-top:10px" aria-label="Select an option">
+                    <mat-radio-button  value="1" style="margin-right: 10px">Condition</mat-radio-button>
+                    <mat-radio-button  value="2">Formula</mat-radio-button>
+                </mat-radio-group>
+                <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                            <div *ngIf="addLastName.errors.required">
+                                Last name is required
+                            </div>
+                        </div> -->
+            </div>
+        </div>
+
+        <div *ngIf="selectedValueStepType == '1'" >
+
+            <div class=" pull-center form-group">
+                <label>IF </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 1 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+            <div class=" form-group">
+                <label class="control-label col-sm-2 ">Operator : </label>
+                <div fxLayout="row" style="margin-bottom:10px" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <mat-select style="width:145px" placeholder="-Select Operator-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 2 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+            <div class=" pull-center form-group">
+                <label>THEN </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 3 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+            <div class=" pull-center form-group">
+                <label>ELSE</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 4 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="selectedValueStepType == '2'" >
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 1 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+            <div class=" form-group">
+                <label class="control-label col-sm-2 ">Operater : </label>
+                <div fxLayout="row" style="margin-bottom:10px" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <mat-select style="width:145px" placeholder="-Select Operator-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 ">Var 2 : </label>
+                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
+                    <label style="margin-right: 5px;margin-left:5px;font-size:30px;">/</label>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
+                        <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+                    </mat-select>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-success" (click)="close()"> Submit</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions>

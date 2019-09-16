@@ -1,0 +1,21 @@
+<div fxLayout="column">
+    <!-- <div class="flex-p">  -->
+        <mat-card>
+            <mat-card-header fxLayoutAlign="center center">                
+                <mat-card-subtitle><h2>Referrals by Location</h2></mat-card-subtitle>
+            </mat-card-header>
+            <div class="w-100 h-300p">
+                <ngx-charts-pie-chart
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [legend]="showLegend"
+                    [explodeSlices]="explodeSlices"
+                    [labels]="showLabels"
+                    [doughnut]="doughnut"
+                    [gradient]="gradient"
+                    (select)="onSelect($event)">
+                </ngx-charts-pie-chart>                  
+            </div>
+        </mat-card>
+    <!-- </div>   -->
+</div>

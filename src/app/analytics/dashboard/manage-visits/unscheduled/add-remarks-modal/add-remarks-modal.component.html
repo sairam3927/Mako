@@ -1,0 +1,21 @@
+<!--This page is used to add or edit leads-->
+<div>
+  <h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Remarks</h1> <hr>
+  
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                <div class="form-group">
+                    
+                    <div class="col-sm-12">
+                        <textarea *ngIf="!order" class="txtarea form-control" placeholder="Enter Remarks" rows="4"></textarea>
+                        <textarea *ngIf="order" class="txtarea form-control" placeholder="Enter Remarks" rows="4">Swelling of left leg</textarea>
+                    </div>
+                </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="btn-success" (click)="saveVisit()"><span *ngIf="!order">Save</span><span *ngIf="order">Update</span></button>
+              <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+          </mat-dialog-actions>
+     
+</div>

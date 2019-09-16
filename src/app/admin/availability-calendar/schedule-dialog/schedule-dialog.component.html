@@ -1,0 +1,65 @@
+<h1 mat-dialog-title><span *ngIf="!form.controls.isEdit.value">Add</span><span *ngIf="form.controls.isEdit.value">Edit</span> Appointment</h1>
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        
+      <div class="form-group">
+        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Physician : </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+            <mat-select color="primary" placeholder="--Select Physician--" class="form-control">
+              <mat-option [value]="0">Domenic Vinci</mat-option>
+              <mat-option [value]="1">Brad Kewalramani</mat-option>
+              <mat-option [value]="2">Kipling Morton</mat-option>
+              <mat-option [value]="3">Michael Persaud</mat-option>
+              <mat-option [value]="4">Dan McCarthy</mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Patient : </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+            <mat-select color="primary" placeholder="--Select Patient--" class="form-control">
+              <mat-option [value]="0">Fabrice Vanegas</mat-option>
+              <mat-option [value]="1">Stephen McGill</mat-option>
+              <mat-option [value]="2">Otto Rieder</mat-option>
+              <mat-option [value]="3">Joe Deu-Ngoc</mat-option>
+              <mat-option [value]="4">Chris Soles</mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+
+
+
+      
+      <div class="form-group">
+        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date : </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="input-icon right">
+                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+            </div>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Received Date : </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="input-icon right">
+                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+            </div>
+        </div>
+      </div> -->
+
+      
+    </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="add-hover" class="btn-success" (click)="saveOrder()"><span *ngIf="!form.controls.isEdit.value">Save</span><span
+          *ngIf="form.controls.isEdit.value">Update</span></button>
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()" >Cancel</button>
+</mat-dialog-actions>

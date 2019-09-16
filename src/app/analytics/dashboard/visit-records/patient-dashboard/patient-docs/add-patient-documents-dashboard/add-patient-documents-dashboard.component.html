@@ -1,0 +1,32 @@
+<div>
+    <h1 mat-dialog-title>Documents</h1> <hr>
+          <div mat-dialog-content>
+              <form class="form-horizontal">  
+                  <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Test : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" placeholder="Enter test name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Document Type : </label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" placeholder="Enter document type">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Document : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="file" style="margin-top:3px!important;">
+                    </div>
+                  </div>
+                
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="add-hover" class="btn-success" (click)="saveOrder()"><span *ngIf="!order">Save</span><span
+                      *ngIf="order">Update</span></button>
+              <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Back</button>
+          </mat-dialog-actions>
+  </div>
+  

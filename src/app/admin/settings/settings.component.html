@@ -1,0 +1,78 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+
+        <div class="table-responsive">
+            <table id="example2" style="margin-top: 10px" class="table table-bordered table-hover table-striped">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Previous Value</th>
+                        <th>New Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of tableList">
+                        <td>{{item.name}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.old_value}}</td>
+                        <td>
+                            <div *ngIf="item.name == 'Time Zone'">
+                                <select class="form-control" id="email">
+                                    <option  >--Select--</option>
+                                    <option value="AST">AST</option>
+                                    <option value="IST">IST</option>
+                                    <option value="CST">CST</option>
+                                    <option value="MST">MST</option>
+                                    <option value="PST">PST</option>
+                                    <option value="ADT">ADT</option>
+                                    <option value="EDT">EDT</option>
+                                    <option value="PST">PST</option>
+                                    <option value="MDT">MDT</option>
+                                    <option value="PDT">PDT</option>
+                                </select>
+                            </div>
+                            <div *ngIf="item.name == 'Grid Length'">
+                                <mat-select color="primary" placeholder="--Select Grid length--" class="form-control">
+                                    <mat-option [value]="0">5</mat-option>
+                                    <mat-option [value]="1">10</mat-option>
+                                    <mat-option [value]="2">25</mat-option>
+                                    <mat-option [value]="3">50</mat-option>
+                                    <mat-option [value]="4">100</mat-option>
+                                </mat-select>
+                            </div>
+                            <div *ngIf="item.name == 'Notification Email'">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Notification Email">
+                            </div>
+                            <div *ngIf="item.name == 'Fax Number'">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Notification Email">
+                            </div>
+                            <div *ngIf="item.name == 'Prospect Follow-up Days'">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Prospect Follow-up Days">
+                            </div>
+                            <div *ngIf="item.name == 'Opportunity Follow-up Days'">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Opportunity Follow-up Days">
+                            </div>
+                        </td>
+                        <td>
+                            <a style="margin-right: 10px;"
+                            class="status"
+                            mwlConfirmationPopover
+                            [popoverTitle]="popoverStatusTitle"
+                            [popoverMessage]="popoverStatusMessage"
+                            placement="left"
+                            (confirm)="saveSettings();"
+                            (cancel)="cancelClicked = true">
+                                Save
+                            </a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

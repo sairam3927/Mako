@@ -1,0 +1,145 @@
+<div fxLayout="row wrap" #resizedDiv>
+  <div class="flex-p w-100">
+
+      <div class="row" style="margin-bottom:14px;">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="w-100 flex-p">
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="w-100 flex-p">
+                      <!-- <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                              <mat-icon>help_outline</mat-icon> Help
+                          </button> -->
+                  <button mat-raised-button class="pull-right add-hover btn-success" (click)="openNewPatientDialog(null)">
+                      <mat-icon>person_add</mat-icon> Add Order
+                  </button>
+                  <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                      <mat-icon>filter_list</mat-icon> Filter
+                  </button> -->
+              </div>
+          </div>
+      </div>
+
+      <div fxLayout="row wrap" *ngIf="filterToggle" style="padding-bottom: 20px">
+          <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100">
+              <mat-card class="filter">
+                  <mat-card-content>
+                      <div class="row col-sm-12">
+                          <div class="col-sm-4">
+                              <div class="col-sm-4">Assigned Role</div>
+                              <div class="col-sm-8">
+                                  <mat-select name="" id="" placeholder="-- Select Role --" class="form-control">
+                                      <mat-option [value]=1>Project Managers</mat-option>
+                                      <mat-option [value]=2>Production Team</mat-option>
+                                      <mat-option [value]=3>Project Admin</mat-option>
+                                      <mat-option [value]=4>Administration</mat-option>
+                                      <mat-option [value]=5>Field Staff</mat-option>
+                                      <mat-option [value]=6>CAD Staff</mat-option>
+                                      <mat-option [value]=7>Finance</mat-option>
+                                  </mat-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                              <div class="col-sm-4">Status</div>
+                              <div class="col-sm-8">
+                                  <mat-select class='select-option form-control' placeholder="--Search by Status--">
+                                      <mat-option [value]="1">Any</mat-option>
+                                      <mat-option [value]="2">Active</mat-option>
+                                      <mat-option [value]="3">Inactive</mat-option>
+                                  </mat-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                              <div class="col-sm-4">Keyword</div>
+                              <div class="col-sm-8">
+                                  <input type="text" class="form-control" placeholder="Enter Keyword" />
+                              </div>
+                          </div>
+                      </div>
+                     
+                      <div class="row col-sm-12" style="margin-top:20px">
+                          <div class="col-sm-8"></div>
+                         
+                          <div class="col-sm-4" >
+                              <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                  <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                              </a>
+                              <button mat-raised-button class="pull-right btn-success-gray" style="margin-left: 10px;margin-right: 8px;">
+                                  <mat-icon>settings_backup_restore</mat-icon> Reset
+                              </button>
+                              <button mat-raised-button class="pull-right add-hover btn-success">
+                                  <mat-icon>cloud_download</mat-icon> Download CSV
+                              </button>
+                              <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                                  <mat-icon>youtube_searched_for</mat-icon> Search
+                              </button>
+                          </div>
+
+                      </div>
+
+                  </mat-card-content>
+              </mat-card>
+          </div>
+      </div>
+      <div fxLayout="row wrap">
+          <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>DOB</th>
+                          <th>Order ID</th>
+                          <th>Referring Physician</th>
+                          <th>Insurance</th>
+                          <!-- <th>Assign</th> -->
+                          <th>Received Date</th>
+                          <!-- <th>PHU / Script Date</th> -->
+                          <th>Docs</th>
+                          <th>Actions</th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of tableList">
+                          <td>{{item.firstName}}</td>
+                          <td>{{item.lastName}}</td>
+                          <td>{{item.dob}}</td>
+                          <td>{{item.orderId}}</td>
+                          <td>{{item.orderingPhysician}}</td>
+                          <td><a (click)="openPatientInsuranceDialog(item)" style="color: #007ad9;cursor: pointer;">{{item.insurance}}</a></td>
+                          <td>{{item.receivedDate}}</td>
+                          <!-- <td>{{item.scriptDate}}</td> -->
+                          <td><i class="fa fa-file-text-o" style="cursor: pointer;" (click)="openNewPatientDialog(item)"></i></td>
+                          <!-- <td>{{item.type}}</td> -->
+                          <!-- <td class="pad-left inner-screen" style="cursor:pointer">
+                              <a (click)="item.status = ! item.status" >
+                                  <span *ngIf="!item.status" style="color:red">Inactive</span>
+                                  <span *ngIf="item.status" style="color:#1c4f86;">Active</span>
+                              </a>
+                          </td> -->
+                          <td>
+                            <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openNewPatientDialog(item)">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a mwlConfirmationPopover
+                            [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage"
+                            placement="left"
+                            (confirm)="deleteNewPatientOrder()"
+                            (cancel)="cancelClicked = true">
+                                <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+                            </a>
+                            </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+  <mat-spinner color="primary"></mat-spinner>
+</div>

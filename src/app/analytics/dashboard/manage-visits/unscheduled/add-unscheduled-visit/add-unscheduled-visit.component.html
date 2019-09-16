@@ -1,0 +1,46 @@
+<!--This page is used to add or edit leads-->
+<div>
+  <h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Visit</h1> <hr>
+  
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label">Patient : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="email" placeholder="Enter patient name">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label">Case : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" id="email" placeholder="Enter case">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                     <label class="control-label fontWeightClass">Eoin Morgan</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label" for="pwd">Attorney : </label>
+                  <div class="col-sm-8">
+                    <label class="control-label fontWeightClass">Mark Wood</label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="pwd">Remarks : </label>
+                    <div class="col-sm-8">
+                        <textarea class="txtarea form-control" placeholder="Enter Remarks" rows="2"></textarea>
+                    </div>
+                </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="btn-success" (click)="saveVisit()">Save</button>
+              <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+          </mat-dialog-actions>
+     
+</div>

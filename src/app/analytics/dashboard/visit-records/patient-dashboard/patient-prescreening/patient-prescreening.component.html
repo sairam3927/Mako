@@ -1,0 +1,69 @@
+<div fxLayout="row wrap" #resizedDiv  class="new-style-class">
+    <div class="flex-p w-100">
+            <!-- <h3>Order Information</h3>
+    <div style="background-color: #e0e0eb;padding: 20px;">
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Order ID :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">1257963</label>    
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Attorney :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Domenic Vinci</label>    
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Patient Name :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Fabrice Vanegas</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Geographic Location :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Houston, TX</label>
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Referring Physician :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">David</label>
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Received Date :</label>
+                <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">22/05/2019</label>
+            </div> 
+        </div>
+        
+      </div>
+        <br> -->
+                <h3>Questionnaire</h3>
+                <div fxLayout="row wrap">
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead class="tbl-head">
+                                    <tr class="tr-grid-header">
+                                        <th>S.No</th>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of tableList">
+                                        <td>{{item.sNo}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>
+                                            <mat-radio-group aria-label="Select an option" name="sadas">
+                                                    <mat-radio-button class="margin margins" [value]="1">Yes</mat-radio-button>
+                                                    <mat-radio-button class="margin margins new-scaled-margin" [value]="2">No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button class="btn-success pull-right" style="margin-top: 10px;">Update</button>
+                    <!-- <button mat-raised-button class="add-dark-hover btn-default">Back</button> -->
+                </mat-dialog-actions>
+    </div>
+</div>

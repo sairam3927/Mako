@@ -1,0 +1,78 @@
+<!--This page is used to add or edit leads-->
+<div>
+  <h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Visit</h1> <hr>
+  
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label">Patient : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="email" placeholder="Enter patient name">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label">Case : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" id="email" placeholder="Enter case">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                     <label class="control-label fontWeightClass">Eoin Morgan</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label" for="pwd">Attorney : </label>
+                  <div class="col-sm-8">
+                    <label class="control-label fontWeightClass">Mark Wood</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <div class="input-icon right">
+                          <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                          <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Internal Physician : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                      <mat-select color="primary" placeholder="--Select Internal Physician--" class="form-control">
+                        <mat-option [value]="0">Domenic Vinci</mat-option>
+                        <mat-option [value]="1">Brad Kewalramani</mat-option>
+                        <mat-option [value]="2">Kipling Morton</mat-option>
+                        <mat-option [value]="3">Michael Persaud</mat-option>
+                        <mat-option [value]="4">Dan McCarthy</mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Time : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="input-icon right">
+                            <i class="fa fa-calendar-plus-o" [owlDateTimeTrigger]="dt3"></i>
+                            <input class="form-control" placeholder="HH:MM" class="form-control" id="db" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" name="dt3">
+                            <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+                        </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label" for="pwd">Remarks : </label>
+                    <div class="col-sm-8">
+                        <textarea class="txtarea form-control" placeholder="Enter Remarks"></textarea>
+                    </div>
+                </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="btn-success" (click)="saveVisit()">Save</button>
+              <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+          </mat-dialog-actions>
+     
+</div>

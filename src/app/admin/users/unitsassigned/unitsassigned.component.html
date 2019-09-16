@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Units Assigned</h1> <hr>
+
+<div fxLayout="row wrap">
+  <div class="row">
+    <div class="col-lg-6">
+        <mat-checkbox [checked]="myLabel">CTO - 1</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">CTO - 2</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">FTO - 5</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">CTO - 8</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">FTO - 7</mat-checkbox><hr>
+    
+    </div>
+    <div class="col-lg-6">
+        <mat-checkbox [checked]="myLabel">CTO - 4</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">FTO - 8</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">CTO - 6</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">CTO - 9</mat-checkbox><hr>
+        <mat-checkbox [checked]="myLabel">FTO - 2</mat-checkbox><hr>
+    
+    </div>
+  </div>
+    
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="btn-success" (click)="saveUnits()">Update</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions> 

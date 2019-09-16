@@ -1,0 +1,62 @@
+<div fxLayout="row wrap" #resizedDiv class="new-style-class">
+    <div class="flex-p w-100">
+      <div class="row">
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Order ID :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">1257963</label>    
+          </div>
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Ordering Physician :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">Domenic Vinci</label>    
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Patient Name :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">Fabrice Vanegas</label>
+          </div>
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Geographic Location :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">Houston, TX</label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Referring Physician :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">David</label>
+          </div>
+          <div class="col-lg-6">
+              <label class="control-label col-lg-4 col-md-2 col-sm-2 col-xs-2">Received Date :</label>
+              <label class="control-label col-lg-8 col-md-2 col-sm-2 col-xs-2 new-class">22/05/2019</label>
+          </div> 
+        </div>
+      <br>
+
+      <div fxLayout="row wrap">
+          <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th>Order ID</th>
+                          <th>Test Name</th>
+                          <th>INS Status</th>
+                          <th>Test Date</th>
+                          <th>SCH Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of tableList">
+                          <td>{{item.orderId}}</td>
+                          <td>{{item.testName}}</td>
+                          <td style="color:green">{{item.insStatus}}</td>
+                          <td>{{item.updatedDate}}</td>
+                          <td>{{item.schStatus}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>

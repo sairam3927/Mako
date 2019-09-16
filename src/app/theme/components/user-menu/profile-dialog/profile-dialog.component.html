@@ -1,0 +1,78 @@
+<h1 mat-dialog-title><span *ngIf="!user">Update </span><span *ngIf="user">Edit</span>Profile</h1>
+
+<div mat-dialog-content>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-4">First Name&nbsp;:</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="input-icon right">
+                            <i class="fa fa-user"></i>
+                            <input type="text" class="form-control" id="name" placeholder="Enter First Name">
+                        </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Last Name&nbsp;:</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-user"></i>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+                </div>
+        </div>
+        </div>
+        <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Display Name&nbsp;:</label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="input-icon right">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" id="dname" placeholder="Enter Display Name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Date of Birth&nbsp;:</label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="input-icon right">
+                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                            <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="dob" [(ngModel)]="dateTime1" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Email&nbsp;:</label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="input-icon right">
+                            <i class="fa fa-envelope"></i>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Email ID">
+                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Phone Number&nbsp;:</label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="input-icon right">
+                            <i class="fa fa-mobile"></i>
+                            <input type="number" class="form-control" id="number" placeholder="Enter Mobile Number">
+                        </div>
+                </div>
+            </div>
+        <!-- <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Status:</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                 <input type="text" class="form-control" placeholder="Enter Industry">
+                <select name="" id="" class="form-control">
+                    <option   selected disabled>Select status</option>
+                    <option  >Active</option>
+                    <option  >Inactive</option>
+                </select>
+            </div>
+        </div> -->
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="btn-default" (click)="close()">Cancel</button>
+    <button mat-raised-button class="add-hover btn-success" (click)="saveProfile();" [mat-dialog-close]="'test'"><span *ngIf="!user">Save</span><span
+            *ngIf="user">Update</span></button>
+</mat-dialog-actions> 

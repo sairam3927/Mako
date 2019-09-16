@@ -1,0 +1,60 @@
+<h1 mat-dialog-title> Documents</h1><hr>
+<div mat-dialog-content>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Document Type : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" placeholder="Enter document type">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Document : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <input type="file" style="margin-top:3px!important;">
+            </div>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-hover btn-success">Upload</button>
+    <button mat-raised-button class="add-dark-hover btn-default">Clear</button>
+</mat-dialog-actions> 
+
+<div fxLayout="row wrap" #resizedDiv style="margin-top:20px!important;">
+    <div class="flex-p w-100">
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th>Document Name</th>
+                        <th>Document Type</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of tableList">
+                        <td>{{item.docuName}}</td>
+                        <td>{{item.docuType}}</td>
+                        <td>
+                            <a mwlConfirmationPopover
+                            [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage"
+                            placement="left"
+                            (confirm)="deleteVisit()"
+                            (cancel)="cancelClicked = true">
+                                <i style="cursor: pointer;" title="Delete Visit" class="fa fa-trash red"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+    
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-hover btn-success" (click)="closeDocument()" [mat-dialog-close]="'test'">Finish</button>
+</mat-dialog-actions> 
+

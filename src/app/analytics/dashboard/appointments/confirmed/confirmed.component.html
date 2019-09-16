@@ -1,0 +1,143 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+      
+      <div class="row wrap" style="margin-bottom:7px;">
+        <div class="col-sm-6">
+          <div class="pills w-100 flex-p">
+            <ul class="nav nav-pills">
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/patients/appointments/scheduled']"><mat-icon>highlight</mat-icon> Scheduled</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/patients/appointments/confirmed']"><mat-icon>outlined_flag</mat-icon> Confirmed</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="w-100 flex-p">
+                <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                    <mat-icon>filter_list</mat-icon> Filter
+                </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Patient Name : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" placeholder="--Enter Patient Name--">
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-5 newMarginClass">
+                                    From Date : 
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-icon right">
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt3"></i>
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" name="dt3" [(ngModel)]="dates">
+                                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-5 newMarginClass">
+                                    To Date : 
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-icon right">
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" [(ngModel)]="dates">
+                                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                            <div class="row col-sm-12 marginTopClass">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Attorney : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <mat-select placeholder="--Search by Attorney--" multiple class="form-control">
+                                            <mat-option *ngFor="let option of referringOptions" [value]="">{{option}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Referring Physician : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <mat-select placeholder="--Search by Referring Physician--" multiple class="form-control">
+                                            <mat-option *ngFor="let option of referringOptions" [value]="">{{option}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Internal Physician : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <mat-select placeholder="--Search by Internal Physician--" multiple class="form-control">
+                                            <mat-option *ngFor="let option of referringOptions" [value]="">{{option}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="col-lg-9"></div>
+                           
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-1 marginTopClass">
+                                    <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+                                </div>
+                        </div>
+                            
+                        
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+   
+      <div fxLayout="row wrap">
+          <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th>Patient Name</th>
+                          <!-- <th>Last Name</th> -->
+                          <th>DOB</th>
+                          <th>Phone</th>
+                          <th>Referring Physician</th>
+                          <th>Attorney</th>
+                          <th>Internal Physician</th>
+                          <!-- <th>Assign</th> -->
+                          <th>Appointment Date</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of tableList">
+                          <td><a [routerLink]="['/sapphire/patients/patientdashboard']" target="_blank" style="color:#007ad9!important;cursor: pointer!important;">{{item.patientName}}</a></td>
+                          <td>{{item.dob}}</td>
+                          <td>{{item.phone}}</td>
+                          <td>{{item.orderingPhysician}}</td>
+                          <td>{{item.attorney}}</td>
+                          <td>{{item.internalPhysician}}</td>
+                          <td>{{item.appointmentDate}}</td>
+                          <td style="color: green">{{item.status}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>

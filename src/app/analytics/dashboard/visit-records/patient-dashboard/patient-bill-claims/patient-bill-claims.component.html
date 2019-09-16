@@ -1,0 +1,109 @@
+<div fxLayout="row wrap" #resizedDiv>
+        <div class="flex-p w-100">
+      
+          
+      
+      
+           
+            
+            <div fxLayout="row wrap">
+                <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th>Visit</th>
+                                <th>Symptoms</th>
+                                <th>Attorney</th>
+                                <!-- <th>Assign</th> -->
+                                <th>Insurane</th>
+                                <th>Claim Reference</th>
+                                <th>Scheduled Date</th>
+                                <th>Claim Amount</th>
+                                <th>Received Date</th>
+                                <th>Received Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of tableList">
+                                <td>{{item.visit}}</td>
+                                <td>{{item.symptoms}}</td>
+                                <td>{{item.attorney}}</td>
+                                <td>{{item.insurance}}</td>
+                                <td>{{item.claimRef}}</td>
+                                <td>{{item.schDate}}</td>
+                                <td>{{item.claimAmount}}</td>
+                                <td>{{item.recDate}}</td>
+                                <td>{{item.recAmount}}</td>
+                                <!-- <td>{{item.type}}</td> -->
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      
+      <div id="modal" class="modal fade" tabindex="-1" role="dialog" style="z-index:5000 !important;opacity:1"
+        aria-labelledby="dialog-sizes-name2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-sizes-name2" class="modal-title pull-left">Add Information</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" onClick="closeModal('modal')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="/action_page.php">
+                        <div class="form-group">
+                            <!-- <label class="control-label col-sm-4">Content:</label> -->
+                            <div class="col-sm-12">
+                                <textarea rows="4" class="form-control txtarea" id="content" placeholder="Enter your comments"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <mat-radio-group>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                <mat-radio-button value="1">Email</mat-radio-button>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                <mat-radio-button value="2">Call</mat-radio-button>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                            <mat-radio-button value="1">Text</mat-radio-button>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                            <mat-radio-button value="2">Linkedin</mat-radio-button>
+                                        </div>
+                                </mat-radio-group>
+                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                    <!-- <mat-form-field>
+                                            <input matInput [matDatepicker]="picke" placeholder="Choose a date">
+                                            <mat-datepicker-toggle matSuffix [for]="picke"></mat-datepicker-toggle>
+                                            <mat-datepicker #picke startView="year" [startAt]="startDate"></mat-datepicker>
+                                    </mat-form-field> -->
+                             </div>
+                        </div>
+                            <!-- <div class="form-group">
+                            <label class="control-label col-sm-4">Name:</label>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" id="email" placeholder="Enter notes name">
+                            </div>
+                        </div> -->
+                        
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+      
+                    <button mat-raised-button class="add-hover" style="background:#229494;color: white;" onClick="saveModal('mod1')">Save</button>
+                    <button mat-raised-button class="add-dark-hover" style="background:transparent;" onClick="closeModal('modal')">Close</button>
+                </div>
+            </div>
+        </div>
+      </div>

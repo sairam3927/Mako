@@ -1,0 +1,42 @@
+<h1 mat-dialog-title align="center" >Add Algorithm</h1><hr>
+<div mat-dialog-content align="center" style="margin-bottom: 30px;">
+        <form class="form-horizontal" novalidate >
+                <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label">Test : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" placeholder="Enter Test" required>
+                        <!-- <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
+                            <div *ngIf="addFirstName.errors.required">
+                                First name is required
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" placeholder="Enter Allele Name" required>
+                        <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                            <div *ngIf="addLastName.errors.required">
+                                Last name is required
+                            </div>
+                        </div> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label col-sm-4 add-member-label">Parameter : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" placeholder="Enter Parameter" required>
+                              <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                                  <div *ngIf="addLastName.errors.required">
+                                      Last name is required
+                                  </div>
+                              </div> -->
+                        </div>
+                </div>
+            </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-success" (click)="close()"> Submit</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions> 

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title align="center" >Upload Allele Master</h1><hr>
+<div mat-dialog-content align="center" style="margin-bottom: 30px;">
+
+  <form class="form-horizontal" novalidate style="overflow: hidden;" >
+    <!-- <div class="form-group">
+        <label class=" col-lg-4 col-md-4 col-sm-4 col-xs-4 ">Document Name : </label>
+        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+            <input type="text" class="form-control" id="email" formControlName="addFirstName" placeholder="Enter Document Name" required>
+             <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
+                <div *ngIf="addFirstName.errors.required">
+                    First name is required
+                </div>
+            </div> 
+        </div>
+    </div> -->
+    <div class="form-group">
+      <label class=" col-lg-4 col-md-4 col-sm-4 col-xs-4 ">Choose File : </label>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input type="file"   />
+      </div>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-success" (click)="close()"> Submit</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions> 

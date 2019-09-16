@@ -1,0 +1,160 @@
+<h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Orders</h1><hr>
+<div mat-dialog-content>
+
+    <form class="form-horizontal" novalidate>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Patient Name : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" id="order-name" formControlName="addFirstName" placeholder="Enter Patient Name" required>
+                <!-- <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
+                    <div *ngIf="addFirstName.errors.required">
+                        First name is required
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 add-member-label">Age: </label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <input type="text" class="form-control" id="email" formControlName="addLastName" placeholder="Enter Age" required>
+                <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                    <div *ngIf="addLastName.errors.required">
+                        Last name is required
+                    </div>
+                </div> -->
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Gender: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <!-- <mat-select placeholder="--Select Gender--" class="form-control">
+                            <mat-option *ngFor="let option of gender" [value]="">{{option}}</mat-option>
+                        </mat-select> -->
+                    <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType"   class="pull-left" style= "margin-top: 5px"aria-label="Select an option">
+                            <mat-radio-button value="1" style="margin-right: 10px">Male</mat-radio-button>
+                            <mat-radio-button value="2">Female</mat-radio-button>
+                    </mat-radio-group>    
+                  <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                      <div *ngIf="addLastName.errors.required">
+                          Last name is required
+                      </div>
+                  </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date of Birth : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="od" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Ethnicity: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <!-- <mat-select placeholder="--Select Gender--" class="form-control">
+                            <mat-option *ngFor="let option of gender" [value]="">{{option}}</mat-option>
+                        </mat-select> -->
+                        <mat-select placeholder="--Select Ethnicity--" class="form-control">
+                            <mat-option [value]="1">Hispanic</mat-option>
+                            <mat-option [value]="2">Non-Hispanic White</mat-option>
+                            <mat-option [value]="3">Afican American</mat-option>
+                            <mat-option [value]="4">Asian</mat-option>
+                            <mat-option [value]="5">Other</mat-option>
+                        </mat-select>   
+                  <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                      <div *ngIf="addLastName.errors.required">
+                          Last name is required
+                      </div>
+                  </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Sample Name: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" id="email" formControlName="addLastName" placeholder="Enter Sample name" required>
+                  <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                      <div *ngIf="addLastName.errors.required">
+                          Last name is required
+                      </div>
+                  </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">FEDEX AWB: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" id="email" formControlName="addLastName" placeholder="Enter FEDEX AWB" required>
+                  <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                      <div *ngIf="addLastName.errors.required">
+                          Last name is required
+                      </div>
+                  </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Order Date : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="od" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date Completed: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="dc" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-group" *ngIf="selectedValueStepType=='2'">
+            <label class="control-label col-sm-4 ">Pregnant / Lactating : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="top: 10px">
+                <mat-checkbox ></mat-checkbox>
+                  <!-- <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                      <div *ngIf="addLastName.errors.required">
+                          Last name is required
+                      </div>
+                  </div> -->
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Lactating : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <mat-checkbox ></mat-checkbox>
+                  
+            </div>
+        </div> -->
+        <!-- <div class="form-group">
+          <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Status : </label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"> -->
+              <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+              <!-- <mat-select color="primary" placeholder="--Select Status--" formControlName="addReferringPhysician" class="form-control" required>
+                <mat-option [value]="0">Pending</mat-option>
+                <mat-option [value]="1">Done</mat-option>
+            </mat-select> -->
+            <!-- <div *ngIf="!addReferringPhysician.valid && (addReferringPhysician.dirty || addReferringPhysician.touched)" class="error-text">
+                <div *ngIf="addReferringPhysician.errors.required">
+                    Referring Physician is required
+                </div>
+            </div>   -->
+          <!-- </div>
+        </div> -->
+        <!-- <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Select Document : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margins">
+                <input type="file" accept="image/*" placeholder="Upload file..." style="margin-top: 3px;">
+            </div>
+        </div> -->
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button Class="btn-success" (click)="saveOrder()">Save</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions> 

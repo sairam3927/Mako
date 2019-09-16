@@ -1,0 +1,80 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+      
+      <div class="row wrap" style="margin-bottom:7px;">
+        <div class="col-lg-12">
+          <div class="pills w-100 flex-p">
+            <ul class="nav nav-pills">
+                <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/pharmacies']"><mat-icon>insert_chart_outlined</mat-icon> Pharmacies</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/imaging']"><mat-icon>image_search</mat-icon> Imaging Partners</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/businesscenters']"><mat-icon>business_center</mat-icon> Business Centers</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/clinicalcategories']"><mat-icon>add_photo_alternate</mat-icon> Clinical Categories</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/visitstatus']"><mat-icon>check_box</mat-icon> Visit Status</a></li>
+              <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/questionnaire']"><mat-icon>list_alt</mat-icon> Questionnaire</a></li> -->
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/sapphire/admin/masterdata/claimstatus']"><mat-icon>check</mat-icon> Claim Status</a></li>
+            </ul>                               
+          </div>
+        </div>
+        
+      </div>
+      <div class="row" style="margin-bottom:14px;">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="w-100 flex-p">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="w-100 flex-p">
+              <!-- <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                <mat-icon>help_outline</mat-icon> Help
+              </button> -->
+              <button mat-raised-button class="pull-right add-hover btn-success" (click)="openClinicalDialog(null)">
+                <mat-icon>person_add</mat-icon> Add Clinical Category
+              </button>
+              <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                <mat-icon>filter_list</mat-icon> Filter
+              </button> -->
+            </div>
+          </div>
+        </div>
+        
+        
+        <div fxLayout="row wrap">
+          <div class="table-responsive">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead class="tbl-head">
+                <tr class="tr-grid-header">
+                  <th>Clinical Category</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of tableList">
+                  <td>{{item.clinicalCategory}}</td>
+                  <!-- <td>{{item.type}}</td> -->
+                  <td class="pad-left inner-screen" style="cursor:pointer">
+                    <a (click)="item.status = ! item.status" >
+                      <span *ngIf="!item.status" style="color:red">Inactive</span>
+                      <span *ngIf="item.status" style="color:#1c4f86;">Active</span>
+                    </a>
+                  </td>
+                  <td>
+                    <a title="Edit Category" style="margin-right: 10px; cursor: pointer;" (click)="openClinicalDialog(item)">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage"
+                    placement="left"
+                    (confirm)="deleteBusinessCenter()"
+                    (cancel)="cancelClicked = true">
+                    <i style="cursor: pointer;" title="Delete Category" class="fa fa-trash red"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,541 @@
+<!--This page is used to add or edit leads-->
+<div>
+        <h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Patient</h1> <hr>
+        <mat-horizontal-stepper #stepper>
+            <mat-step>
+                <div mat-dialog-content>
+                    <form class="form-horizontal"  novalidate [formGroup]="addBasicDetails">
+                        <ng-template matStepLabel>Patient Info</ng-template>
+                        <div class="form-group">
+                          <label class="control-label col-sm-4 add-member-label">First Name : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <input type="text" formControlName="addFirstName" class="form-control" id="email" placeholder="Enter first name" required>
+                                <div *ngIf="!addFirstName.valid && (addFirstName.dirty || addFirstName.touched)" class="error-text">
+                                    <div *ngIf="addFirstName.errors.required">
+                                        First name is required
+                                    </div>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 add-member-label">Last Name : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" formControlName="addLastName" class="form-control" id="email" placeholder="Enter last name" required>
+                            <div *ngIf="!addLastName.valid && (addLastName.dirty || addLastName.touched)" class="error-text">
+                                <div *ngIf="addLastName.errors.required">
+                                    Last name is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Sex : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                            <mat-select color="primary" formControlName="addSex" placeholder="--Select Sex--" class="form-control" required>
+                              <mat-option [value]="0">Male</mat-option>
+                              <mat-option [value]="1">Female</mat-option>
+                            </mat-select>
+                            <div *ngIf="!addSex.valid && (addSex.dirty || addSex.touched)" class="error-text">
+                                <div *ngIf="addSex.errors.required">
+                                    Sex is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-4 add-member-label" for="pwd">Phone : </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="addphone" placeholder="Enter Contact Number" required>
+                            <div *ngIf="!addphone.valid && (addphone.dirty || addphone.touched)" class="error-text">
+                                <div *ngIf="addphone.errors.required">
+                                    Phone is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 add-member-label" for="pwd">Email : </label>
+                          <div class="col-sm-8">
+                                <input type="email" email formControlName="addEmail" class="form-control" placeholder="Enter Email" required>
+                                <div *ngIf="!addEmail.valid && (addEmail.dirty || addEmail.touched)" class="error-text">
+                                    <div *ngIf="addEmail.errors.required">
+                                        Email is required
+                                    </div>
+                                    <div *ngIf="addEmail.errors.email">
+                                        Enter a valid email
+                                    </div>
+                                </div>
+                          </div>
+                      </div>
+                      <!-- <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">DOB : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                <input class="form-control" formControlName="addDob" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1" required>
+                                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                            </div>
+                            <div *ngIf="!addDob.valid && (addDob.dirty || addDob.touched)" class="error-text">
+                                <div *ngIf="addDob.errors.required">
+                                    Date of birth is required
+                                </div>
+                            </div>
+                        </div>
+                      </div> -->
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                            <mat-select color="primary" formControlName="addReferringPhysician" placeholder="--Select Referring Physician--" class="form-control" required>
+                              <mat-option [value]="0">Domenic Vinci</mat-option>
+                              <mat-option [value]="1">Brad Kewalramani</mat-option>
+                              <mat-option [value]="2">Kipling Morton</mat-option>
+                              <mat-option [value]="3">Michael Persaud</mat-option>
+                              <mat-option [value]="4">Dan McCarthy</mat-option>
+                            </mat-select>
+                            <div *ngIf="!addReferringPhysician.valid && (addReferringPhysician.dirty || addReferringPhysician.touched)" class="error-text">
+                                <div *ngIf="addReferringPhysician.errors.required">
+                                    Referring Physician is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Attorney : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                            <mat-select color="primary" formControlName="addAttorney" placeholder="--Select Attorney--" class="form-control" required>
+                              <mat-option [value]="0">Fabrice Vanegas</mat-option>
+                              <mat-option [value]="1">Stephen McGill</mat-option>
+                              <mat-option [value]="2">Otto Rieder</mat-option>
+                              <mat-option [value]="3">Joe Deu-Ngoc</mat-option>
+                              <mat-option [value]="4">Chris Soles</mat-option>
+                            </mat-select>
+                            <div *ngIf="!addAttorney.valid && (addAttorney.dirty || addAttorney.touched)" class="error-text">
+                                <div *ngIf="addAttorney.errors.required">
+                                    Attorney is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date Initiated : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                                <input class="form-control" formControlName="addReceivedDate" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" required>
+                                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                            </div>
+                            <div *ngIf="!addReceivedDate.valid && (addReceivedDate.dirty || addReceivedDate.touched)" class="error-text">
+                                <div *ngIf="addReceivedDate.errors.required">
+                                    Initiated Date is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button [disabled]="!addBasicDetails.valid" [ngClass]="!addBasicDetails.valid ? '' : 'btn-success'" matStepperNext>Proceed</button>
+                    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+                </mat-dialog-actions>
+            </mat-step>
+            <mat-step>
+                <div mat-dialog-content>
+                    <form class="form-horizontal" novalidate [formGroup]="addAddressDetails">
+                        <ng-template matStepLabel>Address Details</ng-template>
+      
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">ZIP Code : </label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="addZip" maxlength="7" class="form-control" placeholder="Enter postal code" required>
+                                <div *ngIf="!addZip.valid && (addZip.dirty || addZip.touched)" class="error-text">
+                                    <div *ngIf="addZip.errors.required">
+                                        Zip is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+      
+                        <div class="form-group">
+                            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">State / Province : </label>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <mat-select color="primary" formControlName="addState" placeholder="--Select State--" class="form-control" required>
+                                    <mat-option [value]="0">New York</mat-option>
+                                    <mat-option [value]="1">New Jersey</mat-option>
+                                    <mat-option [value]="2">Texas</mat-option>
+                                    <mat-option [value]="3">Virginia</mat-option>
+                                    <mat-option [value]="4">New Hampshire</mat-option>
+                                    <mat-option [value]="5">Vermont</mat-option>
+                                    <mat-option [value]="6">California</mat-option>
+                                    <mat-option [value]="7">Florida</mat-option>
+                                    <mat-option [value]="8">Michigan</mat-option>
+                                    <mat-option [value]="9">Pennsylvania</mat-option>
+                                    <mat-option [value]="10">Ohio</mat-option>
+                                </mat-select>
+                                <div *ngIf="!addState.valid && (addState.dirty || addState.touched)" class="error-text">
+                                    <div *ngIf="addState.errors.required">
+                                        State is required
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">City : </label>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <mat-select color="primary" formControlName="addCity" placeholder="--Select City--" class="form-control" required>
+                                    <mat-option [value]="0">San Francisco</mat-option>
+                                    <mat-option [value]="1">Los Angeles</mat-option>
+                                    <mat-option [value]="2">Chicago</mat-option>
+                                    <mat-option [value]="3">Boston</mat-option>
+                                    <mat-option [value]="4">Austin</mat-option>
+                                    <mat-option [value]="5">San Diego</mat-option>
+                                    <mat-option [value]="6">Dallas</mat-option>
+                                    <mat-option [value]="7">Miami</mat-option>
+                                    <mat-option [value]="8">Detroit</mat-option>
+                                    <mat-option [value]="9">Portland</mat-option>
+                                    <mat-option [value]="10">Phoenix</mat-option>
+                                </mat-select>
+                                <div *ngIf="!addCity.valid && (addCity.dirty || addCity.touched)" class="error-text">
+                                    <div *ngIf="addCity.errors.required">
+                                        City is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Contact Address : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control txtarea" formControlName="addAddress" rows="2" placeholder="Enter contact address" required></textarea>
+                                <div *ngIf="!addAddress.valid && (addAddress.dirty || addAddress.touched)" class="error-text">
+                                    <div *ngIf="addAddress.errors.required">
+                                        Address is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button [disabled]="!addAddressDetails.valid" [ngClass]="!addAddressDetails.valid ? '' : 'btn-success'" matStepperNext>Proceed</button>
+                    <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+                </mat-dialog-actions>
+            </mat-step>
+    
+    
+            <mat-step>
+                <div mat-dialog-content>
+                    <form class="form-horizontal" novalidate [formGroup]="addSymptomsForm">
+                        <ng-template matStepLabel>Symptoms</ng-template>
+      
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Allergies : </label>
+                            <div class="col-sm-8">
+                                <textarea class="txtarea form-control" formControlName="allergies" rows="2" required></textarea>
+                                <div *ngIf="!allergies.valid && (allergies.dirty || allergies.touched)" class="error-text">
+                                    <div *ngIf="allergies.errors.required">
+                                        Allergies is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Chronic Issues : </label>
+                            <div class="col-sm-8">
+                                <textarea class="txtarea form-control" formControlName="chronic" rows="2" required></textarea>
+                                <div *ngIf="!chronic.valid && (chronic.dirty || chronic.touched)" class="error-text">
+                                    <div *ngIf="chronic.errors.required">
+                                        Chronic Issues are required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Medication : </label>
+                            <div class="col-sm-8">
+                                <textarea class="txtarea form-control" formControlName="medication" rows="2" required></textarea>
+                                <div *ngIf="!medication.valid && (medication.dirty || medication.touched)" class="error-text">
+                                    <div *ngIf="medication.errors.required">
+                                        Medications are required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Surgery History : </label>
+                            <div class="col-sm-8">
+                                <textarea class="txtarea form-control" formControlName="surgery" rows="2" required></textarea>
+                                <div *ngIf="!surgery.valid && (surgery.dirty || surgery.touched)" class="error-text">
+                                    <div *ngIf="surgery.errors.required">
+                                        Surgery History is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+      
+                    </form>
+                </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button [disabled]="!addSymptomsForm.valid" [ngClass]="!addSymptomsForm.valid ? '' : 'btn-success'" matStepperNext>Proceed</button>
+                    <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+                </mat-dialog-actions>
+            </mat-step>
+      
+            <!-- <mat-step>
+                <div mat-dialog-content>
+                    <form class="form-horizontal" novalidate [formGroup]="addAddressDetails">
+                        <ng-template matStepLabel>Address Details</ng-template>
+      
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">ZIP Code : </label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="addZip" maxlength="7" class="form-control" placeholder="Enter postal code" required>
+                                <div *ngIf="!addZip.valid && (addZip.dirty || addZip.touched)" class="error-text">
+                                    <div *ngIf="addZip.errors.required">
+                                        Zip is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+      
+                        <div class="form-group">
+                            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">State / Province : </label>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <mat-select color="primary" formControlName="addState" placeholder="--Select State--" class="form-control" required>
+                                    <mat-option [value]="0">New York</mat-option>
+                                    <mat-option [value]="1">New Jersey</mat-option>
+                                    <mat-option [value]="2">Texas</mat-option>
+                                    <mat-option [value]="3">Virginia</mat-option>
+                                    <mat-option [value]="4">New Hampshire</mat-option>
+                                    <mat-option [value]="5">Vermont</mat-option>
+                                    <mat-option [value]="6">California</mat-option>
+                                    <mat-option [value]="7">Florida</mat-option>
+                                    <mat-option [value]="8">Michigan</mat-option>
+                                    <mat-option [value]="9">Pennsylvania</mat-option>
+                                    <mat-option [value]="10">Ohio</mat-option>
+                                </mat-select>
+                                <div *ngIf="!addState.valid && (addState.dirty || addState.touched)" class="error-text">
+                                    <div *ngIf="addState.errors.required">
+                                        State is required
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">City : </label>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <mat-select color="primary" formControlName="addCity" placeholder="--Select City--" class="form-control" required>
+                                    <mat-option [value]="0">San Francisco</mat-option>
+                                    <mat-option [value]="1">Los Angeles</mat-option>
+                                    <mat-option [value]="2">Chicago</mat-option>
+                                    <mat-option [value]="3">Boston</mat-option>
+                                    <mat-option [value]="4">Austin</mat-option>
+                                    <mat-option [value]="5">San Diego</mat-option>
+                                    <mat-option [value]="6">Dallas</mat-option>
+                                    <mat-option [value]="7">Miami</mat-option>
+                                    <mat-option [value]="8">Detroit</mat-option>
+                                    <mat-option [value]="9">Portland</mat-option>
+                                    <mat-option [value]="10">Phoenix</mat-option>
+                                </mat-select>
+                                <div *ngIf="!addCity.valid && (addCity.dirty || addCity.touched)" class="error-text">
+                                    <div *ngIf="addCity.errors.required">
+                                        City is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 add-member-label" for="pwd">Contact Address : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control txtarea" formControlName="addAddress" rows="2" placeholder="Enter contact address" required></textarea>
+                                <div *ngIf="!addAddress.valid && (addAddress.dirty || addAddress.touched)" class="error-text">
+                                    <div *ngIf="addAddress.errors.required">
+                                        Address is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button [disabled]="!addAddressDetails.valid" [ngClass]="!addAddressDetails.valid ? '' : 'btn-success'" matStepperNext>Proceed</button>
+                    <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+                </mat-dialog-actions>
+            </mat-step>
+    
+    
+            
+      
+            <mat-step>
+                <div mat-dialog-content>
+                    <form class="form-horizontal" novalidate [formGroup]="addInsuranceDetails">
+                        <ng-template matStepLabel>Primary Insurance</ng-template>
+                        <div class="form-group">
+                          <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Insurance Company : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <mat-select color="primary" formControlName="addInsurance" placeholder="--Select Insurance Company--" class="form-control" required>
+                              <mat-option [value]="0">AETNA PPO</mat-option>
+                              <mat-option [value]="1">AETNA MC</mat-option>
+                              <mat-option [value]="2">AETNA HMO</mat-option>
+                              <mat-option [value]="3">CIGNA PPO</mat-option>
+                              <mat-option [value]="4">CIGNA HMO</mat-option>
+                              <mat-option [value]="5">BCBS BLUE CHOICE PPO</mat-option>
+                              <mat-option [value]="6">BCBS BLUE OPTIONS</mat-option>
+                              <mat-option [value]="7">HMO BLUE TEXAS</mat-option>
+                              <mat-option [value]="8">BCBS PAR PLAN</mat-option>
+                              <mat-option [value]="9">MEDICAID TRADITIONAL</mat-option>
+                              <mat-option [value]="10">AMERIGROUP</mat-option>
+                            </mat-select>
+                            <div *ngIf="!addInsurance.valid && (addInsurance.dirty || addInsurance.touched)" class="error-text">
+                                <div *ngIf="addInsurance.errors.required">
+                                    Insurance is required
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Name of Insured : </label>
+                        <div class="col-sm-8">
+                            <input type="text" formControlName="addInsuranceName" class="form-control" placeholder="Enter Contact Number" required>
+                            <div *ngIf="!addInsuranceName.valid && (addInsuranceName.dirty || addInsuranceName.touched)" class="error-text">
+                                <div *ngIf="addInsuranceName.errors.required">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Insured DOB : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt3"></i>
+                                <input class="form-control" formControlName="addInsuredDob" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" name="dt3" required>
+                                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                            </div>
+                            <div *ngIf="!addInsuredDob.valid && (addInsuredDob.dirty || addInsuredDob.touched)" class="error-text">
+                                <div *ngIf="addInsuredDob.errors.required">
+                                    Date of birth is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+      
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Sex : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <mat-select color="primary" formControlName="addInsuranceSex" placeholder="--Select Sex--" class="form-control" required>
+                              <mat-option [value]="0">Male</mat-option>
+                              <mat-option [value]="1">Female</mat-option>
+                            </mat-select>
+                            <div *ngIf="!addInsuranceSex.valid && (addInsuranceSex.dirty || addInsuranceSex.touched)" class="error-text">
+                                <div *ngIf="addInsuranceSex.errors.required">
+                                    Sex is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Phone : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" formControlName="addInsurancePhone" placeholder="Enter Contact Number" required>
+                            <div *ngIf="!addInsurancePhone.valid && (addInsurancePhone.dirty || addInsurancePhone.touched)" class="error-text">
+                                <div *ngIf="addInsurancePhone.errors.required">
+                                    Phone is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Contact Address : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <textarea class="form-control txtarea" formControlName="addInsuranceAddress" rows="2" placeholder="Enter contact address" required></textarea>
+                                <div *ngIf="!addInsuranceAddress.valid && (addInsuranceAddress.dirty || addInsuranceAddress.touched)" class="error-text">
+                                    <div *ngIf="addInsuranceAddress.errors.required">
+                                        Address is required
+                                    </div>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Relationship to patient : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <mat-radio-group aria-label="Select an option" formControlName="addInsuredPerson" required>
+                                <mat-radio-button class="margin margins" value="1">Self</mat-radio-button>
+                                <mat-radio-button class="margin margins" value="2">Spouse</mat-radio-button>
+                                <mat-radio-button class="margin margins" value="3">Child</mat-radio-button>
+                                <mat-radio-button class="margins" value="4">Other</mat-radio-button>
+                            </mat-radio-group>
+                            <div *ngIf="!addInsuredPerson.valid && (addInsuredPerson.dirty || addInsuredPerson.touched)" class="error-text">
+                                <div *ngIf="addInsuredPerson.errors.required">
+                                    Relation is required
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+                <mat-dialog-actions align="end">
+                  <button mat-raised-button [disabled]="!addInsuranceDetails.valid" [ngClass]="!addInsuranceDetails.valid ? '' : 'btn-success'" matStepperNext>Proceed</button>
+                  <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+              </mat-dialog-actions>
+            </mat-step> -->
+      
+            <mat-step>
+              <div mat-dialog-content>
+                  <form class="form-horizontal" novalidate [formGroup]="addCaseDetailsForm">
+                    <ng-template matStepLabel>Case Details</ng-template>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Incident Details : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <textarea class="form-control txtarea" formControlName="incidentDetail" rows="2" placeholder="Enter incident details" required></textarea>
+                            <div *ngIf="!incidentDetail.valid && (incidentDetail.dirty || incidentDetail.touched)" class="error-text">
+                                <div *ngIf="incidentDetail.errors.required">
+                                    Incident details are required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Incident Date : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-calendar" [owlDateTimeTrigger]="dt4"></i>
+                                <input class="form-control" formControlName="addIncidentDate" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" name="dt4" required>
+                                <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+                            </div>
+                            <div *ngIf="!addIncidentDate.valid && (addIncidentDate.dirty || addIncidentDate.touched)" class="error-text">
+                                <div *ngIf="addIncidentDate.errors.required">
+                                    Incident date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Remarks/Notes : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <textarea class="form-control txtarea" formControlName="incidentRemarks" rows="2" placeholder="Enter Remarks" required></textarea>
+                            <div *ngIf="!incidentRemarks.valid && (incidentRemarks.dirty || incidentRemarks.touched)" class="error-text">
+                                <div *ngIf="incidentRemarks.errors.required">
+                                    Remarks are required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+              </div>
+              <mat-dialog-actions align="end">
+                  <button mat-raised-button class="add-hover" [disabled]="(addBasicDetails.invalid || addAddressDetails.invalid || addSymptomsForm.invalid || addCaseDetailsForm.invalid)" [ngClass]="(addBasicDetails.invalid || addAddressDetails.invalid || addSymptomsForm.invalid || addCaseDetailsForm.invalid) ? '' : 'btn-success'" (click)="saveOrder()"><span *ngIf="!order">Save</span><span
+                          *ngIf="order">Update</span></button>
+                  <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+              </mat-dialog-actions>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+      

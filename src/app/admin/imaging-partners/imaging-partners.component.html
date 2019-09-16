@@ -1,0 +1,73 @@
+<div fxLayout="row wrap" #resizedDiv>
+  <div class="flex-p w-100">
+
+      <div class="row" style="margin-bottom:14px;">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="w-100 flex-p">
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="w-100 flex-p">
+                      <!-- <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                              <mat-icon>help_outline</mat-icon> Help
+                          </button> -->
+                  <button mat-raised-button class="pull-right add-hover btn-success" (click)="openPartnerDialog(null)">
+                      <mat-icon>person_add</mat-icon> Add Partner
+                  </button>
+                  <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                      <mat-icon>filter_list</mat-icon> Filter
+                  </button> -->
+              </div>
+          </div>
+      </div>
+
+      
+      <div fxLayout="row wrap">
+          <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th>Imaging Partner</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <!-- <th>Assign</th> -->
+                          <th>Status</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of tableList">
+                          <td>{{item.partner}}</td>
+                          <td>{{item.email}}</td>
+                          <td>{{item.phone}}</td>
+                          <!-- <td>{{item.type}}</td> -->
+                          <td class="pad-left inner-screen" style="cursor:pointer">
+                              <a (click)="item.status = ! item.status" >
+                                  <span *ngIf="!item.status" style="color:red">Inactive</span>
+                                  <span *ngIf="item.status" style="color:#1c4f86;">Active</span>
+                              </a>
+                          </td>
+                          <td>
+                            <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPartnerDialog(item)">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a mwlConfirmationPopover
+                            [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage"
+                            placement="left"
+                            (confirm)="deletePartner()"
+                            (cancel)="cancelClicked = true">
+                                <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+                            </a>
+                            </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+  <mat-spinner color="primary"></mat-spinner>
+</div>

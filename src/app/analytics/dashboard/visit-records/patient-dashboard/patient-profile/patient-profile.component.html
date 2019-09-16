@@ -1,0 +1,301 @@
+<div fxLayout="row wrap" #resizedDiv  class="new-style-class">
+    <div class="flex-p w-100" >
+        <h3>Order Information</h3>
+        <div style="background-color: #e0e0eb;padding: 20px;">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Order ID :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">1257963</label>    
+                </div>
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Attorney :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Domenic Vinci</label>    
+                </div>
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Patient Name :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Fabrice Vanegas</label>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Geographic Location :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Houston, TX</label>
+                </div>
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Referring Physician :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">David</label>
+                </div>
+                <div class="col-lg-4">
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Received Date :</label>
+                    <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">22/05/2019</label>
+                </div> 
+            </div>
+            
+        </div>
+        <br>
+        
+        
+        
+        
+        
+        
+        
+        <div fxLayout="row wrap" #resizedDiv>
+            <div class="flex-p w-100">
+                
+                    <h3>Patient Information</h3>
+                    <br>
+                    <form class="form-horizontal">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label">First Name : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="email" placeholder="Enter first name" value="Fabrice">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label">Last Name : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="email" placeholder="Enter last name" value="Vanegas">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Height (Ft./In.) : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="email" placeholder="Enter Height">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Business Center : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="selected" placeholder="--Select Business Center--" class="form-control">
+                                        <mat-option [value]="0">Core Health</mat-option>
+                                        <mat-option [value]="1">Sapphire MD</mat-option>
+                                        <mat-option [value]="2">Pain Allieviation</mat-option>
+                                        <mat-option [value]="3">Centre for Pain Relief</mat-option>
+                                        <mat-option [value]="4">Prime Orthopedics</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Sex : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="selected" placeholder="--Select Sex--" class="form-control">
+                                        <mat-option [value]="0">Male</mat-option>
+                                        <mat-option [value]="1">Female</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">HIE Consent : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="s" placeholder="--Select--" class="form-control">
+                                        <mat-option [value]="0">Emergency</mat-option>
+                                        <mat-option [value]="1">Yes</mat-option>
+                                        <mat-option [value]="2">No</mat-option>                                        
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label" for="pwd">Phone : </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Contact Number" required value="647-210-9935">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label" for="pwd">Email : </label>
+                                <div class="col-sm-8">
+                                    <input type="email" email class="form-control" placeholder="Enter Email" required value="Fabrice@gmail.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">DOB : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <div class="input-icon right">
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1" [(ngModel)]="dates">
+                                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Marital Status : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="sel" placeholder="--Select Marital Status--" class="form-control">
+                                        <mat-option [value]="0">Single</mat-option>
+                                        <mat-option [value]="1">Married</mat-option>
+                                        <mat-option [value]="2">Seperated</mat-option>
+                                        <mat-option [value]="3">Divorced</mat-option>
+                                        <mat-option [value]="4">Widowed</mat-option>
+                                        <mat-option [value]="5">Prefer not to answer</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Smoking Status : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="se" placeholder="--Select Smoking Status--" class="form-control">
+                                        <mat-option [value]="0">No Smoking</mat-option>
+                                        <mat-option [value]="1">Current every day Smoker</mat-option>
+                                        <mat-option [value]="2">Current some day Smoker</mat-option>
+                                        <mat-option [value]="3">Former Smoker</mat-option>
+                                        <mat-option [value]="4">Smoker, current status unknown</mat-option>
+                                        <mat-option [value]="5">Unknown if ever Smoked</mat-option>
+                                        <mat-option [value]="6">Smoking, current status unknown</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                                    <mat-select color="primary" [(value)]="select" placeholder="--Select Referring Physician--" class="form-control">
+                                        <mat-option [value]="0">Domenic Vinci</mat-option>
+                                        <mat-option [value]="1">Brad Kewalramani</mat-option>
+                                        <mat-option [value]="2">Kipling Morton</mat-option>
+                                        <mat-option [value]="3">Michael Persaud</mat-option>
+                                        <mat-option [value]="4">Dan McCarthy</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">Weight (lbs) : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="email" placeholder="Enter Weight">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Received Date : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <div class="input-icon right">
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" [(ngModel)]="dateNew">
+                                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label" for="pwd">ZIP Code : </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter postal code" required value="77478">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">State / Province : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <mat-select color="primary" placeholder="--Select State--" class="form-control" [(value)]="selects">
+                                        <mat-option [value]="0">New York</mat-option>
+                                        <mat-option [value]="1">New Jersey</mat-option>
+                                        <mat-option [value]="2">Texas</mat-option>
+                                        <mat-option [value]="3">Virginia</mat-option>
+                                        <mat-option [value]="4">New Hampshire</mat-option>
+                                        <mat-option [value]="5">Vermont</mat-option>
+                                        <mat-option [value]="6">California</mat-option>
+                                        <mat-option [value]="7">Florida</mat-option>
+                                        <mat-option [value]="8">Michigan</mat-option>
+                                        <mat-option [value]="9">Pennsylvania</mat-option>
+                                        <mat-option [value]="10">Ohio</mat-option>
+                                    </mat-select>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">City : </label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <mat-select color="primary" placeholder="--Select City--" class="form-control" [(value)]="citySelect">
+                                        <mat-option [value]="0">San Francisco</mat-option>
+                                        <mat-option [value]="1">Los Angeles</mat-option>
+                                        <mat-option [value]="2">Chicago</mat-option>
+                                        <mat-option [value]="3">Boston</mat-option>
+                                        <mat-option [value]="4">Austin</mat-option>
+                                        <mat-option [value]="5">San Diego</mat-option>
+                                        <mat-option [value]="6">Dallas</mat-option>
+                                        <mat-option [value]="7">Miami</mat-option>
+                                        <mat-option [value]="8">Detroit</mat-option>
+                                        <mat-option [value]="9">Portland</mat-option>
+                                        <mat-option [value]="10">Phoenix</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 add-member-label" for="pwd">Contact Address : </label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control txtarea" rows="2" placeholder="Enter contact address" required>1317 Lake Pointe Pkwy Sugar Land TX 77478</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <mat-dialog-actions align="end">
+                            <button mat-raised-button class="btn-success pull-right">Update</button>
+                            <!-- <button mat-raised-button class="add-dark-hover btn-default">Back</button> -->
+                        </mat-dialog-actions>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                <!--     
+                    <h3>Patient Information</h3>
+                    <table id="example2" class="margin-top-20 table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>First Name:</th>
+                                <td>Fabrice</td>
+                                <th>Last Name: </th>
+                                <td>Vanegas</td>
+                            </tr>
+                            <tr>
+                                <th>Phone: </th>
+                                <td>647-210-9935</td>
+                                <th>Email:</th>
+                                <td>Fabrice@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <th>Sex:</th>
+                                <td>Male</td>
+                                <th>DOB: </th>
+                                <td>04/05/1988</td>
+                            </tr>
+                            <tr>
+                                <th>Received Date: </th>
+                                <td>06/25/2019</td>
+                                <th>Referring Physician: </th>
+                                <td>Kipling Morton</td>
+                            </tr>
+                            <tr>
+                                <th>State:</th>
+                                <td>Texas</td>
+                                <th>City: </th>
+                                <td>Dallas</td>
+                            </tr>
+                            <tr>
+                                <th>ZIP Code:</th>
+                                <td>77478</td>
+                                <th>Contact Address: </th>
+                                <td>1317 Lake Pointe Pkwy Sugar Land TX 77478</td>
+                            </tr>
+                            
+                        </thead>
+                        
+                    </table> -->
+                    
+                    
+                    
+                </div>
+            </div>

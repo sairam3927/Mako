@@ -1,0 +1,308 @@
+<!--This page is used to add or edit leads-->
+<div>
+  <h1 mat-dialog-title><span *ngIf="!order">Add</span><span *ngIf="order">Edit</span> Incoming Order</h1> <hr>
+  <mat-horizontal-stepper #stepper>
+      <mat-step>
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                  <ng-template matStepLabel>Basic Details</ng-template>
+                  <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label">First Name : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="email" placeholder="Enter first name">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label">Last Name : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" id="email" placeholder="Enter last name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Sex : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                      <mat-select color="primary" placeholder="--Select Sex--" class="form-control">
+                        <mat-option [value]="0">Male</mat-option>
+                        <mat-option [value]="1">Female</mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4 add-member-label" for="pwd">Phone : </label>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter Contact Number" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4 add-member-label" for="pwd">Email : </label>
+                    <div class="col-sm-8">
+                        <input type="email" email class="form-control" placeholder="Enter Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">DOB : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <div class="input-icon right">
+                          <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                          <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Referring Physician : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                      <mat-select color="primary" placeholder="--Select Referring Physician--" class="form-control">
+                        <mat-option [value]="0">Domenic Vinci</mat-option>
+                        <mat-option [value]="1">Brad Kewalramani</mat-option>
+                        <mat-option [value]="2">Kipling Morton</mat-option>
+                        <mat-option [value]="3">Michael Persaud</mat-option>
+                        <mat-option [value]="4">Dan McCarthy</mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Received Date : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <div class="input-icon right">
+                          <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                          <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                      </div>
+                  </div>
+                </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="btn-success" matStepperNext>Proceed</button>
+              <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+          </mat-dialog-actions>
+      </mat-step>
+
+      <mat-step>
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                  <ng-template matStepLabel>Address Details</ng-template>
+
+                  <div class="form-group">
+                      <label class="control-label col-sm-4 add-member-label" for="pwd">ZIP Code : </label>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Enter postal code" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">State / Province : </label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <mat-select color="primary" placeholder="--Select State--" class="form-control">
+                          <mat-option [value]="0">New York</mat-option>
+                          <mat-option [value]="1">New Jersey</mat-option>
+                          <mat-option [value]="2">Texas</mat-option>
+                          <mat-option [value]="3">Virginia</mat-option>
+                          <mat-option [value]="4">New Hampshire</mat-option>
+                          <mat-option [value]="5">Vermont</mat-option>
+                          <mat-option [value]="6">California</mat-option>
+                          <mat-option [value]="7">Florida</mat-option>
+                          <mat-option [value]="8">Michigan</mat-option>
+                          <mat-option [value]="9">Pennsylvania</mat-option>
+                          <mat-option [value]="10">Ohio</mat-option>
+                        </mat-select>
+                      
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">City : </label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <mat-select color="primary" placeholder="--Select City--" class="form-control">
+                          <mat-option [value]="0">San Francisco</mat-option>
+                          <mat-option [value]="1">Los Angeles</mat-option>
+                          <mat-option [value]="2">Chicago</mat-option>
+                          <mat-option [value]="3">Boston</mat-option>
+                          <mat-option [value]="4">Austin</mat-option>
+                          <mat-option [value]="5">San Diego</mat-option>
+                          <mat-option [value]="6">Dallas</mat-option>
+                          <mat-option [value]="7">Miami</mat-option>
+                          <mat-option [value]="8">Detroit</mat-option>
+                          <mat-option [value]="9">Portland</mat-option>
+                          <mat-option [value]="10">Phoenix</mat-option>
+                        </mat-select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label col-sm-4 add-member-label" for="pwd">Contact Address : </label>
+                      <div class="col-sm-8">
+                          <textarea class="form-control txtarea" rows="2" placeholder="Enter contact address" required></textarea>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+              <button mat-raised-button class="btn-success" matStepperNext>Proceed</button>
+              <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+          </mat-dialog-actions>
+      </mat-step>
+
+      <mat-step>
+          <div mat-dialog-content>
+              <form class="form-horizontal">
+                  <ng-template matStepLabel>Primary Insurance</ng-template>
+                  <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Insurance Company : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <mat-select color="primary" placeholder="--Select Insurance Company--" class="form-control">
+                        <mat-option [value]="0">AETNA PPO</mat-option>
+                        <mat-option [value]="1">AETNA MC</mat-option>
+                        <mat-option [value]="2">AETNA HMO</mat-option>
+                        <mat-option [value]="3">CIGNA PPO</mat-option>
+                        <mat-option [value]="4">CIGNA HMO</mat-option>
+                        <mat-option [value]="5">BCBS BLUE CHOICE PPO</mat-option>
+                        <mat-option [value]="6">BCBS BLUE OPTIONS</mat-option>
+                        <mat-option [value]="7">HMO BLUE TEXAS</mat-option>
+                        <mat-option [value]="8">BCBS PAR PLAN</mat-option>
+                        <mat-option [value]="9">MEDICAID TRADITIONAL</mat-option>
+                        <mat-option [value]="10">AMERIGROUP</mat-option>
+                      </mat-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Name of Insured : </label>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Enter Contact Number" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Insured DOB : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <div class="input-icon right">
+                          <i class="fa fa-calendar" [owlDateTimeTrigger]="dt3"></i>
+                          <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" name="dt3">
+                          <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Sex : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                      <mat-select color="primary" placeholder="--Select Sex--" class="form-control">
+                        <mat-option [value]="0">Male</mat-option>
+                        <mat-option [value]="1">Female</mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Phone : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <input type="text" class="form-control" placeholder="Enter Contact Number" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Contact Address : </label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <textarea class="form-control txtarea" rows="2" placeholder="Enter contact address" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Relationship to patient : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button class="margin margins" value="1">Self</mat-radio-button>
+                      <mat-radio-button class="margin margins" value="2">Spouse</mat-radio-button>
+                      <mat-radio-button class="margin margins" value="3">Child</mat-radio-button>
+                      <mat-radio-button class="margins" value="4">Other</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </form>
+          </div>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button class="btn-success" matStepperNext>Proceed</button>
+            <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+        </mat-dialog-actions>
+      </mat-step>
+
+      <mat-step>
+        <div mat-dialog-content>
+            <form class="form-horizontal">
+                <ng-template matStepLabel>Secondary Insurance</ng-template>
+                <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Insurance Company : </label>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <mat-select color="primary" placeholder="--Select Insurance Company--" class="form-control">
+                      <mat-option [value]="0">AETNA PPO</mat-option>
+                      <mat-option [value]="1">AETNA MC</mat-option>
+                      <mat-option [value]="2">AETNA HMO</mat-option>
+                      <mat-option [value]="3">CIGNA PPO</mat-option>
+                      <mat-option [value]="4">CIGNA HMO</mat-option>
+                      <mat-option [value]="5">BCBS BLUE CHOICE PPO</mat-option>
+                      <mat-option [value]="6">BCBS BLUE OPTIONS</mat-option>
+                      <mat-option [value]="7">HMO BLUE TEXAS</mat-option>
+                      <mat-option [value]="8">BCBS PAR PLAN</mat-option>
+                      <mat-option [value]="9">MEDICAID TRADITIONAL</mat-option>
+                      <mat-option [value]="10">AMERIGROUP</mat-option>
+                    </mat-select>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Name of Insured : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" placeholder="Enter Contact Number" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4">Insured DOB : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="input-icon right">
+                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt4"></i>
+                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" name="dt4">
+                        <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+                    </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Sex : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                    <mat-select color="primary" placeholder="--Select Sex--" class="form-control">
+                      <mat-option [value]="0">Male</mat-option>
+                      <mat-option [value]="1">Female</mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Phone : </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Enter Contact Number" required>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Contact Address : </label>
+                  <div class="col-sm-8">
+                      <textarea class="form-control txtarea" rows="2" placeholder="Enter contact address" required></textarea>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4" for="pwd">Relationship to patient : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button class="margin margins" value="1">Self</mat-radio-button>
+                    <mat-radio-button class="margin margins" value="2">Spouse</mat-radio-button>
+                    <mat-radio-button class="margin margins" value="3">Child</mat-radio-button>
+                    <mat-radio-button class="margins" value="4">Other</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </form>
+        </div>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button class="add-hover" class="btn-success" (click)="saveOrder()"><span *ngIf="!order">Save</span><span
+                    *ngIf="order">Update</span></button>
+            <button mat-raised-button class="add-dark-hover btn-default" matStepperPrevious>Back</button>
+        </mat-dialog-actions>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

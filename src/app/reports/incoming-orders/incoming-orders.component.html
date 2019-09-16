@@ -1,0 +1,81 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class=" w-100">
+
+        <div fxLayout="row wrap">
+            <div fxFlex="100" class=" w-100" style="margin-top: 25px;margin-bottom: 15px">
+                <!-- <mat-card class="filter"> -->
+                <!-- <mat-card-content></mat-card-content> -->
+                <div class="col-sm-12">
+                    <!-- <button mat-raised-button color="primary" style="color: white !important;"
+                        class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
+                        
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button> -->
+                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="addPatientDataDialog()">
+                        <mat-icon>backup</mat-icon> Upload Raw Data
+                    </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                        <mat-icon>cloud_download</mat-icon> Download Sample Template
+                    </button>
+                </div>
+                <!-- </mat-card-content> -->
+                <!-- </mat-card> -->
+            </div>
+        </div>
+
+        <div fxLayout="row wrap">
+            <div class="table-responsive" style="margin-left: 15px;margin-right: 5px">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Document Title</th>
+                            <th class="text-center">Upload Date</th>
+                            <th>Samples</th>
+                            <th class="text-center">Total Records</th>
+                            <th class="text-center">Duplicates</th>
+                            <th class="text-center">Out of Scope</th>
+                            <th class="text-center">Incomplete</th>
+                            <th class="text-center">Processed</th>
+                            <th class="text-center">Download </th>
+                            <th class="text-center">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of patientList">
+
+                            <td>{{item.DocumentTitle}}</td>
+                            <td class="text-center">{{item.UploadDate}}</td>
+                            <td class="text-center">{{item.Samples}}</td>
+                            <td class="text-center">{{item.TotalRecords}}</td>
+                            <td class="text-center">{{item.Duplicates}}</td>
+                            <td class="text-center">{{item.OutofScope}}</td>
+                            <td class="text-center">{{item.Incomplete}}</td>
+                            <td class="text-center">{{item.Processed}}</td>
+                            <td class="text-center">
+                                <a title="Download" style="margin-right: 10px; cursor: pointer;" title="Download">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
+                                    (cancel)="cancelClicked = true">
+                                    <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+    <mat-spinner color="primary"></mat-spinner>
+  </div> -->

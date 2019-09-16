@@ -1,0 +1,67 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+  
+        <div class="row" style="margin-bottom:14px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                        <!-- <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                                <mat-icon>help_outline</mat-icon> Help
+                            </button> -->
+                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openVisitRecordDialog(null)">
+                        <mat-icon>person_add</mat-icon> Add Patient visit
+                    </button>
+                    <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button> -->
+                </div>
+            </div>
+        </div>
+  
+        <div fxLayout="row wrap">
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Patient Name</th>
+                            <th>Profile</th>
+                            <th>Docs</th>
+                            <th>Clinical Notes</th>
+                            <th>Patient Report</th>
+                            <th>Notes</th>
+                            <th>Questionnaire</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of tableList">
+                            <td>{{item.patientName}}</td>
+                            <td><a target="_blank" [routerLink]="['/sapphire/patients/patientdashboard']"><i class="fa fa-user-circle" aria-hidden="true"></i></a></td>
+                            <td><a (click)="openDocxDialog(item)" style="cursor:pointer"><i class="fa fa-file"></i></a></td>
+                            <td><a target="_blank" routerLink="visitClinicalNotes"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+                            <td><a target="_blank"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+                            <td><a (click)="openNotesDialog(item)" style="cursor:pointer"><i class="fa fa-book" aria-hidden="true"></i></a></td>
+                            <td><a target="_blank" routerLink="questionnaire"><i class="fa fa-question-circle" aria-hidden="true"></i></a></td>
+                            <td>
+                                <mat-select color="primary" placeholder="--Select Status--" class="form-control">
+                                    <mat-option [value]="0">Pending</mat-option>
+                                    <mat-option [value]="1">Initiated</mat-option>
+                                    <mat-option [value]="2">Under Diagnosis</mat-option>
+                                    <mat-option [value]="3">Report Stage</mat-option>
+                                    <mat-option [value]="4">Completed</mat-option>
+                                </mat-select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+    <mat-spinner color="primary"></mat-spinner>
+  </div>

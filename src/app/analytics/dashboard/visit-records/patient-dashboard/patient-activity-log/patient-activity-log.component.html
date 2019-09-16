@@ -1,0 +1,131 @@
+<div fxLayout="row wrap" #resizedDiv  class="new-style-class">
+    <div class="flex-p w-100">
+            <!-- <h3>Order Information</h3>
+            <div style="background-color: #e0e0eb;padding: 20px;">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Order ID :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">1257963</label>    
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Attorney :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Domenic Vinci</label>    
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Patient Name :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Fabrice Vanegas</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                  
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Geographic Location :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">Houston, TX</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Referring Physician :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">David</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2">Received Date :</label>
+                        <label class="control-label col-lg-6 col-md-2 col-sm-2 col-xs-2 new-class">22/05/2019</label>
+                    </div> 
+                </div>
+                
+              </div>
+      <br> -->
+
+      <div class="row" style="margin-bottom:14px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                        <!-- <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                                <mat-icon>help_outline</mat-icon> Help
+                            </button> -->
+                    <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button>
+                    <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button> -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+                    <mat-card class="filter">
+                        <mat-card-content>
+                            <div class="row col-sm-12">
+                                <div class="col-sm-3">
+                                        <div class="col-sm-3 newMarginClass">
+                                            Test : 
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="--Enter Test--">
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Internal Physician : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <mat-select placeholder="--Search by Referring Physician--" multiple class="form-control">
+                                            <mat-option *ngFor="let option of referringOptions" [value]="">{{option}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-5 newMarginClass">
+                                        Appointment Date : 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="input-icon right">
+                                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt3"></i>
+                                            <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" name="dt3" [(ngModel)]="dates">
+                                            <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                        <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+                                    </div>
+                                
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+      <div fxLayout="row wrap">
+          <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th>Patient Visit</th>
+                          <th>Date-Time</th>
+                          <th>Status</th>
+                          <th>Updated By</th>
+                          <th>Updated Date</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of tableList">
+                          <td>{{item.patientVisit}}</td>
+                          <td>{{item.dateTime}}</td>
+                          <td>{{item.status}}</td>
+                          <td>{{item.postedBy}}</td>
+                          <td>{{item.updatedDate}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>

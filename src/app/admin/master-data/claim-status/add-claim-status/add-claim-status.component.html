@@ -1,0 +1,27 @@
+<h1 mat-dialog-title><span *ngIf="!addclaim">Add</span><span *ngIf="addclaim">Edit</span> Claim Status</h1><hr>
+<div mat-dialog-content>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Claim Status : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" id="email" placeholder="Enter claim status">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Status : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <!-- <input type="text" class="form-control" placeholder="Enter Industry"> -->
+                <mat-select color="primary" placeholder="--Select Status--" class="form-control">
+                  <mat-option [value]="0">Active</mat-option>
+                  <mat-option [value]="1">Inactive</mat-option>
+              </mat-select>
+            </div>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-hover btn-success" (click)="saveClaim()" [mat-dialog-close]="'test'"><span *ngIf="!addclaim">Save</span><span
+            *ngIf="addclaim">Update</span></button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions> 

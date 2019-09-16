@@ -1,0 +1,94 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class=" w-100">
+          
+      <div class="row wrap" style="margin-bottom:20px;margin-left: 1px">
+        <div class="col-lg-12">
+          <div class="pills w-100 ">
+            <ul class="nav nav-pills">
+                    <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Scope']" style="margin-right: 10px!important; padding: 0px 10px;">Scope</a></li>
+                    <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/DRI']" style="margin-right: 10px!important; padding: 0px 10px;" >DRI</a></li>
+                    <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Messages']" style="margin-right: 10px!important; padding: 0px 10px;" >Messages</a></li>
+                    <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/SeqResults']" style="margin-right: 10px!important; padding: 0px 10px;" >SEQ Results</a></li>
+                    <li routerLinkActive="active"><a mat-raised-button  style="margin-right: 10px!important; padding: 0px 10px;" (click)="patientDataDialog()" >Personal Data</a></li>
+                    <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Algorithm']" style="margin-right: 10px!important; padding: 0px 10px;" >ALGO REF</a></li>
+            </ul>                               
+          </div>
+        </div>
+      </div>
+    
+    </div>
+</div>
+
+<div fxLayout="row wrap" style="margin-bottom: 10px">
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100">
+        <!-- <mat-card class="filter"> -->
+            <!-- <mat-card-content> -->
+
+                <div class="row col-sm-12" class="flex-p" >
+                        <div class="col-sm-3">
+                                <mat-select placeholder="--Search by Allel Name--"  class="form-control">
+                                    <mat-option *ngFor="let option of List" [value]="">{{option.AllelName}}</mat-option>
+                                </mat-select>
+                        </div>
+ 
+                        <div class="col-lg-1">
+                            <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+                        </div>
+                        <div class="col-lg-2">
+                            <div fxLayout="row" style="float: right !important;" >
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" >
+
+                                <div   fxLayout="row" style="float: right !important;" >
+                                            
+                                    <div style="margin-right: 10px !important;">
+                                        <button mat-raised-button class="pull-right add-hover btn-success" (click)="uploadCSVDialog()">
+                                            <mat-icon>backup</mat-icon> Upload SEQ Data
+                                        </button>
+                                    </div>
+                                               
+                                    <div >
+                                        <button mat-raised-button class="pull-right add-hover btn-success" >
+                                            <mat-icon>cloud_download</mat-icon> Download Sample 
+                                        </button>
+                                    </div>
+                                </div>     
+                             </div>
+                 </div>
+            <!-- </mat-card-content> -->
+        <!-- </mat-card> -->
+    </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div class="table-responsive" style="margin-left: 15px;">
+      <table id="example2" class="table table-bordered table-hover">
+          <thead class="tbl-head">
+              <tr class="tr-grid-header">
+                  <th >Allele Name / Row Reference</th>
+                  <th  >Ref</th>
+                  <th  >Variant</th>
+                  <th  >Allele Call</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of List">
+                 
+                <td  >{{item.AllelName}}</td>
+                <td  >{{item.Ref}}</td>
+                <td  >{{item.Variant}}</td>
+                <td  >{{item.AllelCall}}</td>
+                 
+              </tr>
+          </tbody>
+      </table>
+      <mat-paginator [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+  </div>
+</div>
