@@ -10,9 +10,9 @@
               <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Messages']" style="margin-right: 10px!important; padding: 0px 10px;" >Messages</a></li>
               <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/SeqResults']" style="margin-right: 10px!important; padding: 0px 10px;" >SEQ Results</a></li>
               <li routerLinkActive="active"><a mat-raised-button  style="margin-right: 10px!important; padding: 0px 10px;" (click)="patientDataDialog()" >Personal Data</a></li>
+              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Algorithm']" style="margin-right: 10px!important; padding: 0px 10px;" >ALGO REF</a></li>
               <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/haplotypes']" style="margin-right: 10px!important; padding: 0px 10px;" >Haplotypes </a></li>
               <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Tests']" style="margin-right: 10px!important; padding: 0px 10px;" >Tests</a></li>
-              <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary/Algorithm']" style="margin-right: 10px!important; padding: 0px 10px;" >ALGO REF</a></li> -->
             </ul>                               
           </div>
         </div>
@@ -21,53 +21,42 @@
     </div>
 </div>
 
-<div fxLayout="row wrap" style="margin-bottom:10px">
+<!-- <div fxLayout="row wrap" style="margin-bottom:10px">
         <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100"> 
-        <!-- <mat-card class="filter"> -->
-            <!-- <mat-card-content> -->
-
                     <div class="row col-sm-12" class="flex-p" >
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <input  type="text" class="form-control"  placeholder="" required>
                         </div>
-                        <div class="col-lg-2">
-                            <button type="button" class="add-hover btn btn-success  pull-left">Search</button>
+                        <div class="col-lg-1">
+                            <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
                         </div>
                         <div class="col-lg-8" >
                             <div   fxLayout="row" style="float: right !important;" >
-                                    
                                             <div style="margin-right: 10px !important;">
                                                 <button mat-raised-button  class="pull-right add-hover btn-success" (click)="addPatientDataDialog()">
                                                     <mat-icon>backup</mat-icon> Upload CSV
                                                 </button>
                                             </div>
-                                       
                                             <div >
                                                 <button mat-raised-button class="pull-right add-hover btn-success" >
                                                     <mat-icon>cloud_download</mat-icon> Download Sample 
                                                 </button>
                                             </div>
                              </div>     
-                                   
                         </div>
                 </div>
-                    
-                
-            <!-- </mat-card-content> -->
-        <!-- </mat-card> -->
     </div>
-</div>
+</div> -->
 
 <div fxLayout="row wrap">
     <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th class="text-center" >Select</th>
-                    <th class="text-center" >Allele Name / Row Reference</th>
-                    <th class="text-center" >Gene</th>
-                    <th class="text-center" >Used</th>
-                    <th >Description</th>
+                    <!-- <th class="text-center" >Select</th> -->
+                    <th class="text-center" >Case</th>
+                    <th  class="text-center" >Level 1</th>
+                    <th class="text-center" >Message</th>
                     <th class="text-center" >Action</th>
                     
                 </tr>
@@ -75,16 +64,12 @@
             <tbody>
                 <tr *ngFor="let item of List">
                     
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox></mat-checkbox>
-                    </td>
-                    <td class="text-center" >{{item.AllelName}}</td>
-                    <td class="text-center" >{{item.Gene}}</td>
-                    <td class="text-center" >
-                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
-                        </mat-checkbox>
-                    </td>
-                    <td>{{item.description}}</td>
+                    </td> -->
+                    <td class="text-center" >{{item.Case}}</td>
+                    <td class="text-center" >{{item.Level}}</td>
+                    <td class="text-center" >{{item.Message}}</td>
                     <td class="text-center" >
                         <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
                           <i class="fa fa-edit"></i>
@@ -98,7 +83,6 @@
                             <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
                         </a>
                     </td>
-                    
                 </tr>
             </tbody>
       </table>
