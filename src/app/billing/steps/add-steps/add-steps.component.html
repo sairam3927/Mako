@@ -1,218 +1,484 @@
-<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-        Add Step</h3>
+
+<div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
+      
+              <div class="row col-sm-12" class="flex-p" >
+                  <div fxLayout="row" class="col-sm-4" style="margin-top: 5px" >
+                        <label class="control-label col-sm-3">Result Code : </label>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="control-label">ALGO 3587 </label>
+                        </div>
+                  </div>
+                  <div class="col-lg-8">
+                      <div fxLayout="row" style="float: right !important;" >
+                          <button mat-raised-button [routerLink]="['/mako/billing/Steps']" class="add-hover btn-default" style="margin-right:10px"><mat-icon>arrow_back</mat-icon>Back</button>
+                          <!-- <button mat-raised-button [routerLink]="['/mako/billing/addSteps']" class="pull-right add-hover btn-success" >
+                              <mat-icon>add_box</mat-icon> Add Step
+                          </button> -->
+                      </div>
+                  </div>
+              </div>
+                    
+        </div>
+</div>
+
+<div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 25px">
+      
+              <div class="row col-sm-12" class="flex-p" >
+                  <div fxLayout="row" class="row col-sm-3" style="margin-left:1px;"> 
+                        <label class="control-label col-sm-4 " style="margin-top: 5px">Step Title : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" style="width:100%" class="pull-left form-control" placeholder="Step Title" required>
+                        </div>
+                  </div>
+                  <div class=" pull-left row col-lg-9">
+                        <label class="control-label" style="margin-top: 10px; margin-right:20px" >Step Type : </label>
+                        
+                            <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType" class="pull-left"
+                                style="margin-top:10px" aria-label="Select an option">
+                                <mat-radio-button  value="1" style="margin-right: 10px">Condition</mat-radio-button>
+                                <mat-radio-button  value="2">Formula</mat-radio-button>
+                            </mat-radio-group>
+                  </div>
+              </div>
+                    
+        </div>
+</div>
+
+<div *ngIf="selectedValueStepType == '1'" >
+
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
+            <div class="row col-sm-12" class="flex-p" >
+                <div class="pull-left" style="margin-top: 5px; margin-left: 25px; " >
+                    <label >IF Condition</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 20px; ">
+                <div class="row col-sm-12" class="flex-p" >
+                    <div class="pull-left" style="margin-top: 5px" >
+                            <label >Select Variable 1 </label>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div fxLayout="row wrap">
+            <div class="table-responsive" style="margin-left: 25px;margin-right: 25px">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Enter Value</th>
+                            <th>Select from Dictionary</th>
+                            <th >Select Previous Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" class=" form-control" placeholder="Enter Value" >
+                            </td>
+                            <td>
+                                    <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                    <mat-option [value]="1">Scope</mat-option>
+                                                    <mat-option [value]="2">DRI</mat-option>
+                                                    <mat-option [value]="3">Messages</mat-option>
+                                                    <mat-option [value]="4">SEQ Results</mat-option>
+                                                    <mat-option [value]="5">Haplotype</mat-option>
+                                                    <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                    <mat-option [value]="1">Apa</mat-option>
+                                                    <mat-option [value]="2">Carbohydrates</mat-option>
+                                                    <mat-option [value]="3">Fiber</mat-option>
+                                                    <mat-option [value]="4">linolenicAcid</mat-option>
+                                                    <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                    <mat-option [value]="6">Protein</mat-option>
+                                                    <mat-option [value]="7">Vitamin-A</mat-option>
+                                                    <mat-option [value]="8">Vitamin-C</mat-option>
+                                                    <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                    <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                    <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                    <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                    <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                    <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                    <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                    <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                    <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
+                        
+                                        </div>
+                            </td>
+                            <td>
+                                    <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                    </mat-select>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 20px; ">
+                    <div class="row col-sm-12" class="flex-p" >
+                        <div class="pull-left" style="margin-top: 5px" >
+                                <label >Select Operator :  </label>
+                        </div>
+                    </div>
+                </div>
+    </div>
+        
+    <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left:25px; ">
+                    <div class="row col-sm-12" class="flex-p" >
+                            <div fxLayout="row" style="margin-bottom:10px" class="pull-left ">
+                                <mat-select style="width:290px" placeholder="-Select Operator-" class="form-control">
+                                                <mat-option [value]="1">&lt;</mat-option>
+                                                <mat-option [value]="2">&lt;=</mat-option>
+                                                <mat-option [value]="3">&gt;</mat-option>
+                                                <mat-option [value]="4">&gt;=</mat-option>
+                                                <mat-option [value]="5">=</mat-option>
+                                                <mat-option [value]="6">&lt;&gt;</mat-option>
+                                </mat-select>
+                            </div>
+                    </div>
+                </div>
+    </div>
+
+        <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 20px; ">
+                    <div class="row col-sm-12" class="flex-p" >
+                        <div class="pull-left" style="margin-top: 5px" >
+                                <label >Select Variable 2 </label>
+                        </div>
+                    </div>
+                </div>
+        </div>
     
-    <form class="form-horizontal" novalidate >
-        <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
-            <div  class="col-sm-12 ">
-                    <div class="form-group" style="margin-bottom:10px">
-                            <label class="control-label col-sm-2 ">Step Title : </label>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                <input type="text" style="width:50%" class="pull-left form-control" placeholder="Step Title" required>
+        <div fxLayout="row wrap">
+                <div class="table-responsive" style="margin-left: 25px;margin-right: 25px">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th>Enter Value</th>
+                                <th>Select from Dictionary</th>
+                                <th >Select Previous Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class=" form-control" placeholder="Enter Value" >
+                                </td>
+                                <td>
+                                        <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                    <mat-option [value]="1">Scope</mat-option>
+                                                    <mat-option [value]="2">DRI</mat-option>
+                                                    <mat-option [value]="3">Messages</mat-option>
+                                                    <mat-option [value]="4">SEQ Results</mat-option>
+                                                    <mat-option [value]="5">Haplotype</mat-option>
+                                                    <mat-option [value]="6">Tests</mat-option>
+                                                </mat-select>
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                        <mat-option [value]="1">Apa</mat-option>
+                                                        <mat-option [value]="2">Carbohydrates</mat-option>
+                                                        <mat-option [value]="3">Fiber</mat-option>
+                                                        <mat-option [value]="4">linolenicAcid</mat-option>
+                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                        <mat-option [value]="6">Protein</mat-option>
+                                                        <mat-option [value]="7">Vitamin-A</mat-option>
+                                                        <mat-option [value]="8">Vitamin-C</mat-option>
+                                                        <mat-option [value]="9">Vitamin-D</mat-option>
+                                                </mat-select>
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
+                                                </mat-select>
+                            
+                                            </div>
+                                </td>
+                                <td>
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                                <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
+                        <div class="row col-sm-12" class="flex-p" >
+                            <div class="pull-left" style="margin-top: 5px; margin-left: 20px; " >
+                                <label >THEN Condition</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2 ">Step Type : </label>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType" class="pull-left"
-                                    style="margin-top:10px" aria-label="Select an option">
-                                    <mat-radio-button  value="1" style="margin-right: 10px">Condition</mat-radio-button>
-                                    <mat-radio-button  value="2">Formula</mat-radio-button>
-                                </mat-radio-group>
+                    </div>
+                </div>
+            
+                <div fxLayout="row wrap">
+                        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 20px; ">
+                            <div class="row col-sm-12" class="flex-p" >
+                                <div class="pull-left" style="margin-top: 5px" >
+                                        <label >Select Variable 3 </label>
+                                </div>
                             </div>
                         </div>
-                
-                        <div *ngIf="selectedValueStepType == '1'" >
-                
-                            <div align ="center" class="pull-center form-group">
-                                <label >IF </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 1 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
-                                </div>
-                            </div>
-                            <div class=" form-group">
-                                <label class="control-label col-sm-2 ">Operator : </label>
-                                <div fxLayout="row" style="margin-bottom:10px" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <mat-select style="width:140px" placeholder="-Select Operator-" class="form-control">
-                                            <mat-option [value]="1">&lt;</mat-option>
-                                            <mat-option [value]="2">&lt;=</mat-option>
-                                            <mat-option [value]="3">&gt;</mat-option>
-                                            <mat-option [value]="4">&gt;=</mat-option>
-                                            <mat-option [value]="5">=</mat-option>
-                                            <mat-option [value]="6">&lt;&gt;</mat-option>
-                                    </mat-select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 2 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
-                                </div>
-                            </div>
-                            <div align ="center" class="form-group">
-                                <label>THEN </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 3 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
-                                </div>
-                            </div>
-                            <div align ="center" class="form-group">
-                                <label>ELSE</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 4 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
-                                </div>
-                            </div>
-                
+                </div>
+            
+                <div fxLayout="row wrap">
+                        <div class="table-responsive" style="margin-left: 25px;margin-right: 20px">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead class="tbl-head">
+                                    <tr class="tr-grid-header">
+                                        <th>Enter Value</th>
+                                        <th>Select from Dictionary</th>
+                                        <th >Select Previous Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class=" form-control" placeholder="Enter Value" >
+                                        </td>
+                                        <td>
+                                                <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                                <mat-option [value]="1">Scope</mat-option>
+                                                                <mat-option [value]="2">DRI</mat-option>
+                                                                <mat-option [value]="3">Messages</mat-option>
+                                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                                <mat-option [value]="6">Tests</mat-option>
+                                                        </mat-select>
+                                                        <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                                <mat-option [value]="1">Apa</mat-option>
+                                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                                <mat-option [value]="3">Fiber</mat-option>
+                                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                                <mat-option [value]="6">Protein</mat-option>
+                                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                                        </mat-select>
+                                                        <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                                        </mat-select>
+                                    
+                                                    </div>
+                                        </td>
+                                        <td>
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                                        <mat-option [value]="1">DRI</mat-option>
+                                                </mat-select>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                
-                        <div *ngIf="selectedValueStepType == '2'" >
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 1 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
+                    </div>
+
+                    <div fxLayout="row wrap">
+                            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
+                                <div class="row col-sm-12" class="flex-p" >
+                                    <div class="pull-left" style="margin-top: 5px; margin-left: 25px; " >
+                                        <label >ELSE Condition</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class=" form-group">
-                                <label class="control-label col-sm-2 ">Operater : </label>
-                                <div fxLayout="row" style="margin-bottom:10px" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <mat-select style="width:140px" placeholder="-Select Operator-" class="form-control">
+                        </div>
+                    
+                        <div fxLayout="row wrap">
+                                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 25px; ">
+                                    <div class="row col-sm-12" class="flex-p" >
+                                        <div class="pull-left" style="margin-top: 5px" >
+                                                <label >Select Variable 4 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    
+                        <div fxLayout="row wrap">
+                                <div class="table-responsive" style="margin-left: 25px;margin-right: 25px">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="tbl-head">
+                                            <tr class="tr-grid-header">
+                                                <th>Enter Value</th>
+                                                <th>Select from Dictionary</th>
+                                                <th >Select Previous Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class=" form-control" placeholder="Enter Value" >
+                                                </td>
+                                                <td>
+                                                        <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                                        <mat-option [value]="1">Scope</mat-option>
+                                                                        <mat-option [value]="2">DRI</mat-option>
+                                                                        <mat-option [value]="3">Messages</mat-option>
+                                                                        <mat-option [value]="4">SEQ Results</mat-option>
+                                                                        <mat-option [value]="5">Haplotype</mat-option>
+                                                                        <mat-option [value]="6">Tests</mat-option>
+                                                                </mat-select>
+                                                                <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                                        <mat-option [value]="1">Apa</mat-option>
+                                                                        <mat-option [value]="2">Carbohydrates</mat-option>
+                                                                        <mat-option [value]="3">Fiber</mat-option>
+                                                                        <mat-option [value]="4">linolenicAcid</mat-option>
+                                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                                        <mat-option [value]="6">Protein</mat-option>
+                                                                        <mat-option [value]="7">Vitamin-A</mat-option>
+                                                                        <mat-option [value]="8">Vitamin-C</mat-option>
+                                                                        <mat-option [value]="9">Vitamin-D</mat-option>
+                                                                </mat-select>
+                                                                <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
+                                                                </mat-select>
+                                            
+                                                            </div>
+                                                </td>
+                                                <td>
+                                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                                                <mat-option [value]="1">DRI</mat-option>
+                                                        </mat-select>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+</div>
+
+<div *ngIf="selectedValueStepType == '2'" >
+    
+        <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 25px; ">
+                    <div class="row col-sm-12" class="flex-p" >
+                        <div class="pull-left" style="margin-top: 5px" >
+                                <label >Select Variable 1 </label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    
+        <div fxLayout="row wrap">
+                <div class="table-responsive" style="margin-left: 25px;margin-right: 25px">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th>Enter Value</th>
+                                <th>Select from Dictionary</th>
+                                <th >Select Previous Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class=" form-control" placeholder="Enter Value" >
+                                </td>
+                                <td>
+                                        <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                        <mat-option [value]="1">Scope</mat-option>
+                                                        <mat-option [value]="2">DRI</mat-option>
+                                                        <mat-option [value]="3">Messages</mat-option>
+                                                        <mat-option [value]="4">SEQ Results</mat-option>
+                                                        <mat-option [value]="5">Haplotype</mat-option>
+                                                        <mat-option [value]="6">Tests</mat-option>
+                                                </mat-select>
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                        <mat-option [value]="1">Apa</mat-option>
+                                                        <mat-option [value]="2">Carbohydrates</mat-option>
+                                                        <mat-option [value]="3">Fiber</mat-option>
+                                                        <mat-option [value]="4">linolenicAcid</mat-option>
+                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                        <mat-option [value]="6">Protein</mat-option>
+                                                        <mat-option [value]="7">Vitamin-A</mat-option>
+                                                        <mat-option [value]="8">Vitamin-C</mat-option>
+                                                        <mat-option [value]="9">Vitamin-D</mat-option>
+                                                </mat-select>
+                                                <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
+                                                </mat-select>
+                            
+                                            </div>
+                                </td>
+                                <td>
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                                <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 25px; ">
+                        <div class="row col-sm-12" class="flex-p" >
+                            <div class="pull-left" style="margin-top: 5px" >
+                                    <label >Select Operator :  </label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left:25px; ">
+                        <div class="row col-sm-12" class="flex-p" >
+                                <div fxLayout="row" style="margin-bottom:10px" class="pull-left ">
+                                    <mat-select style="width:290px" placeholder="-Select Operator-" class="form-control">
                                             <mat-option [value]="1">Addition</mat-option>
                                             <mat-option [value]="2">Subtraction</mat-option>
                                             <mat-option [value]="3">Multiplication</mat-option>
@@ -220,54 +486,82 @@
                                             <mat-option [value]="5">Exponent</mat-option>
                                     </mat-select>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2 ">Var 2 : </label>
-                                <div fxLayout="row" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class=" pull-left form-control" placeholder="Enter Value" required>
-                                    <label style="margin-top: 5px; margin-right: 5px; margin-left:5px; font-size:18px;">OR</label>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
-                                            <mat-option [value]="1">DRI</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Column -" class="form-control">
-                                            <mat-option [value]="1">Apa</mat-option>
-                                            <mat-option [value]="2">Carbohydrates</mat-option>
-                                            <mat-option [value]="3">Fiber</mat-option>
-                                            <mat-option [value]="4">linolenicAcid</mat-option>
-                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                            <mat-option [value]="6">Protein</mat-option>
-                                            <mat-option [value]="7">Vitamin-A</mat-option>
-                                            <mat-option [value]="8">Vitamin-C</mat-option>
-                                            <mat-option [value]="9">Vitamin-D</mat-option>
-                                    </mat-select>
-                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row-" class="form-control">
-                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                            <mat-option [value]="6">Female &gt; 50</mat-option>
-                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                            <mat-option [value]="8">Male &gt; 50</mat-option>
-                                    </mat-select>
-                
-                                </div>
+                        </div>
+                    </div>
+            </div>
+    
+            <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px; margin-left: 25px; ">
+                        <div class="row col-sm-12" class="flex-p" >
+                            <div class="pull-left" style="margin-top: 5px" >
+                                    <label >Select Variable 2 </label>
                             </div>
                         </div>
+                    </div>
             </div>
-        </div>
+        
+            <div fxLayout="row wrap">
+                    <div class="table-responsive" style="margin-left: 25px;margin-right: 25px">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead class="tbl-head">
+                                <tr class="tr-grid-header">
+                                    <th>Enter Value</th>
+                                    <th>Select from Dictionary</th>
+                                    <th >Select Previous Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class=" form-control" placeholder="Enter Value" >
+                                    </td>
+                                    <td>
+                                            <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-" class="form-control">
+                                                            <mat-option [value]="1">Scope</mat-option>
+                                                            <mat-option [value]="2">DRI</mat-option>
+                                                            <mat-option [value]="3">Messages</mat-option>
+                                                            <mat-option [value]="4">SEQ Results</mat-option>
+                                                            <mat-option [value]="5">Haplotype</mat-option>
+                                                            <mat-option [value]="6">Tests</mat-option>
+                                                    </mat-select>
+                                                    <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -" class="form-control">
+                                                            <mat-option [value]="1">Apa</mat-option>
+                                                            <mat-option [value]="2">Carbohydrates</mat-option>
+                                                            <mat-option [value]="3">Fiber</mat-option>
+                                                            <mat-option [value]="4">linolenicAcid</mat-option>
+                                                            <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                            <mat-option [value]="6">Protein</mat-option>
+                                                            <mat-option [value]="7">Vitamin-A</mat-option>
+                                                            <mat-option [value]="8">Vitamin-C</mat-option>
+                                                            <mat-option [value]="9">Vitamin-D</mat-option>
+                                                    </mat-select>
+                                                    <mat-select style="margin-right: 10px;" placeholder="-Select column-" class="form-control">
+                                                            <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                            <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                            <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                            <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                            <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                            <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                            <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                            <mat-option [value]="8">Male &gt; 50</mat-option>
+                                                    </mat-select>
+                                
+                                                </div>
+                                    </td>
+                                    <td>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-" class="form-control">
+                                                    <mat-option [value]="1">DRI</mat-option>
+                                            </mat-select>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
     
-        <mat-dialog-actions align="center" style="padding-top: 17px !important;">
-            <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button" (click)="close()">
-            <mat-icon>cancel</mat-icon>
-            <span>&nbsp;Cancel</span>
-        </button>
-            <button mat-raised-button class="add-hover btn-success" type="submit">
-            <mat-icon>send</mat-icon>
-            <span>&nbsp;Save</span>
-        </button>
-        </mat-dialog-actions>
-    </form>
+    </div>
 
 <!-- <h1 mat-dialog-title align="center">Add Step</h1>
 <hr>

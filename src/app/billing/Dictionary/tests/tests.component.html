@@ -31,10 +31,10 @@
                     <div class="col-lg-2">
                         <button type="button" class="add-hover btn btn-success  pull-left">Search</button>
                     </div>
-                    <div class="col-lg-8" >
+                    <div class="col-lg-8" style="padding: 0px" >
                         <div   fxLayout="row" style="float: right !important;" >
                                 
-                                        <div style="margin-right: 10px !important;">
+                                        <div style="margin-right: 5px !important;">
                                             <button mat-raised-button  class="pull-right add-hover btn-success" >
                                                 <mat-icon>add_comment</mat-icon> Add Test
                                             </button>
@@ -61,8 +61,8 @@
                     <th >Locus</th>
                     <th  class="text-center" >Gene</th>
                     <th class="text-center"  >Genotype</th>
-                    <th >Comment</th>
-                    <th >Recommendation </th>
+                    <!-- <th >Comment</th>
+                    <th >Recommendation </th> -->
                     <!-- <th class="text-center" >Action</th> -->
                     
                 </tr>
@@ -76,8 +76,8 @@
                     <td  >{{item.Locus}}</td>
                     <td class="text-center" >{{item.Gene}}</td>
                     <td class="text-center"  >{{item.Genotype}}</td>
-                    <td >{{item.Comment}}</td>
-                    <td >{{item.Recommendation}}</td>
+                    <!-- <td >{{item.Comment}}</td>
+                    <td >{{item.Recommendation}}</td> -->
                     <!-- <td class="text-center" >
                         <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
                           <i class="fa fa-edit"></i>
