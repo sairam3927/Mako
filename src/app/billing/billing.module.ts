@@ -19,19 +19,15 @@ import { AlertService } from '../shared/services/alert.service';
 import { StepsComponent } from './steps/steps.component';
 import { AddStepsComponent } from './steps/add-steps/add-steps.component';
 import { AddCalcComponent } from './Calculations/add-calc/add-calc.component';
-// import { AddStepsComponent } from './Steps/add-steps/add-steps.component';
 
-// import { AddAlgorithmComponent } from './Algorithm/addAlgorithm/addAlgorithm.component';
-// import { UploadComponent } from './Algorithm/upload/upload.component';
 
 export const routes = [
   { path: '', redirectTo: 'Dictionary', pathMatch: 'full' },
   { path: 'Dictionary', component: DictionaryComponent,loadChildren:'./Dictionary/Dictionary.module#DictionaryModule' , data: { breadcrumb: 'Dictionary'}},
-  // { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'Algorithm' } },
   { path: 'Calculations', component: CalculationsComponent, data: { breadcrumb: 'Calculations' } },
   { path: 'Report', component: ReportComponent, data: { breadcrumb: 'Report' } },
   { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Steps' } },
-  // { path: 'SamplePatientData', component: SamplePatientDataComponent,loadChildren:'./SamplePatientData/SamplePatientData.module#SamplePatientDataModule' , data: { breadcrumb: 'Sample Data' } },
+  { path: 'addSteps', component: AddStepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Add Steps' } },
 ];
 
 @NgModule({
@@ -41,7 +37,7 @@ export const routes = [
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     NgxChartsModule,OwlDateTimeModule, OwlNativeDateTimeModule
   ],
-  entryComponents: [AddStepsComponent,AddCalcComponent],
+  entryComponents: [AddCalcComponent],
   providers: [AlertService]
 })
 export class BillingModule { }
