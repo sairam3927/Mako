@@ -22,8 +22,16 @@ export class StepsComponent implements OnInit {
 
   ngOnInit() {
     this.List=[
-      {id:"1",StepTitle:"Step 1.1",StepType:"Condition",StepValue:"This is a valid case"},
-      {id:"1",StepTitle:"Step 1.2",StepType:"Formula",StepValue:"1.5"},
+      {id:"1",StepTitle:"Step 1.1",StepType:"Condition",StepValue:"This is a valid case",ResultCode:"ALGO 3587"},
+      {id:"1",StepTitle:"Step 1.2",StepType:"Formula",StepValue:"1.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.3",StepType:"Condition",StepValue:"1.8",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.4",StepType:"Formula",StepValue:"2.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.5",StepType:"Condition",StepValue:"3.6",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.6",StepType:"Formula",StepValue:"4.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.7",StepType:"Condition",StepValue:"5.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.8",StepType:"Formula",StepValue:"7.2",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.9",StepType:"Condition",StepValue:"6.2",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 2.0",StepType:"Formula",StepValue:"5.5",ResultCode:"ALGO 7589"},
     ];
   }
 

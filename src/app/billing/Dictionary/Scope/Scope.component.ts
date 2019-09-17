@@ -11,7 +11,10 @@ import { PersonalComponent } from '../Personal/Personal.component';
   styleUrls: ['./Scope.component.scss']
 })
 export class ScopeComponent implements OnInit {
-
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
   List: any;
 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
