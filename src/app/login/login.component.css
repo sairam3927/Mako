@@ -5,3 +5,7 @@
 /* .colorClassImportant {
     background-color: black;
 } */
+.box .box-content {
+    position: relative;
+    height: 220px;
+}

@@ -25,8 +25,9 @@ export class PersonalComponent implements OnInit {
       this.List = [
         {id:"1",rowRef:"Age : ",value:"text"},
         {id:"2",rowRef:"Sex : ",value:"gender"},
-        {id:'3',rowRef:"Ethnicity : ",value:"DD"},
-        {id:"4",rowRef:"Pregnant / Lactating : ",value:"p/l"},
+        {id:"3",rowRef:"Pregnant / Lactating : ",value:"p/l"},
+        {id:'4',rowRef:"Ethnicity : ",value:"DD"},
+        
       ];
     // }else{
     //   this.List = [

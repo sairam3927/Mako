@@ -1,58 +1,13 @@
-<!-- <mat-sidenav-container>
+<div class="col-sm-12" style="background-color: #e0e0e0;">
 
-    <div fxLayout="row" fxLayoutAlign="center center" class="h-100">
-  
-         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="60">
-  
-              <mat-card class="p-0 mat-elevation-z24 box register">
-                  <div fxLayout="column" fxLayoutAlign="center center" class="bg-primary box-header">
-                      <a mat-button routerLink="/login" style="color:black !important">Already have an account? Sign in!</a>
-                  </div>
-                  <mat-card-content fxLayout="column" fxLayoutAlign="end center" class="box-content">
-                      <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
-                          <span class="box-content-header">Registration</span>  
-                          <mat-form-field class="w-100">
-                            <input matInput placeholder="Full Name" formControlName="name">
-                          </mat-form-field>
-                          <mat-form-field class="w-100">
-                              <input matInput placeholder="Email" formControlName="email">
-
-                          </mat-form-field>
-                          <mat-form-field class="w-100">
-                              <input matInput placeholder="Address" formControlName="password" type="text">
-
-                          </mat-form-field> 
-                          <mat-form-field class="w-100">
-                            <input matInput placeholder="Samle ID" formControlName="confirmPassword" type="text">
-                            
-                          </mat-form-field>
-                          <mat-form-field class="w-100">
-                            <input matInput placeholder="Mobile No" formControlName="confirmPassword" type="text">
-                            
-                          </mat-form-field>
-                      
-                            <mat-checkbox class="w-100">Inculde lactating / Pregnancy Analysis</mat-checkbox>
-                           
-                          <mat-form-field class="w-100">
-                            <input matInput placeholder="Age" formControlName="confirmPassword" type="text">
-                            
-                          </mat-form-field>
-                          
-                            <mat-radio-group class="w-100" aria-label="Select an option">
-                                <mat-radio-button value="1" style="margin-right: 5px">Male</mat-radio-button>
-                                <mat-radio-button value="2">Female</mat-radio-button>
-                            </mat-radio-group>
-                          
-                      </mat-card>
-                      <button mat-raised-button color="primary" class="mat-elevation-z12 box-button" type="submit" style="background-color: #229494 !important;">REGISTER</button>
-                  </mat-card-content>
-              </mat-card>
-              
-         </form>      
-    
+    <div class="col-sm-4" style="color: white" style="float:left">
+      <a><img src="/src/assets/img/mako_logo.png" style="width: 40%;padding: 9px;"></a>
     </div>
-  
-  </mat-sidenav-container> -->
+    <div class="col-sm-8" style="color: white" style="text-align: right !important;top: 15px;
+    ">
+      <a routerLink="/login" >SIGN IN</a>
+    </div>
+  </div>
 <div class="col-sm-12" style="background-color: white;border-left: 2px solid red;left: 8px;">
   <div class="col-sm-1" style="padding-left:0px !important">
     <img src="http://makodna.com/wp-content/uploads/2019/05/ColorStripBG.jpg" alt="" style="max-height: 890px">
@@ -87,43 +42,44 @@
         <img src="http://makodna.com/wp-content/uploads/2019/05/5.29-Nutrit-DNA-Sprinter.jpg" alt="" style="width:120%">
       </div>
       <div class="col-sm-6" style="border-left: 2px solid #d6d6d6;top: 10px">
-        <form [formGroup]="form" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60">
+        <form [formGroup]="form" (ngSubmit)="onRegister(form.value)" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60">
           <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
             <span class="box-content-header" style="font-size: 16px;font-weight: 600;">REGISTRATION</span>
             <mat-form-field class="w-100">
-              <input matInput placeholder="Full Name" formControlName="name">
+              <input matInput placeholder="Full Name" >
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Email" formControlName="email">
+              <input matInput placeholder="Email" >
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Address" formControlName="password" type="text">
+              <input matInput placeholder="Address"  type="text">
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Sample ID" formControlName="confirmPassword" type="text">
+              <input matInput placeholder="Sample ID" type="text">
             </mat-form-field>
             <mat-form-field class="w-100">
-              <input matInput placeholder="Mobile No" formControlName="confirmPassword" type="text">
+              <input matInput placeholder="Mobile No" type="text">
             </mat-form-field>
-
+            
             <mat-radio-group class="w-100" aria-label="Select an option">
-              <mat-radio-button value="male" style="margin-right: 5px" (click)="setradio('Male')" ngModel><small
-                  style="font-size: 14px;color: gray;">Male</small></mat-radio-button>
-              <mat-radio-button value="female" (click)="setradio('Female')" ngModel><small
+                <mat-label style="font-size: 15px;color: gray;margin-right: 12px;">Gender : </mat-label>
+              <mat-radio-button value="male" style="margin-right: 5px" (click)="setradio('Male')"><small
+                  style="font-size: 14px;color: gray;margin-right: 5px;">Male</small></mat-radio-button>
+              <mat-radio-button value="female" (click)="setradio('Female')"><small
                   style="font-size: 14px;color: gray;">Female</small></mat-radio-button>
             </mat-radio-group>
-
+            <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')" style="margin-top: 10px;"><small style="font-size: 14px;color: gray;">Pregnant / Lactating</small></mat-checkbox>
             <mat-form-field class="w-100">
-              <input matInput [matDatepicker]="picker" placeholder="D.O.B">
+              <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Age" formControlName="confirmPassword" type="text">
+              <input matInput placeholder="Age"  type="text">
             </mat-form-field>
 
             <mat-form-field class="w-100">
@@ -138,24 +94,19 @@
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="FEDEX AWB" formControlName="name">
+              <input matInput placeholder="FEDEX AWB" >
             </mat-form-field>
-
-            <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')">Inculde lactating / Pregnancy
-              Analysis</mat-checkbox>
-            <div class="col-sm-12">
-              <button mat-raised-button color="primary" class="pull-left mat-elevation-z12 box-button login"
-                style="background-color: #229494 !important;top:15px;margin-bottom:20px" type="submit">
-                REGISTER
-              </button>
-              <button mat-raised-button routerLink="/login" color="primary"
-                class="pull-right mat-elevation-z12 box-button login button-default"
-                style="top:15px;margin-bottom:20px" type="submit">
+            <div class="col-sm-12" style="left: 120px;">
+                <button mat-raised-button routerLink="/login" color="primary"
+                class="pull-center mat-elevation-z12 box-button login button-default"
+                style="top:15px;margin-right: 10px" type="submit">
                 Cancel
               </button>
-
+              <button mat-raised-button color="primary" class="pull-center mat-elevation-z12 box-button login"
+                style="background-color: #229494 !important;top:15px;margin-bottom:20px" type="register">
+                REGISTER
+              </button>
             </div>
-
             <!-- <button mat-raised-button color="primary" class="mat-elevation-z12 box-button" type="submit"
           style="background-color: #229494 !important;top:15px;margin-bottom:20px">REGISTER</button> -->
           </mat-card>

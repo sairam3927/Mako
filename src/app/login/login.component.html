@@ -1,14 +1,15 @@
 <style>
-    .login{
-    background: #229494!important;
-    color: white !important;
-    }
-    .login:hover {
-        background: #4dadad!important
+    .login {
+        background: #229494 !important;
+        color: white !important;
     }
 
+    .login:hover {
+        background: #4dadad !important
+    }
 </style>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
 <mat-sidenav-container>
@@ -16,48 +17,42 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" fxFlex="80" fxFlex.gt-sm="30" fxFlex.sm="60">
             <mat-card class="p-0 mat-elevation-z24 box">
                 <div fxLayout="column" fxLayoutAlign="center center" class="bg-primary box-header">
-                    <!-- <button mat-fab color="accent" class="mat-elevation-z12" (click)="onSubmit(form.value);">
-                        <mat-icon>exit_to_app</mat-icon>
-                    </button> -->
-                    <!-- <img style="height:100px;width:230px;" src="https://static.wixstatic.com/media/1cb2ca_b0568cb34039417b9d6d9763afa92b1f.png/v1/fill/w_325,h_108,al_c,q_80,usm_0.66_1.00_0.01/1cb2ca_b0568cb34039417b9d6d9763afa92b1f.webp"> -->
-                    <!-- <div class="flex-p w-100" style="align-items: center"> -->
-                        <img [src]="imagePath" style="width:60%; height: 50%;">
-                    <!-- </div> -->
-                    <!-- <a mat-button routerLink="/register">Don't have an account? Sign up now!</a> -->
+                    <img [src]="imagePath" style="width:60%; height: 50%;">
                 </div>
                 <mat-card-content fxLayout="column" fxLayoutAlign="end center" class="box-content">
-                    <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
-                        <!-- <span class="box-content-headers">Administration Login</span> -->
+                    <mat-card fxLayout="column" fxLayoutAlign="center center"
+                        class="mat-elevation-z12 box-content-inner">
                         <mat-form-field class="w-100">
                             <input matInput placeholder="Email" formControlName="email">
                             <mat-error *ngIf="form.controls.email.errors?.required">Email is required</mat-error>
-                            <mat-error *ngIf="form.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                            <mat-error *ngIf="form.controls.email.hasError('invalidEmail')">Invalid email address
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field class="w-100">
-                               <!-- <a (click)="ChangetextType(isPassword = ! isPassword)"><i class="fa fa-eye"></i>   </a> -->
                             <input matInput placeholder="Password" [type]=TypeString formControlName="password">
-                            <mat-icon  matSuffix style="cursor: pointer;  font-size: 14px!important;" (click)="ChangetextType(isPassword = ! isPassword)">remove_red_eye</mat-icon>
+                            <mat-icon matSuffix style="cursor: pointer;  font-size: 14px!important;"
+                                (click)="ChangetextType(isPassword = ! isPassword)">remove_red_eye</mat-icon>
                             <mat-error *ngIf="form.controls.password.errors?.required">Password is required</mat-error>
                             <mat-error *ngIf="form.controls.password.hasError('minlength')">Password isn't long enough,
                                 minimum of 6 characters</mat-error>
                         </mat-form-field>
-                        
-
-
                         <div class="w-100">
-                                <mat-checkbox color='warn'>Remember me!</mat-checkbox>
+                            <mat-checkbox color='warn'>Remember me!</mat-checkbox>
                             <a class="pull-right" style="color: #1c76c3;">Forgot Password?</a>
                         </div>
                     </mat-card>
-                    <div class="w-100 "  >
-                        <button mat-raised-button color="primary" class="pull-left mat-elevation-z12 box-button login" style="margin-left: 60px;width:30%" type="submit">
+                    <div class="w-100 ">
+                        <button mat-raised-button color="primary" class="pull-left mat-elevation-z12 box-button login"
+                            style="width: 30%;bottom: 48px;left: 145px;" type="submit">
                             SIGN IN
                         </button>
-                        <button mat-raised-button routerLink="/register" color="primary" class="pull-right mat-elevation-z12 box-button login" style="margin-right: 60px;width:30%" type="submit">
+                        <a routerLink="/register" style="color: #1c76c3;font-size: 17px;">Click here to Register</a>
+                        <!-- <button mat-raised-button routerLink="/register" color="primary"
+                            class="pull-right mat-elevation-z12 box-button login" style="margin-right: 60px;width:30%"
+                            type="submit">
                             REGISTER
-                        </button>
+                        </button> -->
                     </div>
-                    
                 </mat-card-content>
             </mat-card>
         </form>
