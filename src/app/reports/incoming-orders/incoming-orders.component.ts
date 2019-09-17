@@ -9,7 +9,10 @@ import { UploadRawDataComponent } from './upload-raw-data/upload-raw-data.compon
   styleUrls: ['./incoming-orders.component.scss']
 })
 export class IncomingOrdersComponent implements OnInit {
-
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
   patientList: any;
 
   public popoverTitle: string = 'Confirm Delete';

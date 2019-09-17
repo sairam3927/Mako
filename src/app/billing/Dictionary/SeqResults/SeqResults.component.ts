@@ -10,7 +10,10 @@ import { PersonalComponent } from '../Personal/Personal.component';
   styleUrls: ['./SeqResults.component.scss']
 })
 export class SeqResultsComponent implements OnInit {
-
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
   List: any;
 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
