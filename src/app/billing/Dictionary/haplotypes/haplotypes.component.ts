@@ -11,6 +11,10 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 })
 export class HaplotypesComponent implements OnInit {
   List: any;
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
   
@@ -19,13 +23,13 @@ export class HaplotypesComponent implements OnInit {
     }
   ngOnInit() {
     this.List = [
-      {id: "1" , RowReference:"rs1230025", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."},
-      {id: "2" , RowReference:"rs13123099 ", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
-      {id: "3" , RowReference:"rs17033  ", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
-      {id: "4" , RowReference:"rs13133908 ", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)." },
-      {id: "5" , RowReference:"rs1230025", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation." },
-      {id: "6" , RowReference:"rs13123099", Gene:"ADH1", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Heterozygous", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."  },
-      {id: "7" , RowReference:"rs17033", Gene:"ADH2", Level: "This haplotype recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Call:"Absent", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."}
+      {id: "1" , RowReference:"rs1230025", Haplotype:"ALDH1", condition:"1", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."},
+      {id: "2" , RowReference:"rs13123099 ", Haplotype:"ALDH1", condition:"4", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
+      {id: "3" , RowReference:"rs17033  ", Haplotype:"ALDH1", condition:"2", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."},
+      {id: "4" , RowReference:"rs13133908 ", Haplotype:"ALDH1", condition:"7", Comment:"The result of this interaction does not recommend an exact limit of daily consumption of alcohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)." },
+      {id: "5" , RowReference:"rs1230025", Haplotype:"SIRT1", condition:"1", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation." },
+      {id: "6" , RowReference:"rs13123099", Haplotype:"SIRT1", condition:"3", Comment:"This result does not recommend an exact limit of daily consumption of acohol. Alcohol should be consumed with moderation in any situation.", Recommendation:"These results do not recommend  an exact daily limit for alcohol consumption. Alcohol should be consumed with moderation in any situation."  },
+      {id: "7" , RowReference:"rs17033", Haplotype:"SIRT1", condition:"2", Comment:"The result of this interaction recommends limiting alcohol consumption to a maximum of 5 g alcohol/day.", Recommendation:"Limit alcohol consumption to a maximum of 5 g/day (total alcohol 100%)."}
     ];
   }
 

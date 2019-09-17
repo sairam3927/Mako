@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div fxLayout="row wrap" style="margin-bottom:10px">
+<div fxLayout="row wrap" >
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100"> 
 
                 <div class="row col-sm-12" class="flex-p" >
@@ -31,15 +31,18 @@
                     <div class="col-lg-2">
                         <button type="button" class="add-hover btn btn-success  pull-left">Search</button>
                     </div>
-                    <div class="col-lg-8" >
+                    <div class="col-lg-8" style="padding: 0;" >
                         <div   fxLayout="row" style="float: right !important;" >
-                                
-                                        <div style="margin-right: 10px !important;">
-                                            <button mat-raised-button  class="pull-right add-hover btn-success" >
+                                        <div >
+                                            <button mat-raised-button color="primary" style="color: white !important; margin-right: 5px !important;"
+                                                class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
+                                                <mat-icon>filter_list</mat-icon> Filter
+                                            </button>
+                                            <button mat-raised-button  class="pull-right add-hover btn-success" style="margin-right: 15px;" >
                                                 <mat-icon>add_comment</mat-icon> Add Haplotype
                                             </button>
+                                            
                                         </div>
-                                
                          </div>     
                                
                     </div>
@@ -47,15 +50,88 @@
 </div>
 </div>
 
+<div fxLayout="row wrap" style="margin-bottom: 8px;">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Haplotype :
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-select placeholder="--Select by Haplotype--" class="form-control">
+                                    <mat-option *ngFor="let option of List" [value]="">{{option.Haplotype}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Alleles :
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-select placeholder="--Select by Alleles--" class="form-control">
+                                    <mat-option *ngFor="let option of List" [value]="">{{option.RowReference}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                condition :
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-select placeholder="--Select by condition--" class="form-control">
+                                    <mat-option *ngFor="let option of List" [value]="">{{option.condition}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12" style="margin-top: 17px;">
+                        <div class="col-sm-4">
+                            <!-- <div class="col-sm-4 newMarginClass">
+                                Completion Date :
+                            </div> -->
+                            <div class="col-sm-8">
+                                <!-- <div class="input-icon right">
+                                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
+                                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" [(ngModel)]="dates">
+                                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <!-- <div class="col-sm-5" style="top:10px">
+                                Lactating/ Pregnant :
+                            </div> -->
+                            <div class="col-sm-7" style="top:10px">
+                                <!-- <mat-checkbox></mat-checkbox> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
+                                <button type="button"
+                                    class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
+                            </div>
+                        </div>
+                    </div>
+    
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
 <div fxLayout="row wrap">
     <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th >Row Reference/ Allele Name</th>
-                    <th >Gene</th>
+                    <th >Haplotype / Row Reference</th>
+                    <th >Alleles</th>
                     <!-- <th  class="text-center" >Level 1</th> -->
-                    <th >Call </th>
+                    <th >condition </th>
                     <th >Comment </th>
                     <th >Recommendation  </th>
                     <!-- <th class="text-center" >Action</th> -->
@@ -66,11 +142,11 @@
                 <tr *ngFor="let item of List">
                     
                     <td >
-                        {{item.RowReference}}
+                        {{item.Haplotype}}
                     </td>
-                    <td >{{item.Gene}}</td>
+                    <td >{{item.RowReference}}</td>
                     <!-- <td >{{item.Level}}</td>  -->
-                    <td >{{item.Call}}</td> 
+                    <td class="text-center" >{{item.condition}}</td> 
                     <td >{{item.Comment}}</td> 
                     <td >{{item.Recommendation}}</td>                    
                     <!-- <td class="text-center" >

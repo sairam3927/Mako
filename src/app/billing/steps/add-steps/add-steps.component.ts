@@ -10,17 +10,9 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 export class AddStepsComponent implements OnInit {
 
   selectedValueStepType:string = "1";
-  constructor(public dialogRef: MatDialogRef<AddStepsComponent>) { }
+  constructor(){ }
 
   ngOnInit() {
-  }
-
-  saveOrder() {
-    // this.alertService.createAlert('PatientData added successfully.', 1);
-    this.dialogRef.close();
-  }
-  close() {
-    this.dialogRef.close();
   }
 
 }

@@ -29,7 +29,7 @@
                 </mat-select>
                 <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9" style="padding: 0px" >
                 <div fxLayout="row" style="float: right !important;" >
                     <button mat-raised-button style="margin-right: 20px" class="pull-right add-hover btn-success" (click)="addCalcDialog()">
                         
@@ -57,6 +57,7 @@
             <tr class="tr-grid-header">
                 <th>Result Code</th>
                 <th>Result Title</th>
+                <th>Test Name</th>
                 <th>Result Value</th>
                 <th>Result Type</th>
                 <th>Report Type</th>
@@ -71,6 +72,7 @@
                
                 <td>{{item.ResultCode}}</td>
                 <td>{{item.ResultTitle}}</td>
+                <td>{{item.TestName}}</td>
                 <td>{{item.ResultValue}}</td>
                 <td>{{item.ResultType}}</td>
                 <td>{{item.ReportType}}</td>
