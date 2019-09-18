@@ -28,7 +28,7 @@ export const routes = [
   { path: 'Calculations', component: CalculationsComponent, data: { breadcrumb: 'Calculations' } },
   { path: 'finalOutput', component: FinalOutputComponent, data: { breadcrumb: 'Calculations' } },
   { path: 'Report', component: ReportComponent, data: { breadcrumb: 'Report' } },
-  { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Result Code' } },
+  { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Steps' } },
   { path: 'addSteps', component: AddStepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Add Steps' } },
 ];
 

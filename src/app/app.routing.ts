@@ -13,7 +13,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', loadChildren: './analytics/dashboard/dashboard.module#DashboardModule',pathMatch:"full", data: { breadcrumb: 'Dashboard' }},
             { path: 'patients', loadChildren: './analytics/analytics.module#AnalyticsModule', data: { breadcrumb: '' }},
-            { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'SetUp' }},
+            { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'Setup' }},
             { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', data: { breadcrumb: '' }},
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule', data: { breadcrumb: 'Admin' }},
             // { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule', data: { breadcrumb: 'Calendar'}}
