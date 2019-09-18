@@ -19,19 +19,21 @@ import { AlertService } from '../shared/services/alert.service';
 import { StepsComponent } from './steps/steps.component';
 import { AddStepsComponent } from './steps/add-steps/add-steps.component';
 import { AddCalcComponent } from './Calculations/add-calc/add-calc.component';
+import { FinalOutputComponent } from './final-output/final-output.component';
 
 
 export const routes = [
   { path: '', redirectTo: 'Dictionary', pathMatch: 'full' },
   { path: 'Dictionary', component: DictionaryComponent,loadChildren:'./Dictionary/Dictionary.module#DictionaryModule' , data: { breadcrumb: 'Dictionary'}},
   { path: 'Calculations', component: CalculationsComponent, data: { breadcrumb: 'Calculations' } },
+  { path: 'finalOutput', component: FinalOutputComponent, data: { breadcrumb: 'Calculations' } },
   { path: 'Report', component: ReportComponent, data: { breadcrumb: 'Report' } },
-  { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Steps' } },
+  { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Result Code' } },
   { path: 'addSteps', component: AddStepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Add Steps' } },
 ];
 
 @NgModule({
-  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent],
+  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,

@@ -36,14 +36,14 @@
 
 <div fxLayout="row wrap" class="breadcrumb" style="padding-bottom: 8px !important;margin-left: 5px;" *ngIf="router.url != '/'">
     <div fxFlex="100" class="">
-        <h3 *ngIf=" moduleTitle != 'Dictionary' && moduleTitle != 'Calculations' && moduleTitle != 'Report' && moduleTitle != 'Steps' && moduleTitle != 'Add Steps' " style="margin-top:10px;margin-bottom:10px;">{{moduleTitle||'Dashboard'}}</h3>
-        <h3 *ngIf=" moduleTitle == 'Dictionary' || moduleTitle == 'Calculations' || moduleTitle == 'Report' " style="margin-top:10px;margin-bottom:10px;">{{'Set Up'}}</h3>
-        <h3 *ngIf=" moduleTitle == 'Steps' || moduleTitle == 'Add Steps' " style="margin-top:10px;margin-bottom:10px;">{{'Steps'}}</h3>
+        <h3 *ngIf=" moduleTitle != 'Dictionary' && moduleTitle != 'Calculations' && moduleTitle != 'Report' && moduleTitle != 'Result Code' && moduleTitle != 'Add Steps' " style="margin-top:10px;margin-bottom:10px;">{{moduleTitle||'Dashboard'}}</h3>
+        <h3 *ngIf=" moduleTitle == 'Dictionary' || moduleTitle == 'Calculations' || moduleTitle == 'Report' " style="margin-top:10px;margin-bottom:10px;">{{'SetUp'}}</h3>
+        <h3 *ngIf=" moduleTitle == 'Result Code' || moduleTitle == 'Add Steps' " style="margin-top:10px;margin-bottom:10px;">{{'Result Code'}}</h3>
         <mat-card fxLayout="row" class="breadcrumb helptext bc">
             <div fxFlex="100" class="flex-p">
-                <span *ngIf=" moduleTitle != 'Dictionary' && moduleTitle != 'Calculations' && moduleTitle != 'Report' && moduleTitle != 'Steps'  && moduleTitle != 'Add Steps' " class="page-title nomargin">{{description[moduleTitle] || description['Dashboard']}}</span>
-                <span *ngIf=" moduleTitle == 'Dictionary' || moduleTitle == 'Calculations' || moduleTitle == 'Report' " class="page-title nomargin">{{description['Set Up']}}</span>
-                <span *ngIf=" moduleTitle == 'Steps' || moduleTitle == 'Add Steps' " class="page-title nomargin">{{description['Steps']}}</span>
+                <span *ngIf=" moduleTitle != 'Dictionary' && moduleTitle != 'Calculations' && moduleTitle != 'Report' && moduleTitle != 'Result Code'  && moduleTitle != 'Add Steps' " class="page-title nomargin">{{description[moduleTitle] || description['Dashboard']}}</span>
+                <span *ngIf=" moduleTitle == 'Dictionary' || moduleTitle == 'Calculations' || moduleTitle == 'Report' " class="page-title nomargin">{{description['SetUp']}}</span>
+                <span *ngIf=" moduleTitle == 'Result Code' || moduleTitle == 'Add Steps' " class="page-title nomargin">{{description['Result Code']}}</span>
                 <div fxLayout="row" style="float: right !important;" class="pull-right hidden-xs">
                     <a *ngIf="router.url != '/'" routerLink="/mako" class="breadcrumb-item" fxLayout="row" fxLayoutAlign="start center"
                         (click)="closeSubMenus()">

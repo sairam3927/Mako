@@ -11,7 +11,10 @@ import { DriUploadCSVComponent } from './dri-upload-csv/dri-upload-csv.component
   styleUrls: ['./DRI.component.scss']
 })
 export class DRIComponent implements OnInit {
-
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
   List:any;
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
   public popoverTitle: string = 'Confirm Delete';
@@ -88,8 +91,7 @@ export class DRIComponent implements OnInit {
   public patientDataDialog() {
     let dialogRef = this.dialog.open(PersonalComponent, {
       height: 'auto',
-      width: '500px',
-      autoFocus: false,
+      width: '500px'
     });
     dialogRef.afterClosed().subscribe(data => {
     });
@@ -98,8 +100,7 @@ export class DRIComponent implements OnInit {
   public UploadCSVDialog() {
     let dialogRef = this.dialog.open(DriUploadCSVComponent, {
       height: 'auto',
-      width: '400px',
-      autoFocus: false,
+      width: '400px'
     });
     dialogRef.afterClosed().subscribe(data => {
     });

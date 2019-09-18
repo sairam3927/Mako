@@ -1,0 +1,55 @@
+<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+    Add Message</h3>
+
+<form class="form-horizontal" novalidate >
+    <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+        <div  class="col-sm-12 ">
+                <div class="form-group"> 
+                        <label class="control-label col-sm-4 add-member-label">Haplotype : </label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" placeholder="Enter Haplotype" required>
+                        </div>
+                      </div>
+      
+                      <div class="form-group">
+                              <label class="control-label col-sm-4 add-member-label">Alleles : </label>
+                              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                  <input type="text" class="form-control" placeholder="Enter Alleles" required>
+                              </div>
+                      </div>
+      
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 add-member-label">condition : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                              <input type="text" class="form-control" placeholder="Enter condition" required>
+                          </div>
+                      </div>
+      
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 ">Comment : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                              <input type="text" class="form-control" placeholder="Enter Comment" required>
+                          </div>
+                      </div>
+      
+                      <div class="form-group">
+                          <label class="control-label col-sm-4 ">Recommendation : </label>
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                              <input type="text" class="form-control" placeholder="Enter Recommendation" required>
+                          </div>
+                      </div>
+
+        </div>
+    </div>
+
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button" (click)="close()">
+        <mat-icon>cancel</mat-icon>
+        <span>&nbsp;Cancel</span>
+    </button>
+        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <mat-icon>send</mat-icon>
+        <span>&nbsp;Save</span>
+    </button>
+    </mat-dialog-actions>
+</form>

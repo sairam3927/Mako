@@ -26,6 +26,8 @@ import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
+import { AddHaplotypeComponent } from './haplotypes/add-haplotype/add-haplotype.component';
+import { AddTestComponent } from './tests/add-test/add-test.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
@@ -40,13 +42,13 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent ],
+  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent ],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     SharedModule, NgxChartsModule, OwlDateTimeModule, OwlNativeDateTimeModule
   ],
-  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent],
+  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent,AddHaplotypeComponent,AddTestComponent],
   providers: [AlertService]
 })
 export class DictionaryModule { }
