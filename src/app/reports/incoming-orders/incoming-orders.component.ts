@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { MatDialog } from '@angular/material';
 import { UploadRawDataComponent } from './upload-raw-data/upload-raw-data.component';
+import { AppSettings } from 'src/app/app.settings';
 
 @Component({
   selector: 'app-incoming-orders',
@@ -15,6 +16,7 @@ export class IncomingOrdersComponent implements OnInit {
   }
   patientList: any;
 
+
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
@@ -22,10 +24,16 @@ export class IncomingOrdersComponent implements OnInit {
   public cancelClicked: boolean = false;
 
   constructor(public dialog: MatDialog,
-    private alertService: AlertService) { }
+    private alertService: AlertService) { 
+     
+    }
 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';
 
+  onStepsOptionsSelected(event) {
+    console.log(event);
+  }
+  
   ngOnInit() {
     this.patientList = [
       { id: 1, DocumentTitle: "September 6 upload", UploadDate: "09/06/2019 5:00 PM", Samples: "243", TotalRecords: "1,00,453", Duplicates: "2300", OutofScope: "52", Incomplete: "6", Processed: "120 / 243", Download: "", Status: "Pending" },

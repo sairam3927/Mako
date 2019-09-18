@@ -10,13 +10,13 @@
                         class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
-                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                    <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                         (click)="addPatientDataDialog()">
                         <mat-icon>backup</mat-icon> Upload Raw Data
                     </button>
                     <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
                         <mat-icon>cloud_download</mat-icon> Download Sample Template
-                    </button>
+                    </button> -->
                 </div>
                 <!-- </mat-card-content> -->
                 <!-- </mat-card> -->
@@ -35,24 +35,29 @@
                                     <input type="text" class="form-control" placeholder="--Keyword search--">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-4 newMarginClass">
-                                    Date Range :
+                            <div class="col-sm-6">
+                                <div class="col-sm-2 newMarginClass">
+                                    Date Range:
                                 </div>
-                                <div class="col-sm-8">
-                                    <!-- <div class="input-icon right">
+                                <div class="col-sm-5">
+                                    <div class="input-icon right">
                                         <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control"
-                                            id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1"
-                                            [(ngModel)]="dates">
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
+                                                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
                                         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                                    </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-icon right">
+                                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                            <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
+                                                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" >
+                                            <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-4">
-                                </div>
-                                <div class="col-sm-8">
+                            <div class="col-sm-2" style="padding: 0px">
+                                <div class="pull-right col-sm-12" style="padding: 0px">
                                     <button type="button"
                                         class="add-hover-reset btn btn-reset  pull-right">Reset</button>
                                     <button type="button"

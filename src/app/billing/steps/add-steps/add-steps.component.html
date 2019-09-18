@@ -86,7 +86,7 @@
                         <td>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-2 top-6">
                                         <mat-radio-button value="male" name="radio">
                                         </mat-radio-button>
                                     </div>
@@ -99,7 +99,7 @@
                         <td>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-1 top-6">
                                         <mat-radio-button value="male" name="radio">
                                         </mat-radio-button>
                                     </div>
@@ -145,11 +145,11 @@
                         <td>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-1 top-6">
                                         <mat-radio-button value="male" name="radio">
                                         </mat-radio-button>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-11">
                                         <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
                                             class="form-control">
                                             <mat-option [value]="1">DRI</mat-option>
@@ -212,83 +212,83 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class=" form-control" placeholder="Enter Value">
-                                            </div>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class=" form-control" placeholder="Enter Value">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div fxLayout="row" class="">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Scope</mat-option>
+                                                <mat-option [value]="2">DRI</mat-option>
+                                                <mat-option [value]="3">Messages</mat-option>
+                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;"
+                                                placeholder="-Select Row Reference -" class="form-control">
+                                                <mat-option [value]="1">Apa</mat-option>
+                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                <mat-option [value]="3">Fiber</mat-option>
+                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                <mat-option [value]="6">Protein</mat-option>
+                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-1">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-11">
-                                                <div fxLayout="row" class="">
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Scope</mat-option>
-                                                        <mat-option [value]="2">DRI</mat-option>
-                                                        <mat-option [value]="3">Messages</mat-option>
-                                                        <mat-option [value]="4">SEQ Results</mat-option>
-                                                        <mat-option [value]="5">Haplotype</mat-option>
-                                                        <mat-option [value]="6">Tests</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;"
-                                                        placeholder="-Select Row Reference -" class="form-control">
-                                                        <mat-option [value]="1">Apa</mat-option>
-                                                        <mat-option [value]="2">Carbohydrates</mat-option>
-                                                        <mat-option [value]="3">Fiber</mat-option>
-                                                        <mat-option [value]="4">linolenicAcid</mat-option>
-                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                                        <mat-option [value]="6">Protein</mat-option>
-                                                        <mat-option [value]="7">Vitamin-A</mat-option>
-                                                        <mat-option [value]="8">Vitamin-C</mat-option>
-                                                        <mat-option [value]="9">Vitamin-D</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select column-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
-                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
-                                                    </mat-select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
-                                                    class="form-control">
-                                                    <mat-option [value]="1">DRI</mat-option>
-                                                </mat-select>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-11">
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
+                                            class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -325,83 +325,83 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class=" form-control" placeholder="Enter Value">
-                                            </div>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class=" form-control" placeholder="Enter Value">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div fxLayout="row" class="">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Scope</mat-option>
+                                                <mat-option [value]="2">DRI</mat-option>
+                                                <mat-option [value]="3">Messages</mat-option>
+                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;"
+                                                placeholder="-Select Row Reference -" class="form-control">
+                                                <mat-option [value]="1">Apa</mat-option>
+                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                <mat-option [value]="3">Fiber</mat-option>
+                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                <mat-option [value]="6">Protein</mat-option>
+                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-1">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-11">
-                                                <div fxLayout="row" class="">
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Scope</mat-option>
-                                                        <mat-option [value]="2">DRI</mat-option>
-                                                        <mat-option [value]="3">Messages</mat-option>
-                                                        <mat-option [value]="4">SEQ Results</mat-option>
-                                                        <mat-option [value]="5">Haplotype</mat-option>
-                                                        <mat-option [value]="6">Tests</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;"
-                                                        placeholder="-Select Row Reference -" class="form-control">
-                                                        <mat-option [value]="1">Apa</mat-option>
-                                                        <mat-option [value]="2">Carbohydrates</mat-option>
-                                                        <mat-option [value]="3">Fiber</mat-option>
-                                                        <mat-option [value]="4">linolenicAcid</mat-option>
-                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                                        <mat-option [value]="6">Protein</mat-option>
-                                                        <mat-option [value]="7">Vitamin-A</mat-option>
-                                                        <mat-option [value]="8">Vitamin-C</mat-option>
-                                                        <mat-option [value]="9">Vitamin-D</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select column-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
-                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
-                                                    </mat-select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
-                                                    class="form-control">
-                                                    <mat-option [value]="1">DRI</mat-option>
-                                                </mat-select>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-11">
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
+                                            class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -438,89 +438,90 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class=" form-control" placeholder="Enter Value">
-                                            </div>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class=" form-control" placeholder="Enter Value">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div fxLayout="row" class="">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Scope</mat-option>
+                                                <mat-option [value]="2">DRI</mat-option>
+                                                <mat-option [value]="3">Messages</mat-option>
+                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;"
+                                                placeholder="-Select Row Reference -" class="form-control">
+                                                <mat-option [value]="1">Apa</mat-option>
+                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                <mat-option [value]="3">Fiber</mat-option>
+                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                <mat-option [value]="6">Protein</mat-option>
+                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-1">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-11">
-                                                <div fxLayout="row" class="">
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Scope</mat-option>
-                                                        <mat-option [value]="2">DRI</mat-option>
-                                                        <mat-option [value]="3">Messages</mat-option>
-                                                        <mat-option [value]="4">SEQ Results</mat-option>
-                                                        <mat-option [value]="5">Haplotype</mat-option>
-                                                        <mat-option [value]="6">Tests</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;"
-                                                        placeholder="-Select Row Reference -" class="form-control">
-                                                        <mat-option [value]="1">Apa</mat-option>
-                                                        <mat-option [value]="2">Carbohydrates</mat-option>
-                                                        <mat-option [value]="3">Fiber</mat-option>
-                                                        <mat-option [value]="4">linolenicAcid</mat-option>
-                                                        <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                                        <mat-option [value]="6">Protein</mat-option>
-                                                        <mat-option [value]="7">Vitamin-A</mat-option>
-                                                        <mat-option [value]="8">Vitamin-C</mat-option>
-                                                        <mat-option [value]="9">Vitamin-D</mat-option>
-                                                    </mat-select>
-                                                    <mat-select style="margin-right: 10px;" placeholder="-Select column-"
-                                                        class="form-control">
-                                                        <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                                        <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                                        <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                                        <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                                        <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                                        <mat-option [value]="6">Female &gt; 50</mat-option>
-                                                        <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                                        <mat-option [value]="8">Male &gt; 50</mat-option>
-                                                    </mat-select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-2">
-                                                <mat-radio-button value="male" name="radio">
-                                                </mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
-                                                    class="form-control">
-                                                    <mat-option [value]="1">DRI</mat-option>
-                                                </mat-select>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-11">
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
+                                            class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
 </div>
+
 
 <div *ngIf="selectedValueStepType == '2'">
 
@@ -547,52 +548,80 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" class=" form-control" placeholder="Enter Value">
-                        </td>
-                        <td>
-                            <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
-                                    class="form-control">
-                                    <mat-option [value]="1">Scope</mat-option>
-                                    <mat-option [value]="2">DRI</mat-option>
-                                    <mat-option [value]="3">Messages</mat-option>
-                                    <mat-option [value]="4">SEQ Results</mat-option>
-                                    <mat-option [value]="5">Haplotype</mat-option>
-                                    <mat-option [value]="6">Tests</mat-option>
-                                </mat-select>
-                                <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -"
-                                    class="form-control">
-                                    <mat-option [value]="1">Apa</mat-option>
-                                    <mat-option [value]="2">Carbohydrates</mat-option>
-                                    <mat-option [value]="3">Fiber</mat-option>
-                                    <mat-option [value]="4">linolenicAcid</mat-option>
-                                    <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                    <mat-option [value]="6">Protein</mat-option>
-                                    <mat-option [value]="7">Vitamin-A</mat-option>
-                                    <mat-option [value]="8">Vitamin-C</mat-option>
-                                    <mat-option [value]="9">Vitamin-D</mat-option>
-                                </mat-select>
-                                <mat-select style="margin-right: 10px;" placeholder="-Select column-"
-                                    class="form-control">
-                                    <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                    <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                    <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                    <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                    <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                    <mat-option [value]="6">Female &gt; 50</mat-option>
-                                    <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                    <mat-option [value]="8">Male &gt; 50</mat-option>
-                                </mat-select>
-
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class=" form-control" placeholder="Enter Value">
+                                    </div>
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
-                                class="form-control">
-                                <mat-option [value]="1">DRI</mat-option>
-                            </mat-select>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div fxLayout="row" class="">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Scope</mat-option>
+                                                <mat-option [value]="2">DRI</mat-option>
+                                                <mat-option [value]="3">Messages</mat-option>
+                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;"
+                                                placeholder="-Select Row Reference -" class="form-control">
+                                                <mat-option [value]="1">Apa</mat-option>
+                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                <mat-option [value]="3">Fiber</mat-option>
+                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                <mat-option [value]="6">Protein</mat-option>
+                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
-
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
+                                            class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -648,52 +677,80 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" class=" form-control" placeholder="Enter Value">
-                        </td>
-                        <td>
-                            <div fxLayout="row" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
-                                    class="form-control">
-                                    <mat-option [value]="1">Scope</mat-option>
-                                    <mat-option [value]="2">DRI</mat-option>
-                                    <mat-option [value]="3">Messages</mat-option>
-                                    <mat-option [value]="4">SEQ Results</mat-option>
-                                    <mat-option [value]="5">Haplotype</mat-option>
-                                    <mat-option [value]="6">Tests</mat-option>
-                                </mat-select>
-                                <mat-select style="margin-right: 10px;" placeholder="-Select Row Reference -"
-                                    class="form-control">
-                                    <mat-option [value]="1">Apa</mat-option>
-                                    <mat-option [value]="2">Carbohydrates</mat-option>
-                                    <mat-option [value]="3">Fiber</mat-option>
-                                    <mat-option [value]="4">linolenicAcid</mat-option>
-                                    <mat-option [value]="5">α-LinolenicAcid</mat-option>
-                                    <mat-option [value]="6">Protein</mat-option>
-                                    <mat-option [value]="7">Vitamin-A</mat-option>
-                                    <mat-option [value]="8">Vitamin-C</mat-option>
-                                    <mat-option [value]="9">Vitamin-D</mat-option>
-                                </mat-select>
-                                <mat-select style="margin-right: 10px;" placeholder="-Select column-"
-                                    class="form-control">
-                                    <mat-option [value]="1">Pregnant &gt; 30</mat-option>
-                                    <mat-option [value]="2">Pregnant &lt; 30</mat-option>
-                                    <mat-option [value]="3">Lactate &gt; 30</mat-option>
-                                    <mat-option [value]="4">Lactate &lt; 30</mat-option>
-                                    <mat-option [value]="5">Female &lt; = 50</mat-option>
-                                    <mat-option [value]="6">Female &gt; 50</mat-option>
-                                    <mat-option [value]="7">Male &lt; = 50</mat-option>
-                                    <mat-option [value]="8">Male &gt; 50</mat-option>
-                                </mat-select>
-
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class=" form-control" placeholder="Enter Value">
+                                    </div>
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
-                                class="form-control">
-                                <mat-option [value]="1">DRI</mat-option>
-                            </mat-select>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div fxLayout="row" class="">
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select Context-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Scope</mat-option>
+                                                <mat-option [value]="2">DRI</mat-option>
+                                                <mat-option [value]="3">Messages</mat-option>
+                                                <mat-option [value]="4">SEQ Results</mat-option>
+                                                <mat-option [value]="5">Haplotype</mat-option>
+                                                <mat-option [value]="6">Tests</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;"
+                                                placeholder="-Select Row Reference -" class="form-control">
+                                                <mat-option [value]="1">Apa</mat-option>
+                                                <mat-option [value]="2">Carbohydrates</mat-option>
+                                                <mat-option [value]="3">Fiber</mat-option>
+                                                <mat-option [value]="4">linolenicAcid</mat-option>
+                                                <mat-option [value]="5">α-LinolenicAcid</mat-option>
+                                                <mat-option [value]="6">Protein</mat-option>
+                                                <mat-option [value]="7">Vitamin-A</mat-option>
+                                                <mat-option [value]="8">Vitamin-C</mat-option>
+                                                <mat-option [value]="9">Vitamin-D</mat-option>
+                                            </mat-select>
+                                            <mat-select style="margin-right: 10px;" placeholder="-Select column-"
+                                                class="form-control">
+                                                <mat-option [value]="1">Pregnant &gt; 30</mat-option>
+                                                <mat-option [value]="2">Pregnant &lt; 30</mat-option>
+                                                <mat-option [value]="3">Lactate &gt; 30</mat-option>
+                                                <mat-option [value]="4">Lactate &lt; 30</mat-option>
+                                                <mat-option [value]="5">Female &lt; = 50</mat-option>
+                                                <mat-option [value]="6">Female &gt; 50</mat-option>
+                                                <mat-option [value]="7">Male &lt; = 50</mat-option>
+                                                <mat-option [value]="8">Male &gt; 50</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
-
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-1 top-6">
+                                        <mat-radio-button value="male" name="radio">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <mat-select style="margin-right: 10px;" placeholder="-Select Previous Value-"
+                                            class="form-control">
+                                            <mat-option [value]="1">DRI</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

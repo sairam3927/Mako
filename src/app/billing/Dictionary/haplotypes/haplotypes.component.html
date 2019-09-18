@@ -38,7 +38,7 @@
                                                 class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
                                                 <mat-icon>filter_list</mat-icon> Filter
                                             </button>
-                                            <button mat-raised-button  class="pull-right add-hover btn-success" style="margin-right: 15px;" >
+                                            <button mat-raised-button  class="pull-right add-hover btn-success" style="margin-right: 15px;" (click)="addMessagesDialog()">
                                                 <mat-icon>add_comment</mat-icon> Add Haplotype
                                             </button>
                                             
@@ -134,7 +134,7 @@
                     <th >condition </th>
                     <th >Comment </th>
                     <th >Recommendation  </th>
-                    <!-- <th class="text-center" >Action</th> -->
+                    <th class="text-center" >Action</th>
                     
                 </tr>
             </thead>
@@ -149,8 +149,8 @@
                     <td class="text-center" >{{item.condition}}</td> 
                     <td >{{item.Comment}}</td> 
                     <td >{{item.Recommendation}}</td>                    
-                    <!-- <td class="text-center" >
-                        <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
+                    <td class="text-center" >
+                        <a title="Edit User" style="margin-right: 10px; cursor: pointer;" >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a mwlConfirmationPopover
@@ -161,7 +161,7 @@
                         (cancel)="cancelClicked = true">
                             <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
                         </a>
-                    </td> -->
+                    </td>
                 </tr>
             </tbody>
       </table>
