@@ -26,6 +26,7 @@ import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
+import { AddSeqResultComponent } from './SeqResults/add-seq-result/add-seq-result.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
@@ -40,13 +41,13 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent ],
+  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddSeqResultComponent ],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     SharedModule, NgxChartsModule, OwlDateTimeModule, OwlNativeDateTimeModule
   ],
-  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent],
+  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent,AddSeqResultComponent],
   providers: [AlertService]
 })
 export class DictionaryModule { }

@@ -112,8 +112,8 @@
             <mat-form-field class="w-100">
               <mat-label>Ethnicity</mat-label>
               <mat-select>
-                <mat-option *ngFor="let food of ethnicitys" [value]="food.value">
-                  {{food.viewValue}}
+                <mat-option *ngFor="let ethnicity of ethnicitys" [value]="ethnicity.value">
+                  {{ethnicity.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

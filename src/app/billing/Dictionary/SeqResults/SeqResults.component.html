@@ -38,16 +38,21 @@
 <div fxLayout="row wrap" style="margin-bottom: 10px">
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100">
         <div class="row col-sm-12" class="flex-p">
-                <button mat-raised-button color="primary" style="color: white !important;"
-                    class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
-                    <mat-icon>filter_list</mat-icon> Filter
-                </button>
-                <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
-                    <mat-icon>cloud_download</mat-icon> Download Sample Template
-                </button>
-                <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="uploadCSVDialog()">
-                    <mat-icon>backup</mat-icon> Upload SEQ Data
-                </button>
+            <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover"
+                (click)="filterToggle = !filterToggle">
+                <mat-icon>filter_list</mat-icon> Filter
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                <mat-icon>cloud_download</mat-icon> Download Sample Template
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                (click)="uploadCSVDialog()">
+                <mat-icon>backup</mat-icon> Upload SEQ Data
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                (click)="addSeqResultDialog()">
+                <mat-icon>add_comment</mat-icon> Add SEQ Data
+            </button>
         </div>
     </div>
 </div>

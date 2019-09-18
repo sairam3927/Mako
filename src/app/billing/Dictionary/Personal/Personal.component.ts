@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
 
+export interface Sample {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-Personal',
   templateUrl: './Personal.component.html',
@@ -17,6 +22,13 @@ export class PersonalComponent implements OnInit {
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
 
+  ethnicitys: Sample[] = [
+    { value: '0', viewValue: 'Non-Hispanic White' },
+    { value: '1', viewValue: 'Hispanic' },
+    { value: '2', viewValue: 'African American' },
+    { value: '3', viewValue: 'Asian' },
+    { value: '4', viewValue: 'Others' }
+  ];
   constructor(public alertService: AlertService,
     public dialogRef: MatDialogRef<PersonalComponent>) {
     }
@@ -29,6 +41,7 @@ export class PersonalComponent implements OnInit {
         {id:'4',rowRef:"Ethnicity : ",value:"DD"},
         
       ];
+      
     // }else{
     //   this.List = [
     //     {id:"1",rowRef:"Age : ",value:"text"},
@@ -37,6 +50,16 @@ export class PersonalComponent implements OnInit {
     //   ];
     // }
     
+  }
+  private selectedLink: string = "Male";
+  setradio(e: string): void {
+    this.selectedLink = e;
+  }
+  isSelected(name: string): boolean {
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+      return false;
+    }
+    return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
   }
 
   deletePatientOrder(){
