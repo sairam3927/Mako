@@ -49,24 +49,10 @@
                 <div fxLayout="row" style="float: right !important;">
 
                     <div style="margin-right: 5px !important;">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <button mat-raised-button class="pull-right add-hover btn-success" (click)="addtestDialog()">
-=======
                         <button mat-raised-button class="pull-right add-hover btn-success">
->>>>>>> d841403746106824772a327f5de2e685a34965b3
-=======
-                        <button mat-raised-button class="pull-right add-hover btn-success">
->>>>>>> d841403746106824772a327f5de2e685a34965b3
                             <mat-icon>add_comment</mat-icon> Add Test
                         </button>
                     </div>
-
-                    <!-- <div >
-                                            <button mat-raised-button class="pull-right add-hover btn-success" >
-                                                <mat-icon>cloud_download</mat-icon> Download Sample 
-                                            </button>
-                                        </div> -->
                 </div>
 
             </div>
@@ -79,23 +65,11 @@
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <th class="text-center" >Active</th>
                     <th>Test Name</th>
                     <th class="text-center">Used</th>
                     <th>Description</th>
                     <th class="text-center">Actions</th>
-=======
-                    <th>Active</th>
-                    <th>Test Name</th>
-                    <th>Description</th>
->>>>>>> d841403746106824772a327f5de2e685a34965b3
-=======
-                    <th>Active</th>
-                    <th>Test Name</th>
-                    <th>Description</th>
->>>>>>> d841403746106824772a327f5de2e685a34965b3
                 </tr>
             </thead>
             <tbody>
@@ -106,8 +80,7 @@
                     <td>
                         {{item.TestName}}
                     </td>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                     <td class="text-center">
                         <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
                         </mat-checkbox>
@@ -115,7 +88,7 @@
                     <td>{{item.Description}}</td>
                     <td class="text-center" >
                             <a title="Edit User" style="margin-right: 10px; cursor: pointer;" >
-                              <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit"></i>
                             </a>
                             <a mwlConfirmationPopover
                             [popoverTitle]="popoverTitle"
@@ -126,12 +99,6 @@
                                 <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
                             </a>
                     </td>
-=======
-                    <td>{{item.Description}}</td>
->>>>>>> d841403746106824772a327f5de2e685a34965b3
-=======
-                    <td>{{item.Description}}</td>
->>>>>>> d841403746106824772a327f5de2e685a34965b3
                     
                 </tr>
             </tbody>
