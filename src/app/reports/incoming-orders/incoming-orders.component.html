@@ -35,29 +35,36 @@
                                     <input type="text" class="form-control" placeholder="--Keyword search--">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <div class="col-sm-2 newMarginClass">
                                     Date Range:
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-icon right">
                                         <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                        <input class="form-control" placeholder=" From Date (MM/DD/YYYY)" class="form-control" id="db"
-                                                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                                        <input class="form-control" placeholder=" From Date (MM/DD/YYYY)"
+                                            class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                                            name="dt1">
                                         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-icon right">
-                                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                            <input class="form-control" placeholder="To Date (MM/DD/YYYY)" class="form-control" id="db"
-                                                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" >
-                                            <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                        <input class="form-control" placeholder="To Date (MM/DD/YYYY)"
+                                            class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
+                                            name="dt2">
+                                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-2" style="padding: 0px">
-                                <div class="pull-right col-sm-12" style="padding: 0px">
+
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="pull-right col-sm-12" style="margin-top: 15px;">
                                     <button type="button"
                                         class="add-hover-reset btn btn-reset  pull-right">Reset</button>
                                     <button type="button"
@@ -75,6 +82,7 @@
                 <table id="example2" class="table table-bordered table-hover">
                     <thead class="tbl-head">
                         <tr class="tr-grid-header">
+                            <th class="text-center">Delete</th>
                             <th>Document Title</th>
                             <th class="text-center">Upload Date & Time</th>
                             <th class="text-center">Samples</th>
@@ -83,12 +91,17 @@
                             <th class="text-center">Out of Scope</th>
                             <th class="text-center">Incomplete</th>
                             <th class="text-center">Processed</th>
-                            <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of patientList">
-
+                            <td class="text-center">
+                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
+                                    (cancel)="cancelClicked = true">
+                                    <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
                             <td>{{item.DocumentTitle}}</td>
                             <td class="text-center">{{item.UploadDate}}</td>
                             <td class="text-center">{{item.Samples}}</td>
@@ -97,13 +110,7 @@
                             <td class="text-center">{{item.OutofScope}}</td>
                             <td class="text-center">{{item.Incomplete}}</td>
                             <td class="text-center">{{item.Processed}}</td>
-                            <td class="text-center">
-                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
-                                    (cancel)="cancelClicked = true">
-                                    <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
-                                </a>
-                            </td>
+
                         </tr>
                     </tbody>
                 </table>

@@ -64,6 +64,15 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
+                        </div> -->
+                        <div class="col-sm-8">
+                            <button type="button" class="add-hover-reset btn btn-reset">Reset</button>
+                            <button type="button"
+                                class="filter-hover btn btn-success pull-left margin-right-10">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="col-sm-4 newMarginClass">
                             <!-- Upload Date : -->
                         </div>
@@ -74,15 +83,6 @@
                                         id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
                                     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                                 </div> -->
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-8">
-                            <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
-                            <button type="button"
-                                class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
                         </div>
                     </div>
                 </div>
@@ -96,18 +96,32 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
+            <th class="text-center">Action</th>
+            <th class="text-center">Used</th>
           <th class="text-center">Nutrient / Row Reference</th>
           <th class="text-center">Pregnant > 30</th>
           <th class="text-center">Pregnant < 30</th> <th class="text-center">Lactate > 30</th>
           <th class="text-center">Lactate < 30</th> <th class="text-center">Female <= 50</th> <th class="text-center">
                 Female > 50</th>
           <th class="text-center">Male <= 50</th> <th class="text-center">Male > 50</th>
-          <th class="text-center">Action</th>
+          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of List">
-
+            <td class="text-center">
+                <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+                  (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                  <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                </a>
+              </td>
+              <td class="text-center">
+                  <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
+                  </mat-checkbox>
+              </td>
           <td class="text-center">{{item.Nutrition}}</td>
           <td class="text-center">{{item.Pregnant_G_30}}</td>
           <td class="text-center">{{item.Pregnant_L_30}}</td>
@@ -117,15 +131,7 @@
           <td class="text-center">{{item.Female_G_50}}</td>
           <td class="text-center">{{item.Male_L_50}}</td>
           <td class="text-center">{{item.Male_G_50}}</td>
-          <td class="text-center">
-            <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
-              (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
-              <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
-            </a>
-          </td>
+          
         </tr>
       </tbody>
     </table>

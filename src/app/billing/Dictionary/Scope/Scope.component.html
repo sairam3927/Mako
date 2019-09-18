@@ -105,28 +105,16 @@
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
+                    <th class="text-center" style="min-width: 65px;">Action</th>
+                    <th class="text-center">Used</th>
                     <th class="text-center">Active</th>
                     <th class="text-center" style="min-width: 210px;">Allele Name / Row Reference</th>
                     <th class="text-center">Gene</th>
-                    <th class="text-center">Used</th>
                     <th>Description</th>
-                    <th class="text-center" style="min-width: 65px;">Action</th>
-
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of List">
-
-                    <td class="text-center">
-                        <mat-checkbox></mat-checkbox>
-                    </td>
-                    <td class="text-center">{{item.AllelName}}</td>
-                    <td class="text-center">{{item.Gene}}</td>
-                    <td class="text-center">
-                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
-                        </mat-checkbox>
-                    </td>
-                    <td>{{item.description}}</td>
                     <td class="text-center">
                         <a title="Edit" style="cursor: pointer;" (click)="openPatientDialog(item)">
                             <i class="fa fa-edit"></i>
@@ -136,6 +124,18 @@
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
+                    <td class="text-center">
+                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
+                        </mat-checkbox>
+                    </td>
+                    <td class="text-center">
+                        <mat-checkbox></mat-checkbox>
+                    </td>
+                    <td class="text-center">{{item.AllelName}}</td>
+                    <td class="text-center">{{item.Gene}}</td>
+
+                    <td>{{item.description}}</td>
+
 
                 </tr>
             </tbody>

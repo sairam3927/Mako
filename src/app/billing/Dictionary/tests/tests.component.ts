@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { AddTestComponent } from './add-test/add-test.component';
+import { UploadTestComponent } from './upload-test/upload-test.component';
 
 @Component({
   selector: 'app-tests',
@@ -9,6 +10,10 @@ import { AddTestComponent } from './add-test/add-test.component';
   styleUrls: ['./tests.component.scss']
 })
 export class TestsComponent implements OnInit {
+  filterToggle:boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
   List: any;
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
@@ -54,6 +59,16 @@ export class TestsComponent implements OnInit {
 
   deletePatientOrder(){
     this.alertService.createAlert('Successfully deleted.', 1);       
+  }
+  public uploadCSVTestDialog() {
+    let dialogRef = this.dialog.open(UploadTestComponent, {
+      height: 'auto',
+      width: '400px',
+      autoFocus: false,
+      
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
   }
   
 }

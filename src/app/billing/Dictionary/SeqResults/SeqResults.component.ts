@@ -23,13 +23,13 @@ export class SeqResultsComponent implements OnInit {
     }
   ngOnInit() {
     this.List = [
-      {id: "1" , AllelName: "rs4846048", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/A ", AllelCall:"Heterozygous"  },
-      {id: "2" , AllelName: "rs1537514", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AllelCall:"Absent" },
-      {id: "3" , AllelName: "rs868014", Ref:"A", Variant:"G", Gene:"TPK ",Genotype:"G/G", AllelCall:"Homozygous" },
-      {id: "4" , AllelName: "rs2274976", Ref:"C", Variant:"T", Gene:"ADA ",Genotype:"G/C", AllelCall:"Absent" },
-      {id: "5" , AllelName: "tvc.novel.1", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AllelCall:"Heterozygous" },
-      {id: "6" , AllelName: "tvc.novel.2", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/G", AllelCall:"Homozygous" },
-      {id: "7" , AllelName: "rs1801131", Ref:"T", Variant:"G", Gene:"TPK ",Genotype:"G/A", AllelCall:"Homozygous" }
+      {id: "1" ,Used:"checked", AllelName: "rs4846048", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/A ", AllelCall:"Heterozygous"  },
+      {id: "2" ,Used:"", AllelName: "rs1537514", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AllelCall:"Absent" },
+      {id: "3" ,Used:"checked", AllelName: "rs868014", Ref:"A", Variant:"G", Gene:"TPK ",Genotype:"G/G", AllelCall:"Homozygous" },
+      {id: "4" ,Used:"", AllelName: "rs2274976", Ref:"C", Variant:"T", Gene:"ADA ",Genotype:"G/C", AllelCall:"Absent" },
+      {id: "5" ,Used:"checked", AllelName: "tvc.novel.1", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AllelCall:"Heterozygous" },
+      {id: "6" ,Used:"", AllelName: "tvc.novel.2", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/G", AllelCall:"Homozygous" },
+      {id: "7" ,Used:"", AllelName: "rs1801131", Ref:"T", Variant:"G", Gene:"TPK ",Genotype:"G/A", AllelCall:"Homozygous" }
     ]
   }
 

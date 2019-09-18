@@ -119,10 +119,15 @@
                 <table id="example2" class="table table-bordered table-hover">
                     <thead class="tbl-head">
                         <tr class="tr-grid-header">
+                            <th class="text-center" style="min-width: 65px;">Action</th>
                             <th style="min-width: 120px;">Patient Name</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">Gender</th>
-                            <th class="text-center" style="min-width: 105px;">Date of Birth</th>
+                            <!-- <th class="text-center" style="min-width: 105px;">Date of Birth</th> -->
+                            <th>Country</th>
+                            <th style="min-width: 125px;">State / Province</th>
+                            <th>City</th>
+                            <th class="text-center" style="min-width: 125px;">Zip Code / Postal Code</th>
                             <th style="min-width: 145px;">Ethnicity</th>
                             <th>Sample Name</th>
                             <th style="min-width: 120px;">FEDEX AWB</th>
@@ -132,16 +137,29 @@
                             <th class="text-center">Received</th>
                             <th class="text-center">Reports </th>
                             <th>Status</th>
-                            <th class="text-center" style="min-width: 65px;">Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of patientList">
-
+                            <td class="text-center">
+                                <a title="Edit" style="cursor: pointer;" (click)="openPatientDialog(item)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
+                                    (cancel)="cancelClicked = true">
+                                    <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
                             <td>{{item.Patient}}</td>
                             <td class="text-center">{{item.Age}}</td>
                             <td class="text-center">{{item.Gender}}</td>
-                            <td class="text-center">{{item.dob}}</td>
+                            <!-- <td class="text-center">{{item.dob}}</td> -->
+                            <td>{{item.Country}}</td>
+                            <td>{{item.State}}</td>
+                            <td>{{item.City}}</td>
+                            <td class="text-center">{{item.Zip}}</td>
                             <td>{{item.Ethnicity}}</td>
                             <td>{{item.SampleName}}</td>
                             <td>{{item.FEDEX}}</td>
@@ -164,16 +182,7 @@
 
                             </td>
                             <td>{{item.Status}}</td>
-                            <td class="text-center">
-                                <a title="Edit" style="cursor: pointer;" (click)="openPatientDialog(item)">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
-                                    (cancel)="cancelClicked = true">
-                                    <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
-                                </a>
-                            </td>
+
                         </tr>
                     </tbody>
                 </table>

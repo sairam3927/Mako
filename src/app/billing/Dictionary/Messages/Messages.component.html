@@ -47,14 +47,13 @@
                         class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10">
+                            <mat-icon>cloud_download</mat-icon> Download Sample Template
+                        </button>
                     <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10"
                         (click)="uploadDialog()">
                         <mat-icon>backup</mat-icon> CSV Bulk Upload
                     </button>
-                    <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10">
-                        <mat-icon>cloud_download</mat-icon> Download Sample Template
-                    </button>
-
                     <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                         (click)="addMessageDialog()">
                         <mat-icon>add_comment</mat-icon> Add Message
@@ -91,10 +90,10 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-4 newMarginClass">
-                            Category :
+                                Genotype :
                         </div>
                         <div class="col-sm-8">
-                            <mat-select placeholder="--Select by Category--" class="form-control">
+                            <mat-select placeholder="--Select by Genotype--" class="form-control">
                                 <mat-option *ngFor="let option of List" [value]="">{{option.Combination}}</mat-option>
                             </mat-select>
                         </div>
@@ -142,21 +141,36 @@
         <table id="example2" class="table table-bordered table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
+                    <th class="text-center" style="min-width:80px">Action</th>
+                    <th class="text-center">Used</th>
                     <th>Row Reference (Allele + Category)</th>
                     <th>Allele Name</th>
-                    <th class="text-center">Category</th>
+                    <th class="text-center">Genotype</th>
                     <th class="text-center">Gene</th>
                     <th>Comment</th>
                     <!-- <th class="text-center">Target Resolution</th>
                     <th class="text-center">Target Message </th>
                     <th class="text-center">TBD </th> -->
                     <th>Recommendation</th>
-                    <th class="text-center" style="min-width:80px">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of List">
-                    <th style="font-weight: 100;">{{item.Reference}}</th>
+                    <td class="text-center">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;"
+                            (click)="openPatientDialog(item)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                            <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                            <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
+                            </mat-checkbox>
+                        </td>
+                    <td style="font-weight: 100;">{{item.Reference}}</td>
                     <td>{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Combination}}</td>
                     <td class="text-center">{{item.Gene}}</td>
@@ -165,16 +179,7 @@
                     <td class="text-center">{{item.TargetMessage}}</td>
                     <th class="text-center" style="font-weight: 100;">{{item.TBD}}</th> -->
                     <td>{{item.Comment}}</td>
-                    <td class="text-center">
-                        <a title="Edit User" style="margin-right: 10px; cursor: pointer;"
-                            (click)="openPatientDialog(item)">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
-                            <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
-                        </a>
-                    </td>
+
                 </tr>
             </tbody>
         </table>
