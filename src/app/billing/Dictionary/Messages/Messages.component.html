@@ -42,17 +42,18 @@
         <div class="col-sm-12" class="flex-p">
 
             <div fxLayout="row" style="float: right !important;">
-                <div >
+                <div>
                     <button mat-raised-button color="primary" style="color: white !important;"
                         class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
-                    <!-- <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10" (click)="uploadDialog()">
+                    <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10"
+                        (click)="uploadDialog()">
                         <mat-icon>backup</mat-icon> CSV Bulk Upload
                     </button>
                     <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10">
                         <mat-icon>cloud_download</mat-icon> Download Sample Template
-                    </button> -->
+                    </button>
 
                     <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                         (click)="addMessageDialog()">
@@ -80,11 +81,11 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-4 newMarginClass">
-                            Condition :
+                            Gene :
                         </div>
                         <div class="col-sm-8">
-                            <mat-select placeholder="--Select by Condition--" class="form-control">
-                                <mat-option *ngFor="let option of List" [value]="">{{option.Condition}}</mat-option>
+                            <mat-select placeholder="--Select by Gene--" class="form-control">
+                                <mat-option *ngFor="let option of List" [value]="">{{option.Gene}}</mat-option>
                             </mat-select>
                         </div>
                     </div>
@@ -150,6 +151,7 @@
                     <th class="text-center">Target Message </th>
                     <th class="text-center">TBD </th> -->
                     <th>Recommendation</th>
+                    <th class="text-center" style="min-width:80px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -157,12 +159,22 @@
                     <th style="font-weight: 100;">{{item.Reference}}</th>
                     <td>{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Combination}}</td>
-                    <td class="text-center">{{item.Condition}}</td>
+                    <td class="text-center">{{item.Gene}}</td>
                     <td>{{item.Guideline}}</td>
                     <!-- <td class="text-center">{{item.TargetResolution}}</td>
                     <td class="text-center">{{item.TargetMessage}}</td>
                     <th class="text-center" style="font-weight: 100;">{{item.TBD}}</th> -->
                     <td>{{item.Comment}}</td>
+                    <td class="text-center">
+                        <a title="Edit User" style="margin-right: 10px; cursor: pointer;"
+                            (click)="openPatientDialog(item)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                            <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

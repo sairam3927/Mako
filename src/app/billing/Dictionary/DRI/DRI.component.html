@@ -36,12 +36,12 @@
                     (click)="filterToggle = !filterToggle">
                     <mat-icon>filter_list</mat-icon> Filter
                   </button>
-                  <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                  <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
                     <mat-icon>cloud_download</mat-icon> Download Sample Template
                   </button>
                   <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="UploadCSVDialog()">
                     <mat-icon>backup</mat-icon> Upload CSV
-                  </button> -->
+                  </button>
                   <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="addDriDialog()">
                     <mat-icon>add_comment</mat-icon> Add DRI
                   </button>
@@ -118,12 +118,12 @@
           <td class="text-center">{{item.Male_L_50}}</td>
           <td class="text-center">{{item.Male_G_50}}</td>
           <td class="text-center">
-            <a title="Edit User" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
+            <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
               <i class="fa fa-edit"></i>
             </a>
             <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
               (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
-              <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
+              <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
             </a>
           </td>
         </tr>
