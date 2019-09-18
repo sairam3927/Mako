@@ -53,5 +53,6 @@ export class IncomingOrdersComponent implements OnInit {
   deletePatientOrder() {
     this.alertService.createAlert('Successfully deleted.', 1);
   }
+  
 
 }
