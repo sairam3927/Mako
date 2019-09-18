@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
-import { PersonalComponent } from '../Personal/Personal.component';
 import { AddTestComponent } from './add-test/add-test.component';
 
 @Component({
@@ -34,7 +33,7 @@ export class TestsComponent implements OnInit {
   }
 
   public patientDataDialog() {
-    let dialogRef = this.dialog.open(PersonalComponent, {
+    let dialogRef = this.dialog.open(AddTestComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,

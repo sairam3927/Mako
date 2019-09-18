@@ -3,6 +3,7 @@ import { PersonalComponent } from '../Personal/Personal.component';
 import { ScopeUploadCSVComponent } from '../Scope/upload-csv/upload-csv.component';
 import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { AddHaplotypeComponent } from './add-haplotype/add-haplotype.component';
 
 @Component({
   selector: 'app-haplotypes',
@@ -34,9 +35,9 @@ export class HaplotypesComponent implements OnInit {
   }
 
   public addPatientDataDialog() {
-    let dialogRef = this.dialog.open(ScopeUploadCSVComponent, {
+    let dialogRef = this.dialog.open(AddHaplotypeComponent, {
       height: 'auto',
-      width: '400px',
+      width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
