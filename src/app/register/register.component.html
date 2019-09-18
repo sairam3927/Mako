@@ -1,13 +1,13 @@
 <div class="col-sm-12" style="background-color: #e0e0e0;">
 
-    <div class="col-sm-4" style="color: white" style="float:left">
-      <a><img src="../../../../assets/img/mako_logo.png" style="width: 40%;padding: 9px;"></a>
-    </div>
-    <div class="col-sm-8" style="color: white" style="text-align: right !important;top: 15px;
-    ">
-      <a routerLink="/login" >SIGN IN</a>
-    </div>
+  <div class="col-sm-4" style="color: white" style="float:left">
+    <a><img src="../../../../assets/img/mako_logo.png" style="width: 40%;padding: 9px;"></a>
   </div>
+  <div class="col-sm-8" style="color: white" style="text-align: right !important;top: 15px;
+    ">
+    <a routerLink="/login">SIGN IN</a>
+  </div>
+</div>
 <div class="col-sm-12" style="background-color: white;border-left: 2px solid red;left: 8px;">
   <div class="col-sm-1" style="padding-left:0px !important">
     <img src="http://makodna.com/wp-content/uploads/2019/05/ColorStripBG.jpg" alt="" style="max-height: 890px">
@@ -23,7 +23,9 @@
 
       </div>
       <div class="col-sm-1">
-        <img src="https://makodna.com/wp-content/uploads/elementor/thumbs/MakoSharkBlue-o8fx94mkc26c8ick1362lemxwyhep0h7kuvpzba5v4.png" alt="">
+        <img
+          src="https://makodna.com/wp-content/uploads/elementor/thumbs/MakoSharkBlue-o8fx94mkc26c8ick1362lemxwyhep0h7kuvpzba5v4.png"
+          alt="">
       </div>
     </div>
     <div class="col-sm-12 text-center" style="top: 2px;color: black;">
@@ -46,16 +48,44 @@
           <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
             <span class="box-content-header" style="font-size: 16px;font-weight: 600;">REGISTRATION</span>
             <mat-form-field class="w-100">
-              <input matInput placeholder="Full Name" >
+              <input matInput placeholder="Full Name">
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Email" >
+              <input matInput placeholder="Email">
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Address"  type="text">
+              <mat-label>Country</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let country of countries" [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>State</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                  <mat-label>City</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let city of cities" [value]="city.value">
+                      {{city.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Address" type="text">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Zip Code" type="text">
+              </mat-form-field>
 
             <mat-form-field class="w-100">
               <input matInput placeholder="Sample ID" type="text">
@@ -63,41 +93,36 @@
             <mat-form-field class="w-100">
               <input matInput placeholder="Mobile No" type="text">
             </mat-form-field>
-            
+
             <mat-radio-group class="w-100" aria-label="Select an option">
-                <mat-label style="font-size: 15px;color: gray;margin-right: 12px;">Gender : </mat-label>
+              <mat-label style="font-size: 15px;color: gray;margin-right: 12px;">Gender : </mat-label>
               <mat-radio-button value="male" style="margin-right: 5px" (click)="setradio('Male')"><small
                   style="font-size: 14px;color: gray;margin-right: 5px;">Male</small></mat-radio-button>
               <mat-radio-button value="female" (click)="setradio('Female')"><small
                   style="font-size: 14px;color: gray;">Female</small></mat-radio-button>
             </mat-radio-group>
-            <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')" style="margin-top: 10px;"><small style="font-size: 14px;color: gray;">Pregnant / Lactating</small></mat-checkbox>
+            <mat-checkbox class="w-100" id="lactating" *ngIf="isSelected('Female')" style="margin-top: 10px;"><small
+                style="font-size: 14px;color: gray;">Pregnant / Lactating</small></mat-checkbox>
             <mat-form-field class="w-100">
-              <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+              <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="Age"  type="text">
-            </mat-form-field>
-
-            <mat-form-field class="w-100">
               <mat-label>Ethnicity</mat-label>
               <mat-select>
-                <mat-option>Non-Hispanic White</mat-option>
-                <mat-option>Hispanic</mat-option>
-                <mat-option>African American</mat-option>
-                <mat-option>Asian</mat-option>
-                <mat-option>Other</mat-option>
+                <mat-option *ngFor="let food of ethnicitys" [value]="food.value">
+                  {{food.viewValue}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field class="w-100">
-              <input matInput placeholder="FEDEX AWB" >
+              <input matInput placeholder="FEDEX AWB">
             </mat-form-field>
             <div class="col-sm-12" style="left: 120px;">
-                <button mat-raised-button routerLink="/login" color="primary"
+              <button mat-raised-button routerLink="/login" color="primary"
                 class="pull-center mat-elevation-z12 box-button login button-default"
                 style="top:15px;margin-right: 10px" type="submit">
                 Cancel
@@ -142,7 +167,7 @@
         Blood Testing
       </li>
       <li>
-        Genomic Testing 
+        Genomic Testing
       </li>
       <li>
         Urine Toxicology
