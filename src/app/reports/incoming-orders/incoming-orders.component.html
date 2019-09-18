@@ -35,25 +35,29 @@
                                     <input type="text" class="form-control" placeholder="--Keyword search--">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-4 newMarginClass">
+                            <div class="col-sm-6">
+                                <div class="col-sm-2 newMarginClass">
                                     Date Range :
                                 </div>
-                                <div class="col-sm-8">
-                                    <!-- <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" />
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </div> -->
+                                <div class="col-sm-5">
+                                    <div class="input-icon right">
+                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                        <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
+                                                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-icon right">
+                                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                            <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
+                                                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" >
+                                            <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-4">
-                                </div>
-                                <div class="col-sm-8">
+                            <div class="col-sm-2" style="padding: 0px">
+                                <div class="pull-right col-sm-12" style="padding: 0px">
                                     <button type="button"
                                         class="add-hover-reset btn btn-reset  pull-right">Reset</button>
                                     <button type="button"

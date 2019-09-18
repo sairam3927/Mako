@@ -35,7 +35,7 @@ export class BreadcrumbComponent {
             'Patients':'The patient details can be managed from this screen',
             "Orders" : 'The order details can be managed from this screen',           
             'Master Data':'Patient sample raw data can be managed from this screen',
-            'Set Up':'The core setup of the master data and the algorith functionality of the application can be managed from this screen',
+            'Setup':'The core setup of the master data and the algorith functionality of the application can be managed from this screen',
             'Raw Data':'Patient Raw Data can be uploaded and managed from this screen',
             'Steps': 'The calculation steps for both condition and formula can be managed from here'
         };

@@ -35,26 +35,6 @@
     //box-shadow: 7px 6px 25px #7b7b7bee;
 }
 
-.pills>.nav>li.active>button {
-    background: #50636d !important;
-    color: #ffffff;
-    //border-bottom: #222222 5px solid;
-}
-
-.pills>.nav>li>button:hover {
-    color: #ffffff;
-    background: #70818a !important;
-    //border-bottom: #2e3a40 5px solid;
-    //box-shadow: 5px 6px 6px #909090ee;
-}
-
-.pills>.nav>li.active>button:hover {
-    color: #222222;
-    background: #50636d !important;
-    //border-bottom: #222222 5px solid;
-    //box-shadow: 7px 6px 25px #7b7b7bee;
-}
-
 .fa-file-text-o {
     color: #007ad9;
 }
@@ -115,7 +95,4 @@
 
 .fa-arrow-right {
     color: #007ad9;
-}
-td.text-center {
-    width: 100px;
 }

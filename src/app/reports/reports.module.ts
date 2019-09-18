@@ -17,6 +17,7 @@ import { OutgoingReferralComponent } from './outgoing-referral/outgoing-referral
 import { ReportsComponent } from './reports.component';
 import { AlertService } from '../shared/services/alert.service';
 import { UploadRawDataComponent } from './incoming-orders/upload-raw-data/upload-raw-data.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 export const routes = [
   { path: '', redirectTo: 'rawdata', pathMatch: 'full' },
@@ -35,7 +36,8 @@ export const routes = [
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
-    SharedModule
+    SharedModule,OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   entryComponents: [UploadRawDataComponent],
   providers: [AlertService]
