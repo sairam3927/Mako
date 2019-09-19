@@ -13,13 +13,15 @@ import { UploadCsvHaplotypeComponent } from './upload-csv-haplotype/upload-csv-h
 })
 export class HaplotypesComponent implements OnInit {
   List: any;
-  filterToggle:boolean;
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
 
-  imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
-  
+   popoverMessage: 'Are you sure you want to delete this.?';
+   popoverStatusTitle: string = 'Confirm Status Change';
+   popoverStatusMessage: string = 'Are you sure you want to change status.?';
+   cancelClicked: boolean = false;
   constructor(public dialog: MatDialog,
     private alertService: AlertService) {
     }
@@ -36,7 +38,7 @@ export class HaplotypesComponent implements OnInit {
   }
 
   public addPatientDataDialog() {
-    let dialogRef = this.dialog.open(AddHaplotypeComponent, {
+    const dialogRef = this.dialog.open(AddHaplotypeComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
@@ -46,7 +48,7 @@ export class HaplotypesComponent implements OnInit {
   }
 
   public patientDataDialog() {
-    let dialogRef = this.dialog.open(PersonalComponent, {
+    const dialogRef = this.dialog.open(PersonalComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
@@ -55,15 +57,17 @@ export class HaplotypesComponent implements OnInit {
     });
   }
   public uploadCSVHaplotypeDialog() {
-    let dialogRef = this.dialog.open(UploadCsvHaplotypeComponent, {
+    const dialogRef = this.dialog.open(UploadCsvHaplotypeComponent, {
       height: 'auto',
       width: '400px',
       autoFocus: false,
-      
     });
     dialogRef.afterClosed().subscribe(data => {
     });
   }
 
+  deletePatientOrder() {
+    this.alertService.createAlert('Successfully deleted.', 1);
+  }
 
 }

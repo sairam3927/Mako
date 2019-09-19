@@ -48,11 +48,11 @@
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
                     <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10">
-                            <mat-icon>cloud_download</mat-icon> Download Sample Template
-                        </button>
+                        <mat-icon>cloud_download</mat-icon> Download Sample 
+                    </button>
                     <button mat-raised-button class="pull-right add-hover btn-success  margin-right-10"
                         (click)="uploadDialog()">
-                        <mat-icon>backup</mat-icon> CSV Bulk Upload
+                        <mat-icon>backup</mat-icon> Upload CSV
                     </button>
                     <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                         (click)="addMessageDialog()">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-4 newMarginClass">
-                                Genotype :
+                            Genotype :
                         </div>
                         <div class="col-sm-8">
                             <mat-select placeholder="--Select by Genotype--" class="form-control">
@@ -143,22 +143,18 @@
                 <tr class="tr-grid-header">
                     <th class="text-center" style="min-width:80px">Action</th>
                     <th class="text-center">Used</th>
-                    <th>Row Reference (Allele + Category)</th>
+                    <th>Row Reference (Allele + Genotype)</th>
                     <th>Allele Name</th>
                     <th class="text-center">Genotype</th>
                     <th class="text-center">Gene</th>
                     <th>Comment</th>
-                    <!-- <th class="text-center">Target Resolution</th>
-                    <th class="text-center">Target Message </th>
-                    <th class="text-center">TBD </th> -->
                     <th>Recommendation</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of List">
                     <td class="text-center">
-                        <a title="Edit" style="margin-right: 10px; cursor: pointer;"
-                            (click)="openPatientDialog(item)">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="addMessageDialog()">
                             <i class="fa fa-edit"></i>
                         </a>
                         <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
@@ -167,9 +163,9 @@
                         </a>
                     </td>
                     <td class="text-center">
-                            <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
-                            </mat-checkbox>
-                        </td>
+                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
+                        </mat-checkbox>
+                    </td>
                     <td style="font-weight: 100;">{{item.Reference}}</td>
                     <td>{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Combination}}</td>

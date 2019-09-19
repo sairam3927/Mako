@@ -10,6 +10,7 @@ import { BillingService } from 'src/app/billing/billing.service';
 })
 export class AddSeqResultComponent implements OnInit {
   public data: Array<any>;
+  List:any;
 
   constructor(
     public dialogRef: MatDialogRef<AddSeqResultComponent>,
@@ -21,7 +22,7 @@ export class AddSeqResultComponent implements OnInit {
     console.log("received", this.data)
   }
   ngOnInit() {
-    // this.List = ["rs121908936","rs228584","rs6031682"]
+    this.List = ["rs121908936","rs228584","rs6031682","rs228584","rs6031682","rs121908936"]
   }
 
   saveOrder() {

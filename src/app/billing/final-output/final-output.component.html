@@ -1,115 +1,102 @@
 <div fxLayout="row wrap" #resizedDiv>
-    <div class="w-100">
-          
-      <div class="row wrap" style="margin-bottom:15px;margin-top: 15px;margin-left:1px">
-        <div class="col-lg-12">
-          <div class="pills w-100">
-            <ul class="nav nav-pills">
-              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary']" style="margin-right: 20px!important; padding: 0px 10px;"><mat-icon>outlined_flag</mat-icon>Dictionary </a></li>
-              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations']" style="margin-right: 20px!important; padding: 0px 10px;" ><mat-icon>outlined_flag</mat-icon> Calculations </a></li>
-              <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']" style="margin-right: 20px!important; padding: 0px 10px;" ><mat-icon>outlined_flag</mat-icon> Final Output Variables List </a></li> 
-              <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank" style="margin-right: 20px!important; padding: 0px 10px;"><mat-icon>outlined_flag</mat-icon> Detailed Report</a></li>
-              <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank"><mat-icon>outlined_flag</mat-icon> Summary Report</a></li>
-            </ul>                               
-          </div>
+  <div class="w-100">
+
+    <div class="row wrap" style="margin-bottom:15px;margin-top: 15px;margin-left:1px">
+      <div class="col-lg-12">
+        <div class="pills w-100">
+          <ul class="nav nav-pills">
+            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Dictionary']"
+                style="margin-right: 20px!important; padding: 0px 10px;">
+                <mat-icon>outlined_flag</mat-icon>Dictionary
+              </a></li>
+            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations']"
+                style="margin-right: 20px!important; padding: 0px 10px;">
+                <mat-icon>outlined_flag</mat-icon> Calculations
+              </a></li>
+            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
+                style="margin-right: 20px!important; padding: 0px 10px;">
+                <mat-icon>outlined_flag</mat-icon> Final Output Variables List
+              </a></li>
+            <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37
+                href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank"
+                style="margin-right: 20px!important; padding: 0px 10px;">
+                <mat-icon>outlined_flag</mat-icon> Detailed Report
+              </a></li>
+            <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37
+                href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank">
+                <mat-icon>outlined_flag</mat-icon> Summary Report
+              </a></li>
+          </ul>
         </div>
       </div>
-    
     </div>
+
+  </div>
 </div>
 
 <div fxLayout="row wrap">
-<div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
-    <!-- <mat-card class="filter"> -->
-        <!-- <mat-card-content></mat-card-content> -->
+  <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
 
-      <div class="row col-sm-12" class="flex-p">
-          <div class="col-sm-4">
-              <mat-select placeholder="--Search by Result Name--" style="width:75%; margin-right: 10px" class="form-control">
-                  <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
-              </mat-select>
-              <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
-          </div>
-          <div class="col-lg-8" style="padding: 0px" >
-              <div fxLayout="row" style="float: right !important;" >
-                  <!-- <button mat-raised-button style="margin-right: 20px" class="pull-right add-hover btn-success" (click)="addCalcDialog()">
+    <div class="row col-sm-12" class="flex-p">
+      <div class="col-sm-4">
+        <mat-select placeholder="-Search by Report Variable name-" style="width:75%; margin-right: 10px" class="form-control">
+          <mat-option *ngFor="let option of List" [value]="">{{option.resultName}}</mat-option>
+        </mat-select>
+        <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+      </div>
+      <div class="col-lg-8" style="padding: 0px">
+        <div fxLayout="row" style="float: right !important;">
+          <!-- <button mat-raised-button style="margin-right: 20px" class="pull-right add-hover btn-success" (click)="addCalcDialog()">
                       <mat-icon>add_box</mat-icon> Add CALC
                   </button> -->
-                  <!-- <button mat-raised-button class="pull-right add-hover btn-success" >
+          <!-- <button mat-raised-button class="pull-right add-hover btn-success" >
                       <mat-icon>refresh</mat-icon> Refresh 
                   </button> -->
-              </div>
-              
-          </div>
+        </div>
+
       </div>
-                
-            
-        <!-- </mat-card-content> -->
-    <!-- </mat-card> -->
-</div>
+    </div>
+
+  </div>
 </div>
 
 <div fxLayout="row wrap">
-<div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
-  <table id="example2" class="table table-bordered table-hover">
+  <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
+    <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
-          <tr class="tr-grid-header">
-              <th>Report Variable name</th>
-              <th>Coverage</th>
-              <th>Type</th>
-              <th>Summary</th>
-              <th>Test Name</th>
-              <th>Configured</th>
-              <!-- <th>Report Variable</th>
-              <th class="text-center" >Steps</th>
-              <th class="text-center" >Calculation Done</th>
-              <th class="text-center" >Action</th> -->
-          </tr>
+        <tr class="tr-grid-header">
+
+          <th>Report Variable name</th>
+          <th>Coverage</th>
+          <th>Type</th>
+          <th>Summary</th>
+          <th>Test Name</th>
+          <th>Result Value</th>
+          <th class="text-center" >Configured</th>
+
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let item of List">
-             
-              <td>{{item.ReportVariable}}</td>
-              <td>{{item.Coverage}}</td>
-              <td>{{item.Type}}</td>
-              <td>{{item.Summary}}</td>
-              <td>{{item.TestName}}</td>
-              <td>{{item.Configured}}</td>
-              <!-- <td>
-                <div *ngIf="item.ReportVariable != '-'">-</div>
-                <div *ngIf="item.ReportVariable == '-'">
-                  NA
-                </div>
-              </td>
-              <td class="text-center">
-                  <a target="_blank" routerLink = '/mako/billing/Steps' style="color: #007ad9;cursor: pointer;">{{item.Steps}}</a>
-              </td>
-              <td class="text-center">
-                  <mat-checkbox disabled [(ngModel)]="item.CalculationDone" color="primary">
-                  </mat-checkbox>
-              </td>
-              <td class="text-center" >
-                <a title="Edit User" style="margin-right: 10px; cursor: pointer;">
-                  <i class="fa fa-edit"></i>
-                </a>
-                <a mwlConfirmationPopover
-                [popoverTitle]="popoverTitle"
-                [popoverMessage]="popoverMessage"
-                placement="left"
-                (confirm)="deletePatientOrder()"
-                (cancel)="cancelClicked = true">
-                    <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
-                </a>
-                </td> -->
-          </tr>
+        <tr *ngFor="let item of List">
+
+          <td>{{item.ReportVariable}}</td>
+          <td>{{item.Coverage}}</td>
+          <td>{{item.Type}}</td>
+          <td>{{item.Summary}}</td>
+          <td>{{item.TestName}}</td>
+          <td >{{item.ResultValue}}</td>
+          <td class="text-center" >
+            <mat-checkbox disabled [(ngModel)]="item.Configured" color="primary">
+            </mat-checkbox>
+          </td>
+
+
+        </tr>
       </tbody>
-  </table>
+    </table>
 
-  <mat-paginator [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]">
-  </mat-paginator>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
 
+  </div>
 </div>
-</div>
-

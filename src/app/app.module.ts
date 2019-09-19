@@ -51,6 +51,7 @@ import { DataTableModule } from 'angular2-datatable';
 import { HelpVideoDialogComponent } from './shared/help-video-dialog/help-video-dialog.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -103,6 +104,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MessagesComponent,
     UserMenuComponent,
     LoginComponent,
+    ForgotPasswordComponent,
     PasswordDialogComponent,
     ConfirmDialogComponent,
     ProfileDialogComponent,

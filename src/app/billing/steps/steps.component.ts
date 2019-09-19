@@ -22,16 +22,16 @@ export class StepsComponent implements OnInit {
 
   ngOnInit() {
     this.List=[
-      {id:"1",StepTitle:"Step 1.1",StepType:"Condition",StepValue:"This is a valid case",ResultCode:"ALGO 3587"},
-      {id:"1",StepTitle:"Step 1.2",StepType:"Formula",StepValue:"1.5",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.3",StepType:"Condition",StepValue:"1.8",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.4",StepType:"Formula",StepValue:"2.5",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.5",StepType:"Condition",StepValue:"3.6",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.6",StepType:"Formula",StepValue:"4.5",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.7",StepType:"Condition",StepValue:"5.5",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.8",StepType:"Formula",StepValue:"7.2",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 1.9",StepType:"Condition",StepValue:"6.2",ResultCode:"ALGO 7589"},
-      {id:"1",StepTitle:"Step 2.0",StepType:"Formula",StepValue:"5.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.1",StepValueType:"Text", StepType:"Condition",StepValue:"Daily Thiamine intake of at least 1,4 mg during pregnancy and lactation.",ResultCode:"ALGO 3587"},
+      {id:"1",StepTitle:"Step 1.2",StepValueType:"Numeric", StepType:"Formula",StepValue:"1.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.3",StepValueType:"Numeric", StepType:"Condition",StepValue:"1.8",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.4",StepValueType:"Numeric", StepType:"Formula",StepValue:"2.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.5",StepValueType:"Text", StepType:"Condition",StepValue:"This maternal genotype requires in increase intake of Thiamine(Vitamin B1) during pregnancy and breastfeeding.",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.6",StepValueType:"Text", StepType:"Formula",StepValue:"This maternal genotype requires a reduction of Adenosine intake from foods, during pregnancy and breastfeeding.",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.7",StepValueType:"Numeric", StepType:"Condition",StepValue:"5.5",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.8",StepValueType:"Numeric", StepType:"Formula",StepValue:"7.2",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 1.9",StepValueType:"Text", StepType:"Condition",StepValue:"This maternal genotype requires in increase intake of Vitamin C during pregnancy and breastfeeding.",ResultCode:"ALGO 7589"},
+      {id:"1",StepTitle:"Step 2.0",StepValueType:"Numeric", StepType:"Formula",StepValue:"5.5",ResultCode:"ALGO 7589"},
     ];
   }
 
@@ -44,6 +44,10 @@ export class StepsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(data => {
     });
+  }
+
+  deletePatientOrder(){
+    this.alertService.createAlert('Successfully deleted.', 1);
   }
 
 }

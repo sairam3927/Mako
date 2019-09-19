@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
+    { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Register' } },
     { path: '**', component: NotFoundComponent, data: { breadcrumb: 'Not found' }  }
 ];
 
