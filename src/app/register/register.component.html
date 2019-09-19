@@ -44,7 +44,141 @@
         <img src="http://makodna.com/wp-content/uploads/2019/05/5.29-Nutrit-DNA-Sprinter.jpg" alt="" style="width:120%">
       </div>
       <div class="col-sm-6" style="border-left: 2px solid #d6d6d6;top: 10px">
-        <form [formGroup]="form" (ngSubmit)="onRegister(form.value)" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60">
+        <form class="form-horizontal" novalidate>
+          <div mat-dialog-content style="overflow: hidden;padding: 0 0px 25px 25px;" class="col-sm-12">
+            <div class="form-group text-center">
+              <label class="control-label" style="font-size:17px;margin-bottom:8px">REGISTRATION </label>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Full Name : </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Full Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Email : </label>
+              <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Country : </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <mat-select placeholder="--Select Country--" class="form-control">
+                  <mat-option *ngFor="let country of countries" [value]="country.value">
+                    {{country.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">State / Province : </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <mat-select placeholder="--Select State--" class="form-control">
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">City : </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <mat-select placeholder="--Select City--" class="form-control">
+                  <mat-option *ngFor="let city of cities" [value]="city.value">
+                    {{city.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Street Address : </label>
+              <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Street Address" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Zip Code / Postal Code : </label>
+              <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Zip Code / Postal Code"
+                  required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Sample Name : </label>
+              <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Sample Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Mobile No. : </label>
+              <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="order-name" placeholder="Enter Mobile No." required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Gender: </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType" class="pull-left"
+                  style="margin-top: 5px" aria-label="Select an option">
+                  <mat-radio-button value="1"><small style="font-size: 14px; margin-right: 14px;">Male</small>
+                  </mat-radio-button>
+                  <mat-radio-button value="2"><small style="font-size: 14px; margin-right: 14px;">Female</small>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="form-group" *ngIf="selectedValueStepType=='2'">
+              <label class="control-label col-sm-4">Pregnant / Lactating : </label>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="top: 10px">
+                <mat-checkbox></mat-checkbox>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Date of Birth: </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="input-icon right">
+                  <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                  <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="od"
+                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                  <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">Ethnicity: </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <mat-select placeholder="--Select Ethnicity--" class="form-control">
+                  <mat-option [value]="1">Hispanic</mat-option>
+                  <mat-option [value]="2">Non-Hispanic White</mat-option>
+                  <mat-option [value]="3">Afican American</mat-option>
+                  <mat-option [value]="4">Asian</mat-option>
+                  <mat-option [value]="5">Other</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4 add-member-label">FEDEX AWB: </label>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" id="email" placeholder="Enter FEDEX AWB" required>
+              </div>
+            </div>
+            <div class="col-sm-12" style="left: 120px;">
+              <button mat-raised-button routerLink="/login" color="primary"
+                class="pull-center mat-elevation-z12 box-button login button-default"
+                style="top:15px;margin-right: 10px" type="submit">
+                Cancel
+              </button>
+              <button mat-raised-button color="primary" class="pull-center mat-elevation-z12 box-button login"
+                style="background-color: #229494 !important;top:15px;margin-bottom:20px" type="register">
+                REGISTER
+              </button>
+            </div>
+          </div>
+
+
+        </form>
+        <!-- <form [formGroup]="form" (ngSubmit)="onRegister(form.value)" fxFlex="100" fxFlex.gt-sm="80" fxFlex.sm="60">
           <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
             <span class="box-content-header" style="font-size: 16px;font-weight: 600;">REGISTRATION</span>
             <mat-form-field class="w-100">
@@ -132,11 +266,10 @@
                 REGISTER
               </button>
             </div>
-            <!-- <button mat-raised-button color="primary" class="mat-elevation-z12 box-button" type="submit"
-          style="background-color: #229494 !important;top:15px;margin-bottom:20px">REGISTER</button> -->
+            
           </mat-card>
 
-        </form>
+        </form> -->
 
       </div>
     </div>

@@ -41,11 +41,9 @@ import { MglTimelineModule } from 'angular-mgl-timeline';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component'
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ToasterModule } from 'angular2-toaster';
-
 import {DragDropModule} from 'primeng/dragdrop';
 import {TableModule} from 'primeng/table';
 import {TabViewModule} from 'primeng/tabview';
-
 import { AddNoteDialogComponent } from './shared/add-note-dialog/add-note-dialog.component';
 import { DataTableModule } from 'angular2-datatable';
 import { HelpVideoDialogComponent } from './shared/help-video-dialog/help-video-dialog.component';
