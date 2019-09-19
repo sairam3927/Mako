@@ -1,5 +1,5 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-  Upload Patient Data</h3>
+  Update Personal Data</h3>
 
 <form class="form-horizontal" novalidate>
   <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
@@ -15,26 +15,58 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of List; let index = index">
-
+                <tr>
+                  <td><label style="font-weight: 100;">Age :</label></td>
+                  <td><input type="text" class="form-control" id="age" placeholder="Enter Age" required></td>
+                </tr>
+                <tr>
+                  <td><label style="font-weight: 100;">Gender :</label></td>
+                  <td>
+                    <mat-radio-group class="pull-left" style="margin-top: 5px" aria-label="Select an option">
+                      <mat-radio-button value="1" style="margin-right: 10px" (click)="setradio('Male')"><small
+                          style="font-size: 14px;">Male</small></mat-radio-button>
+                      <mat-radio-button value="2" (click)="setradio('Female')"><small
+                          style="font-size: 14px;">Female</small></mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </tr>
+                <tr *ngIf="isSelected('Female')">
+                  <td><label style="font-weight: 100;">Pregnant / Lactating :</label></td>
+                  <td>
+                    <mat-checkbox class="w-100" id="lactating">
+                    </mat-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label style="font-weight: 100;">Ethinicity :</label></td>
+                  <td>
+                    <mat-select  placeholder="--Select by Ethinicity--" class="form-control">
+                        <mat-option *ngFor="let ethnicity of ethnicitys" [value]="ethnicity.value">
+                            {{ethnicity.viewValue}}
+                          </mat-option>
+                    </mat-select>
+                  </td>
+                </tr>
+                <!-- <tr *ngFor="let item of List; let index = index">
                   <td>
                     {{item.rowRef}}
                   </td>
-
                   <td class="text-center">
                     <input *ngIf="item.value == 'text' " type="text" class="form-control" id="email"
                       formControlName="addFirstName" placeholder="Enter Age" required>
                     <mat-radio-group *ngIf="item.value == 'gender' " [(ngModel)]="selectedValueStepType"
                       name="selectedValueStepType" class="pull-left" style="margin-top: 5px"
                       aria-label="Select an option">
-                      <mat-radio-button value="1" style="margin-right: 10px"><small style="font-size: 14px;">Male</small></mat-radio-button>
-                      <mat-radio-button value="2"><small style="font-size: 14px;">Female</small></mat-radio-button>
+                      <mat-radio-button value="1" style="margin-right: 10px" (click)="setradio('Male')"><small style="font-size: 14px;">Male</small></mat-radio-button>
+                      <mat-radio-button value="2"><small style="font-size: 14px;" (click)="setradio('Female')">Female</small></mat-radio-button>
                     </mat-radio-group>
-                    <mat-radio-group *ngIf="item.value == 'p/l'" class="pull-left" style="margin-top: 10px"
+
+                    <mat-radio-group *ngIf="item.value != 'p/l' && isSelected('Female')"  class="pull-left" style="margin-top: 10px"
                       aria-label="Select an option">
                       <mat-radio-button value="1" style="margin-right: 18px"><small style="font-size: 14px;">Yes</small> </mat-radio-button>
                       <mat-radio-button value="2"><small style="font-size: 14px;">No</small></mat-radio-button>
                     </mat-radio-group>
+
                     <mat-select *ngIf="item.value == 'DD' " placeholder="--Select by Ethinicity--" class="form-control">
                       <mat-option [value]="1">Hispanic</mat-option>
                       <mat-option [value]="2">Non-Hispanic White</mat-option>
@@ -43,7 +75,7 @@
                       <mat-option [value]="5">Other</mat-option>
                     </mat-select>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>

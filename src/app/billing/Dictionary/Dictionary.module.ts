@@ -26,8 +26,11 @@ import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
+import { AddSeqResultComponent } from './SeqResults/add-seq-result/add-seq-result.component';
 import { AddHaplotypeComponent } from './haplotypes/add-haplotype/add-haplotype.component';
 import { AddTestComponent } from './tests/add-test/add-test.component';
+import { UploadTestComponent } from './tests/upload-test/upload-test.component';
+import { UploadCsvHaplotypeComponent } from './haplotypes/upload-csv-haplotype/upload-csv-haplotype.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
@@ -42,13 +45,13 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent ],
+  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent,AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent ],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     SharedModule, NgxChartsModule, OwlDateTimeModule, OwlNativeDateTimeModule
   ],
-  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent,AddHaplotypeComponent,AddTestComponent],
+  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent,AddHaplotypeComponent,AddTestComponent,AddSeqResultComponent,UploadTestComponent,UploadCsvHaplotypeComponent],
   providers: [AlertService]
 })
 export class DictionaryModule { }

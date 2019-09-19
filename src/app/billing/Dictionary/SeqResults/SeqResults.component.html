@@ -38,20 +38,25 @@
 <div fxLayout="row wrap" style="margin-bottom: 10px">
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100">
         <div class="row col-sm-12" class="flex-p">
-                <button mat-raised-button color="primary" style="color: white !important;"
-                    class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
-                    <mat-icon>filter_list</mat-icon> Filter
-                </button>
-                <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
-                    <mat-icon>cloud_download</mat-icon> Download Sample Template
-                </button>
-                <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="uploadCSVDialog()">
-                    <mat-icon>backup</mat-icon> Upload SEQ Data
-                </button>
+            <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover"
+                (click)="filterToggle = !filterToggle">
+                <mat-icon>filter_list</mat-icon> Filter
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                <mat-icon>cloud_download</mat-icon> Download Sample Template
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                (click)="uploadCSVDialog()">
+                <mat-icon>backup</mat-icon> Upload SEQ Data
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+                (click)="addSeqResultDialog()">
+                <mat-icon>add_comment</mat-icon> Add SEQ Data
+            </button>
         </div>
     </div>
 </div>
-<div fxLayout="row wrap" style="margin-bottom: 8px;">
+<div fxLayout="row wrap" style="padding: 7px 0px 7px 7px;">
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
         <mat-card class="filter">
             <mat-card-content>
@@ -67,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
+                        <div class="col-sm-3 newMarginClass">
                             Gene :
                         </div>
                         <div class="col-sm-8">
@@ -77,48 +82,14 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
-                            <!-- Category : -->
-                        </div>
+                        <!-- <div class="col-sm-4"></div> -->
                         <div class="col-sm-8">
-                            <!-- <mat-select placeholder="--Select by Category--" class="form-control">
-                                <mat-option *ngFor="let option of List" [value]="">{{option.Combination}}</mat-option>
-                            </mat-select> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="row col-sm-12" style="margin-top: 17px;">
-                    <div class="col-sm-4">
-                        <!-- <div class="col-sm-4 newMarginClass">
-                                Completion Date :
-                            </div> -->
-                        <div class="col-sm-8">
-                            <!-- <div class="input-icon right">
-                                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
-                                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="db"
-                                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2" [(ngModel)]="dates">
-                                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-                                </div> -->
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- <div class="col-sm-5" style="top:10px">
-                                Lactating/ Pregnant :
-                            </div> -->
-                        <div class="col-sm-7" style="top:10px">
-                            <!-- <mat-checkbox></mat-checkbox> -->
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-8">
-                            <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
+                            <button type="button" class="add-hover-reset btn btn-reset">Reset</button>
                             <button type="button"
-                                class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
+                                class="filter-hover btn btn-success pull-left margin-right-10">Search</button>
                         </div>
                     </div>
                 </div>
-
             </mat-card-content>
         </mat-card>
     </div>
@@ -129,6 +100,8 @@
         <table id="example2" class="table table-bordered table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
+                    <th class="text-center">Actions</th>
+                    <th class="text-center">Used</th>
                     <th>Allele Name / Row Reference</th>
                     <th>Ref</th>
                     <th>Variant</th>
@@ -139,13 +112,26 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of List">
-
+                    <td class="text-center">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="openPatientDialog(item)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                            <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
+                        </mat-checkbox>
+                    </td>
                     <td>{{item.AllelName}}</td>
                     <td>{{item.Ref}}</td>
                     <td>{{item.Variant}}</td>
                     <td>{{item.Gene}}</td>
                     <td>{{item.AllelCall}}</td>
                     <td>{{item.Genotype}}</td>
+
                 </tr>
             </tbody>
         </table>
