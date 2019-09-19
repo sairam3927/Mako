@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 export const routes: Routes = [
     {
@@ -23,7 +25,9 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
-    { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Register' } },
+    { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Forgot Password' } }, 
+    { path: 'otp', component: OtpResetPasswordComponent, data: { breadcrumb: 'otp' } },
+    { path: 'reset', component: ResetPasswordComponent , data: { breadcrumb: 'Reset' } },
     { path: '**', component: NotFoundComponent, data: { breadcrumb: 'Not found' }  }
 ];
 
