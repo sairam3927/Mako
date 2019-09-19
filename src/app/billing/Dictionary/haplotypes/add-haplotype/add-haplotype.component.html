@@ -14,7 +14,11 @@
                       <div class="form-group">
                               <label class="control-label col-sm-4 add-member-label">Alleles : </label>
                               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                  <input type="text" class="form-control" placeholder="Enter Alleles" required>
+                                <mat-select multiple  placeholder="--Select Alleles--" class="form-control">
+                                    <mat-option *ngFor="let Lists of List" [value]="Lists">
+                                        {{Lists}}
+                                    </mat-option>
+                                </mat-select>
                               </div>
                       </div>
       

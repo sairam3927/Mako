@@ -13,6 +13,7 @@ import { BillingService } from 'src/app/billing/billing.service';
 
   export class AddMessageComponent implements OnInit {
 
+    List:any;
     public data: Array<any> ;  
 
     constructor(
@@ -26,7 +27,7 @@ import { BillingService } from 'src/app/billing/billing.service';
                  console.log("received",this.data)
                  }
   ngOnInit() {
-    // this.List = ["rs121908936","rs228584","rs6031682"]
+    this.List = ["rs121908936","rs228584","rs6031682","rs228584","rs6031682","rs121908936"]
   }
 
   saveOrder() {

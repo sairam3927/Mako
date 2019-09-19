@@ -55,6 +55,9 @@
                         style="margin-right: 10px !important;">
                         <mat-icon>backup</mat-icon> Upload CSV
                     </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="addScopeDialog()" >
+                        <mat-icon>add_comment</mat-icon> Add Scope
+                    </button>
                 </div>
             </div>
         </div>
@@ -116,7 +119,7 @@
             <tbody>
                 <tr *ngFor="let item of List">
                     <td class="text-center">
-                        <a title="Edit" style="cursor: pointer;" (click)="openPatientDialog(item)">
+                        <a title="Edit" style="cursor: pointer;" (click)="addScopeDialog()">
                             <i class="fa fa-edit"></i>
                         </a>
                         <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"

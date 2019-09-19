@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { ScopeUploadCSVComponent } from './upload-csv/upload-csv.component';
 import { PersonalComponent } from '../Personal/Personal.component';
-// import { UploadCSVComponent } from '../../SamplePatientData/SeqResults/uploadCSV/uploadCSV.component';
+import { AddScopeComponent } from './add-scope/add-scope.component';
 
 @Component({
   selector: 'app-Scope',
@@ -18,6 +18,11 @@ export class ScopeComponent implements OnInit {
   List: any;
 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';  
+  public popoverMessage: string = 'Are you sure you want to delete this.?';
+  public popoverStatusTitle: string = 'Confirm Status Change';
+  public popoverStatusMessage: string = 'Are you sure you want to change status.?';
+  public cancelClicked: boolean = false;
+
   
   constructor(public dialog: MatDialog,
     private alertService: AlertService) {
@@ -34,6 +39,16 @@ export class ScopeComponent implements OnInit {
     ];
   }
 
+  public addScopeDialog() {
+    let dialogRef = this.dialog.open(AddScopeComponent, {
+      height: 'auto',
+      width: '400px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
+
   public addPatientDataDialog() {
     let dialogRef = this.dialog.open(ScopeUploadCSVComponent, {
       height: 'auto',
@@ -43,6 +58,8 @@ export class ScopeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
+
+  
 
   public patientDataDialog() {
     let dialogRef = this.dialog.open(PersonalComponent, {

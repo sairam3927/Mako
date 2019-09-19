@@ -10,6 +10,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 export class AddStepsComponent implements OnInit {
 
   selectedValueStepType:string = "1";
+  selectedValueStepType1: string = '1';
   constructor(){ }
 
   ngOnInit() {
