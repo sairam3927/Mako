@@ -50,6 +50,8 @@ import { HelpVideoDialogComponent } from './shared/help-video-dialog/help-video-
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -106,7 +108,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PasswordDialogComponent,
     ConfirmDialogComponent,
     ProfileDialogComponent,
-    AddNoteDialogComponent,HelpVideoDialogComponent, RegisterComponent,
+    AddNoteDialogComponent,HelpVideoDialogComponent, RegisterComponent, OtpResetPasswordComponent, ResetPasswordComponent,
   ],
   entryComponents: [
     VerticalMenuComponent,

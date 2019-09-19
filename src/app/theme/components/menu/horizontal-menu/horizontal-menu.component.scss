@@ -22,10 +22,10 @@
         }
     }
 }
-.horizontal-menu-item:hover > .horizontal-sub-menu:hover {
+.horizontal-menu-item:hover > .horizontal-sub-menu {
     max-height: 500px;
     overflow: visible;
-    background-color: white
+    background-color: white;
 }
 .horizontal-sub-menu .horizontal-sub-menu{
     left: 100%;

@@ -4,29 +4,32 @@ import { Settings } from 'src/app/app.settings.model';
 import { AppSettings } from 'src/app/app.settings';
 import { Router } from '@angular/router';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
-// import { LoginService } from '../login.service';
+import { AlertService } from '../../shared/services/alert.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  styleUrls: ['./forgot-password.component.scss'],
+  providers: [AlertService]
 })
 export class ForgotPasswordComponent implements OnInit {
-  public form:FormGroup;
+
+  
+  public form: FormGroup;
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public fb: FormBuilder, public router:Router, public snackBar: MatSnackBar){
+  constructor(public appSettings:AppSettings, public fb: FormBuilder, public router:Router, public snackBar: MatSnackBar,public alertService:AlertService){
     this.settings = this.appSettings.settings; 
     this.form = this.fb.group({
-      'email': [null, Validators.compose([Validators.required, emailValidator])]
+      'email': [null, Validators.compose([Validators.required, emailValidator])],
     });
   }
 
-  //For Forgot Password
+  // For Forgot Password
   // public onSubmit(emailId:Object):void {
   //   if (this.form.valid) {
   //    this.forgotpwservice.forgotPassword(emailId).subscribe(
-  //      data=>{ 
+  //      data=>{
   //           //Sending message to Snackbar
   //           // this.snackBar.open(data['message'], 'OK'
   //           // );
@@ -40,9 +43,17 @@ export class ForgotPasswordComponent implements OnInit {
   // }
 
   // ngAfterViewInit(){
-  //   this.settings.loadingSpinner = false; 
+  //   this.settings.loadingSpinner = false;
   // }
   ngOnInit() {
+  }
+
+  onSubmit(emailId:Object):void {
+    if (this.form.valid) {
+      this.alertService.createAlert('OTP Sent', 1);
+      this.router.navigate(['/otp']);
+    }
+    
   }
 
 }
