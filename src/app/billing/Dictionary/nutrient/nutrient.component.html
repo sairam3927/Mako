@@ -63,57 +63,36 @@
         </mat-card>
     </div>
 </div>
+
 <div fxLayout="row wrap">
-    <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
-        <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
-            <thead class="tbl-head">
-                <tr class="tr-grid-header">
-                    <th class="text-center" style="min-width: 65px;">Action</th>
-                    <th class="text-center">Used</th>
-                    <th class="text-center">Active</th>
-                    <th class="text-center" style="min-width: 210px;">Allele Name / Row Reference</th>
-                    <th class="text-center">Gene</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of List">
-                    <td class="text-center">
-                        <a title="Edit" style="cursor: pointer;" (click)="addScopeDialog()">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
-                            <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
-                        </mat-checkbox>
-                    </td>
-                    <td class="text-center">
-                        <mat-checkbox></mat-checkbox>
-                    </td>
-                    <td class="text-center">{{item.AllelName}}</td>
-                    <td class="text-center">{{item.Gene}}</td>
+  <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead class="tbl-head">
+        <tr class="tr-grid-header">
 
-                    <td>{{item.description}}</td>
+          <th>Nutrient</th>
+          <th>Scenarios</th>
+          <th>Adult</th>
+          <th>Pregnancy</th>
+          <th>Lactation</th>
 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of List">
 
-                </tr>
-            </tbody>
-        </table>
-        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-        </mat-paginator>
-    </div>
-</div>
+          <td>{{item.Nutrient}}</td>
+          <td>{{item.Scenarios}}</td>
+          <td>{{item.Adult}}</td>
+          <td>{{item.Pregnancy}}</td>
+          <td>{{item.Lactation}}</td>
 
-<div fxLayout="row wrap" style="margin-left: 15px;margin-right: 15px">
-    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
-        <div class="row col-sm-12">
-            <div class="col-sm-11"></div>
+        </tr>
+      </tbody>
+    </table>
 
-        </div>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
 
-    </div>
+  </div>
 </div>
