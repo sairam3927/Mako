@@ -1,26 +1,18 @@
-.fa-file-text-o {
-    color: #007ad9;
-}
-
-.fa-file-pdf-o {
-    color: red;
-}
-
-.fa-dot-circle-o {
-    color: orange;
-}
-
-.newMarginClass {
-    margin-top: 7px !important;
+.user-form{
+    .form-field-outer{
+        width: 280px;
+    }
+    .mat-radio-button{
+        margin-right: 12px;
+    }
 }
 
 .input-icon.right>i {
-    right: 25px;
+    right:25px;
     float: right;
-
+    
 
 }
-
 .input-icon>i {
     color: #ccc;
     display: block;
@@ -35,7 +27,6 @@
     font-size: 16px;
     text-align: center;
 }
-
 .fa {
     display: inline-block;
     font: 14px/1 FontAwesome;
@@ -44,30 +35,26 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .modal .input-icon>i {
     z-index: 10055;
 }
 
-
-.margins {
-    margin-top: 8px;
+//Custom header for all modal dialog
+.custom-header {
+    background: #248f8f;
+    color: white;
+    text-align: center;
+    margin-left: -24px !important;
+    margin-top: -24px !important;
+    margin-right: -24px !important;
+    padding: 13px;
+    font-weight: 300 !important;
+    margin-bottom: 20px !important;
 }
 
-.margin {
-    margin-right: 8px;
+.table thead tr th, .table tbody tr  td{
+    padding: 4px !important;
 }
-
-.marginTopClass {
-    margin-top: 20px;
-}
-
-.fa-arrow-right {
-    color: #007ad9;
-}
-
-.inner-screen {
-    color: #246ade !important;
-    // text-decoration: underline !important;
-    cursor: pointer;
+.table{
+    margin-bottom: 0px;
 }

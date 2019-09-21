@@ -17,6 +17,7 @@ import { AuditeepieComponent } from './auditeepie/auditeepie.component';
 import { RemarksturnaroundpieComponent } from './remarksturnaroundpie/remarksturnaroundpie.component';
 import { TrendChartComponent } from './trend-chart/trend-chart.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+// import { AddDocumentsComponent } from './incoming-order-queue/add-documents/add-documents.component';
 
 
 
@@ -49,7 +50,7 @@ export const routes = [
     PieeComponent,
     AuditeepieComponent,
     RemarksturnaroundpieComponent,
-    TrendChartComponent
+    TrendChartComponent,
     
   ]
 })

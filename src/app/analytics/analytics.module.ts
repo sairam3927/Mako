@@ -55,6 +55,7 @@ import { SpeechSynthesizerService } from './dashboard/visit-records/patient-dash
 import { AlertPromise } from 'selenium-webdriver';
 import { AlertService } from '../shared/services/alert.service';
 import { AddPatientDataComponent } from './dashboard/incoming-order-queue/addPatientData/addPatientData.component';
+import { AddDocumentsComponent } from './dashboard/incoming-order-queue/add-documents/add-documents.component';
 
 //import { ReportsComponent } from './reports/reports.component';
 export const routes = [
@@ -148,7 +149,8 @@ export const routes = [
     PatientNotesComponent,
     AddPatientVisitDashboardDialogComponent,
     ManageVisitsComponent,
-    AddPatientDataComponent
+    AddPatientDataComponent,
+    AddDocumentsComponent
   ],
   providers:[
     SpeechRecognizerService,
@@ -160,7 +162,7 @@ export const routes = [
       } as MatDialogConfig,
     }
   ],
-  entryComponents : [AddPatientDataComponent, AddIncomingOrderComponent,AddNoteComponent,AddPatientVisitDashboardDialogComponent,AddPatientDocumentsDashboardComponent,AppointmentsComponent,AddInsurancePatientDashboardComponent,ProfileAndInsuranceDialogComponent,AddNewPatientOrdersComponent,AddAppointmentOrderComponent,AddNewAppointmentOrderComponent,InsuranceDialogComponent,AddNewPatientOrderComponent,AssignPhysicianComponent,AddIncomingMessageDialogComponent,AddInsuranceDialogComponent,AddNewOrderDialogComponent,AddTextDialogComponent,AddMessageDialogComponent]
+  entryComponents : [AddPatientDataComponent, AddIncomingOrderComponent,AddNoteComponent,AddPatientVisitDashboardDialogComponent,AddPatientDocumentsDashboardComponent,AppointmentsComponent,AddInsurancePatientDashboardComponent,ProfileAndInsuranceDialogComponent,AddNewPatientOrdersComponent,AddAppointmentOrderComponent,AddNewAppointmentOrderComponent,InsuranceDialogComponent,AddNewPatientOrderComponent,AssignPhysicianComponent,AddIncomingMessageDialogComponent,AddInsuranceDialogComponent,AddNewOrderDialogComponent,AddTextDialogComponent,AddMessageDialogComponent,AddDocumentsComponent]
 })
 export class AnalyticsModule { }
 
