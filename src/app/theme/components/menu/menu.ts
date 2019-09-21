@@ -35,6 +35,6 @@ export const horizontalMenuItems = [
     new Menu(3, 'Raw Data', '/mako/reports', null, 'assignment', null, true, 0, "black"),
     new Menu(4, 'Setup', '/mako/billing', null, 'blur_on', null, true, 0, "black"),
     new Menu(5, 'Admin', '/mako/admin', null, 'person', null, true, 0, "black"),
-    new Menu(6, 'Users', '/mako/admin/users', null, 'group_add', null, false, 5, "black"),
-    new Menu(7, 'Settings', '/mako/admin/settings', null, 'settings', null, false, 5, "black"),
+    new Menu(6, 'Users', '/mako/admin/users', null, 'group_add', null, false, 5, "white"),
+    new Menu(7, 'Settings', '/mako/admin/settings', null, 'settings', null, false, 5, "white"),
 ]
