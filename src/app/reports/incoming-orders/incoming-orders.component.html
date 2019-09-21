@@ -1,29 +1,21 @@
-<div fxLayout="row wrap" #resizedDiv>
-    <div class=" w-100">
+<div class="col-sm-12 flex-p">
+    <div class="row">
 
-        <div fxLayout="row wrap">
-            <div fxFlex="100" class=" w-100" style="margin-top: 25px;margin-bottom: 15px">
-                <!-- <mat-card class="filter"> -->
-                <!-- <mat-card-content></mat-card-content> -->
-                <div class="col-sm-12">
-                    <button mat-raised-button color="primary" style="color: white !important;"
-                        class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
-                        <mat-icon>filter_list</mat-icon> Filter
-                    </button>
-                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+        <div class="col-sm-12 m-b-10">
+            <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover"
+                (click)="filterToggle = !filterToggle">
+                <mat-icon>filter_list</mat-icon> Filter
+            </button>
+            <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                         (click)="addPatientDataDialog()">
-                        <mat-icon>backup</mat-icon> Upload Raw Data
-                    </button>
-                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
-                        <mat-icon>cloud_download</mat-icon> Download Sample Template
-                    </button>
-                </div>
-                <!-- </mat-card-content> -->
-                <!-- </mat-card> -->
-            </div>
+                <mat-icon>backup</mat-icon> Upload Raw Data
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                <mat-icon>cloud_download</mat-icon> Download Sample Template
+            </button> -->
         </div>
-        <div class="row wrap flex-p m-b-10" style="margin-left: -7px;">
-            <div class="col-sm-12" *ngIf="filterToggle">
+        <!-- <div class="col-sm-12 m-b-10" style="margin-left: -7px;"> -->
+            <div class="col-sm-12 m-b-10" *ngIf="filterToggle">
                 <mat-card class="filter">
                     <mat-card-content>
                         <div class="row col-sm-12">
@@ -77,8 +69,8 @@
             </div>
         </div>
 
-        <div fxLayout="row wrap">
-            <div class="table-responsive" style="margin-left: 15px;margin-right: 5px">
+        <div fxLayout="col-sm-12 m-b-10">
+            <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead class="tbl-head">
                         <tr class="tr-grid-header">
@@ -121,7 +113,7 @@
             </div>
         </div>
 
-    </div>
+    
 </div>
 
 <!-- <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
