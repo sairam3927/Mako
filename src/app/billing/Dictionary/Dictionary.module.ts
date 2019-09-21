@@ -17,7 +17,7 @@ import { AddMessageComponent } from './Messages/addMessage/addMessage.component'
 import { AddDRIComponent } from './DRI/addDRI/addDRI.component';
 import { MessagesUploadComponent } from './Messages/messages-upload/messages-upload.component';
 import { SeqResultsComponent } from './SeqResults/SeqResults.component';
-import { PersonalComponent } from './Personal/Personal.component';
+
 import { AlgorithmComponent } from './Algorithm/Algorithm.component';
 import { UploadComponent } from './Algorithm/upload/upload.component';
 import { AddAlgorithmComponent } from './Algorithm/addAlgorithm/addAlgorithm.component';
@@ -32,27 +32,44 @@ import { AddTestComponent } from './tests/add-test/add-test.component';
 import { UploadTestComponent } from './tests/upload-test/upload-test.component';
 import { UploadCsvHaplotypeComponent } from './haplotypes/upload-csv-haplotype/upload-csv-haplotype.component';
 import { AddScopeComponent } from './Scope/add-scope/add-scope.component';
+import { NutrientComponent } from './nutrient/nutrient.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
   { path: 'Scope', component: ScopeComponent, data: { breadcrumb: 'Scope' } },
   { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'D R I' } },
   { path: 'Messages', component: MessagesComponent, data: { breadcrumb: 'Messages' } },
+  { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrient' } },
   { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results' } },
-  { path: 'Personal', component: PersonalComponent, data: { breadcrumb: 'Personal Data' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
   { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'ALGO REF' } },
-  { path: 'Tests', component: TestsComponent , data: { breadcrumb: 'ALGO REF' } },
+  { path: 'Tests', component: TestsComponent, data: { breadcrumb: 'ALGO REF' } },
+
 ];
 
 @NgModule({
-  declarations: [ ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, PersonalComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent,AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent ],
+  declarations: [ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent, NutrientComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     SharedModule, NgxChartsModule, OwlDateTimeModule, OwlNativeDateTimeModule
   ],
-  entryComponents: [AddMessageComponent, AddDRIComponent, MessagesUploadComponent,UploadCSVComponent, ScopeUploadCSVComponent, UploadComponent, AddAlgorithmComponent,PersonalComponent,DriUploadCSVComponent,AddHaplotypeComponent,AddTestComponent,AddSeqResultComponent,UploadTestComponent,UploadCsvHaplotypeComponent, AddScopeComponent],
+  entryComponents: [
+    // AddMessageComponent,
+    // AddDRIComponent,
+    // MessagesUploadComponent,
+    // UploadCSVComponent,
+    // ScopeUploadCSVComponent,
+    // UploadComponent,
+    // AddAlgorithmComponent,
+    // DriUploadCSVComponent,
+    // AddHaplotypeComponent,
+    // AddTestComponent,
+    // AddSeqResultComponent,
+    // UploadTestComponent,
+    // UploadCsvHaplotypeComponent,
+    // AddScopeComponent
+  ],
   providers: [AlertService]
 })
 export class DictionaryModule { }
