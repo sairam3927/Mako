@@ -1,4 +1,11 @@
 import { NgModule } from '@angular/core';
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule
+} from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { DictionaryComponent } from './Dictionary/Dictionary.component';
 import { RouterModule } from '@angular/router';
@@ -20,12 +27,13 @@ import { StepsComponent } from './steps/steps.component';
 import { AddStepsComponent } from './steps/add-steps/add-steps.component';
 import { AddCalcComponent } from './Calculations/add-calc/add-calc.component';
 import { FinalOutputComponent } from './final-output/final-output.component';
+import { PersonalComponent } from './Dictionary/Personal/Personal.component';
 
 
 export const routes = [
   { path: '', redirectTo: 'Dictionary', pathMatch: 'full' },
   { path: 'Dictionary', component: DictionaryComponent,loadChildren:'./Dictionary/Dictionary.module#DictionaryModule' , data: { breadcrumb: 'Dictionary'}},
-  { path: 'Calculations', component: CalculationsComponent, data: { breadcrumb: 'Calculations' } },
+  { path: 'Calculations', component: CalculationsComponent, loadChildren:'./Calculations/Calculations.module#CalculationsModule' , data: { breadcrumb: 'Calculations' } },
   { path: 'finalOutput', component: FinalOutputComponent, data: { breadcrumb: 'Calculations' } },
   { path: 'Report', component: ReportComponent, data: { breadcrumb: 'Report' } },
   { path: 'Steps', component: StepsComponent,pathMatch: 'full' , data: { breadcrumb: 'Steps' } },
@@ -33,13 +41,25 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent],
+  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent, PersonalComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
-    NgxChartsModule,OwlDateTimeModule, OwlNativeDateTimeModule
+    NgxChartsModule,OwlDateTimeModule, OwlNativeDateTimeModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule
   ],
-  entryComponents: [AddCalcComponent],
+  exports: [
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule
+  ],
+  entryComponents: [AddCalcComponent, PersonalComponent],
   providers: [AlertService]
 })
 export class BillingModule { }
