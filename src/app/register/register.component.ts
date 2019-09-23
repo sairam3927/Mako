@@ -18,6 +18,7 @@ export interface Sample {
   providers: [AlertService]
 })
 export class RegisterComponent implements OnInit {
+  selectedValueStepType: string= "0";
   public form: FormGroup;
   public settings: Settings;
   ethnicitys: Sample[] = [

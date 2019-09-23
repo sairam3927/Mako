@@ -5,20 +5,22 @@
 .fa-file-pdf-o {
     color: red;
 }
+
 .fa-dot-circle-o {
-    color:orange;
+    color: orange;
 }
 
 .newMarginClass {
-    margin-top: 7px!important;
+    margin-top: 7px !important;
 }
 
 .input-icon.right>i {
-    right:25px;
+    right: 25px;
     float: right;
-    
+
 
 }
+
 .input-icon>i {
     color: #ccc;
     display: block;
@@ -33,6 +35,7 @@
     font-size: 16px;
     text-align: center;
 }
+
 .fa {
     display: inline-block;
     font: 14px/1 FontAwesome;
@@ -41,6 +44,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .modal .input-icon>i {
     z-index: 10055;
 }
@@ -49,13 +53,21 @@
 .margins {
     margin-top: 8px;
 }
+
 .margin {
     margin-right: 8px;
 }
+
 .marginTopClass {
     margin-top: 20px;
 }
 
 .fa-arrow-right {
     color: #007ad9;
+}
+
+.inner-screen {
+    color: #246ade !important;
+    // text-decoration: underline !important;
+    cursor: pointer;
 }

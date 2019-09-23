@@ -6,6 +6,7 @@ import { Settings } from '../../../app.settings.model';
 import { AddIncomingOrderComponent } from './add-incoming-order/add-incoming-order.component';
 import { ProfileAndInsuranceDialogComponent } from './profile-and-insurance-dialog/profile-and-insurance-dialog.component'
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { AddDocumentsComponent } from './add-documents/add-documents.component';
 
 @Component({
   selector: 'app-incoming-order-queue',
@@ -42,7 +43,7 @@ export class IncomingOrderQueueComponent implements OnInit {
   public dateTime3: Date;
   referringOptions = ["Stephen McGill", "Otto Rieder", "Joe Deu-Ngoc", "Chris Soles", "Brad Kewalramani", "Michael Persaud", "Habib Kharsa"];
   stepsOptionSelected: any;
-  age =[">30","<30",">=50","<=50"];
+  age = [">30", "<30", ">=50", "<=50"];
   onStepsOptionsSelected(event) {
     console.log(event);
   }
@@ -54,12 +55,12 @@ export class IncomingOrderQueueComponent implements OnInit {
 
 
     this.patientList = [
-      { id: 1,Country:"USA",State:"New York",City:"Newyork City",Zip:"10001", Patient: "Fabrice bryce", Age: "21", Gender: "M",dob:"21-08-1998",Ethnicity:"Non-Hispanic White", SampleName: "H170600552",FEDEX:"7948 0175 0851", OrderDate: "21-08-2019", DateCompleted: "-", Pregnant: "checked", Lactating: "", Reports: "", Status: "Pending" },
-      { id: 2,Country:"Canada",State:"Alberta",City:"Edmonton",Zip:"T7S", Patient: "Stephen Carter", Age: "48", Gender: "M",dob:"14-07-1971",Ethnicity:"Other", SampleName: "HG01879",FEDEX:"7654 3542 6571", OrderDate: "14-07-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending" },
-      { id: 3,Country:"USA",State:"Califonia",City:"Sacramento",Zip:"94203", Patient: "Otto Clifton", Age: "28", Gender: "M",dob:"01-04-1991",Ethnicity:"Asian", SampleName: "41001903123551",FEDEX:"6842 5872 5122", OrderDate: "01-04-2019", DateCompleted: "07-04-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done" },
-      { id: 4,Country:"Canada",State:"British Columbia",City:"Victoria",Zip:"3294", Patient: "Joe Grover", Age: "36", Gender: "M",dob:"28-06-1983",Ethnicity:"African American", SampleName: "41001903296266",FEDEX:"7846 1221 4113", OrderDate: "28-06-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending" },
-      { id: 5,Country:"Canada",State:"Ontario",City:"Quebec City",Zip:"G0A 4V0", Patient: "Chris Darnell", Age: "50", Gender: "M",dob:"12-08-1969",Ethnicity:"Asian", SampleName: "H170600560",FEDEX:"6432 5215 1223", OrderDate: "12-08-2019", DateCompleted: "31-08-2019", Pregnant: "", Lactating: "checked", Reports: "", Status: "Done" },
-      { id: 6,Country:"Canada",State:"Yukon",City:"Whitehorse",Zip:"Y1A0A4", Patient: "Mary Hilton", Age: "20", Gender: "M",dob:"24-03-1999",Ethnicity:"Hispanic", SampleName: "41001903296263",FEDEX:"7463 5563 3332", OrderDate: "24-03-2019", DateCompleted: "29-03-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done" }
+      { id: 1, Country: "USA", State: "New York", City: "Newyork City", Zip: "10001", Patient: "Fabrice bryce", Age: "21", Gender: "M", dob: "21-08-1998", Ethnicity: "Non-Hispanic White", SampleName: "H170600552", FEDEX: "7948 0175 0851", OrderDate: "21-08-2019", DateCompleted: "-", Pregnant: "checked", Lactating: "", Reports: "", Status: "Pending", Docs: "Add" },
+      { id: 2, Country: "Canada", State: "Alberta", City: "Edmonton", Zip: "T7S", Patient: "Stephen Carter", Age: "48", Gender: "M", dob: "14-07-1971", Ethnicity: "Other", SampleName: "HG01879", FEDEX: "7654 3542 6571", OrderDate: "14-07-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending", Docs: "1" },
+      { id: 3, Country: "USA", State: "Califonia", City: "Sacramento", Zip: "94203", Patient: "Otto Clifton", Age: "28", Gender: "M", dob: "01-04-1991", Ethnicity: "Asian", SampleName: "41001903123551", FEDEX: "6842 5872 5122", OrderDate: "01-04-2019", DateCompleted: "07-04-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done", Docs: "2" },
+      { id: 4, Country: "Canada", State: "British Columbia", City: "Victoria", Zip: "3294", Patient: "Joe Grover", Age: "36", Gender: "M", dob: "28-06-1983", Ethnicity: "African American", SampleName: "41001903296266", FEDEX: "7846 1221 4113", OrderDate: "28-06-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending", Docs: "3" },
+      { id: 5, Country: "Canada", State: "Ontario", City: "Quebec City", Zip: "G0A 4V0", Patient: "Chris Darnell", Age: "50", Gender: "M", dob: "12-08-1969", Ethnicity: "Asian", SampleName: "H170600560", FEDEX: "6432 5215 1223", OrderDate: "12-08-2019", DateCompleted: "31-08-2019", Pregnant: "", Lactating: "checked", Reports: "", Status: "Done", Docs: "4" },
+      { id: 6, Country: "Canada", State: "Yukon", City: "Whitehorse", Zip: "Y1A0A4", Patient: "Mary Hilton", Age: "20", Gender: "M", dob: "24-03-1999", Ethnicity: "Hispanic", SampleName: "41001903296263", FEDEX: "7463 5563 3332", OrderDate: "24-03-2019", DateCompleted: "29-03-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done", Docs: "1" }
     ];
     this.tableList = [
       { id: 1, firstName: "Fabrice", normal: 5, faxNumber: "+1-403-444-5207", eFaxNumber: "1202584", lastName: "Vanegas", dob: "02/05/1964", orderingPhysician: "David", receivedDate: "03/03/2019" },
@@ -93,6 +94,15 @@ export class IncomingOrderQueueComponent implements OnInit {
     });
   }
 
+  public openDocumentDialog() {
+    let dialogRef = this.dialog.open(AddDocumentsComponent, {
+      height: 'auto',
+      width: '600px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
   public openInsuranceDialog(id) {
     let dialogRef = this.dialog.open(ProfileAndInsuranceDialogComponent, {
       data: id,
