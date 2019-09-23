@@ -42,8 +42,8 @@ export const routes = [
   { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrient' } },
   { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
-  { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'ALGO REF' } },
-  { path: 'Tests', component: TestsComponent, data: { breadcrumb: 'ALGO REF' } },
+  { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'Haplotypes' } },
+  { path: 'Tests', component: TestsComponent, data: { breadcrumb: 'Tests' } },
 
 ];
 
