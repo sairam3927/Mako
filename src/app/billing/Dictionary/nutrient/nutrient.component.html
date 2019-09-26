@@ -65,34 +65,43 @@
 </div>
 
 <div fxLayout="row wrap">
-  <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
-    <table id="example2" class="table table-bordered table-hover">
-      <thead class="tbl-head">
-        <tr class="tr-grid-header">
+    <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head">
+                <tr class="tr-grid-header">
+                    <th class="text-center" style="min-width:80px">Action</th>
+                    <th>Section</th>
+                    <th>Nutrient&nbsp;/&nbsp;Condition</th>
+                    <!-- <th>Adult</th>
+                    <th class="text-center">Pregnancy</th>
+                    <th class="text-center">Lactation</th>
+                    <th class="text-center">Logic</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of List">
+                    <td class="text-center">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="addMessageDialog()">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                            <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+                        </a>
+                    </td>
+                    <td>{{item.Section}}</td>
+                    <td>{{item.Nutrient}}</td>
+                    <!-- <td>{{item.Adult}}</td>
+                    <td class="text-center">{{item.Pregnancy}}</td>
+                    <td class="text-center">{{item.Lactation}}</td>
+                    <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
+                            (click)="openLogicDialog()">View</a></td> -->
+                </tr>
+            </tbody>
+        </table>
 
-          <th>Nutrient</th>
-          <th>Scenarios</th>
-          <th>Adult</th>
-          <th>Pregnancy</th>
-          <th>Lactation</th>
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of List">
-
-          <td>{{item.Nutrient}}</td>
-          <td>{{item.Scenarios}}</td>
-          <td>{{item.Adult}}</td>
-          <td>{{item.Pregnancy}}</td>
-          <td>{{item.Lactation}}</td>
-
-        </tr>
-      </tbody>
-    </table>
-
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
-
-  </div>
+    </div>
 </div>

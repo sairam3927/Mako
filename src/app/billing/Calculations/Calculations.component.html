@@ -13,10 +13,10 @@
                 style="margin-right: 20px!important; padding: 0px 10px;">
                 <mat-icon>outlined_flag</mat-icon> Calculations
               </a></li>
-            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
+            <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
                 style="margin-right: 20px!important; padding: 0px 10px;">
                 <mat-icon>outlined_flag</mat-icon> Final Output Variables List
-              </a></li>
+              </a></li> -->
             <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37
                 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank"
                 style="margin-right: 20px!important; padding: 0px 10px;">
@@ -41,8 +41,6 @@
       <div class="col-lg-12">
         <div class="pills w-100 ">
           <ul class="nav nav-pills">
-            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations/Simulation']"
-                style="margin-right: 10px!important; padding: 0px 10px;">Simulation</a></li>
             <li routerLinkActive="active"><a mat-raised-button
                 [routerLink]="['/mako/billing/Calculations/PregnancyLactaion']"
                 style="margin-right: 10px!important; padding: 0px 10px;">Pregnancy/Lactation Table</a></li>
@@ -52,6 +50,8 @@
             <li routerLinkActive="active"><a mat-raised-button
                 [routerLink]="['/mako/billing/Calculations/ReportVariables']"
                 style="margin-right: 10px!important; padding: 0px 10px;">Report Variables</a></li>
+                <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations/Simulation']"
+                  style="margin-right: 10px!important; padding: 0px 10px;color:red">Simulation</a></li>
           </ul>
         </div>
       </div>

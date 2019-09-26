@@ -31,21 +31,16 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-
           <th class="text-center">Actions</th>
           <th>Nutrient</th>
           <th>Units</th>
-          <th>Logic</th>
-          <th>Pregnancy</th>
-          <th>Lactation</th>
-          <!-- <th class="text-center">Steps</th>
-            <th class="text-center">Calculation Done</th> -->
-
+          <th class="text-center">Pregnancy</th>
+          <th class="text-center">Lactation</th>
+          <th class="text-center">Logic</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of List">
-
           <td class="text-center">
             <a title="Edit User" style="margin-right: 10px; cursor: pointer;">
               <i class="fa fa-edit"></i>
@@ -57,16 +52,14 @@
           </td>
           <td>{{item.Nutrient}}</td>
           <td>{{item.Units}}</td>
-          <td>{{item.Logic}}</td>
-          <td>{{item.Pregnancy}}</td>
-          <td>{{item.Lactation}}</td>
-
+          <td class="text-center">{{item.Pregnancy}}</td>
+          <td class="text-center">{{item.Lactation}}</td>
+          <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
+            (click)="openLogicDialog()">View</a></td>
         </tr>
       </tbody>
     </table>
-
     <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
-
   </div>
 </div>

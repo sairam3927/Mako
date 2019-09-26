@@ -28,6 +28,12 @@ import { AddStepsComponent } from './steps/add-steps/add-steps.component';
 import { AddCalcComponent } from './Calculations/add-calc/add-calc.component';
 import { FinalOutputComponent } from './final-output/final-output.component';
 import { PersonalComponent } from './Dictionary/Personal/Personal.component';
+import { LogicModelpopupComponent } from './Calculations/pregnancy-lactaion/logic-modelpopup/logic-modelpopup.component';
+import { LogicAdultnutritionComponent } from './Calculations/adult-nutrition/logic-adultnutrition/logic-adultnutrition.component';
+import { LogicTestsComponent } from './Dictionary/tests/logic-tests/logic-tests.component';
+import { LogicNutrientComponent } from './Dictionary/nutrient/logic-nutrient/logic-nutrient.component';
+import { UploadCSVComponent } from './Dictionary/SeqResults/uploadCSV/uploadCSV.component';
+import { LogicReportvariableComponent } from './Calculations/report-variables/logic-reportvariable/logic-reportvariable.component';
 
 
 export const routes = [
@@ -41,7 +47,10 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent, PersonalComponent],
+  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, 
+    SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent, 
+    PersonalComponent,LogicModelpopupComponent,LogicAdultnutritionComponent,LogicTestsComponent,LogicNutrientComponent,
+    UploadCSVComponent,LogicReportvariableComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
@@ -50,7 +59,7 @@ export const routes = [
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
   ],
   exports: [
     MatButtonModule,
@@ -59,7 +68,8 @@ export const routes = [
     MatIconModule,
     MatCardModule
   ],
-  entryComponents: [AddCalcComponent, PersonalComponent],
+  entryComponents: [AddCalcComponent, PersonalComponent,LogicModelpopupComponent,LogicAdultnutritionComponent,
+    LogicTestsComponent,LogicNutrientComponent,UploadCSVComponent,LogicReportvariableComponent],
   providers: [AlertService]
 })
 export class BillingModule { }

@@ -7,12 +7,12 @@
             </button>
             <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
                 <mat-icon>cloud_download</mat-icon> Download Sample 
-            </button>
+            </button> -->
             <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                 (click)="uploadCSVDialog()">
                 <mat-icon>backup</mat-icon> Upload CSV
             </button>
-            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+            <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
                 (click)="addSeqResultDialog()">
                 <mat-icon>add_comment</mat-icon> Add SEQ Result
             </button> -->
@@ -64,8 +64,8 @@
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
                     <th class="text-center">Actions</th>
-                    <th class="text-center">Used</th>
-                    <th>Allele Name / Row Reference</th>
+                    <!-- <th class="text-center">Used</th> -->
+                    <th>Allele Name</th>
                     <th>Ref</th>
                     <th>Variant</th>
                     <th>Gene</th>
@@ -84,10 +84,10 @@
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
                         </mat-checkbox>
-                    </td>
+                    </td> -->
                     <td>{{item.AllelName}}</td>
                     <td>{{item.Ref}}</td>
                     <td>{{item.Variant}}</td>

@@ -103,11 +103,12 @@
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
                     <th class="text-center" style="min-width:80px">Action</th>
-                    <th class="text-center">Used</th>
-                    <th>Row Reference (Allele + Genotype)</th>
+                    <!-- <th class="text-center">Used</th> -->
+                    <!-- <th>(Allele + Genotype)</th> -->
                     <th>Allele Name</th>
                     <th class="text-center">Genotype</th>
                     <th class="text-center">Gene</th>
+                    <th style="min-width: 165px;">Recommended Value</th>
                     <th>Comment</th>
                     <th>Recommendation</th>
                 </tr>
@@ -123,14 +124,15 @@
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
                         </mat-checkbox>
-                    </td>
-                    <td style="font-weight: 100;">{{item.Reference}}</td>
+                    </td> -->
+                    <!-- <td style="font-weight: 100;">{{item.Reference}}</td> -->
                     <td>{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Combination}}</td>
                     <td class="text-center">{{item.Gene}}</td>
+                    <td>{{item.Recommendedvalue}}</td>
                     <td>{{item.Guideline}}</td>
                     <!-- <td class="text-center">{{item.TargetResolution}}</td>
                     <td class="text-center">{{item.TargetMessage}}</td>

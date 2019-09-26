@@ -31,23 +31,29 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-           
-          <th >Manage</th>
+          <th class="text-center">Actions</th>
           <th>Nutrient</th>
+          <th>Value</th>
           <th>Units</th>
-          <th>Recommendation</th>
-          <!-- <th class="text-center">Calculation Done</th>  -->
-
+          <th class="text-center">Logic</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of List">
-
-          <td>{{item.Manage}}</td>
+          <td class="text-center">
+            <a title="Edit" style="margin-right: 10px; cursor: pointer;">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+              (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+              <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
+            </a>
+          </td>
           <td>{{item.Nutrient}}</td>
+          <td>{{item.Value}}</td>
           <td>{{item.Units}}</td>
-          <td>{{item.Recommendation}}</td>
-
+          <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
+            (click)="openLogicDialog()">View</a></td>
         </tr>
       </tbody>
     </table>

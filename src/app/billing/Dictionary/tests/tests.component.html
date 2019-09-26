@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" >
+<div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100">
 
         <div class="row col-sm-12" class="flex-p">
@@ -70,16 +70,17 @@
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                        
+
                     <th class="text-center" style="width: 120px">Actions</th>
-                    <th class="text-center">Used</th>
+                    <!-- <th class="text-center">Used</th> -->
                     <th class="text-center">Active</th>
                     <th>Test Name</th>
                     <th>Nutrient / Condition</th>
                     <th>Para 1</th>
                     <th>Para 2</th>
-                    <th>Logic</th>
-                    <th>Value</th>
+                    <th>Recommended Value 1</th>
+                    <th>Recommended Value 2</th>
+                    <!-- <th>Logic</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -98,10 +99,10 @@
                             <i class="fa fa-refresh" aria-hidden="true" style="color: green"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
                         </mat-checkbox>
-                    </td>
+                    </td> -->
                     <td class="text-center">
                         <mat-checkbox></mat-checkbox>
                     </td>
@@ -111,9 +112,10 @@
                     <td>{{item.Nutrient}}</td>
                     <td>{{item.Para1}}</td>
                     <td>{{item.Para2}}</td>
-                    <td>{{item.Logic}}</td>
                     <td>{{item.Value}}</td>
-
+                    <td>{{item.Value}}</td>
+                    <!-- <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
+                            (click)="openLogicDialog()">View</a></td> -->
                 </tr>
             </tbody>
         </table>
