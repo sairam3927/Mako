@@ -52,6 +52,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { DashboardComponent } from './analytics/dashboard/dashboard.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -91,7 +92,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DataTableModule
   ],
   declarations: [
-    AppComponent,
+    AppComponent,DashboardComponent,
     LayoutComponent,
     NotFoundComponent,
     SidenavComponent,
