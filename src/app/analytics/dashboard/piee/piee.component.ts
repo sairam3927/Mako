@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { single } from '../piee.data';
 import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
+import { GenotypeSingle } from '../piee.data';
 
 @Component({
   selector: 'app-piee',
   templateUrl: './piee.component.html'
 })
 export class PieeComponent {
-  public single: any[];
+  public GenotypeSingle: any[];
   public multi: any[];
   public showLegend = true;
   public gradient = true;
@@ -22,7 +22,7 @@ export class PieeComponent {
 
   constructor(public appSettings:AppSettings) {
     this.settings = this.appSettings.settings; 
-    Object.assign(this, {single}); 
+    Object.assign(this, {GenotypeSingle}); 
   }
   
   public onSelect(event) {

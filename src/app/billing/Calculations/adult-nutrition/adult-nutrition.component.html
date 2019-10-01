@@ -35,6 +35,7 @@
           <th>Nutrient</th>
           <th>Value</th>
           <th>Units</th>
+          <th class="text-center">Calc</th>
           <th class="text-center">Logic</th>
         </tr>
       </thead>
@@ -52,6 +53,8 @@
           <td>{{item.Nutrient}}</td>
           <td>{{item.Value}}</td>
           <td>{{item.Units}}</td>
+          <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Calculation"
+            >View</a></td>
           <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
             (click)="openLogicDialog()">View</a></td>
         </tr>

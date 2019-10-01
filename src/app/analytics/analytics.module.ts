@@ -52,7 +52,6 @@ import { AddNewOrderDialogComponent } from './dashboard/add-new-order/add-new-or
 import { AddIncomingOrderComponent } from './dashboard/incoming-order-queue/add-incoming-order/add-incoming-order.component';
 import { SpeechRecognizerService } from './dashboard/visit-records/patient-dashboard/shared/services/speech-recognizer.service';
 import { SpeechSynthesizerService } from './dashboard/visit-records/patient-dashboard/shared/services/speech-synthesizer.service';
-import { AlertPromise } from 'selenium-webdriver';
 import { AlertService } from '../shared/services/alert.service';
 import { AddPatientDataComponent } from './dashboard/incoming-order-queue/addPatientData/addPatientData.component';
 import { AddDocumentsComponent } from './dashboard/incoming-order-queue/add-documents/add-documents.component';
@@ -150,7 +149,8 @@ export const routes = [
     AddPatientVisitDashboardDialogComponent,
     ManageVisitsComponent,
     AddPatientDataComponent,
-    AddDocumentsComponent
+    AddDocumentsComponent,
+    
   ],
   providers:[
     SpeechRecognizerService,
@@ -162,7 +162,8 @@ export const routes = [
       } as MatDialogConfig,
     }
   ],
-  entryComponents : [AddPatientDataComponent, AddIncomingOrderComponent,AddNoteComponent,AddPatientVisitDashboardDialogComponent,AddPatientDocumentsDashboardComponent,AppointmentsComponent,AddInsurancePatientDashboardComponent,ProfileAndInsuranceDialogComponent,AddNewPatientOrdersComponent,AddAppointmentOrderComponent,AddNewAppointmentOrderComponent,InsuranceDialogComponent,AddNewPatientOrderComponent,AssignPhysicianComponent,AddIncomingMessageDialogComponent,AddInsuranceDialogComponent,AddNewOrderDialogComponent,AddTextDialogComponent,AddMessageDialogComponent,AddDocumentsComponent]
+  entryComponents : [AddPatientDataComponent, AddIncomingOrderComponent,AddNoteComponent,AddPatientVisitDashboardDialogComponent,AddPatientDocumentsDashboardComponent,AppointmentsComponent,AddInsurancePatientDashboardComponent,ProfileAndInsuranceDialogComponent,AddNewPatientOrdersComponent,AddAppointmentOrderComponent,AddNewAppointmentOrderComponent,InsuranceDialogComponent,AddNewPatientOrderComponent,AssignPhysicianComponent,AddIncomingMessageDialogComponent,AddInsuranceDialogComponent,AddNewOrderDialogComponent,
+    AddTextDialogComponent,AddMessageDialogComponent,AddDocumentsComponent]
 })
 export class AnalyticsModule { }
 

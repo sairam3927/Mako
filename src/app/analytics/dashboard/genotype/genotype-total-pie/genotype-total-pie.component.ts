@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppSettings } from 'src/app/app.settings';
 import { Settings } from 'src/app/app.settings.model';
 import { single } from '../../pie.data';
+import { GenotypeTotal } from '../../piee.data';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { single } from '../../pie.data';
   styleUrls: ['./genotype-total-pie.component.scss']
 })
 export class GenotypeTotalPieComponent implements OnInit {
-  public single: any[];
+  public GenotypeTotal: any[];
   public multi: any[];
   public showLegend = true;
   public gradient = true;
@@ -24,7 +25,7 @@ export class GenotypeTotalPieComponent implements OnInit {
 
   constructor(public appSettings:AppSettings) {
     this.settings = this.appSettings.settings; 
-    Object.assign(this, {single}); 
+    Object.assign(this, {GenotypeTotal}); 
   }
   ngOnInit() {}
   

@@ -3,10 +3,11 @@ import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { AppSettings } from '../../../app.settings';
 import { Settings } from '../../../app.settings.model';
-import { AddPatientDataComponent } from '../incoming-order-queue/addPatientData/addPatientData.component';
-import { AddIncomingOrderComponent } from '../incoming-order-queue/add-incoming-order/add-incoming-order.component';
-import { AddDocumentsComponent } from '../incoming-order-queue/add-documents/add-documents.component';
-import { ProfileAndInsuranceDialogComponent } from '../incoming-order-queue/profile-and-insurance-dialog/profile-and-insurance-dialog.component';
+// import { AddPatientDataComponent } from '../incoming-order-queue/addPatientData/addPatientData.component';
+// import { AddIncomingOrderComponent } from '../incoming-order-queue/add-incoming-order/add-incoming-order.component';
+// import { AddDocumentsComponent } from '../incoming-order-queue/add-documents/add-documents.component';
+// import { ProfileAndInsuranceDialogComponent } from '../incoming-order-queue/profile-and-insurance-dialog/profile-and-insurance-dialog.component';
+import { SingleAlleleCallPieComponent } from './single-allele-call-pie/single-allele-call-pie.component';
 
 @Component({
   selector: 'app-allele-calls',
@@ -72,8 +73,15 @@ export class AlleleCallsComponent implements OnInit {
       { id: 20,rsID:"rs11950646",Absent:"800",Heterozygous:"25",Homozygous:"0",NoCall:"0" }
     ];
   }
-
-  
+  public openpieDataDialog() {
+    let dialogRef = this.dialog.open(SingleAlleleCallPieComponent, {
+      height: 'auto',
+      width: '600px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
 
   deletePatientOrder() {
     this.alertService.createAlert('Successfully deleted.', 1);

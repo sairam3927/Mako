@@ -18,11 +18,12 @@ import { RemarksturnaroundpieComponent } from './remarksturnaroundpie/remarkstur
 import { TrendChartComponent } from './trend-chart/trend-chart.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { GenotypeComponent } from './genotype/genotype.component';
-import { TrendGraphComponent } from './trend-graph/trend-graph.component';
 import { AlleleCallsComponent } from './allele-calls/allele-calls.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { GenotypeTotalPieComponent } from './genotype/genotype-total-pie/genotype-total-pie.component';
 import { GenotypePieComponent } from './genotype/genotype-pie/genotype-pie.component';
+import { SingleAlleleCallPieComponent } from './allele-calls/single-allele-call-pie/single-allele-call-pie.component';
+import { TrendAnalysisComponent } from './trend-analysis/trend-analysis.component';
 // import { AddDocumentsComponent } from './incoming-order-queue/add-documents/add-documents.component';
 
 export const routes = [
@@ -30,7 +31,7 @@ export const routes = [
   { path: '', redirectTo: 'allelecalls', pathMatch: 'full' },
   { path: 'allelecalls', component: AlleleCallsComponent, data: { breadcrumb: 'Allele Calls' } },
   { path: 'genotypes', component: GenotypeComponent, data: { breadcrumb: 'Genotypes' } },
-  { path: 'trendgraph', component: TrendGraphComponent, data: { breadcrumb: 'Trend Graph' } },
+  { path: 'trendanalysis', component: TrendAnalysisComponent, data: { breadcrumb: 'Trend Analysis' } },
 ];
 
 @NgModule({
@@ -58,10 +59,12 @@ export const routes = [
     TrendChartComponent,
     AlleleCallsComponent,
     GenotypeComponent,
-    TrendGraphComponent,
     GenotypeTotalPieComponent,
     GenotypePieComponent,
+    SingleAlleleCallPieComponent,
+    TrendAnalysisComponent
   ],
-  providers:[AlertService]
+  providers:[AlertService],
+  entryComponents:[SingleAlleleCallPieComponent,GenotypePieComponent]
 })
 export class DashboardModule { }

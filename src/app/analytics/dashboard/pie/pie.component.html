@@ -2,12 +2,12 @@
     <!-- <div class="flex-p">  -->
         <mat-card>
             <mat-card-header fxLayoutAlign="center center">                
-                <mat-card-subtitle><h2>Total rsID's</h2></mat-card-subtitle>
+                <mat-card-subtitle><h3>Total Allele Calls Distribution</h3></mat-card-subtitle>
             </mat-card-header>
             <div class="w-100 h-300p">
                 <ngx-charts-pie-chart
                     [scheme]="colorScheme"
-                    [results]="single"
+                    [results]="GenotypeSingle"
                     [legend]="showLegend"
                     [explodeSlices]="explodeSlices"
                     [labels]="showLabels"
