@@ -15,7 +15,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TableModule } from 'primeng/table';
 
 export const routes = [
-  { path: '', redirectTo: 'Simulation' },
+  { path: '', redirectTo: 'PregnancyLactaion' },
   { path: 'Simulation', component: SimulationComponent, data: { breadcrumb: 'Simulation' } },
   { path: 'PregnancyLactaion', component: PregnancyLactaionComponent, data: { breadcrumb: 'Pregnancy Lactaion' } },
   { path: 'AdultNutrition', component: AdultNutritionComponent, data: { breadcrumb: 'Adult Nutrition' } },

@@ -8,13 +8,14 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { DashboardComponent } from './analytics/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
         path: 'mako',
         component: LayoutComponent, children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-            { path: 'dashboard', loadChildren: './analytics/dashboard/dashboard.module#DashboardModule',pathMatch:"full", data: { breadcrumb: 'Dashboard' }},
+            { path: 'dashboard',component:DashboardComponent, loadChildren: './analytics/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' }},
             { path: 'patients', loadChildren: './analytics/analytics.module#AnalyticsModule', data: { breadcrumb: '' }},
             { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'Setup' }},
             { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', data: { breadcrumb: '' }},

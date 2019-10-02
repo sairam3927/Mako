@@ -31,24 +31,36 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-
-          <th>Manage</th>
-          <th>Report Variable</th>
-          <th>Nutrient / Condition</th>
-          <th>Logic</th>
-          <th>Done</th>
-
+          <th>Report Variable name</th>
+          <th>Coverage</th>
+          <th>Section</th>
+          <th>Condition/Nutrition</th>
+          <!-- <th>Type</th>
+          <th>Summary</th> -->
+          <th>Test Name</th>
+          <th>Result Value</th>
+          <th class="text-center">Calc</th>
+          <th class="text-center">Logic</th>
+          <!-- <th class="text-center">Configured</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of List">
-
-          <td>{{item.Manage}}</td>
           <td>{{item.ReportVariable}}</td>
-          <td>{{item.Nutrient}}</td>
-          <td>{{item.Logic}}</td>
-          <td>{{item.Done}}</td>
-
+          <td>{{item.Coverage}}</td>
+          <td>{{item.Section}}</td>
+          <td>{{item.ConNutrition}}</td>
+          <!-- <td>{{item.Type}}</td>
+          <td>{{item.Summary}}</td> -->
+          <td>{{item.TestName}}</td>
+          <td>{{item.ResultValue}}</td>
+          <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Calculation">View</a></td>
+          <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
+            (click)="openLogicDialog()">View</a></td>
+          <!-- <td class="text-center">
+            <mat-checkbox disabled [(ngModel)]="item.Configured" color="primary">
+            </mat-checkbox>
+          </td> -->
         </tr>
       </tbody>
     </table>

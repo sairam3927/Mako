@@ -17,15 +17,21 @@ import { AuditeepieComponent } from './auditeepie/auditeepie.component';
 import { RemarksturnaroundpieComponent } from './remarksturnaroundpie/remarksturnaroundpie.component';
 import { TrendChartComponent } from './trend-chart/trend-chart.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { GenotypeComponent } from './genotype/genotype.component';
+import { AlleleCallsComponent } from './allele-calls/allele-calls.component';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { GenotypeTotalPieComponent } from './genotype/genotype-total-pie/genotype-total-pie.component';
+import { GenotypePieComponent } from './genotype/genotype-pie/genotype-pie.component';
+import { SingleAlleleCallPieComponent } from './allele-calls/single-allele-call-pie/single-allele-call-pie.component';
+import { TrendAnalysisComponent } from './trend-analysis/trend-analysis.component';
 // import { AddDocumentsComponent } from './incoming-order-queue/add-documents/add-documents.component';
 
-
-
-
-
-
 export const routes = [
-  { path: '', component: DashboardComponent, pathMatch: 'full', data :{breadcrumb : 'Dashboard'} }
+  //{ path: '', component: DashboardComponent, pathMatch: 'full', data :{breadcrumb : 'Dashboard'} },
+  { path: '', redirectTo: 'allelecalls', pathMatch: 'full' },
+  { path: 'allelecalls', component: AlleleCallsComponent, data: { breadcrumb: 'Allele Calls' } },
+  { path: 'genotypes', component: GenotypeComponent, data: { breadcrumb: 'Genotypes' } },
+  { path: 'trendanalysis', component: TrendAnalysisComponent, data: { breadcrumb: 'Trend Analysis' } },
 ];
 
 @NgModule({
@@ -43,7 +49,7 @@ export const routes = [
     NgxPaginationModule
   ],
   declarations: [
-    DashboardComponent,
+    
     AnalyticsComponent,
     GoogleeMapsComponent,
     PieComponent,
@@ -51,7 +57,14 @@ export const routes = [
     AuditeepieComponent,
     RemarksturnaroundpieComponent,
     TrendChartComponent,
-    
-  ]
+    AlleleCallsComponent,
+    GenotypeComponent,
+    GenotypeTotalPieComponent,
+    GenotypePieComponent,
+    SingleAlleleCallPieComponent,
+    TrendAnalysisComponent
+  ],
+  providers:[AlertService],
+  entryComponents:[SingleAlleleCallPieComponent,GenotypePieComponent]
 })
 export class DashboardModule { }

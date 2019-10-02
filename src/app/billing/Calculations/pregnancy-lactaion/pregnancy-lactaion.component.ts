@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LogicModelpopupComponent } from './logic-modelpopup/logic-modelpopup.component';
+import { AppSettings } from 'src/app/app.settings';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-pregnancy-lactaion',
@@ -9,7 +12,8 @@ export class PregnancyLactaionComponent implements OnInit {
 
   List: any;
 
-  constructor() { }
+  constructor(public appSettings: AppSettings,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.List= [
@@ -23,6 +27,15 @@ export class PregnancyLactaionComponent implements OnInit {
       { id: '8', Nutrient:'Vitamin A',  Units:'μg', Logic:'NA', Pregnancy:'700', Lactation:'900'},
       { id: '9', Nutrient:'Vitamin B12',  Units:'mcg', Logic:'NA', Pregnancy:'2.6', Lactation:'2.8'},
     ];
+  }
+  public openLogicDialog() {
+    let dialogRef = this.dialog.open(LogicModelpopupComponent, {
+      height: 'auto',
+      width: '600px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
   }
 
 }

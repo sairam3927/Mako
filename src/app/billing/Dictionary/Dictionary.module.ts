@@ -22,7 +22,7 @@ import { AlgorithmComponent } from './Algorithm/Algorithm.component';
 import { UploadComponent } from './Algorithm/upload/upload.component';
 import { AddAlgorithmComponent } from './Algorithm/addAlgorithm/addAlgorithm.component';
 import { ScopeUploadCSVComponent } from './Scope/upload-csv/upload-csv.component';
-import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
+// import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
@@ -33,12 +33,14 @@ import { UploadTestComponent } from './tests/upload-test/upload-test.component';
 import { UploadCsvHaplotypeComponent } from './haplotypes/upload-csv-haplotype/upload-csv-haplotype.component';
 import { AddScopeComponent } from './Scope/add-scope/add-scope.component';
 import { NutrientComponent } from './nutrient/nutrient.component';
+import { SectionsComponent } from './sections/sections.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
   { path: 'Scope', component: ScopeComponent, data: { breadcrumb: 'Scope' } },
   { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'D R I' } },
   { path: 'Messages', component: MessagesComponent, data: { breadcrumb: 'Messages' } },
+  { path: 'Sections', component: SectionsComponent, data: { breadcrumb: 'Messages' } },
   { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrient' } },
   { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
@@ -48,7 +50,11 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent, AddMessageComponent, SeqResultsComponent, UploadCSVComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent, NutrientComponent],
+  declarations: [ScopeComponent, ScopeUploadCSVComponent, DRIComponent, AddDRIComponent, MessagesComponent,
+     AddMessageComponent, SeqResultsComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, 
+     AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, 
+     AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent,
+      NutrientComponent,SectionsComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
