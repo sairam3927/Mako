@@ -119,7 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddNoteDialogComponent,
     HelpVideoDialogComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     AppSettings,
     GoogleMapsAPIWrapper,
   { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
