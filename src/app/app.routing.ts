@@ -14,21 +14,12 @@ export const routes: Routes = [
     {
         path: 'mako',
         component: LayoutComponent, children: [
-<<<<<<< HEAD
-            { path: '', redirectTo: 'billing', pathMatch: 'full' },
-            { path: 'dashboard', component: DashboardComponent, loadChildren: './analytics/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } },
-            { path: 'patients', loadChildren: './analytics/analytics.module#AnalyticsModule', data: { breadcrumb: '' } },
-            { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'Setup' } },
-            { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', data: { breadcrumb: '' } },
-            { path: 'admin', loadChildren: './admin/admin.module#AdminModule', data: { breadcrumb: 'Admin' } },
-=======
             { path: '', redirectTo: 'billing', pathMatch: 'full'},
             { path: 'dashboard',component:DashboardComponent, loadChildren: './analytics/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' }},
             { path: 'patients', loadChildren: './analytics/analytics.module#AnalyticsModule', data: { breadcrumb: '' }},
             { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'Setup' }},
             { path: 'reports', loadChildren: './reports/reports.module#ReportsModule', data: { breadcrumb: '' }},
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule', data: { breadcrumb: 'Admin' }},
->>>>>>> 3fc341966cdf69c51ae494e40fbf524f39425ef5
             // { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule', data: { breadcrumb: 'Calendar'}}
         ]
     },
@@ -42,11 +33,6 @@ export const routes: Routes = [
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
-<<<<<<< HEAD
-    preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
-    useHash: true
-=======
    preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
    useHash: true
->>>>>>> 3fc341966cdf69c51ae494e40fbf524f39425ef5
 });

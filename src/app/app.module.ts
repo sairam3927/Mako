@@ -34,7 +34,7 @@ import { UserMenuComponent } from './theme/components/user-menu/user-menu.compon
 import { ModalModule } from 'ngx-bootstrap';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule, HttpClientJsonpModule  } from '@angular/common/http';
-import { ConfirmationPopoverModule } from 'angular-confirmation-pogitpover';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { PasswordDialogComponent } from './theme/components/user-menu/password-dialog/password-dialog.component';
 import { ProfileDialogComponent } from './theme/components/user-menu/profile-dialog/profile-dialog.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
