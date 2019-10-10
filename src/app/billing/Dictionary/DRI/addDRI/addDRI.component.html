@@ -1,21 +1,21 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-    Add DRI</h3>
+    Edit DRI</h3>
 
-<form class="form-horizontal" novalidate>
+<form class="form-horizontal" [formGroup]="addDRIForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
         <div class="col-sm-12 ">
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Nutrient : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Nutrient" required>
+                    <input disabled type="text" class="form-control" formControlName="Nutrient" placeholder="Enter Nutrient" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Pregnant > 30 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Pregnant_G" placeholder="Enter Value" required>
                 </div>
             </div>
 
@@ -23,14 +23,14 @@
                 <label class="control-label col-sm-4 add-member-label">Pregnant < 30 : </label> 
                 <div
                         class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" placeholder="Enter Value" required>
+                        <input type="text" class="form-control" formControlName="Pregnant_L" placeholder="Enter Value" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Lactate > 30 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Lactate_G" placeholder="Enter Value" required>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
                 <label class="control-label col-sm-4 add-member-label">Lactate < 30 : </label> 
                 <div
                         class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" placeholder="Enter Value" required>
+                        <input type="text" class="form-control" formControlName="Lactate_L" placeholder="Enter Value" required>
                 </div>
             </div>
 
@@ -46,14 +46,14 @@
                 <label class="control-label col-sm-4 add-member-label">Female <= 50 : </label> 
                 <div
                         class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" placeholder="Enter Value" required>
+                        <input type="text" class="form-control" formControlName="Female_L" placeholder="Enter Value" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Female > 50 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Female_G" placeholder="Enter Value" required>
                 </div>
             </div>
 
@@ -61,14 +61,14 @@
                 <label class="control-label col-sm-4 add-member-label">Male <= 50 : </label> 
                 <div
                         class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" placeholder="Enter Value" required>
+                        <input type="text" class="form-control" formControlName="Male_L" placeholder="Enter Value" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Male > 50 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Male_G" placeholder="Enter Value" required>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
             <mat-icon>cancel</mat-icon>
             <span>&nbsp;Cancel</span>
         </button>
-        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <button mat-raised-button class="add-hover btn-success" (click)="ConfigureDRI() ">
             <mat-icon>send</mat-icon>
             <span>&nbsp;Save</span>
         </button>

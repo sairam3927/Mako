@@ -14,7 +14,7 @@ export const routes: Routes = [
     {
         path: 'mako',
         component: LayoutComponent, children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+            { path: '', redirectTo: 'billing', pathMatch: 'full'},
             { path: 'dashboard',component:DashboardComponent, loadChildren: './analytics/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' }},
             { path: 'patients', loadChildren: './analytics/analytics.module#AnalyticsModule', data: { breadcrumb: '' }},
             { path: 'billing', loadChildren: './billing/billing.module#BillingModule', data: { breadcrumb: 'Setup' }},

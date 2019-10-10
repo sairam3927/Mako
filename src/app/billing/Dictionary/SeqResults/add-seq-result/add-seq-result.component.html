@@ -1,14 +1,43 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
     Add Seq Result</h3>
 
-<form class="form-horizontal" novalidate>
+<form class="form-horizontal" [formGroup]="addSeqResultForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
         <div class="col-sm-12 ">
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <mat-select placeholder="--Select Allele Name--" class="form-control">
-                        <mat-option *ngFor="let Lists of List" [value]="Lists">
+                    <!-- <mat-select placeholder="--Select Allele Name--" formControlName="AlleleName" class="form-control">
+                        <mat-option *ngFor="let Lists of List" [(ngModel)] ="addSeqResultForm.value['AlleleName']">
+                            {{Lists}}
+                        </mat-option>
+                    </mat-select> -->
+                    <input disabled type="text" class="form-control" formControlName="AlleleName"
+                        placeholder="Enter AlleleName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Ref : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <!-- <mat-select style="margin-right: 10px;" formControlName="Ref" placeholder="--Select Ref--"
+                        class="form-control">
+                        <mat-option [value]="G">G</mat-option>
+                        <mat-option [value]="A">A</mat-option>
+                        <mat-option [value]="C">C</mat-option>
+                        <mat-option [value]="T">T</mat-option>
+                    </mat-select> -->
+                    <input disabled type="text" class="form-control" formControlName="Ref" placeholder="Enter Ref"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Variant : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <mat-select style="margin-right: 10px;" formControlName="Variant" placeholder="--Select Variant--"
+                        class="form-control" [(ngModel)]="item.Variant">
+                        <mat-option *ngFor="let Lists of varient" [value]="Lists">
                             {{Lists}}
                         </mat-option>
                     </mat-select>
@@ -16,59 +45,37 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Ref : </label>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <mat-select style="margin-right: 10px;" placeholder="--Select Ref--" class="form-control">
-                        <mat-option [value]="1">G</mat-option>
-                        <mat-option [value]="2">A</mat-option>
-                        <mat-option [value]="3">C</mat-option>
-                        <mat-option [value]="4">T</mat-option>
-                    </mat-select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Variant : </label>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <mat-select style="margin-right: 10px;" placeholder="--Select Variant--" class="form-control">
-                        <mat-option [value]="1">G</mat-option>
-                        <mat-option [value]="2">A</mat-option>
-                        <mat-option [value]="3">C</mat-option>
-                        <mat-option [value]="4">T</mat-option>
-                    </mat-select>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label class="control-label col-sm-4 ">Gene : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input disabled type="text" class="form-control" value="LCT" placeholder="Enter Gene" required>
+                    <input disabled type="text" class="form-control" formControlName="Gene" placeholder="Enter Gene"
+                        required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Allele Call : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <mat-select style="margin-right: 10px;" placeholder="--Select Allele Call--" class="form-control">
-                        <mat-option [value]="1">Heterozygous</mat-option>
-                        <mat-option [value]="2">Homozygous</mat-option>
-                        <mat-option [value]="3">Absent</mat-option>
+                    <mat-select style="margin-right: 10px;" formControlName="AlleleCall"
+                        placeholder="--Select Allele Call--" class="form-control" [(ngModel)]="item.AlleleCall" >
+                        <mat-option *ngFor="let Lists of AlleleCall" [value]="Lists">
+                            {{Lists}}
+                        </mat-option>
                     </mat-select>
                 </div>
             </div>
 
         </div>
     </div>
-
-    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
-        <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
-            (click)="close()">
-            <mat-icon>cancel</mat-icon>
-            <span>&nbsp;Cancel</span>
-        </button>
-        <button mat-raised-button class="add-hover btn-success" type="submit">
-            <mat-icon>send</mat-icon>
-            <span>&nbsp;Save</span>
-        </button>
-    </mat-dialog-actions>
 </form>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+    <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
+        (click)="close()">
+        <mat-icon>cancel</mat-icon>
+        <span>&nbsp;Cancel</span>
+    </button>
+    <button mat-raised-button class="add-hover btn-success" (click)="addSeqResult()">
+        <mat-icon>send</mat-icon>
+        <span>&nbsp;Save</span>
+    </button>
+</mat-dialog-actions>
