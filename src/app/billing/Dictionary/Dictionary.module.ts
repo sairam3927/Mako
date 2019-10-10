@@ -34,6 +34,8 @@ import { UploadCsvHaplotypeComponent } from './haplotypes/upload-csv-haplotype/u
 import { AddScopeComponent } from './Scope/add-scope/add-scope.component';
 import { NutrientComponent } from './nutrient/nutrient.component';
 import { SectionsComponent } from './sections/sections.component';
+import { AddSectionComponent } from './sections/add-section/add-section.component';
+import { ConfirmDialogComponent } from './Scope/confirm-dialog/confirm-dialog.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
@@ -54,7 +56,7 @@ export const routes = [
      AddMessageComponent, SeqResultsComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, 
      AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, 
      AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent,
-      NutrientComponent,SectionsComponent],
+      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
@@ -62,7 +64,7 @@ export const routes = [
   ],
   entryComponents: [
     // AddMessageComponent,
-    // AddDRIComponent,
+    AddDRIComponent,
     // MessagesUploadComponent,
     // UploadCSVComponent,
     // ScopeUploadCSVComponent,
@@ -71,10 +73,12 @@ export const routes = [
     // DriUploadCSVComponent,
     // AddHaplotypeComponent,
     // AddTestComponent,
-    // AddSeqResultComponent,
     // UploadTestComponent,
     // UploadCsvHaplotypeComponent,
-    // AddScopeComponent
+    AddSeqResultComponent,
+    AddScopeComponent,
+    AddSectionComponent,
+    ConfirmDialogComponent
   ],
   providers: [AlertService]
 })

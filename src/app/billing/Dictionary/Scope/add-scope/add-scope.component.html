@@ -1,32 +1,34 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-  Add Scope</h3>
+  Edit Scope</h3>
 
-<form class="form-horizontal" novalidate>
+<form class="form-horizontal" [formGroup]="addScopeForm" novalidate>
   <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
     <div class="col-sm-12 ">
 
       <div class="form-group">
         <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <mat-select class="form-control" placeholder="--Select Allele Name--">
-            <mat-option *ngFor="let Lists of List" [value]="Lists">
-              {{Lists}}
-            </mat-option>
-          </mat-select>
+          <!-- <mat-select class="form-control" formControlName="AlleleName" placeholder="--Select Allele Name--">
+            <mat-option value = "addScopeForm"></mat-option>
+          </mat-select> -->
+          <input disabled type="text" class="form-control" formControlName="AlleleName" placeholder="Enter Allele Name" required>
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-4 add-member-label">Gene: </label>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <input type="text" class="form-control" placeholder="Enter Gene" required>
+          <input disabled type="text" class="form-control" formControlName="Gene" placeholder="Enter Gene" required>
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-4 add-member-label">Description: </label>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <input type="text" class="form-control" placeholder="Enter Description" required>
+          <!-- <input type="text" class="form-control" formControlName="Description" placeholder="Enter Description" required> -->
+          <textarea matInput cdkTextareaAutosize formControlName="Description" class="form-control"
+            placeholder="Enter Description" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4"
+            cdkAutosizeMaxRows="10" style="margin-top: 10px;"></textarea>
         </div>
       </div>
 
@@ -39,7 +41,7 @@
       <mat-icon>cancel</mat-icon>
       <span>&nbsp;Cancel</span>
     </button>
-    <button mat-raised-button class="add-hover btn-success" type="submit">
+    <button mat-raised-button class="add-hover btn-success" (click)="addScope()">
       <mat-icon>send</mat-icon>
       <span>&nbsp;Save</span>
     </button>

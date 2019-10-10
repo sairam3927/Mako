@@ -1,0 +1,24 @@
+<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+  Confirmation</h3>
+
+<form class="form-horizontal" novalidate>
+  <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+      <div class="col-sm-12 " style="align-content: center">
+          <div class=" form-group">
+              <label >Are you sure you want to make the scope <span *ngIf="check == false">active</span><span *ngIf="check == true">inactive</span> ?</label>
+          </div>
+      </div>
+  </div>
+
+  <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+      <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
+          (click)="close()">
+          <mat-icon>cancel</mat-icon>
+          <span>&nbsp;No</span>
+      </button>
+      <button mat-raised-button class="add-hover btn-success" (click)="saveOrder()">
+          <mat-icon>send</mat-icon>
+          <span>&nbsp;Yes</span>
+      </button>
+  </mat-dialog-actions>
+</form>

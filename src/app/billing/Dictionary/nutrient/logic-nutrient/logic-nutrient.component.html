@@ -1,27 +1,36 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-    Logic</h3>
-  <!-- <h5><span style="font-weight: bold;margin-left: 16px;">You can upload multiple documents here:</span></h5> -->
-  
-  <div fxLayout="row wrap" class="row" mat-dialog-content>
-    <div class="col-sm-12">
-      <h5><span style="font-weight: bold;">Standard Recommendation </span></h5>
-      <p>Pick up values from the DRI table based on whther is the gae opf wman is less than or more than 30 years
-        For custom recommendation</p><br>
-      <h5><span style="font-weight: bold;">Custom Recommendation</span></h5>
-      <p>for rs228584, if genotype is C/C, then the value is >5 mg (Messages Table)
-        if genotype is C/T, then the value is >5 mg (Medssage Table)
-        if genotype is T/T, then the value is >1.4 mg (Messages Table)
-        Else the value is > 1.4 mg (DRI table)</p>
+  Edit Nutrient / Condition </h3>
+
+<form class="form-horizontal" [formGroup]="addNutrientForm" novalidate>
+  <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+    <div class="col-sm-12 ">
+
+      <div class="form-group">
+        <label class="control-label col-sm-4 add-member-label">Section Name: </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input type="text" class="form-control" formControlName="SectionName" placeholder="Enter Section Name" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4 add-member-label">Nutrient Condition: </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input type="text" class="form-control" formControlName="NutrientCondition" placeholder="Enter Nutrient Condition" required>
+        </div>
+      </div>
+
     </div>
   </div>
-  <mat-dialog-actions align="center" style="padding: 17px 0 17px 0 !important;">
+
+  <mat-dialog-actions align="center" style="padding-top: 17px !important;">
     <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
       (click)="close()">
       <mat-icon>cancel</mat-icon>
       <span>&nbsp;Cancel</span>
     </button>
-    <!-- <button mat-raised-button class="add-hover btn-success" type="submit">
-        <mat-icon>backup</mat-icon>
-        <span>&nbsp;Upload</span>
-      </button> -->
+    <button mat-raised-button class="add-hover btn-success" (click)="addNutrient()">
+      <mat-icon>send</mat-icon>
+      <span>&nbsp;Save</span>
+    </button>
   </mat-dialog-actions>
+</form>

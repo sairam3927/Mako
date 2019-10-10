@@ -23,53 +23,55 @@
         </div>
     </div>
 </div>
-<div class="row wrap flex-p" style="margin-left: -7px;">
-    <div class="col-sm-12" *ngIf="filterToggle">
-        <mat-card class="filter">
-            <mat-card-content>
-                <div class="row col-sm-12">
-                    <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
-                            Keyword search :
+<form [formGroup]="filterForm">
+    <div class="row wrap flex-p" style="margin-left: -7px;">
+        <div class="col-sm-12" *ngIf="filterToggle">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Keyword search :
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="keyWord" placeholder="--Keyword search--">
+                            </div>
                         </div>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" placeholder="--Keyword search--">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
-                            <!-- Upload Date : -->
-                        </div>
-                        <div class="col-sm-8">
-                            <!-- <div class="input-icon right">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                <!-- Upload Date : -->
+                            </div>
+                            <div class="col-sm-8">
+                                <!-- <div class="input-icon right">
                                     <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
                                     <input class="form-control" placeholder="MM/DD/YYYY" class="form-control"
                                         id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
                                     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                                 </div> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
                         <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-8">
-                            <button type="button" class="add-hover-reset btn btn-reset  pull-right">Reset</button>
-                            <button type="button"
-                                class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset  pull-right"
+                                    (click)="resetFilter()">Reset</button>
+                                <button type="button" class="filter-hover btn btn-success pull-right margin-right-10"
+                                    (click)="filterBy(filterForm.value)">Search</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </mat-card-content>
-        </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-</div>
+</form>
 <div fxLayout="row wrap">
     <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
                     <th class="text-center" style="min-width: 65px;">Action</th>
-                    <!-- <th class="text-center">Used</th> -->
                     <th class="text-center">Active</th>
                     <th class="text-center" style="min-width: 210px;">Allele Name</th>
                     <th class="text-center">Gene</th>
@@ -77,34 +79,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of List">
+                <tr *ngFor="let item of pageScopeList">
                     <td class="text-center">
-                        <a title="Edit" style="cursor: pointer;" (click)="addScopeDialog()">
+                        <a title="Edit" style="cursor: pointer;" (click)="addScopeDialog(item.ScopeId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
                         <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="left" (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                            placement="right" (confirm)="deleteScope(item.ScopeId)" (cancel)="cancelClicked = true">
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
-                    <!-- <td class="text-center">
-                        <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
-                        </mat-checkbox>
-                    </td> -->
                     <td class="text-center">
-                        <mat-checkbox></mat-checkbox>
+                        <mat-checkbox [(ngModel)] ="item.Active" (click)="ConfirmDialog(item.ScopeId,item.Active)"></mat-checkbox>
                     </td>
-                    <td class="text-center">{{item.AllelName}}</td>
+                    <td class="text-center">{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Gene}}</td>
-
-                    <td>{{item.description}}</td>
-
+                    <td>{{item.Description}}</td>
 
                 </tr>
+                <!-- <div *ngIf = "pageScopeList" > -->
             </tbody>
         </table>
-        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
         </mat-paginator>
+
     </div>
 </div>
 
