@@ -13,12 +13,12 @@ export class AddSectionComponent implements OnInit {
 
   id: any;
   action: any;
-  item: any;
+  item: any; 
   public addSectionForm: FormGroup;
   public gridObject: any = {};
-  public formValue: any = {};
+  public formValue: any = {}; 
   public formData: any = {};
-  constructor(public alertService: AlertService, private _fb: FormBuilder, public dialogRef: MatDialogRef<AddSectionComponent>, private dictionaryService: DictionaryService,
+  constructor(public alertService: AlertService, public dialogRef: MatDialogRef<AddSectionComponent>, private dictionaryService: DictionaryService,
     public fb: FormBuilder) { }
 
   ngOnInit() {

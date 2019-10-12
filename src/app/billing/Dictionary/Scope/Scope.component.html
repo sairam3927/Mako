@@ -72,7 +72,7 @@
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
                     <th class="text-center" style="min-width: 65px;">Action</th>
-                    <th class="text-center">Active</th>
+                    <!-- <th class="text-center">Active</th> -->
                     <th class="text-center" style="min-width: 210px;">Allele Name</th>
                     <th class="text-center">Gene</th>
                     <th>Description</th>
@@ -84,14 +84,13 @@
                         <a title="Edit" style="cursor: pointer;" (click)="addScopeDialog(item.ScopeId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="right" (confirm)="deleteScope(item.ScopeId)" (cancel)="cancelClicked = true">
+                        <a (click)="deleteDialog(item.ScopeId)">
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox [(ngModel)] ="item.Active" (click)="ConfirmDialog(item.ScopeId,item.Active)"></mat-checkbox>
-                    </td>
+                    </td> -->
                     <td class="text-center">{{item.AlleleName}}</td>
                     <td class="text-center">{{item.Gene}}</td>
                     <td>{{item.Description}}</td>

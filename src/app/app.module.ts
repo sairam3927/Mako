@@ -53,6 +53,7 @@ import { ForgotPasswordComponent } from './login/forgot-password/forgot-password
 import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { DashboardComponent } from './analytics/dashboard/dashboard.component';
+import { DeleteConfirmDailogComponent } from './shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -89,7 +90,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     }),
-    DataTableModule
+    DataTableModule,
+    
   ],
   declarations: [
     AppComponent,DashboardComponent,
@@ -117,7 +119,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmDialogComponent,
     ProfileDialogComponent,
     AddNoteDialogComponent,
-    HelpVideoDialogComponent
+    HelpVideoDialogComponent,
+    
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     AppSettings,

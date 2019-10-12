@@ -36,13 +36,14 @@ import { NutrientComponent } from './nutrient/nutrient.component';
 import { SectionsComponent } from './sections/sections.component';
 import { AddSectionComponent } from './sections/add-section/add-section.component';
 import { ConfirmDialogComponent } from './Scope/confirm-dialog/confirm-dialog.component';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 export const routes = [
   { path: '', redirectTo: 'Scope' },
   { path: 'Scope', component: ScopeComponent, data: { breadcrumb: 'Scope' } },
   { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'D R I' } },
   { path: 'Messages', component: MessagesComponent, data: { breadcrumb: 'Messages' } },
-  { path: 'Sections', component: SectionsComponent, data: { breadcrumb: 'Messages' } },
+  { path: 'Sections', component: SectionsComponent, data: { breadcrumb: 'Sections' } },
   { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrient' } },
   { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
@@ -56,14 +57,14 @@ export const routes = [
      AddMessageComponent, SeqResultsComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, 
      AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, 
      AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent,
-      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent],
+      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent,DeleteConfirmDailogComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
     SharedModule, NgxChartsModule, OwlDateTimeModule, OwlNativeDateTimeModule
   ],
   entryComponents: [
-    // AddMessageComponent,
+    AddMessageComponent,
     AddDRIComponent,
     // MessagesUploadComponent,
     // UploadCSVComponent,
@@ -78,7 +79,8 @@ export const routes = [
     AddSeqResultComponent,
     AddScopeComponent,
     AddSectionComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DeleteConfirmDailogComponent
   ],
   providers: [AlertService]
 })
