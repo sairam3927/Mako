@@ -5,8 +5,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { DictionaryService } from '../dictionary.service';
 import { AddSectionComponent } from './add-section/add-section.component';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
-@Component({
+@Component({ 
   selector: 'app-sections',
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss']
@@ -19,12 +20,12 @@ export class SectionsComponent implements OnInit {
   }
   fakedata: any;
   SectionList: any;
-  pageSectionList: any;
+  pageSectionList: any; 
 
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
   public currentPage = 0;
-  public totalSize = 0;
+  public totalSize = 0; 
   public currentPageTemp = 0;
   public totalSizeTemp = 0;
 
@@ -146,6 +147,19 @@ export class SectionsComponent implements OnInit {
     this.pageSectionList = this.SectionList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
   }
 
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteSection(id)
+      }
+    });
+  }
  
 
 

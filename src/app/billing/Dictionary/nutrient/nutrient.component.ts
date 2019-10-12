@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { LogicNutrientComponent } from './logic-nutrient/logic-nutrient.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DictionaryService } from '../dictionary.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
   selector: 'app-nutrient',
@@ -146,6 +147,20 @@ export class NutrientComponent implements OnInit {
     console.log('pageSize', e.pageSize)
     this.pageSize = e.pageSize;
     this.pageNutrientList = this.NutrientList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  }
+
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteNutrient(id)
+      }
+    });
   }
 
 }

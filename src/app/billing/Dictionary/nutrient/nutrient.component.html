@@ -84,8 +84,7 @@
                         <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="openLogicDialog(item.Nutrients_ConditionsId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="right" (confirm)="deleteNutrient(item.Nutrients_ConditionsId)" (cancel)="cancelClicked = true">
+                        <a (click)="deleteDialog(item.Nutrients_ConditionsId)" >
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>

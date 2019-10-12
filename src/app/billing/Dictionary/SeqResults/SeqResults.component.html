@@ -12,10 +12,10 @@
                 (click)="uploadCSVDialog()">
                 <mat-icon>backup</mat-icon> Upload CSV
             </button>
-            <!-- <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
-                (click)="addSeqResultDialog()">
-                <mat-icon>add_comment</mat-icon> Add SEQ Result
-            </button> -->
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+                <mat-icon>cloud_download</mat-icon><a href="assets/data/sampledataseq.csv"
+                    style="color: white">&nbsp;Download Sample </a>
+            </button>
         </div>
     </div>
 </div>
@@ -118,8 +118,7 @@
                             (click)="addSeqResultDialog(item.SequenceResultsMasterId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
-                            placement="left" (confirm)="deleteSeqResult(item.SequenceResultsMasterId)" (cancel)="cancelClicked = true">
+                        <a (click)="deleteDialog(item.SequenceResultsMasterId)" >
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>

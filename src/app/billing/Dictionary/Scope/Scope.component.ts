@@ -7,6 +7,7 @@ import { AddScopeComponent } from './add-scope/add-scope.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DictionaryService } from '../dictionary.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
   selector: 'app-Scope',
@@ -181,6 +182,19 @@ export class ScopeComponent implements OnInit {
     console.log('pageSize', e.pageSize)
     this.pageSize = e.pageSize;
     this.pageScopeList = this.ScopeList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  }
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteScope(id)
+      }
+    });
   }
 
 }
