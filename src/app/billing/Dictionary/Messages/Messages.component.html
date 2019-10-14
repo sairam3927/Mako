@@ -154,12 +154,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of List">
+                <tr *ngFor="let item of MessageList">
                     <td class="text-center">
-                        <a title="Edit" style="margin-right: 10px; cursor: pointer;" (click)="addMessageDialog(item.MessagesId,'Update',item)">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;"
+                            (click)="addMessageDialog(item.MessagesId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a (click)="deleteDialog(item.MessagesId)" >
+                        <a (click)="deleteDialog(item.MessagesId)">
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>

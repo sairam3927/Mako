@@ -51,7 +51,7 @@ export class TestsComponent implements OnInit {
     this.dictionaryService.gettestslist().subscribe(
       data => {
         console.log(data)
-        this.TestList = data['TestsList'];
+        this.TestList = data['data'];
         if (this.TestList.length >= 0) {
           this.pageTestList = this.TestList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
@@ -80,7 +80,8 @@ export class TestsComponent implements OnInit {
     let body = {
       'TestsId': data
     }
-    this.dictionaryService.Sectionsdelete(body).subscribe(
+    console.log("this.deleteTest",body)
+    this.dictionaryService.deletetests(body).subscribe(
       data => {
         console.log(data)
         if (data['Success'] == true) {

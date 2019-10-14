@@ -80,7 +80,8 @@ export const routes = [
     AddScopeComponent,
     AddSectionComponent,
     ConfirmDialogComponent,
-    DeleteConfirmDailogComponent
+    DeleteConfirmDailogComponent,
+    AddTestComponent
   ],
   providers: [AlertService]
 })

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
-import { Observable } from 'rxjs';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExcelServicesService } from 'src/app/services/excel-services.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DictionaryService } from '../../dictionary.service';
 
 @Component({
@@ -20,8 +17,7 @@ export class UploadCSVComponent implements OnInit {
   errorList = [];
   constructor(public dialogRef: MatDialogRef<UploadCSVComponent>,  private dictionaryService: DictionaryService,
     public alertService: AlertService,
-    public fb: FormBuilder, private excelService: ExcelServicesService, private http: HttpClient,
-    private snackbar: MatSnackBar) {
+    public fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -39,6 +35,7 @@ export class UploadCSVComponent implements OnInit {
     for (var i = 0; i < this.myFiles.length; i++) {
       frmData.append("fileUpload", this.myFiles[i]);
     }
+    console.log(frmData)
     this.dictionaryService.upsertsequence_results_mastercsv(frmData).subscribe(
       data => {
         // SHOW A MESSAGE RECEIVED FROM THE WEB API.

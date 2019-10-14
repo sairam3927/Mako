@@ -53,7 +53,7 @@ export class MessagesComponent implements OnInit {
     this.dictionaryService.getmessageslist().subscribe(
       data => {
         console.log(data)
-        this.MessageList = data['MessagesList'];
+        this.MessageList = data['data'];
         if (this.MessageList.length >= 0) {
           this.pageMessageList = this.MessageList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
@@ -70,7 +70,7 @@ export class MessagesComponent implements OnInit {
   public addMessageDialog(id, action, item) {
     let dialogRef = this.dialog.open(AddMessageComponent, {
       height: 'auto',
-      width: '600px',
+      width: '610px',
       autoFocus: false,
 
     });
