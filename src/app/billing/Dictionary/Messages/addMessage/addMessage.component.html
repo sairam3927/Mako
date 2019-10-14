@@ -1,46 +1,60 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
     Add Message</h3>
 
-<form class="form-horizontal" novalidate>
+<form class="form-horizontal" [formGroup]="addMessageForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
         <div class="col-sm-12 ">
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Allele Name : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <mat-select class="form-control" placeholder="--Select Allele Name--">
+                    <!-- <mat-select class="form-control" placeholder="--Select Allele Name--">
                         <mat-option *ngFor="let Lists of List" [value]="Lists">
                             {{Lists}}
                         </mat-option>
-                    </mat-select>
+                    </mat-select> -->
+                    <input disabled type="text" class="form-control" formControlName="AlleleName"
+                        placeholder="Enter Allele Name" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Genotype : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Genotype" required>
+                    <input disabled type="text" class="form-control" formControlName="Genotype"
+                        placeholder="Enter Genotype" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 ">Gene : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input disabled type="text" class="form-control" value="LCT" placeholder="Enter Gene" required>
+                    <input disabled type="text" class="form-control" formControlName="Gene" value="LCT"
+                        placeholder="Enter Gene" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Recommendation Value : </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" formControlName="RecommendationValue"
+                        placeholder="Enter Recommendation Value" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Comment : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Comment" required>
+                    <input type="text" class="form-control" formControlName="Comment" placeholder="Enter Comment"
+                        required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Recommendation : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" placeholder="Enter Recommendation" required>
+                    <input type="text" class="form-control" formControlName="Recommendation"
+                        placeholder="Enter Recommendation" required>
                 </div>
             </div>
 
@@ -53,7 +67,7 @@
             <mat-icon>cancel</mat-icon>
             <span>&nbsp;Cancel</span>
         </button>
-        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <button mat-raised-button class="add-hover btn-success" (click)="addSelections()">
             <mat-icon>send</mat-icon>
             <span>&nbsp;Save</span>
         </button>

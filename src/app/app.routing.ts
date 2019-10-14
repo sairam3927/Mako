@@ -1,4 +1,4 @@
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 import { LayoutComponent } from './layout/layout.component';
@@ -23,13 +23,13 @@ export const routes: Routes = [
             // { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule', data: { breadcrumb: 'Calendar'}}
         ]
     },
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
     { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
-    { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Forgot Password' } },
+    { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Forgot Password' } }, 
     { path: 'otp', component: OtpResetPasswordComponent, data: { breadcrumb: 'otp' } },
-    { path: 'reset', component: ResetPasswordComponent, data: { breadcrumb: 'Reset' } },
-    { path: '**', component: NotFoundComponent, data: { breadcrumb: 'Not found' } }
+    { path: 'reset', component: ResetPasswordComponent , data: { breadcrumb: 'Reset' } },
+    { path: '**', component: NotFoundComponent, data: { breadcrumb: 'Not found' }  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {

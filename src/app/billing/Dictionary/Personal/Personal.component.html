@@ -1,7 +1,7 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
   Update Personal Data</h3>
 
-<form class="form-horizontal" novalidate>
+<form class="form-horizontal" [formGroup]="PersonalForm" novalidate>
   <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
     <div class="col-sm-12 ">
       <div fxFlex="100" fxFlex.gt-sm fxFlex.sm>
@@ -17,33 +17,39 @@
               <tbody>
                 <tr>
                   <td><label style="font-weight: 100;">Age :</label></td>
-                  <td><input type="text" class="form-control" id="age" placeholder="Enter Age" required></td>
+                  <td><input type="text" class="form-control" id="age" formControlName="Age" placeholder="Enter Age"
+                      required></td>
                 </tr>
                 <tr>
                   <td><label style="font-weight: 100;">Gender :</label></td>
                   <td>
-                    <mat-radio-group class="pull-left" style="margin-top: 5px" aria-label="Select an option">
-                      <mat-radio-button value="1" style="margin-right: 10px" (click)="setradio('Male')"><small
+                    <mat-radio-group class="pull-left" formControlName="Gender" style="margin-top: 5px"
+                      aria-label="Select an option">
+                      <!-- <mat-radio-button value="1" style="margin-right: 10px" (click)="setradio('Male')"><small
                           style="font-size: 14px;">Male</small></mat-radio-button>
                       <mat-radio-button value="2" (click)="setradio('Female')"><small
-                          style="font-size: 14px;">Female</small></mat-radio-button>
+                          style="font-size: 14px;">Female</small></mat-radio-button> -->
+                      <mat-radio-button *ngFor="let gen of gender" [value]="gen.Value"  style="margin-right: 10px" (click)="setradio(gen.Name)"><small
+                          style="font-size: 14px;">{{gen.Name}}</small></mat-radio-button>
+                      
                     </mat-radio-group>
                   </td>
                 </tr>
                 <tr *ngIf="isSelected('Female')">
                   <td><label style="font-weight: 100;">Pregnant / Lactating :</label></td>
                   <td>
-                    <mat-checkbox class="w-100" id="lactating">
+                    <mat-checkbox class="w-100" formControlName="Pregnant" id="lactating">
                     </mat-checkbox>
                   </td>
                 </tr>
                 <tr>
                   <td><label style="font-weight: 100;">Ethinicity :</label></td>
                   <td>
-                    <mat-select  placeholder="--Select by Ethinicity--" class="form-control">
-                        <mat-option *ngFor="let ethnicity of ethnicitys" [value]="ethnicity.value">
-                            {{ethnicity.viewValue}}
-                          </mat-option>
+                    <mat-select placeholder="--Select by Ethinicity--" formControlName="Ethinicity"
+                      class="form-control">
+                      <mat-option *ngFor="let eth of ethnicity" [value]="eth.Value">
+                        {{eth.Name}}
+                      </mat-option>
                     </mat-select>
                   </td>
                 </tr>
@@ -90,7 +96,7 @@
       <mat-icon>cancel</mat-icon>
       <span>&nbsp;Cancel</span>
     </button>
-    <button mat-raised-button class="add-hover btn-success" type="submit">
+    <button mat-raised-button class="add-hover btn-success" (click)="addSelections()">
       <mat-icon>send</mat-icon>
       <span>&nbsp;Save</span>
     </button>

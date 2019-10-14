@@ -7,6 +7,7 @@ import { AddSeqResultComponent } from './add-seq-result/add-seq-result.component
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { DictionaryService } from '../dictionary.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
   selector: 'app-SeqResults',
@@ -57,21 +58,21 @@ export class SeqResultsComponent implements OnInit {
 
   getSeqResultList() {
     this.filterForm.reset();
-    this.dictionaryService.Sectionsgetlist().subscribe(
+    this.dictionaryService.getSequence_results_masterlist().subscribe(
       data => {
         console.log(data)
-        this.SeqResultList = data['SectionsList'];
+        this.SeqResultList = data['Sequence_Results_MasterList'];
         if (this.SeqResultList.length >= 0) {
           this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
         this.totalSize = this.SeqResultList.length;
       }
     );
-    this.SeqResultList = this.fakedata;
-    if (this.SeqResultList.length >= 0) {
-      this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
-    }
-    this.totalSize = this.SeqResultList.length;
+    // this.SeqResultList = this.fakedata;
+    // if (this.SeqResultList.length >= 0) {
+    //   this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+    // }
+    // this.totalSize = this.SeqResultList.length;
   }
 
   public addSeqResultDialog(id, action, item) {
@@ -147,16 +148,30 @@ export class SeqResultsComponent implements OnInit {
   }
 
 
-  // public uploadCSVDialog() {
-  //   let dialogRef = this.dialog.open(UploadCSVComponent, {
-  //     height: 'auto',
-  //     width: '400px',
-  //     autoFocus: false,
+  public uploadCSVDialog() {
+    let dialogRef = this.dialog.open(UploadCSVComponent, {
+      height: 'auto',
+      width: '400px',
+      autoFocus: false,
       
-  //   });
-  //   dialogRef.afterClosed().subscribe(data => {
-  //   });
-  // }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
+
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteSeqResult(id)
+      }
+    });
+  }
   
 
 }

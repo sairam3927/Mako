@@ -24,46 +24,45 @@
         </div>
     </div>
 </div>
-<div class="row wrap flex-p" style="margin-left: -7px;">
-    <div class="col-sm-12" *ngIf="filterToggle">
-        <mat-card class="filter">
-            <mat-card-content>
-                <div class="row col-sm-12">
-                    <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
-                            Keyword search :
-                        </div>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" placeholder="--Keyword search--">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="col-sm-8">
-                            <button type="button" class="add-hover-reset btn btn-reset">Reset</button>
-                            <button type="button"
-                                class="filter-hover btn btn-success pull-left margin-right-10">Search</button>
+<form [formGroup]="filterForm">
+    <div class="row wrap " style="padding: 10px;">
+        <div class="col-sm-12" *ngIf="filterToggle">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Keyword search :
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="keyWord"
+                                    placeholder="--Keyword search--">
+                            </div>
                         </div>
                         <div class="col-sm-4">
+
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset"
+                                    (click)="resetFilter()">Reset</button>
+                                <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                                    (click)="filterBy(filterForm.value)">Search</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+
+                            </div>
+                            <div class="col-sm-8">
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="col-sm-4 newMarginClass">
-                            <!-- Upload Date : -->
-                        </div>
-                        <div class="col-sm-8">
-                            <!-- <div class="input-icon right">
-                                            <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                            <input class="form-control" placeholder="MM/DD/YYYY" class="form-control"
-                                                id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
-                                            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                                        </div> -->
-                        </div>
-                    </div>
-                </div>
-            </mat-card-content>
-        </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
     </div>
-</div>
+</form>
 
 <div fxLayout="row wrap">
     <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
@@ -73,7 +72,7 @@
 
                     <th class="text-center" style="width: 120px">Actions</th>
                     <!-- <th class="text-center">Used</th> -->
-                    <th class="text-center">Active</th>
+                    <!-- <th class="text-center">Active</th> -->
                     <th>Test Name</th>
                     <th>Nutrient / Condition</th>
                     <th>Para 1</th>
@@ -84,42 +83,42 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of List">
+                <tr *ngFor="let item of TestList">
 
                     <td class="text-center">
-                        <a title="Edit" style="margin-right: 10px; cursor: pointer;">
+                        <a title="Edit" style="margin-right: 10px; cursor: pointer;"
+                            (click)="addTestDialog(item.TestsId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a mwlConfirmationPopover style="margin-right: 10px; cursor: pointer;"
-                            [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
-                            (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
+                        <a (click)="deleteDialog(item.TestsId)" >
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
-                        <a title="refresh" style="margin-right: 10px; cursor: pointer;">
+                        <!-- <a title="refresh" style="margin-right: 10px; cursor: pointer;">
                             <i class="fa fa-refresh" aria-hidden="true" style="color: green"></i>
-                        </a>
+                        </a> -->
                     </td>
                     <!-- <td class="text-center">
                         <mat-checkbox disabled [(ngModel)]="item.Used" color="primary">
                         </mat-checkbox>
                     </td> -->
-                    <td class="text-center">
+                    <!-- <td class="text-center">
                         <mat-checkbox></mat-checkbox>
-                    </td>
+                    </td> -->
                     <td>
                         {{item.TestName}}
                     </td>
-                    <td>{{item.Nutrient}}</td>
+                    <td>{{item.Nutrient_Condition}}</td>
                     <td>{{item.Para1}}</td>
                     <td>{{item.Para2}}</td>
-                    <td>{{item.Value}}</td>
-                    <td>{{item.Value}}</td>
+                    <td>{{item.RecommendedValue1}}</td>
+                    <td>{{item.RecommendedValue2}}</td>
                     <!-- <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
                             (click)="openLogicDialog()">View</a></td> -->
                 </tr>
             </tbody>
         </table>
-        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
         </mat-paginator>
     </div>
 </div>
@@ -128,8 +127,6 @@
     <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
         <div class="row col-sm-12">
             <div class="col-sm-11"></div>
-
         </div>
-
     </div>
 </div>

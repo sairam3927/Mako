@@ -4,6 +4,9 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { AddTestComponent } from './add-test/add-test.component';
 import { UploadTestComponent } from './upload-test/upload-test.component';
 import { LogicTestsComponent } from './logic-tests/logic-tests.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { DictionaryService } from '../dictionary.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
   selector: 'app-tests',
@@ -15,65 +18,158 @@ export class TestsComponent implements OnInit {
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
-  List: any;
+  fakedata: any;
+  TestList: any;
+  pageTestList: any;
+
+  public pageSize = 10;
+  public pageSizeTemp = this.pageSize;
+  public currentPage = 0;
+  public totalSize = 0; 
+  public currentPageTemp = 0;
+  public totalSizeTemp = 0;
+
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
-  
+  filterForm: FormGroup;
 
-  constructor(public dialog: MatDialog,
-    private alertService: AlertService) {
-    }
+  constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
+    private dictionaryService: DictionaryService) {
+      this.filterForm = this._fb.group({
+        'keyWord': [null]
+      });
+    } 
   ngOnInit() {
-    this.List = [
-
-      
-      
-      {id: "1" , TestName:"Test 1",Used:"checked",Gene:"LCT",Genotype:"A/A",Nutrient:'CONGENITAL LACTASE DEFICIENCY', Para1:'The LCT gene regulates the process of hydrolysis ("digestion") of lactose. A parent with a T genetic variation can transmit it to the child. If the newborn has two T genetic variations (genotype T/T)', Para2:'N/A', Logic:'TBD', Value:'NA' },
-      {id: "2" , TestName:"Test 2",Used:"", Gene:"LCT",Genotype:"T/T", Nutrient:'THIAMINE (VITAMIN B1)', Para1:'he or she may develop congenital lactase deficiency.The TPK1 gene controls the conversion of thiamine to thiamine pyrophosphate. Mothers carrying the C genetic variation have an increased risk of giving birth to children weighing less than the average birth weight.', Para2:'Foods rich in Thiamine (Vitamin B1) include: beef, liver, powdered milk, nuts, oranges, pork, eggs, peas, dried beans, and yeast.', Logic:'TBD', Value:'NA' },
-      {id: "3" , TestName:"Test 3",Used:"checked", Gene:"LCT",Genotype:"A/T",Nutrient:'ADENOSINE', Para1:'The ADA gene controls the metabolism of adenosine. Mothers carrying two copies of the gene with the genetic variation C (genotype C/C) have an increased risk of giving birth to children with neural tube closure defects, possibly due to accumulation of deoxyadenosine.', Para2:'NA', Logic:'TBD', Value:'>5' },
-      {id: "4" , TestName:"Test 4",Used:"" ,Gene:"LCT",Genotype:"A/A", Nutrient:'VITAMIN A', Para1:'The PEMT gene controls for the endogenous synthesis of choline. Mothers carrying two copies of the gene containing the genetic variation C (genotype C/C) are at increased risk of giving birth to children with neural tube closure defects.', Para2:'Foods rich in (Vitamin A) include: Carrots, Spinach, Sweet Potato, Papaya, Mango.', Logic:'', Value:'>5' },
-      {id: "5" , TestName:"Test 5",Used:"", Gene:"LCT",Genotype:"T/T", Nutrient:'CHOLINE', Para1:'The TPK1 gene controls the conversion of thiamine to thiamine pyrophosphate. Mothers carrying the C genetic variation have an increased risk of giving birth to children weighing less than the average birth weight.', Para2:'Foods rich in (CHOLINE) include: Eggs, liver, and peanuts, meat, poultry, fish, dairy foods, pasta, rice.', Logic:'TBD', Value:'NA' },
-      {id: "6" , TestName:"Test 6",Used:"checked", Gene:"LCT",Genotype:"A/T", Nutrient:'protein', Para1:'The ADA gene controls the metabolism of adenosine. Mothers carrying two copies of the gene with the genetic variation C (genotype C/C) have an increased risk of giving birth to children with neural tube closure defects, possibly due to accumulation of deoxyadenosine.', Para2:'NA', Logic:'TBD', Value:'6' },
-      {id: "7" , TestName:"Test 7",Used:"checked", Gene:"LCT",Genotype:"A/A", Nutrient:'Vitamin D', Para1:'The LCT gene regulates the process of hydrolysis ("digestion") of lactose. A parent with a T genetic variation can transmit it to the child. If the newborn has two T genetic variations (genotype T/T)', Para2:'Foods rich in (Vitamin D) include: nuts, eggs, peas, dried beans.', Logic:'TBD', Value:'NA' }
-    ];
+    this.getTestList();
   }
 
-  public patientDataDialog() {
+  getTestList() {
+    this.filterForm.reset();
+    this.dictionaryService.gettestslist().subscribe(
+      data => {
+        console.log(data)
+        this.TestList = data['data'];
+        if (this.TestList.length >= 0) {
+          this.pageTestList = this.TestList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+        }
+        this.totalSize = this.TestList.length;
+      }
+    );
+    
+  }
+
+  public addTestDialog(id, action, item) {
     let dialogRef = this.dialog.open(AddTestComponent, {
+      height: 'auto',
+      width: '600px',
+      autoFocus: false,
+
+    });
+    (<AddTestComponent>dialogRef.componentInstance).id = id;
+    (<AddTestComponent>dialogRef.componentInstance).action = action;
+    (<AddTestComponent>dialogRef.componentInstance).item = item;
+    dialogRef.afterClosed().subscribe(data => {
+      this.getTestList();
+    });
+  }
+
+  deleteTest(data) {
+    let body = {
+      'TestsId': data
+    }
+    console.log("this.deleteTest",body)
+    this.dictionaryService.deletetests(body).subscribe(
+      data => {
+        console.log(data)
+        if (data['Success'] == true) {
+          this.getTestList();
+          this.alertService.createAlert('Successfully Deleted', 1);
+        } else {
+          this.alertService.createAlert('Something Went Wrong', 0);
+        }
+
+      }
+    );
+  }
+
+  filterBy(formValues) {
+    // this.getVoucherList();
+    console.log(formValues, 'filter values')
+    console.log(formValues.keyWord, 'formValues.keyWord')
+
+    let events = this.TestList;
+    if (events != null) {
+      let filteredEvents = events.filter(x =>
+        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase()))
+      );
+      console.log(filteredEvents, 'filteredEventssadA')
+
+      this.TestList = filteredEvents;
+      this.pageTestList = this.TestList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+      this.totalSize = filteredEvents.length;
+      this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
+      this.currentPage = 0;
+    }
+
+  }
+
+  resetFilter() {
+    this.currentPage = 0;
+    this.pageSize = 10;
+    this.getTestList();
+    this.filterForm.reset();
+  }
+
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.pageTestList = this.TestList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+  }
+
+  public handlePageTemp(e: any) {
+    this.currentPageTemp = e.pageIndex;
+    console.log('pageSize', e.pageSize)
+    this.pageSize = e.pageSize;
+    this.pageTestList = this.TestList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  }
+
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteTest(id)
+      }
     });
   }
 
-  public addtestDialog() {
-    let dialogRef = this.dialog.open(AddTestComponent, {
-      height: 'auto',
-      width: '500px',
-      autoFocus: false,
-    });
-    dialogRef.afterClosed().subscribe(data => {
-    });
-  }
-
-  deletePatientOrder(){
-    this.alertService.createAlert('Successfully deleted.', 1);       
-  }
-  public uploadCSVTestDialog() {
-    let dialogRef = this.dialog.open(UploadTestComponent, {
-      height: 'auto',
-      width: '400px',
-      autoFocus: false,
+  // public patientDataDialog() {
+  //   let dialogRef = this.dialog.open(AddTestComponent, {
+  //     height: 'auto',
+  //     width: '500px',
+  //     autoFocus: false,
+  //   });
+  //   dialogRef.afterClosed().subscribe(data => {
+  //   });
+  // }
+  
+  // public uploadCSVTestDialog() {
+  //   let dialogRef = this.dialog.open(UploadTestComponent, {
+  //     height: 'auto',
+  //     width: '400px',
+  //     autoFocus: false,
       
-    });
-    dialogRef.afterClosed().subscribe(data => {
-    });
-  }
+  //   });
+  //   dialogRef.afterClosed().subscribe(data => {
+  //   });
+  // }
   // public openLogicDialog() {
   //   let dialogRef = this.dialog.open(LogicTestsComponent, {
   //     height: 'auto',

@@ -5,7 +5,10 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { BillingService } from '../../billing.service';
 import { MessagesUploadComponent } from './messages-upload/messages-upload.component';
 import { PersonalComponent } from '../Personal/Personal.component';
-
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { DictionaryService } from '../dictionary.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+ 
 @Component({
   selector: 'app-Messages',
   templateUrl: './Messages.component.html',
@@ -13,67 +16,153 @@ import { PersonalComponent } from '../Personal/Personal.component';
 })
 export class MessagesComponent implements OnInit {
 
-  List = [
-    { id: "1",Recommendedvalue:"NA",Used:"checked", Reference:"rs121908936A/A",AlleleName: "rs121908936", Gene: "LCT", Combination: "A/A", Guideline: "This genotype is normal.", TargetResolution: "1.40", TargetMessage: "1,4",TBD:"2.4", Comment: "In the absence of other causes, the newborn can consume breast milk / formula containing lactose." },
-    { id: "2",Recommendedvalue:">5",Used:"", Reference:"rs121908936B/A",AlleleName: "rs121908936", Gene: "LCT", Combination: "T/T", Guideline: "This genotype associates with congenital lactase deficiency. You will deinitely transmit a copy of the mutation to your child", TargetResolution: "1.40", TargetMessage: "5",TBD:"4.9", Comment: "It may be necessary to test the other parent or the fetus / newborn." },
-    { id: "3",Recommendedvalue:">5",Used:"checked", Reference:"rs121908936C/A",AlleleName: "rs121908936", Gene: "LCT", Combination: "A/T", Guideline: "Having this genotype, You can transmit a copy of the mutation to your", TargetResolution: "1.00", TargetMessage: "450",TBD:"6", Comment: "It may be necessary to test the other parent or the fetus / newborn." },
-    { id: "4",Recommendedvalue:"NA",Used:"checked", Reference:"rs121908936D/A",AlleleName: "rs228584", Gene: "TPK1", Combination: "C/C", Guideline: "This maternal genotype requires in increase intake of Thiamine(Vitamin B1) during pregnancy and breastfeeding.", TargetResolution: "1.00", TargetMessage: "1000",TBD:"6", Comment: "Daily Thiamine intake of at least 5 mg during pregnancy and lactation." },
-    { id: "5",Recommendedvalue:"6",Used:"", Reference:"rs121908936E/A",AlleleName: "rs228584", Gene: "TPK1", Combination: "C/T", Guideline: "This maternal genotype requires in increase intake of Thiamine(Vitamin B1) during pregnancy and breastfeeding.", TargetResolution: "2.00", TargetMessage: "1,4",TBD:"8", Comment: "Daily Thiamine intake of at least 5 mg during pregnancy and lactation." },
-    { id: "6",Recommendedvalue:">7",Used:"", Reference:"rs121908936F/A",AlleleName: "rs228584", Gene: "TPK1", Combination: "T/T", Guideline: "This maternal genotype does not change the standard recommendations for Thiamine (Vitamin B1) intake during pregnancy and breastfeeding.", TargetResolution: "1.00", TargetMessage: "5",TBD:"6.5", Comment: "Daily Thiamine intake of at least 1,4 mg during pregnancy and lactation." },
-    { id: "7",Recommendedvalue:"NA",Used:"checked", Reference:"rs121908936G/A",AlleleName: "rs6031682", Gene: "ADA", Combination: "G/G", Guideline: "This maternal genotype requires no action regarding Adenosine intake during pregnancy and breastfeeding.", TargetResolution: "1.40", TargetMessage: "450",TBD:"9", Comment: "In the absence of other causes, the newborn can consume breast milk / formula containing lactose." },
-    { id: "7",Recommendedvalue:"NA",Used:"", Reference:"rs121908936H/A",AlleleName: "rs6031682", Gene: "ADA", Combination: "G/C", Guideline: "This maternal genotype requires no action regarding Adenosine intake during pregnancy and breastfeeding.", TargetResolution: "2.00", TargetMessage: "1000",TBD:"11", Comment: "It may be necessary to test the other parent or the fetus / newborn." },
-    { id: "7",Recommendedvalue:"NA",Used:"", Reference:"rs121908936T/A",AlleleName: "rs6031682", Gene: "ADA", Combination: "C/C", Guideline: "This maternal genotype requires a reduction of Adenosine intake from foods, during pregnancy and breastfeeding.", TargetResolution: "1.00", TargetMessage: "1,4",TBD:"13", Comment: "It may be necessary to test the other parent or the fetus / newborn." },
-  ]
   filterToggle:boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
+  fakedata: any;
+  MessageList: any;
+  pageMessageList: any;
 
+  public pageSize = 10;
+  public pageSizeTemp = this.pageSize;
+  public currentPage = 0;
+  public totalSize = 0; 
+  public currentPageTemp = 0;
+  public totalSizeTemp = 0;
 
-  imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';
+  public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
+  filterForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private alertService: AlertService, private myService: BillingService) {
-    this.myService.myMethod(this.List);
+  constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
+    private dictionaryService: DictionaryService) {
+    this.filterForm = this._fb.group({
+      'keyWord': [null]
+    });
   }
   ngOnInit() {
+    this.getMessageList();
   }
 
-  public addMessageDialog() {
+  getMessageList() {
+    this.filterForm.reset();
+    this.dictionaryService.getmessageslist().subscribe(
+      data => {
+        console.log(data)
+        this.MessageList = data['data'];
+        if (this.MessageList.length >= 0) {
+          this.pageMessageList = this.MessageList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+        }
+        this.totalSize = this.MessageList.length;
+      }
+    );
+    // this.SectionList = this.fakedata;
+    // if (this.SectionList.length >= 0) {
+    //   this.pageMessageList = this.SectionList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+    // }
+    // this.totalSize = this.SectionList.length;
+  }
+
+  public addMessageDialog(id, action, item) {
     let dialogRef = this.dialog.open(AddMessageComponent, {
       height: 'auto',
-      width: '600px',
+      width: '610px',
       autoFocus: false,
+
     });
+    (<AddMessageComponent>dialogRef.componentInstance).id = id;
+    (<AddMessageComponent>dialogRef.componentInstance).action = action;
+    (<AddMessageComponent>dialogRef.componentInstance).item = item;
     dialogRef.afterClosed().subscribe(data => {
+      this.getMessageList();
     });
   }
 
-  public uploadDialog() {
-    let dialogRef = this.dialog.open(MessagesUploadComponent, {
-      height: 'auto',
-      width: '400px',
-      autoFocus: false,
-    });
-    dialogRef.afterClosed().subscribe(data => {
-    });
+  deleteMessages(data) {
+    let body = {
+      'MessagesId': data
+    }
+    this.dictionaryService.deletemessage(body).subscribe(
+      data => {
+        console.log(data)
+        if (data['Success'] == true) {
+          this.getMessageList();
+          this.alertService.createAlert('Successfully Deleted', 1);
+        } else {
+          this.alertService.createAlert('Something Went Wrong', 0);
+        }
+
+      }
+    );
   }
 
-  public patientDataDialog() {
-    let dialogRef = this.dialog.open(PersonalComponent, {
+  filterBy(formValues) {
+    // this.getVoucherList();
+    console.log(formValues, 'filter values')
+    console.log(formValues.keyWord, 'formValues.keyWord')
+
+    let events = this.MessageList;
+    if (events != null) {
+      let filteredEvents = events.filter(x =>
+        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase()))
+      );
+      console.log(filteredEvents, 'filteredEventssadA')
+
+      this.MessageList = filteredEvents;
+      this.pageMessageList = this.MessageList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+      this.totalSize = filteredEvents.length;
+      this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
+      this.currentPage = 0;
+    }
+
+  }
+
+  resetFilter() {
+    this.currentPage = 0;
+    this.pageSize = 10;
+    this.getMessageList();
+    this.filterForm.reset();
+  }
+
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.pageMessageList = this.MessageList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+  }
+
+  public handlePageTemp(e: any) {
+    this.currentPageTemp = e.pageIndex;
+    console.log('pageSize', e.pageSize)
+    this.pageSize = e.pageSize;
+    this.pageMessageList = this.MessageList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  }
+
+  public deleteDialog(id){
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
+      console.log("datr",data)
+      if (data == true){
+        this.deleteMessages(id)
+      }
     });
   }
 
-  deletePatientOrder() {
-    this.alertService.createAlert('Successfully deleted.', 1);
-  }
+  // public uploadDialog() {
+  //   let dialogRef = this.dialog.open(MessagesUploadComponent, {
+  //     height: 'auto',
+  //     width: '400px',
+  //     autoFocus: false,
+  //   });
+  //   dialogRef.afterClosed().subscribe(data => {
+  //   });
+  // }
 
 }
