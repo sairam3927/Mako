@@ -92,6 +92,7 @@ export class SeqResultsComponent implements OnInit {
     let body = {
       'SequenceResultsMasterId': data
     }
+    console.log(body)
     this.dictionaryService.deletesequence_results_master(body).subscribe(
       data => {
         console.log(data)
