@@ -18,6 +18,7 @@ export class PersonalComponent implements OnInit {
 
   gender: any;
   ethnicity: any;
+  previousData: any;
   public PersonalForm: FormGroup;
   public gridObject: any = {};
   public formValue: any = {};
@@ -41,7 +42,7 @@ export class PersonalComponent implements OnInit {
     this.PersonalForm = this.fb.group({
       Age: new FormControl('', [Validators.required]),
       Gender: new FormControl('', [Validators.required]),
-      Pregnant: new FormControl('', [Validators.required]),
+      Pregnant: new FormControl(false, [Validators.required]),
       Ethinicity: new FormControl('', [Validators.required]),
     })
   }
@@ -55,53 +56,39 @@ export class PersonalComponent implements OnInit {
       data => {
         console.log(data)
         this.gender = data['data'];
-        // this.gender = [
-        //   {
-        //     "Value": 1,
-        //     "Name": "Male"
-        //   },
-        //   {
-        //     "Value": 2,
-        //     "Name": "Female"
-        //   }
-        // ];
+
       }
     );
     this.dictionaryService.ethinicitylist().subscribe(
       data => {
         console.log(data)
         this.ethnicity = data['data'];
-      //   this.ethnicity = [
-      //     {
-      //         "Value": 3,
-      //         "Name": "Non-Hispanic White"
-      //     },
-      //     {
-      //         "Value": 4,
-      //         "Name": "Hispanic"
-      //     },
-      //     {
-      //         "Value": 5,
-      //         "Name": "African American"
-      //     },
-      //     {
-      //         "Value": 6,
-      //         "Name": "Asian"
-      //     },
-      //     {
-      //         "Value": 7,
-      //         "Name": "Others"
-      //     }
-      // ];
       }
     );
-
+    this.dictionaryService.getlastpersonaldata().subscribe(
+      data => {
+        console.log(data)
+        this.previousData = data['data'][0];
+        console.log("previousData", this.previousData.Age);
+        if (this.previousData.Gender == 2 ){
+          this.setradio('Female');
+        }
+        this.PersonalForm = this.fb.group({
+          Age: new FormControl(this.previousData.Age, [Validators.required]),
+          Gender: new FormControl(this.previousData.Gender, [Validators.required]),
+          Pregnant: new FormControl(this.previousData.Pregnant, [Validators.required]),
+          Ethinicity: new FormControl(this.previousData.Ethinicity, [Validators.required]),
+        })
+      }
+    );
   }
 
   addSelections() {
     this.formValue = this.PersonalForm.value;
     console.log("values:", this.formValue);
-
+    if (this.formValue['Gender'] == 'Male'){
+      this.formValue['Pregnant'] = false;
+    }
     this.gridObject = {
       "Age": this.formValue['Age'],
       "Gender": this.formValue['Gender'],
