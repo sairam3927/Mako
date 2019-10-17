@@ -60,41 +60,43 @@
 
 <form [formGroup]="filterForm">
     <div class="row wrap " style="padding: 10px;">
-      <div class="col-sm-12" *ngIf="filterToggle">
-        <mat-card class="filter">
-          <mat-card-content>
-            <div class="row col-sm-12">
-              <div class="col-sm-4">
-                <div class="col-sm-4 newMarginClass">
-                  Keyword search :
-                </div>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" formControlName="keyWord" placeholder="--Keyword search--">
-                </div>
-              </div>
-              <div class="col-sm-4">
-  
-                <div class="col-sm-8">
-                  <button type="button" class="add-hover-reset btn btn-reset" (click)="resetFilter()">Reset</button>
-                  <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
-                    (click)="filterBy(filterForm.value)">Search</button>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="col-sm-4 newMarginClass">
-  
-                </div>
-                <div class="col-sm-8">
-  
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-  
+        <div class="col-sm-12" *ngIf="filterToggle">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Keyword search :
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" formControlName="keyWord"
+                                    placeholder="--Keyword search--">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset"
+                                    (click)="resetFilter()">Reset</button>
+                                <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                                    (click)="filterBy(filterForm.value)">Search</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+
+                            </div>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
     </div>
-  </form>
+</form>
 
 <div fxLayout="row wrap">
     <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
@@ -118,17 +120,25 @@
                             (click)="addSeqResultDialog(item.SequenceResultsMasterId,'Update',item)">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a (click)="deleteDialog(item.SequenceResultsMasterId)" >
+                        <a (click)="deleteDialog(item.SequenceResultsMasterId)">
                             <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                         </a>
                     </td>
                     <td>{{item.AlleleName}}</td>
                     <td>{{item.Ref}}</td>
                     <td>{{item.Variant}}</td>
-                    <td>{{item.Gene}}</td>
+                    <td>
+                        <Div *ngIf="item.Gene == null " class="text-center">
+                            -
+                        </Div>
+                        {{item.Gene}}
+                    </td>
                     <td>{{item.AlleleCall}}</td>
                     <td>{{item.Genotype}}</td>
 
+                </tr>
+                <tr *ngIf="pageSeqResultList?.length <=0">
+                    <td colspan="7" style="text-align: center !important">No Record's Found</td>
                 </tr>
             </tbody>
         </table>

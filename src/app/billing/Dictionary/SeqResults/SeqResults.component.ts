@@ -15,7 +15,7 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
   styleUrls: ['./SeqResults.component.scss']
 })
 export class SeqResultsComponent implements OnInit {
-  filterToggle:boolean;
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
@@ -36,22 +36,22 @@ export class SeqResultsComponent implements OnInit {
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
   filterForm: FormGroup;
-  
+
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
     private dictionaryService: DictionaryService) {
     this.filterForm = this._fb.group({
       'keyWord': [null]
     });
-    }
+  }
   ngOnInit() {
     this.fakedata = [
-      {id: "1" ,Used:"checked", AlleleName: "rs4846048", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/A ", AlleleCall:"Heterozygous"  },
-      {id: "2" ,Used:"", AlleleName: "rs1537514", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AlleleCall:"Absent" },
-      {id: "3" ,Used:"checked", AlleleName: "rs868014", Ref:"A", Variant:"G", Gene:"TPK ",Genotype:"G/G", AlleleCall:"Homozygous" },
-      {id: "4" ,Used:"", AlleleName: "rs2274976", Ref:"C", Variant:"T", Gene:"ADA ",Genotype:"G/C", AlleleCall:"Absent" },
-      {id: "5" ,Used:"checked", AlleleName: "tvc.novel.1", Ref:"G", Variant:"C", Gene:"ADA ",Genotype:"G/G", AlleleCall:"Heterozygous" },
-      {id: "6" ,Used:"", AlleleName: "tvc.novel.2", Ref:"G", Variant:"A", Gene:"LCT",Genotype:"G/G", AlleleCall:"Homozygous" },
-      {id: "7" ,Used:"", AlleleName: "rs1801131", Ref:"T", Variant:"G", Gene:"TPK ",Genotype:"G/A", AlleleCall:"Homozygous" }
+      { id: "1", Used: "checked", AlleleName: "rs4846048", Ref: "G", Variant: "A", Gene: "LCT", Genotype: "G/A ", AlleleCall: "Heterozygous" },
+      { id: "2", Used: "", AlleleName: "rs1537514", Ref: "G", Variant: "C", Gene: "ADA ", Genotype: "G/G", AlleleCall: "Absent" },
+      { id: "3", Used: "checked", AlleleName: "rs868014", Ref: "A", Variant: "G", Gene: "TPK ", Genotype: "G/G", AlleleCall: "Homozygous" },
+      { id: "4", Used: "", AlleleName: "rs2274976", Ref: "C", Variant: "T", Gene: "ADA ", Genotype: "G/C", AlleleCall: "Absent" },
+      { id: "5", Used: "checked", AlleleName: "tvc.novel.1", Ref: "G", Variant: "C", Gene: "ADA ", Genotype: "G/G", AlleleCall: "Heterozygous" },
+      { id: "6", Used: "", AlleleName: "tvc.novel.2", Ref: "G", Variant: "A", Gene: "LCT", Genotype: "G/G", AlleleCall: "Homozygous" },
+      { id: "7", Used: "", AlleleName: "rs1801131", Ref: "T", Variant: "G", Gene: "TPK ", Genotype: "G/A", AlleleCall: "Homozygous" }
     ];
     this.getSeqResultList();
   }
@@ -85,6 +85,7 @@ export class SeqResultsComponent implements OnInit {
     (<AddSeqResultComponent>dialogRef.componentInstance).action = action;
     (<AddSeqResultComponent>dialogRef.componentInstance).item = item;
     dialogRef.afterClosed().subscribe(data => {
+      this.getSeqResultList();
     });
   }
 
@@ -92,6 +93,7 @@ export class SeqResultsComponent implements OnInit {
     let body = {
       'SequenceResultsMasterId': data
     }
+    console.log(body)
     this.dictionaryService.deletesequence_results_master(body).subscribe(
       data => {
         console.log(data)
@@ -153,25 +155,26 @@ export class SeqResultsComponent implements OnInit {
       height: 'auto',
       width: '400px',
       autoFocus: false,
-      
+
     });
     dialogRef.afterClosed().subscribe(data => {
+      this.getSeqResultList();
     });
   }
 
-  public deleteDialog(id){
+  public deleteDialog(id) {
     let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log("datr",data)
-      if (data == true){
+      console.log("datr", data)
+      if (data == true) {
         this.deleteSeqResult(id)
       }
     });
   }
-  
+
 
 }
