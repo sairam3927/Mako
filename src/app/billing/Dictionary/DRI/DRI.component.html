@@ -65,7 +65,7 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-          <th class="text-center">Action</th>
+          <th class="text-center">Actions</th>
           <!-- <th class="text-center">Used</th> -->
           <th class="text-center">Nutrient</th>
           <th class="text-center">Pregnant > 30</th>
@@ -101,6 +101,9 @@
           <td class="text-center">{{item.MaleLthanEqualto50}}</td>
           <td class="text-center">{{item.MaleGthan50}}</td>
 
+        </tr>
+        <tr *ngIf="pageDRIList?.length <=0">
+            <td colspan="10" style="text-align: center !important">No Record's Found</td>
         </tr>
       </tbody>
     </table>

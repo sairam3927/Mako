@@ -1,5 +1,5 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-    Add Test</h3>
+    Edit Test</h3>
 
 <form class="form-horizontal" [formGroup]="addTestForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
@@ -7,28 +7,30 @@
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Test Name : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="TestName" placeholder="Enter Test Name" required>
+                    <input disabled type="text" class="form-control" formControlName="TestName" placeholder="Enter Test Name" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Nutrient / Condition: </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="NutrientCondition" placeholder="Enter Nutrient / Condition" required>
+                    <input disabled type="text" class="form-control" formControlName="NutrientCondition" placeholder="Enter Nutrient / Condition" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Para 1 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Para1" placeholder="Enter Para 1 " required>
+                    <!-- <input type="text" class="form-control" formControlName="Para1" placeholder="Enter Para 1 " required> -->
+                    <textarea rows="3" class="form-control txtarea" id="content" placeholder="Enter Para 1" required></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Para 2 : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Para2" placeholder="Enter Para 2" required>
+                    <!-- <input type="text" class="form-control" formControlName="Para2" placeholder="Enter Para 2" required> -->
+                    <textarea rows="3" class="form-control txtarea" id="content" placeholder="Enter Para 2" required></textarea>
                 </div>
             </div>
 

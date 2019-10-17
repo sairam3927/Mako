@@ -127,10 +127,18 @@
                     <td>{{item.AlleleName}}</td>
                     <td>{{item.Ref}}</td>
                     <td>{{item.Variant}}</td>
-                    <td>{{item.Gene}}</td>
+                    <td>
+                        <Div *ngIf="item.Gene == null " class="text-center">
+                            -
+                        </Div>
+                        {{item.Gene}}
+                    </td>
                     <td>{{item.AlleleCall}}</td>
                     <td>{{item.Genotype}}</td>
 
+                </tr>
+                <tr *ngIf="pageSeqResultList?.length <=0">
+                    <td colspan="7" style="text-align: center !important">No Record's Found</td>
                 </tr>
             </tbody>
         </table>

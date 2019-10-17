@@ -142,7 +142,7 @@
         <table id="example2" class="table table-bordered table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th class="text-center" style="min-width:80px">Action</th>
+                    <th class="text-center" style="min-width:80px">Actions</th>
                     <!-- <th class="text-center">Used</th> -->
                     <!-- <th>(Allele + Genotype)</th> -->
                     <th>Allele Name</th>
@@ -180,6 +180,9 @@
                     <td>{{item.Recommendation}}</td>
 
                 </tr>
+                <tr *ngIf="MessageList?.length <=0">
+                        <td colspan="7" style="text-align: center !important">No Record's Found</td>
+                    </tr>
             </tbody>
         </table>
         <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
