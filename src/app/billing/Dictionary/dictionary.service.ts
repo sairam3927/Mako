@@ -39,6 +39,7 @@ export class DictionaryService {
   savepersonaldataurl = 'api/save-personal-data';
   genderlisturl = 'api/get-gender-list';
   ethinicitylisturl = 'api/get-ethinicity-list';
+  getlastpersonaldataurl = 'api/get-last-personal-data';
 
   gettestslisturl = 'api/get-tests-list';
   edittestsurl = 'api/edit-tests';
@@ -123,6 +124,9 @@ export class DictionaryService {
   }
 
 
+  public getlastpersonaldata() {
+    return this._http.get(environment.apiUrl + this.getlastpersonaldataurl)
+  }
   public savepersonaldata(data) {
     return this._http.post(environment.apiUrl + this.savepersonaldataurl,data)
   }
