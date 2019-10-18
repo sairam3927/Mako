@@ -57,7 +57,8 @@ export class AddSeqResultComponent implements OnInit {
       "SequenceResultsMasterId": this.id,
       "Ref": this.formValue['Ref'],
       "Variant": this.formValue['Variant'],
-      "AlleleCall": this.formValue['AlleleCall']
+      "AlleleCall": this.formValue['AlleleCall'],
+      AlleleName:this.formValue['AlleleName']
     };
     console.log("Entered data", this.gridObject);
     this.close()

@@ -1,5 +1,5 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-    Add Message</h3>
+    Edit Message</h3>
 
 <form class="form-horizontal" [formGroup]="addMessageForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Recommendation Value : </label>
+                <label class="control-label col-sm-4 add-member-label">Recommended Value : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <input type="text" class="form-control" formControlName="RecommendationValue"
                         placeholder="Enter Recommendation Value" required>
@@ -45,16 +45,18 @@
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Comment : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Comment" placeholder="Enter Comment"
-                        required>
+                    <!-- <input type="text" class="form-control" formControlName="Comment" placeholder="Enter Comment"
+                        required> -->
+                    <textarea rows="3" class="form-control txtarea" id="content" placeholder="Comment" required></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 add-member-label">Recommendation : </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Recommendation"
-                        placeholder="Enter Recommendation" required>
+                    <!-- <input type="text" class="form-control" formControlName="Recommendation"
+                        placeholder="Enter Recommendation" required> -->
+                        <textarea rows="3" class="form-control txtarea" id="content" placeholder="Recommendation" required></textarea>
                 </div>
             </div>
 
@@ -67,7 +69,7 @@
             <mat-icon>cancel</mat-icon>
             <span>&nbsp;Cancel</span>
         </button>
-        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <button mat-raised-button class="add-hover btn-success" (click)="addSelections()">
             <mat-icon>send</mat-icon>
             <span>&nbsp;Save</span>
         </button>

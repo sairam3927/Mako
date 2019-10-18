@@ -83,7 +83,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of List">
+                <tr *ngFor="let item of TestList">
 
                     <td class="text-center">
                         <a title="Edit" style="margin-right: 10px; cursor: pointer;"
@@ -115,6 +115,9 @@
                     <!-- <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
                             (click)="openLogicDialog()">View</a></td> -->
                 </tr>
+                <tr *ngIf="TestList?.length <=0">
+                        <td colspan="7" style="text-align: center !important">No Record's Found</td>
+                    </tr>
             </tbody>
         </table>
         <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"

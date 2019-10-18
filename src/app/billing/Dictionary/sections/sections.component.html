@@ -81,6 +81,9 @@
           <td>{{item.SectionName}}</td>
           <td>{{item.SectionDescription}}</td>
         </tr>
+        <tr *ngIf="pageSectionList?.length <=0">
+            <td colspan="3" style="text-align: center !important">No Record's Found</td>
+        </tr>
       </tbody>
     </table> 
 

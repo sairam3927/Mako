@@ -71,7 +71,7 @@
         <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
             <thead class="tbl-head">
                 <tr class="tr-grid-header">
-                    <th class="text-center" style="min-width: 65px;">Action</th>
+                    <th class="text-center" style="min-width: 65px;">Actions</th>
                     <!-- <th class="text-center">Active</th> -->
                     <th class="text-center" style="min-width: 210px;">Allele Name</th>
                     <th class="text-center">Gene</th>
@@ -96,6 +96,9 @@
                     <td>{{item.Description}}</td>
 
                 </tr>
+                <tr *ngIf="pageScopeList?.length <=0">
+                        <td colspan="4" style="text-align: center !important">No Record's Found</td>
+                    </tr>
                 <!-- <div *ngIf = "pageScopeList" > -->
             </tbody>
         </table>

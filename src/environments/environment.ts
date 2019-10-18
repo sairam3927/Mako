@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl : 'http://qa.makodnaapi.optionmatrix.org/'
+  apiUrl : 'http://qa.makodnaapi.optionmatrix.org/',
+  // apiUrl : 'http://localhost:54151/'
 };
 
 /*
