@@ -13,6 +13,7 @@ import { Data } from '../../fake backend/data.backend.data';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component'
+// import { SharedModule } from 'primeng/primeng';
 
 export const routes = [
   { path: '', component: UsersComponent, pathMatch: 'full', data: { breadcrumb: 'Users' }},
