@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component';
 import { AlertService } from '../../shared/services/alert.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
     selector: 'app-users',
@@ -16,26 +17,26 @@ import { AlertService } from '../../shared/services/alert.service';
 })
 export class UsersComponent implements OnInit {
 
-    
+
     tableList: any;
 
-        public popoverTitle: string = 'Confirm Delete';
-        public popoverMessage: string = 'Are you sure you want to delete this.?';
-        public popoverStatusTitle: string = 'Confirm Status Change';
-        public popoverStatusMessage: string = 'Are you sure you want to change status.?';
-        public cancelClicked: boolean = false;
+    public popoverTitle: string = 'Confirm Delete';
+    public popoverMessage: string = 'Are you sure you want to delete this.?';
+    public popoverStatusTitle: string = 'Confirm Status Change';
+    public popoverStatusMessage: string = 'Are you sure you want to change status.?';
+    public cancelClicked: boolean = false;
 
     filterToggle: boolean;
     toggleFilter() {
         this.filterToggle = !this.filterToggle;
-      }
-      public dateTime2: Date;
-      public dateTime3: Date;
-      status = ["Active","Incative"];
-      stepsOptionSelected: any;
-      onStepsOptionsSelected(event){
-       console.log(event); 
-      }
+    }
+    public dateTime2: Date;
+    public dateTime3: Date;
+    status = ["Active", "Incative"];
+    stepsOptionSelected: any;
+    onStepsOptionsSelected(event) {
+        console.log(event);
+    }
 
     public searchText: string;
     public page: any;
@@ -51,23 +52,26 @@ export class UsersComponent implements OnInit {
     }
 
     getUser() {
-        this.tableList = null;
-        this.usersService.getUser()
-            .subscribe(
-                data => {
-                    this.tableList = data;
-                }
-            )
+        this.usersService.getUser().subscribe(
+            data => {
+              console.log(data)
+              this.tableList = data['Users'];
+            }
+          );
     }
 
-    
-    public openUserDialog(id) {
+
+    public openUserDialog(id, action, item) {
         let dialogRef = this.dialog.open(UserDialogComponent, {
             data: id,
             height: 'auto',
             width: '600px'
         });
+        (<UserDialogComponent>dialogRef.componentInstance).id = id;
+        (<UserDialogComponent>dialogRef.componentInstance).action = action;
+        (<UserDialogComponent>dialogRef.componentInstance).item = item;
         dialogRef.afterClosed().subscribe(data => {
+            this.getUser();
         });
     }
 
@@ -82,15 +86,54 @@ export class UsersComponent implements OnInit {
     }
 
 
-    deleteUser(userid){
-        
-        this.tableList = this.tableList.filter(e=>e.intApplicantId != userid)
-        this.alertService.createAlert('Successfully deleted.', 1);
-        console.log(this.tableList)
+    deleteUser(userid) {
+        let body = {
+            "UserId": userid,
+        }
+        this.usersService.deleteuser(body).subscribe(
+            data => {
+                console.log('add/update response', data)
+                this.getUser();
+                if (data['Success'] == true) {
+                    this.alertService.createAlert(data['Message'], 1);
+                } else {
+                    this.alertService.createAlert(data['Message'], 0);
+                }
+            }
+        );
+
     }
 
-    saveStatus() {
-        //this.alertService.createAlert('Successfully saved.', 1);
+    changeStatus(id, status) {
+        let body = {
+            "UserId": id,
+            "Status": status
+        }
+        this.usersService.updateuserstatus(body).subscribe(
+            data => {
+                console.log('add/update response', data)
+                this.getUser();
+                if (data['Success'] == true) {
+                    this.alertService.createAlert(data['Message'], 1);
+                } else {
+                    this.alertService.createAlert(data['Message'], 0);
+                }
+            }
+        )
+
     }
+    public deleteDialog(id){
+        let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+          height: 'auto',
+          width: '500px',
+          autoFocus: false,
+        });
+        dialogRef.afterClosed().subscribe(data => {
+          console.log("datr",data)
+          if (data == true){
+            this.deleteUser(id)
+          }
+        });
+      }
 
 }

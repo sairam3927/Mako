@@ -9,7 +9,9 @@ import { ForgotPasswordComponent } from './login/forgot-password/forgot-password
 import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { DashboardComponent } from './analytics/dashboard/dashboard.component';
-
+import { PatientLoginComponent } from './patient/patient-login/patient-login.component';
+import { PatientDashboardComponent } from './patient/patient-dashboard/patient-dashboard.component';
+ 
 export const routes: Routes = [
     {
         path: 'mako',
@@ -22,9 +24,14 @@ export const routes: Routes = [
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule', data: { breadcrumb: 'Admin' }},
             // { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarModule', data: { breadcrumb: 'Calendar'}}
         ]
-    },
+
+    
+     },
     { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
+    // { path: '', redirectTo: 'patient-login', pathMatch: 'full'},
+    // { path: 'patient-login', component: PatientLoginComponent, data: { breadcrumb: 'patient-login' } },
+    // { path: 'patient-dashboard', component: PatientDashboardComponent,loadChildren: './patient/patient-dashboard/patient-dashboard-module.module#PatientDashboardModuleModule', data: { breadcrumb: '' } },
     { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
     { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Forgot Password' } }, 
     { path: 'otp', component: OtpResetPasswordComponent, data: { breadcrumb: 'otp' } },
@@ -33,6 +40,8 @@ export const routes: Routes = [
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
-   preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
+   //preloadingStrategy: PreloadAllModules,  // <- comment this line for activate lazy load
    useHash: true
+
 });
+

@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AlertService } from '../../../shared/services/alert.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AddSectionComponent } from 'src/app/billing/Dictionary/sections/add-section/add-section.component';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -10,19 +13,75 @@ import { AlertService } from '../../../shared/services/alert.service';
 })
 export class UserDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<UserDialogComponent>,@Inject(MAT_DIALOG_DATA) public user: number, private alertService: AlertService) {  }
+  id: any;
+  action: any;
+  item: any;
+  public addUserForm: FormGroup;
+  public gridObject: any = {};
+  public formValue: any = {};
+  public formData: any = {};
+
+  constructor(public alertService: AlertService, public dialogRef: MatDialogRef<AddSectionComponent>, public usersService: UsersService,
+    public fb: FormBuilder) { }
 
   ngOnInit() {
-    
+    this.addUserForm = this.fb.group({
+      UserName: new FormControl('', [Validators.required]),
+      Email: new FormControl('', [Validators.required, ]),
+      Mobile: new FormControl('', [Validators.required, ]),
+      Status: new FormControl(false, [Validators.required, ]),
+    })
+
+    if (this.action == 'Update') {
+
+      this.addUserForm = this.fb.group({
+        UserName: new FormControl(this.item.UserName, [Validators.required]),
+        Email: new FormControl(this.item.Email, [Validators.required]),
+        Mobile: new FormControl(this.item.Mobile, [Validators.required]),
+        Status: new FormControl(this.item.Status, [Validators.required]),
+      })
+      console.log('form Data', this.formData);
+    }
+    console.log("Section ID", this.id);
+    console.log("this is child action", this.action);
+  }
+
+  addUser() {
+    this.formValue = this.addUserForm.value;
+    console.log("values:", this.formValue);
+
+    this.gridObject = {
+      "UserId": this.id,
+      "UserName": this.formValue['UserName'],
+      "Email": this.formValue['Email'],
+      "Mobile": this.formValue['Mobile'],
+      "Status": this.formValue['Status']
+    };
+    console.log("Entered data", this.gridObject);
+    this.close()
+
+    this.usersService.upsertuser(this.gridObject).subscribe(
+      data => {
+        console.log('add/update response', data)
+        if (data['Success'] == true) {
+          this.alertService.createAlert(data['Message'], 1);
+        } else {
+          this.alertService.createAlert(data['Message'], 0);
+        }
+        this.close()
+      }
+    );
+
   }
 
   close(): void {
     this.dialogRef.close();
   }
 
-  saveUser() {
-   // this.alertService.createAlert('Successfully Saved.', 1);
-    this.dialogRef.close();
+  noWhiteSpaceValidator(control: FormControl) {
+    let isWhiteSpace = (control.value || '').trim().length === 0;
+    let isValid = !isWhiteSpace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

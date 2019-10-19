@@ -33,6 +33,13 @@ export class RegisterComponent implements OnInit {
     { value: '1', viewValue: 'USA' }
    
   ];
+  nationalities: Sample[] = [
+    { value: '0', viewValue: 'White' },
+    { value: '1', viewValue: 'Black' },
+    { value: '2', viewValue: 'Asian' },
+    { value: '3', viewValue: 'Middle Eastern' },
+    { value: '4', viewValue: 'Spanish' }
+  ];
   states: Sample[] = [
     { value: '0', viewValue: 'Alberta' },
     { value: '1', viewValue: 'British Columbia' },

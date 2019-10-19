@@ -81,7 +81,7 @@ export class ScopeComponent implements OnInit {
       height: 'auto',
       width: '400px',
       autoFocus: false,
-    });
+    }); 
     (<AddScopeComponent>dialogRef.componentInstance).id = id;
     (<AddScopeComponent>dialogRef.componentInstance).action = action;
     (<AddScopeComponent>dialogRef.componentInstance).item = item;

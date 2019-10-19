@@ -54,6 +54,9 @@ import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { DashboardComponent } from './analytics/dashboard/dashboard.component';
 import { DeleteConfirmDailogComponent } from './shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { PatientLoginComponent } from './patient/patient-login/patient-login.component';
+import { PatientDashboardComponent } from './patient/patient-dashboard/patient-dashboard.component';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -112,6 +115,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmDialogComponent,
     ProfileDialogComponent,
     AddNoteDialogComponent,HelpVideoDialogComponent, RegisterComponent, OtpResetPasswordComponent, ResetPasswordComponent,
+     PatientLoginComponent,
+     PatientDashboardComponent,
+     DeleteConfirmDailogComponent
   ],
   entryComponents: [
     VerticalMenuComponent,
@@ -120,6 +126,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDialogComponent,
     AddNoteDialogComponent,
     HelpVideoDialogComponent,
+    DeleteConfirmDailogComponent,
     
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
