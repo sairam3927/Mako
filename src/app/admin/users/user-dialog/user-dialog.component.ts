@@ -27,18 +27,30 @@ export class UserDialogComponent implements OnInit {
   ngOnInit() {
     this.addUserForm = this.fb.group({
       UserName: new FormControl('', [Validators.required]),
+<<<<<<< HEAD
       Email: new FormControl('', [Validators.required, ]),
       Mobile: new FormControl('', [Validators.required, ]),
       Status: new FormControl(false, [Validators.required, ]),
+=======
+      Email: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Mobile: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Status: new FormControl(false, [Validators.required, this.noWhiteSpaceValidator]),
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
     })
 
     if (this.action == 'Update') {
 
       this.addUserForm = this.fb.group({
         UserName: new FormControl(this.item.UserName, [Validators.required]),
+<<<<<<< HEAD
         Email: new FormControl(this.item.Email, [Validators.required]),
         Mobile: new FormControl(this.item.Mobile, [Validators.required]),
         Status: new FormControl(this.item.Status, [Validators.required]),
+=======
+        Email: new FormControl(this.item.Email, [Validators.required, this.noWhiteSpaceValidator]),
+        Mobile: new FormControl(this.item.Mobile, [Validators.required, this.noWhiteSpaceValidator]),
+        Status: new FormControl(this.item.Status, [Validators.required, this.noWhiteSpaceValidator]),
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
       })
       console.log('form Data', this.formData);
     }

@@ -12,7 +12,10 @@ import { Data } from '../../fake backend/data.backend.data';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component'
+<<<<<<< HEAD
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+=======
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
 // import { SharedModule } from 'primeng/primeng';
 
 export const routes = [
