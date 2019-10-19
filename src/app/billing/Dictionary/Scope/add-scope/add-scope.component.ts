@@ -17,7 +17,7 @@ export class AddScopeComponent implements OnInit {
   item: any;
   public addScopeForm: FormGroup;
   public gridObject: any = {};
-  public formValue: any = {};
+  public formValue: any = {}; 
   public formData: any = {};
   constructor(public alertService: AlertService, private _fb: FormBuilder, public dialogRef: MatDialogRef<AddSectionComponent>, private dictionaryService: DictionaryService,
     public fb: FormBuilder) { }
