@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { DragulaService } from 'ng2-dragula';
 import { DataTableModule } from 'primeng/primeng';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +38,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ErrorLogComponent } from './error-log/error-log.component';
 import { LookupOptionsComponent } from './lookup-options/lookup-options.component';
 import { AddLookupDialogComponent } from './lookup-options/add-lookup-dialog/add-lookup-dialog.component';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { DeleteConfirmDailogComponent } from '../shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 export const routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },
@@ -96,14 +98,16 @@ export const routes = [
     SettingsComponent,
     ErrorLogComponent,
     LookupOptionsComponent,
-    AddLookupDialogComponent],
+    AddLookupDialogComponent,
+    
+  ],
 
   entryComponents: [
    ScheduleDialogComponent,
     AddEmailTemplateComponent,
     AddTextTemplateComponent,
    AddAttorneyComponent,AddChiropractorComponent,AddIPhysicianComponent,AddIPartnerComponent,AddPharmacyComponent,AddCptCodeComponent,
-    AddIcdCodeComponent,AddLookupDialogComponent
+    AddIcdCodeComponent,AddLookupDialogComponent,
   ]
 })
 export class AdminModule { }

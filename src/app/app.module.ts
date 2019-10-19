@@ -116,7 +116,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDialogComponent,
     AddNoteDialogComponent,HelpVideoDialogComponent, RegisterComponent, OtpResetPasswordComponent, ResetPasswordComponent,
      PatientLoginComponent,
-     PatientDashboardComponent
+     PatientDashboardComponent,
+     DeleteConfirmDailogComponent
   ],
   entryComponents: [
     VerticalMenuComponent,
@@ -125,7 +126,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDialogComponent,
     AddNoteDialogComponent,
     HelpVideoDialogComponent,
-    
+    DeleteConfirmDailogComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     AppSettings,

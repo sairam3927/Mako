@@ -10,40 +10,38 @@ import 'rxjs/add/operator/toPromise';
 })
 export class UsersService {
 
-    
+    getUsersUrl = "api/get-user-list";
+    upsertuserurl = 'api/upsert-user';
+    updateuserstatusurl = 'api/update-user-status';
+    deleteuserurl = 'api/delete-user';
 
-    public getUsersUrl = "api/get-user-list";
-    public upsertuserurl = 'api/upsert-user';
-    public updateuserstatusurl = 'api/update-user-status';
-    public deleteuserurl = 'api/delete-user';
+    getuserpermissionsurl = 'api/get-user-permissions';
+    saveuserpermissionsurl = 'api/save-user-permissions';
 
-    public getuserpermissionsurl = 'api/get-user-permissions';
-    public saveuserpermissionsurl = 'api/save-user-permissions';
-    
     constructor(private _http: HttpClient) { }
 
-    getUser() {
+    public getUser() {
         return this._http.get(environment.apiUrl + this.getUsersUrl);
     }
 
-    upsertuser(data) {
+    public upsertuser(data) {
         return this._http.post(environment.apiUrl + this.upsertuserurl, data);
     }
 
-    updateuserstatus(data) {
+    public updateuserstatus(data) {
         return this._http.post(environment.apiUrl + this.updateuserstatusurl, data);
     }
 
-    deleteuser(data) {
+    public deleteuser(data) {
         return this._http.post(environment.apiUrl + this.deleteuserurl, data);
     }
 
     //Permission Screen.
-    getuserpermissions() {
-        return this._http.get(environment.apiUrl + this.getuserpermissionsurl);
+    public getuserpermissions(data) {
+        return this._http.post(environment.apiUrl + this.getuserpermissionsurl,data);
     }
 
-    saveuserpermissions(data) {
+    public saveuserpermissions(data) {
         return this._http.post(environment.apiUrl + this.saveuserpermissionsurl, data);
     }
 

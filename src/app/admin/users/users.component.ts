@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component';
 import { AlertService } from '../../shared/services/alert.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
     selector: 'app-users',
@@ -121,5 +122,18 @@ export class UsersComponent implements OnInit {
         )
 
     }
+    public deleteDialog(id){
+        let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+          height: 'auto',
+          width: '500px',
+          autoFocus: false,
+        });
+        dialogRef.afterClosed().subscribe(data => {
+          console.log("datr",data)
+          if (data == true){
+            this.deleteUser(id)
+          }
+        });
+      }
 
 }

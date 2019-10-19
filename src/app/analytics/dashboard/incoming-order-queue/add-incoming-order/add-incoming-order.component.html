@@ -1,36 +1,20 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
     Add Orders</h3>
 
-<form  class="form-horizontal" novalidate>
-    <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
+<form class="form-horizontal" [formGroup]="addOrderForm" novalidate>
+    <div mat-dialog-content style="margin-top: 30px">
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Patient Name : </label>
+            <label class="control-label col-sm-4 add-member-label">First Name : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" id="order-name" formControlName="addFirstName"
-                    placeholder="Enter Patient Name" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Age: </label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" id="email" formControlName="addLastName" placeholder="Enter Age"
+                <input type="text" class="form-control" formControlName="FirstName" placeholder="Enter First Name"
                     required>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Gender: </label>
+            <label class="control-label col-sm-4 add-member-label">Last Name : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <mat-radio-group [(ngModel)]="selectedValueStepType" name="selectedValueStepType" class="pull-left"
-                    style="margin-top: 5px" aria-label="Select an option">
-                    <mat-radio-button value="1" style="margin-right: 10px;font-weight: 400;">Male</mat-radio-button>
-                    <mat-radio-button value="2" style="font-weight: 400;">Female</mat-radio-button>
-                </mat-radio-group>
-            </div>
-        </div>
-        <div class="form-group" *ngIf="selectedValueStepType=='2'">
-            <label class="control-label col-sm-4">Pregnant / Lactating : </label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="top: 10px">
-                <mat-checkbox></mat-checkbox>
+                <input type="text" class="form-control" formControlName="LastName" placeholder="Enter Last Name"
+                    required>
             </div>
         </div>
         <div class="form-group">
@@ -38,47 +22,122 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <div class="input-icon right">
                     <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="od"
-                        [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                    <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY" class="form-control"
+                        formControlName="DateofBirth" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
                     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Ethnicity: </label>
+            <label class="control-label col-sm-4 add-member-label">Gender : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <mat-select placeholder="--Select Ethnicity--" class="form-control">
-                    <mat-option [value]="1">Hispanic</mat-option>
-                    <mat-option [value]="2">Non-Hispanic White</mat-option>
-                    <mat-option [value]="3">Afican American</mat-option>
-                    <mat-option [value]="4">Asian</mat-option>
-                    <mat-option [value]="5">Other</mat-option>
+                <mat-radio-group class="pull-left" formControlName="Gender" style="margin-top: 5px"
+                    aria-label="Select an option">
+                    <mat-radio-button *ngFor="let gen of GendersList" [value]="gen.Value" style="margin-right: 10px"
+                        (click)="setradio(gen.Name)"><small style="font-size: 14px;">{{gen.Name}}</small>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="isSelected('Female')" class="form-group">
+            <label class="control-label col-sm-4">Pregnant / Lactating : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="top: 10px">
+                <mat-checkbox formControlName="PregnantLactating"></mat-checkbox>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Nationality : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <mat-select placeholder="--Select by Nationality--" formControlName="Nationality" class="form-control">
+                    <mat-option *ngFor="let Nationality of NationalityList" [value]="Nationality.Value">
+                        {{Nationality.Name}}
+                    </mat-option>
                 </mat-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Email : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="Email" placeholder="Enter Email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Street Address : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" id="email" formControlName="StreetAddress"
+                    placeholder="Enter Street Address" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Country : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <mat-select placeholder="--Select by Country--" formControlName="Country" class="form-control" (selectionChange)="getProvince($event.value)">
+                    <mat-option *ngFor="let Country of CountryList" [value]="Country.CountryId"  >
+                        {{Country.Country}}
+                    </mat-option>
+                </mat-select>
+                <!-- <input type="text" class="form-control" formControlName="Country" placeholder="Enter Country" required> -->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">State / Province : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <mat-select placeholder="--Select by State / Province--" formControlName="StateProvince"
+                    class="form-control">
+                    <mat-option *ngFor="let StateProvince of State_Province_List" [value]="StateProvince.State_ProvinceId">
+                        {{StateProvince.State_Province}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">City : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="City" placeholder="Enter City" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Zip Code / Postal Code : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="ZipCodePostalCode"
+                    placeholder="Enter Zip Code / Postal Code" required>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">Sample Name: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" id="email" formControlName="addLastName"
-                    placeholder="Enter Sample name" required>
+                <input type="text" class="form-control" formControlName="SampleName" placeholder="Enter Sample Name"
+                    required>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Mobile No : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="MobileNo" placeholder="Enter Mobile No"
+                    required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Ethnicity: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <mat-select placeholder="--Select by Ethnicity--" formControlName="Ethnicity"
+                    class="form-control">
+                    <mat-option *ngFor="let Ethnicity of EthnicityList" [value]="Ethnicity.Value">
+                        {{Ethnicity.Name}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">FEDEX AWB: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" id="email" formControlName="addLastName"
+                <input type="text" class="form-control" id="email" formControlName="FEDEXAWB"
                     placeholder="Enter FEDEX AWB" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Order Date : </label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <div class="input-icon right">
-                    <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                    <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="od"
-                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
-                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-                </div>
             </div>
         </div>
     </div>
@@ -89,7 +148,7 @@
             <mat-icon>cancel</mat-icon>
             <span>&nbsp;Cancel</span>
         </button>
-        <button mat-raised-button class="add-hover btn-success" type="submit">
+        <button mat-raised-button class="add-hover btn-success" (click)="addOrder()">
             <mat-icon>send</mat-icon>
             <span>&nbsp;Save</span>
         </button>

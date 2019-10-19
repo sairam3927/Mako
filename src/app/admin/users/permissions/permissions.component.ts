@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert.service';
 import { UsersService } from '../users.service';
@@ -11,62 +12,49 @@ import { UsersService } from '../users.service';
 })
 export class PermissionsComponent implements OnInit {
   tableList: any;
-  constructor(private location: Location, public usersService: UsersService, private alertService: AlertService) { }
+  id: any;
+  constructor(private location: Location, public usersService: UsersService, private route: ActivatedRoute, private alertService: AlertService) { }
 
   ngOnInit() {
-    this.tableList = [
-      { "ScreenName": "Dashboard", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Orders", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Raw Data", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Set Up", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Dictionary", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Scope", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "DRI", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Messages", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Nutrients", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "SEQ Results", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Haplotype", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Tests", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Calculations", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Simulation", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Pregnancy / Lactation", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Adult Nutrition", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Report Variables", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Final Output Variables List ", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Detailed Report", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Summary Report", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Admin", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Users", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Permissions", "Create": true, "Read": true, "Update": true, "Delete": true },
-      { "ScreenName": "Settings", "Create": true, "Read": true, "Update": true, "Delete": true }
-    ];
+
+    let UserId = this.route.snapshot.paramMap.get('id');
+    this.id = decodeURIComponent(decodeURIComponent(UserId))
+    console.log("id", this.id);
     this.getPermissions();
   }
 
   getPermissions() {
     this.tableList = null;
-    this.usersService.getuserpermissions().subscribe(
+    let body = {
+      "UserId": this.id
+    }
+    this.usersService.getuserpermissions(body).subscribe(
       data => {
+        console.log(data);
         this.tableList = data['Permissions'];
+        for (let i = 0; i < this.tableList.length; i++) {
+          this.tableList[i].UserId = this.id
+        }
       }
     )
   }
 
   change(index, name, value) {
-    console.log(this.tableList)
     this.tableList[index][name] = value;
-    // console.log(this.tableList[index][name],"this.tableList[index][name]")
-    console.log(this.tableList, "changed")
   }
 
   saveUserPermissions() {
     let body = {
       "Permissions": this.tableList
     }
+    console.log("body", body);
     this.usersService.saveuserpermissions(body).subscribe(
       data => {
+        console.log(data)
+        
         if (data['Success'] == true) {
           this.alertService.createAlert(data['Message'], 1);
+          this.getPermissions();
         } else {
           this.alertService.createAlert(data['Message'], 0);
         }
