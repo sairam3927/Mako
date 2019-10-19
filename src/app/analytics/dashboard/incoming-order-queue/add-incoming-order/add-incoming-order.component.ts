@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../../../shared/services/alert.service';
+import { AnalyticsService } from 'src/app/analytics/analytics.service';
 
 @Component({
   selector: 'app-add-incoming-order',
@@ -10,55 +11,159 @@ import { AlertService } from '../../../../shared/services/alert.service';
 })
 export class AddIncomingOrderComponent implements OnInit {
 
+  id: any;
+  action: any;
+  item: any;
+  GendersList: any;
+  EthnicityList: any;
+  CountryList: any;
+  NationalityList: any;
+  State_Province_List: any;
+
   public dateTime1: Date;
   public dateTime2: Date;
-  incomingOrderForm: FormGroup;
-  gender=["Male","Female","Others"];
-  //public form:FormGroup;
-  selectedValueStepType:string = "0";
+  public addOrderForm: FormGroup;
+  public gridObject: any = {};
+  public formValue: any = {};
+  public formData: any = {};
+  gender = ["Male", "Female", "Others"];
+  selectedValueStepType: string = "0";
   currDate = new Date();
   public minDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth(), this.currDate.getDate());
 
-  constructor(public alertService : AlertService,public dialogRef: MatDialogRef<AddIncomingOrderComponent>,public fb : FormBuilder,@Inject(MAT_DIALOG_DATA) public order: any) { 
-    this.addIncomingOrderForm();
+  constructor(public alertService: AlertService, public dialogRef: MatDialogRef<AddIncomingOrderComponent>,
+    public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public order: any, private analyticsService: AnalyticsService) {
+
+    this.addOrderForm = this.fb.group({
+      FirstName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      LastName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      DateofBirth: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Gender: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      PregnantLactating: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Nationality: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Email: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      StreetAddress: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Country: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      StateProvince: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      City: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      ZipCodePostalCode: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      SampleName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      MobileNo: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      Ethnicity: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      FEDEXAWB: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+    })
+
   }
 
   ngOnInit() {
+    this.getValues();
+    if (this.action == 'Update') {
+
+      this.addOrderForm = this.fb.group({
+        FirstName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        LastName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        DateofBirth: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        Gender: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        PregnantLactating: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        Nationality: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        Email: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        StreetAddress: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        Country: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        StateProvince: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        City: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        ZipCodePostalCode: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        SampleName: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        MobileNo: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        Ethnicity: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+        FEDEXAWB: new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+      })
+      console.log('form Data', this.formData);
+    }
+    console.log("Section ID", this.id);
+    console.log("this is child action", this.action);
   }
 
-  get addFirstName() { return this.incomingOrderForm.get('addFirstName'); }
+  addScope() {
+    this.formValue = this.addOrderForm.value;
+    console.log("values:", this.formValue);
 
-  get addLastName() { return this.incomingOrderForm.get('addLastName'); }
+    this.gridObject = {
+      "FirstName": this.formValue['FirstName'],
+      "LastName": this.formValue['LastName'],
+      "Email": this.formValue['Email'],
+      "Nationality": this.formValue['Nationality'],
+      "Gender": this.formValue['Gender'],
+      "DateOfBirth": this.formValue['AlleleName'],
+      "Country": this.formValue['AlleleName'],
+      "State_Province": this.formValue['AlleleName'],
+      "City": this.formValue['AlleleName'],
+      "StreetAddress": this.formValue['AlleleName'],
+      "ZipCode_PostalCode": this.formValue['AlleleName'],
+      "Ethnicity": this.formValue['AlleleName'],
+      "SampleName": this.formValue['AlleleName'],
+      "MobileNumber": this.formValue['AlleleName'],
+      "Fedex_Awb": this.formValue['AlleleName']
+    };
+    console.log("Entered data", this.gridObject);
+    this.close()
 
-  get addDob() { return this.incomingOrderForm.get('addDob'); }
+    this.analyticsService.editorders(this.gridObject).subscribe(
+      data => {
+        console.log('add/update response', data)
+        if (data['Status'] == true) {
+          this.alertService.createAlert('Successfully Updated', 1);
+        } else {
+          this.alertService.createAlert('Something Went Wrong', 0);
+        }
+        this.close()
+      }
+    );
 
-  get addReferringPhysician() { return this.incomingOrderForm.get('addReferringPhysician'); }
-
-  get addReceivedDate() { return this.incomingOrderForm.get('addReceivedDate'); }
-
-  addIncomingOrderForm() {
-    this.incomingOrderForm = this.fb.group({
-      addFirstName: new FormControl('', [Validators.required, Validators.maxLength(50),this.noWhiteSpaceValidator]),
-      addLastName: new FormControl('', [Validators.required, Validators.maxLength(50),this.noWhiteSpaceValidator]),
-      addDob: new FormControl('', [Validators.maxLength(50)]),
-      addReferringPhysician: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      addReceivedDate: new FormControl('', [Validators.maxLength(50)])
-    })
   }
 
   close(): void {
     this.dialogRef.close();
   }
-
-  noWhiteSpaceValidator(control:FormControl) {
+  noWhiteSpaceValidator(control: FormControl) {
     let isWhiteSpace = (control.value || '').trim().length === 0;
-    let isValid=!isWhiteSpace;
-    return isValid ? null : {'whitespace':true};
+    let isValid = !isWhiteSpace;
+    return isValid ? null : { 'whitespace': true };
   }
 
-  saveOrder() {
-    this.alertService.createAlert('Patient added successfully.', 1);
-    this.dialogRef.close();
+  getValues() {
+
+    this.analyticsService.getgenderslist().subscribe(
+      data => {
+        console.log(data)
+        this.GendersList = data['GendersList'];
+      }
+    );
+
+    this.analyticsService.getethnicitylist().subscribe(
+      data => {
+        console.log(data)
+        this.EthnicityList = data['EthnicityList'];
+      }
+    );
+    this.analyticsService.getcountrieslist().subscribe(
+      data => {
+        console.log(data)
+        this.CountryList = data['CountryList'];
+      }
+    );
+    this.analyticsService.getnationalitylist().subscribe(
+      data => {
+        console.log(data)
+        this.NationalityList = data['NationalityList'];
+      }
+    );
+    this.analyticsService.getstate_provincelist().subscribe(
+      data => {
+        console.log(data)
+        this.State_Province_List = data['State_Province_List'];
+      }
+    );
+
   }
 
 }

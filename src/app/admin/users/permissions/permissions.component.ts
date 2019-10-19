@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+import { ActivatedRoute } from '@angular/router';
+=======
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
 import { Location } from '@angular/common';
 import { AlertService } from '../../../shared/services/alert.service';
 import { UsersService } from '../users.service';
@@ -11,6 +15,16 @@ import { UsersService } from '../users.service';
 })
 export class PermissionsComponent implements OnInit {
   tableList: any;
+<<<<<<< HEAD
+  id: any;
+  constructor(private location: Location, public usersService: UsersService, private route: ActivatedRoute, private alertService: AlertService) { }
+
+  ngOnInit() {
+
+    let UserId = this.route.snapshot.paramMap.get('id');
+    this.id = decodeURIComponent(decodeURIComponent(UserId))
+    console.log("id", this.id);
+=======
   constructor(private location: Location, public usersService: UsersService, private alertService: AlertService) { }
 
   ngOnInit() {
@@ -40,11 +54,32 @@ export class PermissionsComponent implements OnInit {
       { "ScreenName": "Permissions", "Create": true, "Read": true, "Update": true, "Delete": true },
       { "ScreenName": "Settings", "Create": true, "Read": true, "Update": true, "Delete": true }
     ];
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
     this.getPermissions();
   }
 
   getPermissions() {
     this.tableList = null;
+<<<<<<< HEAD
+    let body = {
+      "UserId": this.id
+    }
+    this.usersService.getuserpermissions(body).subscribe(
+      data => {
+        console.log(data);
+        this.tableList = data['Permissions'];
+        for (let i = 0; i < this.tableList.length; i++) {
+          this.tableList[i].UserId = this.id
+        }
+      }
+    )
+  }
+
+  change(index, name, value) {
+    this.tableList[index][name] = value;
+  }
+
+=======
     this.usersService.getuserpermissions().subscribe(
       data => {
         this.tableList = data['Permissions'];
@@ -59,14 +94,26 @@ export class PermissionsComponent implements OnInit {
     console.log(this.tableList, "changed")
   }
 
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
   saveUserPermissions() {
     let body = {
       "Permissions": this.tableList
     }
+<<<<<<< HEAD
+    console.log("body", body);
+    this.usersService.saveuserpermissions(body).subscribe(
+      data => {
+        console.log(data)
+        
+        if (data['Success'] == true) {
+          this.alertService.createAlert(data['Message'], 1);
+          this.getPermissions();
+=======
     this.usersService.saveuserpermissions(body).subscribe(
       data => {
         if (data['Success'] == true) {
           this.alertService.createAlert(data['Message'], 1);
+>>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
         } else {
           this.alertService.createAlert(data['Message'], 0);
         }

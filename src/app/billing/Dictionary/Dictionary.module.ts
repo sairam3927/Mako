@@ -22,7 +22,6 @@ import { AlgorithmComponent } from './Algorithm/Algorithm.component';
 import { UploadComponent } from './Algorithm/upload/upload.component';
 import { AddAlgorithmComponent } from './Algorithm/addAlgorithm/addAlgorithm.component';
 import { ScopeUploadCSVComponent } from './Scope/upload-csv/upload-csv.component';
-// import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
@@ -57,7 +56,7 @@ export const routes = [
      AddMessageComponent, SeqResultsComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, 
      AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, 
      AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent,
-      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent,DeleteConfirmDailogComponent],
+      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
@@ -80,7 +79,7 @@ export const routes = [
     AddScopeComponent,
     AddSectionComponent,
     ConfirmDialogComponent,
-    DeleteConfirmDailogComponent,
+    
     AddTestComponent
   ],
   providers: [AlertService]

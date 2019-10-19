@@ -11,11 +11,11 @@
             <button mat-raised-button class="pull-right add-hover btn-success" (click)="addPatientDataDialog()"
                 style="margin-right: 10px !important;">
                 <mat-icon>backup</mat-icon> Upload Order Data
-            </button>
-            <button mat-raised-button class="pull-right add-hover btn-success" (click)="openPatientDialog(null)"
+            </button>-->
+            <button mat-raised-button class="pull-right add-hover btn-success" (click)="addOrderDialog(null,null,null)"
                 style="margin-right: 10px !important;">
                 <mat-icon>person_add</mat-icon> Add Order
-            </button> -->
+            </button> 
         </div>
         <div class="col-sm-12 m-b-10" *ngIf="filterToggle">
             <mat-card class="filter">
@@ -116,28 +116,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of patientList">
+                        <tr *ngFor="let item of pageOrderList">
                             <td class="text-center">
-                                <a title="Edit" style="cursor: pointer;" (click)="openPatientDialog(item)">
+                                <a title="Edit" style="cursor: pointer;" (click)="addOrderDialog(item.OrdersId,'Update',item)">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
+                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deleteDialog(item.OrdersId)"
                                     (cancel)="cancelClicked = true">
                                     <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                                 </a>
                             </td>
-                            <td>{{item.Patient}}</td>
+                            <td>{{item.FirstName}}&nbsp;{{item.LastName}}</td>
                             <td class="text-center">{{item.Age}}</td>
-                            <td class="text-center">{{item.Gender}}</td>
+                            <td class="text-center">{{item.sGender}}</td>
                             <!-- <td class="text-center">{{item.dob}}</td> -->
-                            <td>{{item.Country}}</td>
-                            <td>{{item.State}}</td>
+                            <td>{{item.sCountry}}</td>
+                            <td>{{item.sState_Province}}</td>
                             <td>{{item.City}}</td>
-                            <td class="text-center">{{item.Zip}}</td>
-                            <td>{{item.Ethnicity}}</td>
+                            <td class="text-center">{{item.ZipCode_PostalCode}}</td>
+                            <td>{{item.sEthnicity}}</td>
                             <td>{{item.SampleName}}</td>
-                            <td>{{item.FEDEX}}</td>
+                            <td>{{item.Fedex_Awb}}</td>
                             <td class="text-center">{{item.OrderDate}}</td>
                             <td class="text-center">{{item.DateCompleted}}</td>
                             <td class="text-center">
@@ -157,7 +157,7 @@
 
                             </td>
                             <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Documents"
-                                    (click)="openDocumentDialog()">{{item.Docs}}</a></td>
+                                    (click)="openDocumentDialog()">{{item.Docs_Count}}</a></td>
 
                             <td>{{item.Status}}</td>
                         </tr>
@@ -165,13 +165,14 @@
                 </table>
 
             </div>
-            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
             </mat-paginator>
         </div>
     </div>
 
 </div>
 
-<div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
+<!-- <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
     <mat-spinner color="primary"></mat-spinner>
-</div>
+</div> -->
