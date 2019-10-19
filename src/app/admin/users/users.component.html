@@ -75,13 +75,13 @@
                             <td>{{item.UserName}}</td>
                             <td>{{item.Email}}</td>
                             <td>{{item.Mobile}}</td>
-                            <td><a
-                                    routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a>
+                            <td>
+                                <a routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a>
                             </td>
                             <td class="pad-left inner-screen text-center">
                                 <a (click)="changeStatus(item.UserId,!item.status)">
-                                    <span *ngIf="!item.status" style="color:red">Inactive</span>
-                                    <span *ngIf="item.status">Active</span>
+                                    <span *ngIf="item.Status == false" style="color:red">Inactive</span>
+                                    <span *ngIf="item.Status == true">Active</span>
                                 </a>
                             </td>
                             <td class="text-center">

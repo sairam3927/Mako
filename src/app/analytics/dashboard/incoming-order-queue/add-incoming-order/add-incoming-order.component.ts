@@ -60,6 +60,10 @@ export class AddIncomingOrderComponent implements OnInit {
 
     if (this.action == 'Update') {
 
+      if(this.item.Gender == 2){
+        this.setradio('Female');
+      }
+
       await this.getProvince(this.item.Country);
       console.log(this.item,"itemaaa");
 

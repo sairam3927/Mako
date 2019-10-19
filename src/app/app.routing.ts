@@ -27,19 +27,11 @@ export const routes: Routes = [
 
     
      },
-<<<<<<< HEAD
     { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
     // { path: '', redirectTo: 'patient-login', pathMatch: 'full'},
     // { path: 'patient-login', component: PatientLoginComponent, data: { breadcrumb: 'patient-login' } },
     // { path: 'patient-dashboard', component: PatientDashboardComponent,loadChildren: './patient/patient-dashboard/patient-dashboard-module.module#PatientDashboardModuleModule', data: { breadcrumb: '' } },
-=======
-    // { path: '', redirectTo: 'login', pathMatch: 'fuzll'},
-    // { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
-    { path: '', redirectTo: 'patient-login', pathMatch: 'full'},
-    { path: 'patient-login', component: PatientLoginComponent, data: { breadcrumb: 'patient-login' } },
-    { path: 'patient-dashboard', component: PatientDashboardComponent,loadChildren: './patient/patient-dashboard/patient-dashboard-module.module#PatientDashboardModuleModule', data: { breadcrumb: '' } },
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
     { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
     { path: 'forgotPassword', component: ForgotPasswordComponent, data: { breadcrumb: 'Forgot Password' } }, 
     { path: 'otp', component: OtpResetPasswordComponent, data: { breadcrumb: 'otp' } },
