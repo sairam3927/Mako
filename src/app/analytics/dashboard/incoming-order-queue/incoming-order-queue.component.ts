@@ -26,7 +26,6 @@ export class IncomingOrderQueueComponent implements OnInit {
   fakedata: any;
   OrderList: any;
   pageOrderList: any;
-  
 
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
@@ -44,7 +43,11 @@ export class IncomingOrderQueueComponent implements OnInit {
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
     private analyticsService: AnalyticsService) {
     this.filterForm = this._fb.group({
-      'keyWord': [null]
+      'keyWord': [null],
+      'Age': [null],
+      'fromDate': [new Date()],
+      'toDate': [new Date()],
+      'Pregnant': [null],
     });
   }
 
@@ -61,7 +64,7 @@ export class IncomingOrderQueueComponent implements OnInit {
     let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
       data: id,
       height: 'auto',
-      width: '500px',
+      width: '600px',
       autoFocus: false,
 
     });
@@ -77,15 +80,12 @@ export class IncomingOrderQueueComponent implements OnInit {
     this.getOrderList();
   }
 
- 
-
   getOrderList() {
     this.filterForm.reset();
     this.analyticsService.getorderslist().subscribe(
       data => {
         console.log(data)
-        // this.OrderList = data['OrdersList'];
-        this.OrderList = data;
+        this.OrderList = data['OrdersList'];
         if (this.OrderList != null && this.OrderList.length >= 0) {
           this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
@@ -120,11 +120,41 @@ export class IncomingOrderQueueComponent implements OnInit {
     let events = this.OrderList;
     if (events != null) {
       let filteredEvents = events.filter(x =>
-        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase()))
+        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase())) &&
+        (formValues.fromDate == undefined || new Date(x.OrderDate) >= new Date(formValues.fromDate)) &&
+        (formValues.toDate == undefined || new Date(x.OrderDate) <= new Date(formValues.toDate)) &&
+        (formValues.Pregnant == null || JSON.stringify(x.Pregnant_Lactate).toLowerCase().includes(formValues.Pregnant.toLowerCase()))
       );
       console.log(filteredEvents, 'filteredEventssadA')
+      let filteredEvents2 = [];
+      if (formValues.Age != null){
+        if (formValues.Age == ">30") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) > 30)
+          );
+        }
+        if (formValues.Age == "<30") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) < 30)
+          );
+        }
+        if (formValues.Age == ">=50") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) >= 50)
+          );
+        }
+        if (formValues.Age == "<=50") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) <= 50)
+          );
+        }
+      }else{
+        filteredEvents2 = filteredEvents;
+      }
+      
+      console.log(filteredEvents2, 'filteredEvents2')
 
-      this.OrderList = filteredEvents;
+      this.OrderList = filteredEvents2;
       this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
       this.totalSize = filteredEvents.length;
       this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
@@ -175,10 +205,7 @@ export class IncomingOrderQueueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
-
   
-
- 
   public openDocumentDialog() {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       height: 'auto',

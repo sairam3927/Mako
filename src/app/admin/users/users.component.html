@@ -8,14 +8,12 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <div class="w-100 flex-p">
-<<<<<<< HEAD
-                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openUserDialog(null,'Add',null)">
-=======
-                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openUserDialog(null)">
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
+                    <button mat-raised-button class="pull-right add-hover btn-success"
+                        (click)="openUserDialog(null,'Add',null)">
                         <mat-icon>person_add</mat-icon> Add User
                     </button>
-                    <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                    <button mat-raised-button color="primary" style="color: white !important;"
+                        class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
                         <mat-icon>filter_list</mat-icon> Filter
                     </button>
                 </div>
@@ -23,42 +21,42 @@
         </div>
 
         <div fxLayout="row wrap">
-                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
-                    <mat-card class="filter">
-                        <mat-card-content>
-                                <div class="row col-sm-12">
-                                        <div class="col-sm-4">
-                                                <div class="col-sm-4 newMarginClass">
-                                                    User Name : 
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="--Enter User Name--">
-                                                </div>
-                                        </div>
-                                    <div class="col-sm-4">
-                                        <div class="col-sm-4 newMarginClass">
-                                            Status : 
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <mat-select placeholder="--Search by Status--" class="form-control">
-                                                <mat-option *ngFor="let option of status" [value]="">{{option}}</mat-option>
-                                            </mat-select>
-                                        </div>
-                                    </div>
-                            
-                                <div class="col-lg-1">
-                                    <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-4">
+                                <div class="col-sm-4 newMarginClass">
+                                    User Name :
                                 </div>
-                                <div class="col-lg-1"></div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="--Enter User Name--">
+                                </div>
                             </div>
-                                
-                            
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4 newMarginClass">
+                                    Status :
+                                </div>
+                                <div class="col-sm-8">
+                                    <mat-select placeholder="--Search by Status--" class="form-control">
+                                        <mat-option *ngFor="let option of status" [value]="">{{option}}</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
 
-        
+                            <div class="col-lg-1">
+                                <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+
         <div fxLayout="row wrap">
             <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
@@ -77,33 +75,26 @@
                             <td>{{item.UserName}}</td>
                             <td>{{item.Email}}</td>
                             <td>{{item.Mobile}}</td>
-<<<<<<< HEAD
-                            <td><a routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a></td>
+                            <td>
+                                <a routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a>
+                            </td>
                             <td class="pad-left inner-screen text-center">
                                 <a (click)="changeStatus(item.UserId,!item.status)">
-                                    <span *ngIf="item.Status == false " style="color:red">Inactive</span>
-                                    <span *ngIf="item.Status == true ">Active</span>
-=======
-                            <td><a routerLink="permissions">{{item.UserPermissions}}/{{item.TotalPermissions}}</a></td>
-                            <td class="pad-left inner-screen text-center">
-                                <a (click)="changeStatus(item.UserId,!item.status)">
-                                    <span *ngIf="!item.status" style="color:red">Inactive</span>
-                                    <span *ngIf="item.status">Active</span>
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
+                                    <span *ngIf="item.Status == false" style="color:red">Inactive</span>
+                                    <span *ngIf="item.Status == true">Active</span>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1" (click)="openUserDialog(item.UserId,'Update',item)">
-                                  <i class="fa fa-edit"></i>
+                                <a matTooltip="Edit Details"
+                                    style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1"
+                                    (click)="openUserDialog(item.UserId,'Update',item)">
+                                    <i class="fa fa-edit"></i>
                                 </a>
-<<<<<<< HEAD
                                 <a (click)="deleteDialog(item.UserId)">
-=======
-                                <a (click)="deleteUser(item.UserId)">
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
-                                  <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete"
+                                        class="fa fa-trash red"></i>
                                 </a>
-                              </td>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -115,4 +106,3 @@
 <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
     <mat-spinner color="primary"></mat-spinner>
 </div>
-

@@ -56,7 +56,6 @@ export class PersonalComponent implements OnInit {
       data => {
         console.log(data)
         this.gender = data['data'];
-
       }
     );
     this.dictionaryService.ethinicitylist().subscribe(

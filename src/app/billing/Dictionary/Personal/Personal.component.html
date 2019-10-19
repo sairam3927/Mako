@@ -25,13 +25,8 @@
                   <td>
                     <mat-radio-group class="pull-left" formControlName="Gender" style="margin-top: 5px"
                       aria-label="Select an option">
-                      <!-- <mat-radio-button value="1" style="margin-right: 10px" (click)="setradio('Male')"><small
-                          style="font-size: 14px;">Male</small></mat-radio-button>
-                      <mat-radio-button value="2" (click)="setradio('Female')"><small
-                          style="font-size: 14px;">Female</small></mat-radio-button> -->
                       <mat-radio-button *ngFor="let gen of gender" [value]="gen.Value"  style="margin-right: 10px" (click)="setradio(gen.Name)"><small
                           style="font-size: 14px;">{{gen.Name}}</small></mat-radio-button>
-                      
                     </mat-radio-group>
                   </td>
                 </tr>

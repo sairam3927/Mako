@@ -107,7 +107,7 @@ export const routes = [
     AddEmailTemplateComponent,
     AddTextTemplateComponent,
    AddAttorneyComponent,AddChiropractorComponent,AddIPhysicianComponent,AddIPartnerComponent,AddPharmacyComponent,AddCptCodeComponent,
-    AddIcdCodeComponent,AddLookupDialogComponent
+    AddIcdCodeComponent,AddLookupDialogComponent,
   ]
 })
 export class AdminModule { }
