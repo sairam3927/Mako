@@ -118,6 +118,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
      PatientLoginComponent,
      PatientDashboardComponent,
      DeleteConfirmDailogComponent
+
   ],
   entryComponents: [
     VerticalMenuComponent,

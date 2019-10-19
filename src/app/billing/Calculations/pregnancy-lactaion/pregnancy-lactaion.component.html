@@ -31,7 +31,7 @@
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-          <th class="text-center">Actions</th>
+          <!-- <th class="text-center">Actions</th> -->
           <th>Nutrient</th>
           <th>Units</th>
           <th class="text-center">Pregnancy</th>
@@ -42,7 +42,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of List">
-          <td class="text-center">
+          <!-- <td class="text-center">
             <a title="Edit User" style="margin-right: 10px; cursor: pointer;">
               <i class="fa fa-edit"></i>
             </a>
@@ -50,7 +50,7 @@
               (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
               <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
             </a>
-          </td>
+          </td> -->
           <td>{{item.Nutrient}}</td>
           <td>{{item.Units}}</td>
           <td class="text-center">{{item.Pregnancy}}</td>

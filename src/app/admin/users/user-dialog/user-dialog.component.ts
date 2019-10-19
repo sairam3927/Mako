@@ -30,6 +30,7 @@ export class UserDialogComponent implements OnInit {
       Email: new FormControl('', [Validators.required, ]),
       Mobile: new FormControl('', [Validators.required, ]),
       Status: new FormControl(false, [Validators.required, ]),
+
     })
 
     if (this.action == 'Update') {
