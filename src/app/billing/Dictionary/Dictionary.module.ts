@@ -79,7 +79,6 @@ export const routes = [
     AddScopeComponent,
     AddSectionComponent,
     ConfirmDialogComponent,
-    
     AddTestComponent
   ],
   providers: [AlertService]

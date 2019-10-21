@@ -8,11 +8,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <div class="w-100 flex-p">
-<<<<<<< HEAD
                     <button mat-raised-button class="pull-right add-hover btn-success" (click)="openUserDialog(null,'Add',null)">
-=======
-                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openUserDialog(null)">
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
                         <mat-icon>person_add</mat-icon> Add User
                     </button>
                     <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
@@ -77,30 +73,19 @@
                             <td>{{item.UserName}}</td>
                             <td>{{item.Email}}</td>
                             <td>{{item.Mobile}}</td>
-<<<<<<< HEAD
                             <td><a routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a></td>
                             <td class="pad-left inner-screen text-center">
                                 <a (click)="changeStatus(item.UserId,!item.status)">
                                     <span *ngIf="item.Status == false " style="color:red">Inactive</span>
                                     <span *ngIf="item.Status == true ">Active</span>
-=======
-                            <td><a routerLink="permissions">{{item.UserPermissions}}/{{item.TotalPermissions}}</a></td>
-                            <td class="pad-left inner-screen text-center">
-                                <a (click)="changeStatus(item.UserId,!item.status)">
-                                    <span *ngIf="!item.status" style="color:red">Inactive</span>
-                                    <span *ngIf="item.status">Active</span>
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
                                 </a>
                             </td>
                             <td class="text-center">
                                 <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1" (click)="openUserDialog(item.UserId,'Update',item)">
                                   <i class="fa fa-edit"></i>
                                 </a>
-<<<<<<< HEAD
                                 <a (click)="deleteDialog(item.UserId)">
-=======
-                                <a (click)="deleteUser(item.UserId)">
->>>>>>> 6e95d525468b7e1898a2dc0e47e03741e2389243
+                                <!-- <a (click)="deleteUser(item.UserId)"> -->
                                   <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
                                 </a>
                               </td>

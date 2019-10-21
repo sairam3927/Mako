@@ -15,8 +15,8 @@ export class AnalyticsService {
   private editordersurl = 'api/edit-orders';
   private deleteorderurl = 'api/delete-order';
 
-  private getgenderslisturl = 'api/get-genders-list';
-  private getethnicitylisturl = 'api/get-ethnicity-list';
+  private getgenderslisturl = 'api/get-gender-list';
+  private getethnicitylisturl = 'api/get-ethinicity-list';
   private getcountrieslisturl = 'api/get-countries-list';
   private getnationalitylisturl = 'api/get-nationality-list';
   private getstate_provincelisturl = 'api/get-state_province-list';
@@ -48,8 +48,8 @@ export class AnalyticsService {
   public getnationalitylist() {
     return this._http.get(environment.apiUrl + this.getnationalitylisturl)
   }
-  public getstate_provincelist() {
-    return this._http.get(environment.apiUrl + this.getstate_provincelisturl)
+  public getstate_provincelist(data) {
+    return this._http.post(environment.apiUrl + this.getstate_provincelisturl,data)
   }
 
 }

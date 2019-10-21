@@ -3,6 +3,10 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { MatDialog } from '@angular/material';
 import { UploadRawDataComponent } from './upload-raw-data/upload-raw-data.component';
 import { AppSettings } from 'src/app/app.settings';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { DictionaryService } from 'src/app/billing/Dictionary/dictionary.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { RawDataService } from '../raw-data.service';
 
 @Component({
   selector: 'app-incoming-orders',
@@ -10,57 +14,146 @@ import { AppSettings } from 'src/app/app.settings';
   styleUrls: ['./incoming-orders.component.scss']
 })
 export class IncomingOrdersComponent implements OnInit {
-  filterToggle:boolean;
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
-  patientList: any;
+  fakedata: any;
+  RawDataList: any;
+  pageRawDataList: any;
 
+  public pageSize = 10;
+  public pageSizeTemp = this.pageSize;
+  public currentPage = 0;
+  public totalSize = 0;
+  public currentPageTemp = 0;
+  public totalSizeTemp = 0;
 
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
-
-  constructor(public dialog: MatDialog,
-    private alertService: AlertService) { 
-     
+  filterForm: FormGroup;
+ 
+  constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
+    private rawDataService: RawDataService) {  
+      this.filterForm = this._fb.group({
+        'keyWord': [null]
+      });
     }
-
+ 
   imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';
 
   onStepsOptionsSelected(event) {
     console.log(event);
   }
   
-  ngOnInit() {
-    this.patientList = [
-      { id: 1, DocumentTitle: "September 6 upload", UploadDate: "09/06/2019, 5:00 PM", Samples: "243", TotalRecords: "1,00,453", Duplicates: "2300", OutofScope: "52,000", Incomplete: "6", Processed: "120 / 243", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "September 17 upload", UploadDate: "09/17/2019, 10:46 AM", Samples: "252", TotalRecords: "1,01,756", Duplicates: "2400", OutofScope: "60,000", Incomplete: "8", Processed: "150 / 252", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "September 22 upload", UploadDate: "09/22/2019, 2:15 PM", Samples: "215", TotalRecords: "99,254", Duplicates: "2500", OutofScope: "70,000", Incomplete: "9", Processed: "170 / 215", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 1 upload", UploadDate: "10/01/2019, 1:06 PM", Samples: "328", TotalRecords: "1,22,695", Duplicates: "2800", OutofScope: "40,000", Incomplete: "1", Processed: "190 / 328", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 5 upload", UploadDate: "10/05/2019, 12:00 PM", Samples: "248", TotalRecords: "1,01,265", Duplicates: "2700", OutofScope: "30,000", Incomplete: "8", Processed: "129 / 248", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 9 upload", UploadDate: "10/09/2019, 9:00 AM", Samples: "190", TotalRecords: "1,00,000", Duplicates: "2000", OutofScope: "72,000", Incomplete: "7", Processed: "85 / 190", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 13 upload", UploadDate: "10/13/2019, 10:30 PM", Samples: "268", TotalRecords: "95,058", Duplicates: "2100", OutofScope: "61,000", Incomplete: "10", Processed: "135 / 268", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 19 upload", UploadDate: "10/19/2019, 11:20 AM", Samples: "290", TotalRecords: "1,20,589", Duplicates: "2200", OutofScope: "59,000", Incomplete: "12", Processed: "115 / 290", Download: "", Status: "Pending" },
-      { id: 1, DocumentTitle: "October 26 upload", UploadDate: "10/26/2019, 7:00 AM", Samples: "195", TotalRecords: "1,00,565", Duplicates: "2600", OutofScope: "52,000", Incomplete: "7", Processed: "85 / 195", Download: "", Status: "Pending" },
-    ];
+  public uploadCSVDialog() {
+    let dialogRef = this.dialog.open(UploadRawDataComponent, {
+      height: 'auto',
+      width: '400px',
+      autoFocus: false, 
+
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      this.getRawDataList();
+    });
   }
 
-  public addPatientDataDialog() {
-    let dialogRef = this.dialog.open(UploadRawDataComponent, {
+  ngOnInit() {
+    this.getRawDataList(); 
+  }
+
+  getRawDataList() {
+    this.filterForm.reset();
+    this.rawDataService.getrawdatalist().subscribe(
+      data => {
+        console.log(data)
+        this.RawDataList = data['RawDataList'];
+        if (this.RawDataList.length >= 0) {
+          this.pageRawDataList = this.RawDataList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+        }
+        this.totalSize = this.RawDataList.length;
+      }
+    );
+  
+  }
+
+  deleteRawData(data) {
+    let body = {
+      'RawId': data
+    }
+    console.log(body)
+    this.rawDataService.deleterawdata(body).subscribe(
+      data => {
+        console.log(data)
+        if (data['Success'] == true) {
+          this.getRawDataList();
+          this.alertService.createAlert('Successfully Deleted', 1);
+        } else {
+          this.alertService.createAlert('Something Went Wrong', 0);
+        }
+
+      }
+    );
+  }
+
+  filterBy(formValues) {
+    // this.getVoucherList();
+    console.log(formValues, 'filter values')
+    console.log(formValues.keyWord, 'formValues.keyWord')
+
+    let events = this.RawDataList;
+    if (events != null) {
+      let filteredEvents = events.filter(x =>
+        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase()))
+      );
+      console.log(filteredEvents, 'filteredEventssadA')
+
+      this.RawDataList = filteredEvents;
+      this.pageRawDataList = this.RawDataList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+      this.totalSize = filteredEvents.length;
+      this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
+      this.currentPage = 0;
+    }
+
+  }
+
+  resetFilter() {
+    this.currentPage = 0;
+    this.pageSize = 10;
+    this.getRawDataList();
+    this.filterForm.reset();
+  }
+
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.pageRawDataList = this.RawDataList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+  }
+
+  public handlePageTemp(e: any) { 
+    this.currentPageTemp = e.pageIndex;
+    console.log('pageSize', e.pageSize)
+    this.pageSize = e.pageSize;
+    this.pageRawDataList = this.RawDataList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  } 
+
+  public deleteDialog(id) {
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
+      console.log("datr", data)
+      if (data == true) {
+        this.deleteRawData(id)
+      }
     });
   }
 
-  deletePatientOrder() {
-    this.alertService.createAlert('Successfully deleted.', 1);
-  }
   
 
 }
