@@ -31,7 +31,6 @@ public isPassword:boolean=true;
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {
-      console.log(values['email'])
       if (values['email'] == 'admin@mako.com' && values['password'] == 'Password1!1') {
         this.router.navigate(['/mako']);
         this.alertService.createAlert("Login Success",1)
