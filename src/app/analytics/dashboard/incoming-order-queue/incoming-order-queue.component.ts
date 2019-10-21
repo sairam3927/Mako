@@ -27,7 +27,6 @@ export class IncomingOrderQueueComponent implements OnInit {
   OrderList: any;
   pageOrderList: any;
 
-
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
   public currentPage = 0;
@@ -80,8 +79,6 @@ export class IncomingOrderQueueComponent implements OnInit {
   ngOnInit() {
     this.getOrderList();
   }
-
-
 
   getOrderList() {
     this.filterForm.reset();
@@ -208,10 +205,7 @@ export class IncomingOrderQueueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
-
-
-
-
+  
   public openDocumentDialog() {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       height: 'auto',

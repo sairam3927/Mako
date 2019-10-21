@@ -17,10 +17,14 @@
             <tbody>
                 <tr *ngFor="let item of tableList; let index = index">
                     <td>{{item.ScreenName}}</td>
-                    <td class="style"><input type="checkbox" (click)="change(index,'Create',!item.Create)" [(ngModel)]="item.Create" ></td>
-                    <td class="style"><input type="checkbox" (click)="change(index,'Read',!item.Create)" [(ngModel)]="item.Read" ></td>
-                    <td class="style"><input type="checkbox" (click)="change(index,'Update',!item.Create)" [(ngModel)]="item.Update" ></td>
-                    <td class="style"><input type="checkbox" (click)="change(index,'Delete',!item.Create)" [(ngModel)]="item.Delete" ></td>
+                    <td class="style"><input type="checkbox" (click)="change(index,'Create',!item.Create)"
+                            [(ngModel)]="item.Create"></td>
+                    <td class="style"><input type="checkbox" (click)="change(index,'Read',!item.Create)"
+                            [(ngModel)]="item.Read"></td>
+                    <td class="style"><input type="checkbox" (click)="change(index,'Update',!item.Create)"
+                            [(ngModel)]="item.Update"></td>
+                    <td class="style"><input type="checkbox" (click)="change(index,'Delete',!item.Create)"
+                            [(ngModel)]="item.Delete"></td>
                 </tr>
             </tbody>
         </table>

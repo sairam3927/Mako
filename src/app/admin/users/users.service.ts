@@ -40,7 +40,6 @@ export class UsersService {
     public getuserpermissions(data) {
         return this._http.post(environment.apiUrl + this.getuserpermissionsurl,data);
     }
-
     public saveuserpermissions(data) {
         return this._http.post(environment.apiUrl + this.saveuserpermissionsurl, data);
     }

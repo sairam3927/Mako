@@ -16,15 +16,12 @@ export class PermissionsComponent implements OnInit {
   constructor(private location: Location, public usersService: UsersService, private route: ActivatedRoute, private alertService: AlertService) { }
 
   ngOnInit() {
-
     let UserId = this.route.snapshot.paramMap.get('id');
     this.id = decodeURIComponent(decodeURIComponent(UserId))
     console.log("id", this.id);
     this.getPermissions();
   }
-
   getPermissions() {
-    this.tableList = null;
     let body = {
       "UserId": this.id
     }

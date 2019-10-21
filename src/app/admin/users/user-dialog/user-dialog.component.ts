@@ -31,7 +31,6 @@ export class UserDialogComponent implements OnInit {
       Mobile: new FormControl('', [Validators.required, ]),
       Status: new FormControl(false, [Validators.required, ]),
     })
-
     if (this.action == 'Update') {
 
       this.addUserForm = this.fb.group({

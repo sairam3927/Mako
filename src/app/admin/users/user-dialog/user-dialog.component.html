@@ -33,7 +33,7 @@
     </form>
 </div>
 <mat-dialog-actions align="end">
-    <button mat-raised-button class="add-hover btn-success" (click)="addUser()" [mat-dialog-close]="'test'"><span *ngIf="action != 'Update'">Save</span><span
-            *ngIf="action == 'Update'">Update</span></button>
+    <button mat-raised-button class="add-hover btn-success" (click)="addUser()" [mat-dialog-close]="'test'"><span *ngIf="!user">Save</span><span
+            *ngIf="user">Update</span></button>
     <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
 </mat-dialog-actions> 

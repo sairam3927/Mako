@@ -126,7 +126,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDialogComponent,
     AddNoteDialogComponent,
     HelpVideoDialogComponent,
-    DeleteConfirmDailogComponent,
+    DeleteConfirmDailogComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     AppSettings,
