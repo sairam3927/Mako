@@ -32,14 +32,13 @@
       <thead class="tbl-head">
         <tr class="tr-grid-header">
           <th>Report Variable name</th>
-          <!-- <th>Coverage</th> -->
+          <th>Coverage</th>
           <th>Section</th>
-          <th>Nutrients/Condition</th>
+          <th>Condition/Nutrition</th>
           <!-- <th>Type</th>
           <th>Summary</th> -->
           <th>Test Name</th>
-          <th>Comment</th>
-          <th>Recommendation</th>
+          <th>Result Value</th>
           <th class="text-center">Calc</th>
           <th class="text-center">Logic</th>
           <!-- <th class="text-center">Configured</th> -->
@@ -48,14 +47,13 @@
       <tbody>
         <tr *ngFor="let item of List">
           <td>{{item.ReportVariable}}</td>
-          <!-- <td>{{item.Coverage}}</td> -->
+          <td>{{item.Coverage}}</td>
           <td>{{item.Section}}</td>
           <td>{{item.ConNutrition}}</td>
           <!-- <td>{{item.Type}}</td>
           <td>{{item.Summary}}</td> -->
           <td>{{item.TestName}}</td>
-          <td>{{item.Comment}}</td>
-          <td>{{item.Comment}}</td>
+          <td>{{item.ResultValue}}</td>
           <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Calculation">View</a></td>
           <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
             (click)="openLogicDialog()">View</a></td>
