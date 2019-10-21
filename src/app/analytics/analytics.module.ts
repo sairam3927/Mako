@@ -55,6 +55,7 @@ import { SpeechSynthesizerService } from './dashboard/visit-records/patient-dash
 import { AlertService } from '../shared/services/alert.service';
 import { AddPatientDataComponent } from './dashboard/incoming-order-queue/addPatientData/addPatientData.component';
 import { AddDocumentsComponent } from './dashboard/incoming-order-queue/add-documents/add-documents.component';
+import { DeleteConfirmDailogComponent } from '../shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 //import { ReportsComponent } from './reports/reports.component';
 export const routes = [
@@ -149,8 +150,7 @@ export const routes = [
     AddPatientVisitDashboardDialogComponent,
     ManageVisitsComponent,
     AddPatientDataComponent,
-    AddDocumentsComponent,
-    
+    AddDocumentsComponent
   ],
   providers:[
     SpeechRecognizerService,

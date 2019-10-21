@@ -22,7 +22,6 @@ import { AlgorithmComponent } from './Algorithm/Algorithm.component';
 import { UploadComponent } from './Algorithm/upload/upload.component';
 import { AddAlgorithmComponent } from './Algorithm/addAlgorithm/addAlgorithm.component';
 import { ScopeUploadCSVComponent } from './Scope/upload-csv/upload-csv.component';
-// import { UploadCSVComponent } from './SeqResults/uploadCSV/uploadCSV.component';
 import { DriUploadCSVComponent } from './DRI/dri-upload-csv/dri-upload-csv.component';
 import { HaplotypesComponent } from './haplotypes/haplotypes.component';
 import { TestsComponent } from './tests/tests.component';
@@ -41,11 +40,11 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
 export const routes = [
   { path: '', redirectTo: 'Scope' },
   { path: 'Scope', component: ScopeComponent, data: { breadcrumb: 'Scope' } },
-  { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'D R I' } },
+  { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'DRI' } },
   { path: 'Messages', component: MessagesComponent, data: { breadcrumb: 'Messages' } },
   { path: 'Sections', component: SectionsComponent, data: { breadcrumb: 'Sections' } },
-  { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrient' } },
-  { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results' } },
+  { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrients/Conditions' } },
+  { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results Master' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
   { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'Haplotypes' } },
   { path: 'Tests', component: TestsComponent, data: { breadcrumb: 'Tests' } },
@@ -57,7 +56,7 @@ export const routes = [
      AddMessageComponent, SeqResultsComponent, MessagesUploadComponent, AlgorithmComponent, UploadComponent, 
      AddAlgorithmComponent, DriUploadCSVComponent, HaplotypesComponent, TestsComponent, AddHaplotypeComponent, 
      AddTestComponent, AddSeqResultComponent, UploadTestComponent, UploadCsvHaplotypeComponent, AddScopeComponent,
-      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent,DeleteConfirmDailogComponent],
+      NutrientComponent,SectionsComponent, AddSectionComponent, ConfirmDialogComponent],
   imports: [
     CommonModule, ModalModule, SharedModule, ConfirmationPopoverModule,
     RouterModule.forChild(routes), DataTableModule, FormsModule, ReactiveFormsModule, TableModule,
@@ -80,7 +79,6 @@ export const routes = [
     AddScopeComponent,
     AddSectionComponent,
     ConfirmDialogComponent,
-    DeleteConfirmDailogComponent,
     AddTestComponent
   ],
   providers: [AlertService]

@@ -56,7 +56,6 @@ export class PersonalComponent implements OnInit {
       data => {
         console.log(data)
         this.gender = data['data'];
-
       }
     );
     this.dictionaryService.ethinicitylist().subscribe(
@@ -86,7 +85,7 @@ export class PersonalComponent implements OnInit {
   addSelections() {
     this.formValue = this.PersonalForm.value;
     console.log("values:", this.formValue);
-    if (this.formValue['Gender'] == 'Male'){
+    if (this.formValue['Gender'] == 1){
       this.formValue['Pregnant'] = false;
     }
     this.gridObject = {

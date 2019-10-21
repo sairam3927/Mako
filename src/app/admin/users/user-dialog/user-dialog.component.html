@@ -1,31 +1,31 @@
-<h1 mat-dialog-title><span *ngIf="!user">Add</span><span *ngIf="user">Edit</span> User</h1><hr>
+<h1 mat-dialog-title><span *ngIf="action != 'Update'">Add</span><span *ngIf="action == 'Update'">Edit</span> User</h1><hr>
 <div mat-dialog-content>
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" [formGroup]="addUserForm" >
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">User Name : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="email" class="form-control" id="email" placeholder="Enter User Name">
+                <input type="email" class="form-control" formControlName="UserName" id="email" placeholder="Enter User Name">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Email ID : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="email" class="form-control" id="email" placeholder="Enter Email ID">
+                <input type="email" class="form-control" formControlName="Email" id="email" placeholder="Enter Email ID">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Contact Number : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="number" class="form-control" placeholder="Enter Contact Number">
+                <input  class="form-control" formControlName="Mobile" placeholder="Enter Contact Number">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"> 
             <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label" for="pwd">Select Status : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <mat-select name="" id="" placeholder="-- Select Status --" class="form-control">
-                    <mat-option [value]=1>Active</mat-option>
-                    <mat-option [value]=2>Inactive</mat-option>
+                <mat-select name="" id="" placeholder="-- Select Status --" formControlName="Status" class="form-control">
+                    <mat-option [value]= true >Active</mat-option>
+                    <mat-option [value]= false >Inactive</mat-option>
                 </mat-select>
             </div>
         </div>
@@ -33,7 +33,7 @@
     </form>
 </div>
 <mat-dialog-actions align="end">
-    <button mat-raised-button class="add-hover btn-success" (click)="saveUser()" [mat-dialog-close]="'test'"><span *ngIf="!user">Save</span><span
+    <button mat-raised-button class="add-hover btn-success" (click)="addUser()" [mat-dialog-close]="'test'"><span *ngIf="!user">Save</span><span
             *ngIf="user">Update</span></button>
     <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
 </mat-dialog-actions> 

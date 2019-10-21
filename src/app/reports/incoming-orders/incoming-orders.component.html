@@ -1,74 +1,61 @@
 <div class="col-sm-12 flex-p">
     <div class="row">
-
         <div class="col-sm-12 m-b-10">
             <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover"
                 (click)="filterToggle = !filterToggle">
                 <mat-icon>filter_list</mat-icon> Filter
             </button>
             <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
-                        (click)="addPatientDataDialog()">
+                (click)="uploadCSVDialog()">
                 <mat-icon>backup</mat-icon> Upload Raw Data
             </button>
             <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
                 <mat-icon>cloud_download</mat-icon> Download Sample Template
             </button>
         </div>
-        <!-- <div class="col-sm-12 m-b-10" style="margin-left: -7px;"> -->
-            <div class="col-sm-12 m-b-10" *ngIf="filterToggle">
-                <mat-card class="filter">
-                    <mat-card-content>
-                        <div class="row col-sm-12">
-                            <div class="col-sm-4">
-                                <div class="col-sm-4 newMarginClass">
-                                    Keyword search :
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="--Keyword search--">
-                                </div>
+    </div>
+</div>
+<form [formGroup]="filterForm">
+    <div class="row wrap " style="padding: 10px;">
+        <div class="col-sm-12" *ngIf="filterToggle">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Keyword search :
                             </div>
                             <div class="col-sm-8">
-                                <div class="col-sm-2 newMarginClass">
-                                    Date Range:
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="input-icon right">
-                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                        <input class="form-control" placeholder=" From Date (MM/DD/YYYY)"
-                                            class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
-                                            name="dt1">
-                                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="input-icon right">
-                                        <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
-                                        <input class="form-control" placeholder="To Date (MM/DD/YYYY)"
-                                            class="form-control" id="db" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2"
-                                            name="dt2">
-                                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control" formControlName="keyWord"
+                                    placeholder="--Keyword search--">
                             </div>
+                        </div>
+                        <div class="col-sm-4">
 
-                        </div>
-                        <div class="row col-sm-12">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4">
-                                <div class="pull-right col-sm-12" style="margin-top: 15px;">
-                                    <button type="button"
-                                        class="add-hover-reset btn btn-reset  pull-right">Reset</button>
-                                    <button type="button"
-                                        class="filter-hover btn btn-success pull-right margin-right-10">Search</button>
-                                </div>
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset"
+                                    (click)="resetFilter()">Reset</button>
+                                <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                                    (click)="filterBy(filterForm.value)">Search</button>
                             </div>
                         </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+
+                            </div>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
 
+    </div>
+</form>
+<div fxLayout="row wrap">
+    <div class="w-100" style="margin-left: 15px;margin-right: 10px;">
         <div fxLayout="col-sm-12 m-b-10">
             <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
@@ -86,36 +73,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of patientList">
+                        <tr *ngFor="let item of pageRawDataList">
                             <td class="text-center">
-                                <a mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                                    [popoverMessage]="popoverMessage" placement="left" (confirm)="deletePatientOrder()"
-                                    (cancel)="cancelClicked = true">
+                                <a (click)="deleteDialog(item.RawId)">
                                     <i style="cursor: pointer;" title="Delete" class="fa fa-trash red"></i>
                                 </a>
                             </td>
                             <td>{{item.DocumentTitle}}</td>
-                            <td class="text-center">{{item.UploadDate}}</td>
+                            <td class="text-center">{{item.UploadDateTime}}</td>
                             <td class="text-center">{{item.Samples}}</td>
                             <td class="text-center">{{item.TotalRecords}}</td>
                             <td class="text-center">{{item.Duplicates}}</td>
-                            <td class="text-center">{{item.OutofScope}}</td>
+                            <td class="text-center">{{item.OutOfScope}}</td>
                             <td class="text-center">{{item.Incomplete}}</td>
-                            <td class="text-center">{{item.Processed}}</td>
+                            <td class="text-center">{{item.SProcessed}}</td>
 
-                        </tr>
-                    </tbody>
-                </table>
+                    </tr>
+                </tbody>
+            </table>
 
-                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+<<<<<<< HEAD
+            <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
+            </mat-paginator>
+=======
+                <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+                    [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
                 </mat-paginator>
+>>>>>>> f4bb95fa770164dccc5564a88aeb4d7886ead489
 
-            </div>
         </div>
+    </div>
+<<<<<<< HEAD
 
-    
+
 </div>
 
 <!-- <div *ngIf="!tableList" fxLayout="column" fxLayoutAlign="center center" class="campaign-spinner">
     <mat-spinner color="primary"></mat-spinner>
   </div> -->
+=======
+
+</div>
+>>>>>>> f4bb95fa770164dccc5564a88aeb4d7886ead489

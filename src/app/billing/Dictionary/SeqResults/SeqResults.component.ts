@@ -142,19 +142,19 @@ export class SeqResultsComponent implements OnInit {
     this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
   }
 
-  public handlePageTemp(e: any) {
+  public handlePageTemp(e: any) { 
     this.currentPageTemp = e.pageIndex;
     console.log('pageSize', e.pageSize)
     this.pageSize = e.pageSize;
     this.pageSeqResultList = this.SeqResultList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
-  }
+  } 
 
-
+ 
   public uploadCSVDialog() {
     let dialogRef = this.dialog.open(UploadCSVComponent, {
       height: 'auto',
       width: '400px',
-      autoFocus: false,
+      autoFocus: false, 
 
     });
     dialogRef.afterClosed().subscribe(data => {

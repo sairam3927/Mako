@@ -62,7 +62,7 @@ export const routes = [
     GenotypeTotalPieComponent,
     GenotypePieComponent,
     SingleAlleleCallPieComponent,
-    TrendAnalysisComponent
+    TrendAnalysisComponent,
   ],
   providers:[AlertService],
   entryComponents:[SingleAlleleCallPieComponent,GenotypePieComponent]

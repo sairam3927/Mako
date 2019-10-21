@@ -51,3 +51,7 @@
     font-weight: 300 !important;
     margin-bottom: 20px !important;
 }
+.form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+}

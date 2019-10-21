@@ -7,6 +7,9 @@ import { AddIncomingOrderComponent } from './add-incoming-order/add-incoming-ord
 import { ProfileAndInsuranceDialogComponent } from './profile-and-insurance-dialog/profile-and-insurance-dialog.component'
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { AddDocumentsComponent } from './add-documents/add-documents.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { AnalyticsService } from '../../analytics.service';
+import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 
 @Component({
   selector: 'app-incoming-order-queue',
@@ -15,30 +18,39 @@ import { AddDocumentsComponent } from './add-documents/add-documents.component';
 })
 export class IncomingOrderQueueComponent implements OnInit {
 
-  patientList: any;
-  tableList: any;
-  config: any;
+  filterToggle: boolean;
+  toggleFilter() {
+    this.filterToggle = !this.filterToggle;
+  }
+
+  fakedata: any;
+  OrderList: any;
+  pageOrderList: any;
+
+  public pageSize = 10;
+  public pageSizeTemp = this.pageSize;
+  public currentPage = 0;
+  public totalSize = 0;
+  public currentPageTemp = 0;
+  public totalSizeTemp = 0;
 
   public popoverTitle: string = 'Confirm Delete';
   public popoverMessage: string = 'Are you sure you want to delete this.?';
   public popoverStatusTitle: string = 'Confirm Status Change';
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
-
-  filterToggle: boolean;
-
-  public searchText: string;
-  public page: any;
-  public settings: Settings;
-  constructor(public appSettings: AppSettings,
-    public dialog: MatDialog,
-    private alertService: AlertService) {
-    this.settings = this.appSettings.settings;
+  filterForm: FormGroup;
+  constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
+    private analyticsService: AnalyticsService) {
+    this.filterForm = this._fb.group({
+      'keyWord': [null],
+      'Age': [null],
+      'fromDate': [new Date()],
+      'toDate': [new Date()],
+      'Pregnant': [null],
+    });
   }
 
-  toggleFilter() {
-    this.filterToggle = !this.filterToggle;
-  }
   public dateTime2: Date;
   public dateTime3: Date;
   referringOptions = ["Stephen McGill", "Otto Rieder", "Joe Deu-Ngoc", "Chris Soles", "Brad Kewalramani", "Michael Persaud", "Habib Kharsa"];
@@ -47,29 +59,141 @@ export class IncomingOrderQueueComponent implements OnInit {
   onStepsOptionsSelected(event) {
     console.log(event);
   }
+
+  public addOrderDialog(id, action, item) {
+    let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
+      data: id,
+      height: 'auto',
+      width: '600px',
+      autoFocus: false,
+
+    });
+    (<AddIncomingOrderComponent>dialogRef.componentInstance).id = id;
+    (<AddIncomingOrderComponent>dialogRef.componentInstance).action = action;
+    (<AddIncomingOrderComponent>dialogRef.componentInstance).item = item;
+    dialogRef.afterClosed().subscribe(data => {
+      this.getOrderList()
+    });
+  }
+
   ngOnInit() {
+    this.getOrderList();
+  }
 
+  getOrderList() {
+    this.filterForm.reset();
+    this.analyticsService.getorderslist().subscribe(
+      data => {
+        console.log(data)
+        this.OrderList = data['OrdersList'];
+        if (this.OrderList != null && this.OrderList.length >= 0) {
+          this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+        }
+        this.totalSize = this.OrderList != null ? this.OrderList.length : 0;
+      }
+    );
 
+  }
 
+  deleteScope(data) {
+    let body = {
+      "OrdersId": data
+    }
+    this.analyticsService.deleteorder(body).subscribe(
+      data => {
+        console.log(data)
+        if (data['Success'] == true) {
+          this.getOrderList();
+          this.alertService.createAlert('Successfully Deleted', 1);
+        } else {
+          this.alertService.createAlert('Something Went Wrong', 0);
+        }
 
+      }
+    );
+  }
 
+  filterBy(formValues) {
+    console.log(formValues, 'filter values')
+    console.log(formValues.keyWord, 'formValues.keyWord')
 
-    this.patientList = [
-      { id: 1, Country: "USA", State: "New York", City: "Newyork City", Zip: "10001", Patient: "Fabrice bryce", Age: "21", Gender: "M", dob: "21-08-1998", Ethnicity: "Non-Hispanic White", SampleName: "H170600552", FEDEX: "7948 0175 0851", OrderDate: "21-08-2019", DateCompleted: "-", Pregnant: "checked", Lactating: "", Reports: "", Status: "Pending", Docs: "Add" },
-      { id: 2, Country: "Canada", State: "Alberta", City: "Edmonton", Zip: "T7S", Patient: "Stephen Carter", Age: "48", Gender: "M", dob: "14-07-1971", Ethnicity: "Other", SampleName: "HG01879", FEDEX: "7654 3542 6571", OrderDate: "14-07-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending", Docs: "1" },
-      { id: 3, Country: "USA", State: "Califonia", City: "Sacramento", Zip: "94203", Patient: "Otto Clifton", Age: "28", Gender: "M", dob: "01-04-1991", Ethnicity: "Asian", SampleName: "41001903123551", FEDEX: "6842 5872 5122", OrderDate: "01-04-2019", DateCompleted: "07-04-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done", Docs: "2" },
-      { id: 4, Country: "Canada", State: "British Columbia", City: "Victoria", Zip: "3294", Patient: "Joe Grover", Age: "36", Gender: "M", dob: "28-06-1983", Ethnicity: "African American", SampleName: "41001903296266", FEDEX: "7846 1221 4113", OrderDate: "28-06-2019", DateCompleted: "-", Pregnant: "", Lactating: "checked", Reports: "", Status: "Pending", Docs: "3" },
-      { id: 5, Country: "Canada", State: "Ontario", City: "Quebec City", Zip: "G0A 4V0", Patient: "Chris Darnell", Age: "50", Gender: "M", dob: "12-08-1969", Ethnicity: "Asian", SampleName: "H170600560", FEDEX: "6432 5215 1223", OrderDate: "12-08-2019", DateCompleted: "31-08-2019", Pregnant: "", Lactating: "checked", Reports: "", Status: "Done", Docs: "4" },
-      { id: 6, Country: "Canada", State: "Yukon", City: "Whitehorse", Zip: "Y1A0A4", Patient: "Mary Hilton", Age: "20", Gender: "M", dob: "24-03-1999", Ethnicity: "Hispanic", SampleName: "41001903296263", FEDEX: "7463 5563 3332", OrderDate: "24-03-2019", DateCompleted: "29-03-2019", Pregnant: "checked", Lactating: "", Reports: "", Status: "Done", Docs: "1" }
-    ];
-    this.tableList = [
-      { id: 1, firstName: "Fabrice", normal: 5, faxNumber: "+1-403-444-5207", eFaxNumber: "1202584", lastName: "Vanegas", dob: "02/05/1964", orderingPhysician: "David", receivedDate: "03/03/2019" },
-      { id: 2, firstName: "Stephen", normal: 6, faxNumber: "+1-780-142-5207", eFaxNumber: "3021478", lastName: "McGill", dob: "09/07/1985", orderingPhysician: "Stokes", receivedDate: "21/04/2019" },
-      { id: 3, firstName: "Otto", normal: 6, faxNumber: "+1-604-0257-3614", eFaxNumber: "2015478", lastName: "Rieder", dob: "25/11/2010", orderingPhysician: "Morgan", receivedDate: "29/04/2019" },
-      { id: 4, firstName: "Joe", normal: 5, faxNumber: "+1-403-205-5691", eFaxNumber: "2015697", lastName: "Deu-Ngoc", dob: "17/09/1966", orderingPhysician: "Steven", receivedDate: "17/05/2019" },
-      { id: 5, firstName: "Chris", normal: 5, faxNumber: "+1-403-293-9696", eFaxNumber: "6365471", lastName: "Soles", dob: "31/01/2000", orderingPhysician: "Liam Plunkeet", receivedDate: "22/05/2019" }
-    ];
+    let events = this.OrderList;
+    if (events != null) {
+      let filteredEvents = events.filter(x =>
+        (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase())) &&
+        (formValues.fromDate == undefined || new Date(x.OrderDate) >= new Date(formValues.fromDate)) &&
+        (formValues.toDate == undefined || new Date(x.OrderDate) <= new Date(formValues.toDate)) &&
+        (formValues.Pregnant == null || JSON.stringify(x.Pregnant_Lactate).toLowerCase().includes(formValues.Pregnant.toLowerCase()))
+      );
+      console.log(filteredEvents, 'filteredEventssadA')
+      let filteredEvents2 = [];
+      if (formValues.Age != null){
+        if (formValues.Age == ">30") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) > 30)
+          );
+        }
+        if (formValues.Age == "<30") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) < 30)
+          );
+        }
+        if (formValues.Age == ">=50") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) >= 50)
+          );
+        }
+        if (formValues.Age == "<=50") {
+          filteredEvents2 = filteredEvents.filter(x =>
+            (formValues.Age == null || (x.Age) <= 50)
+          );
+        }
+      }else{
+        filteredEvents2 = filteredEvents;
+      }
+      
+      console.log(filteredEvents2, 'filteredEvents2')
 
+      this.OrderList = filteredEvents2;
+      this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+      this.totalSize = filteredEvents.length;
+      this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
+      this.currentPage = 0;
+    }
+
+  }
+
+  resetFilter() {
+    this.currentPage = 0;
+    this.pageSize = 10;
+    this.getOrderList();
+    this.filterForm.reset();
+  }
+
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+  }
+
+  public handlePageTemp(e: any) {
+    this.currentPageTemp = e.pageIndex;
+    console.log('pageSize', e.pageSize)
+    this.pageSize = e.pageSize;
+    this.pageOrderList = this.OrderList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+  }
+  public deleteDialog(id) {
+    let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log("datr", data)
+      if (data == true) {
+        this.deleteScope(id)
+      }
+    });
   }
 
   public addPatientDataDialog() {
@@ -81,19 +205,7 @@ export class IncomingOrderQueueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
-
-  public openPatientDialog(id) {
-    let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
-      data: id,
-      height: 'auto',
-      width: '500px',
-      autoFocus: false,
-
-    });
-    dialogRef.afterClosed().subscribe(data => {
-    });
-  }
-
+  
   public openDocumentDialog() {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       height: 'auto',
@@ -113,10 +225,5 @@ export class IncomingOrderQueueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
-
-  deletePatientOrder() {
-    this.alertService.createAlert('Successfully deleted.', 1);
-  }
-
 
 }
