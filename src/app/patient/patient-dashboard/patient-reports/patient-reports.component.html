@@ -1,35 +1,11 @@
 
-<!-- <form class="form-horizontal">
-    <div style="margin-top: 30px;overflow:auto!important;">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
-        <div class="col-sm-12">
-
-      <div class="form-group">
-        <label class="control-label col-sm-4 "> Detailed Report : </label>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <button  type="button" class="form-control"  class="btn btn-info">Download</button> 
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="control-label col-sm-4 "> Summary Report: </label>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <button  type="button" class="form-control"  class="btn btn-info">Download</button> 
-        </div>
-      </div>
-         </div>
-      </div>
-      <div class="col-sm-2"></div>
-    </div>
-  </form> -->
   <div fxLayout="row wrap">
       <div class="table-responsive flex-p" style="width:50%;margin-left: 10px; margin-right: 10px">
           <table id="example2" class="table table-bordered table-hover">
               <tbody>
-                  <tr *ngFor="let item of documentList">
+                  <tr *ngFor="let item of reportList">
                       <td>{{item.DocumentTitle}}</td>
-                      <td> <button  type="button" class="form-control"  class="btn btn-info">Download</button></td>
+                      <td> <button  type="button" class="form-control"  class="btn btn-info">View/Download</button></td>
                   </tr>
               </tbody>
           </table>
