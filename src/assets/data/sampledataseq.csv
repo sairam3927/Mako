@@ -1,2 +1,1 @@
-AlleleName,Ref,Variant,AlleleCall
-
+Chrom,Position,Ref,Variant,Allele Call,Filter,Frequency,Quality,Filter,Type,Allele Source,Allele Name,Gene ID,Region Name,Subset Of,VCF Position,VCF Ref,VCF Variant,Original Coverage,Coverage,Filter,Coverage+,Filter,Coverage-,Filter,Allele Cov,Allele Cov+,Allele Cov-,Strand Bias,Filter,Common Signal Shift,Filter,Reference Signal Shift,Filter,Variant Signal Shift,Filter,Relative Read Quality,Filter,HP Length,Filter,Context Error+,Filter,Context Error-,Filter,Context Strand Bias,Filter,Sample Name,Barcode,Run Name,Allele,Location

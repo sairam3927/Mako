@@ -20,10 +20,9 @@ export class UploadRawDataComponent implements OnInit {
   selected:any;
   constructor(public dialogRef: MatDialogRef<UploadRawDataComponent>, private rawDataService: RawDataService,
     public alertService: AlertService,
-    public fb: FormBuilder, private excelService: ExcelServicesService, private http: HttpClient,
-    private snackbar: MatSnackBar) {
+    public fb: FormBuilder) {
   }
-
+ 
   ngOnInit() {
     this.selected = localStorage.getItem('lang') ? localStorage.getItem('lang') : '1';
   }

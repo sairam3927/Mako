@@ -8,6 +8,8 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="FirstName" placeholder="Enter First Name"
                     required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FirstName.errors?.required">First Name is required
+                </mat-error>
             </div>
         </div>
         <div class="form-group">
@@ -15,6 +17,8 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="LastName" placeholder="Enter Last Name"
                     required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.LastName.errors?.required">Last Name is required
+                </mat-error>
             </div>
         </div>
         <div class="form-group">
@@ -25,6 +29,8 @@
                     <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY" class="form-control"
                         formControlName="DateofBirth" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
                     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                    <mat-error *ngIf="submit == true && addOrderForm.controls.DateofBirth.errors?.required">Date of Birth is required
+                    </mat-error>
                 </div>
             </div>
         </div>
@@ -37,6 +43,8 @@
                         (click)="setradio(gen.Name)"><small style="font-size: 14px;">{{gen.Name}}</small>
                     </mat-radio-button>
                 </mat-radio-group>
+                <mat-error style="margin-left: 20px;margin-top: 5px;" *ngIf="submit == true && addOrderForm.controls.Gender.errors?.required">Gender is required
+                </mat-error>
             </div>
         </div>
         <div *ngIf="isSelected('Female')" class="form-group">
@@ -53,12 +61,17 @@
                         {{Nationality.Name}}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Nationality.errors?.required">Nationality is required
+                </mat-error>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">Email : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="Email" placeholder="Enter Email" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.hasError('invalidEmail')">Invalid email address
+                </mat-error>
             </div>
         </div>
         <div class="form-group">
@@ -66,18 +79,22 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" id="email" formControlName="StreetAddress"
                     placeholder="Enter Street Address" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.StreetAddress.errors?.required">Street Address is required
+                </mat-error>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">Country : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <mat-select placeholder="--Select by Country--" formControlName="Country" class="form-control" (selectionChange)="getProvince($event.value)">
-                    <mat-option *ngFor="let Country of CountryList" [value]="Country.CountryId"  >
+                <mat-select placeholder="--Select by Country--" formControlName="Country" class="form-control"
+                    (selectionChange)="getProvince($event.value)">
+                    <mat-option *ngFor="let Country of CountryList" [value]="Country.CountryId">
                         {{Country.Country}}
                     </mat-option>
                 </mat-select>
-                <!-- <input type="text" class="form-control" formControlName="Country" placeholder="Enter Country" required> -->
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Country.errors?.required">Country is required
+                </mat-error>
             </div>
         </div>
 
@@ -86,10 +103,13 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <mat-select placeholder="--Select by State / Province--" formControlName="StateProvince"
                     class="form-control">
-                    <mat-option *ngFor="let StateProvince of State_Province_List" [value]="StateProvince.State_ProvinceId">
+                    <mat-option *ngFor="let StateProvince of State_Province_List"
+                        [value]="StateProvince.State_ProvinceId">
                         {{StateProvince.State_Province}}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.StateProvince.errors?.required">State / Province is required
+                </mat-error>
             </div>
         </div>
 
@@ -97,6 +117,8 @@
             <label class="control-label col-sm-4 add-member-label">City : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="City" placeholder="Enter City" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.City.errors?.required">City is required
+                </mat-error>
             </div>
         </div>
 
@@ -105,6 +127,14 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="ZipCodePostalCode"
                     placeholder="Enter Zip Code / Postal Code" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.errors?.required">Zip Code / Postal Code is required
+                </mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('minlength')">Zip Code / Postal Code isn't
+                    long enough,
+                    minimum of 4 characters</mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('maxlength')">Zip Code / Postal Code is long
+                    enough,
+                    maximum of 10 characters</mat-error>
             </div>
         </div>
         <div class="form-group">
@@ -112,24 +142,35 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="SampleName" placeholder="Enter Sample Name"
                     required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.errors?.required">Sample Name Code is required
+                </mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('minlength')">Sample Name Code isn't
+                    long enough,
+                    minimum of 5 characters</mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('maxlength')">Sample Name Code is long
+                    enough,
+                    maximum of 20 characters</mat-error>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">Mobile No : </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" formControlName="MobileNo" placeholder="Enter Mobile No"
+                <input type="number" class="form-control" formControlName="MobileNo" placeholder="Enter Mobile No"
                     required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.MobileNo.errors?.required">Mobile No is required
+                </mat-error>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-4 add-member-label">Ethnicity: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <mat-select placeholder="--Select by Ethnicity--" formControlName="Ethnicity"
-                    class="form-control">
+                <mat-select placeholder="--Select by Ethnicity--" formControlName="Ethnicity" class="form-control">
                     <mat-option *ngFor="let Ethnicity of EthnicityList" [value]="Ethnicity.Value">
                         {{Ethnicity.Name}}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Ethnicity.errors?.required">Ethnicity is required
+                </mat-error>
             </div>
         </div>
 
@@ -138,6 +179,14 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" id="email" formControlName="FEDEXAWB"
                     placeholder="Enter FEDEX AWB" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.errors?.required">FEDEX AWB is required
+                </mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('minlength')">FEDEX AWB isn't
+                    long enough,
+                    minimum of 5 characters</mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('maxlength')">FEDEX AWB is long
+                    enough,
+                    maximum of 20 characters</mat-error>
             </div>
         </div>
     </div>
@@ -148,7 +197,7 @@
             <mat-icon>cancel</mat-icon>
             <span>&nbsp;Cancel</span>
         </button>
-        <button mat-raised-button class="add-hover btn-success" (click)="addOrder()">
+        <button mat-raised-button class="add-hover btn-success" (click)="addOrder(true)">
             <mat-icon>send</mat-icon>
             <span>&nbsp;Save</span>
         </button>

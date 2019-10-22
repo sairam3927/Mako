@@ -108,7 +108,7 @@ export const routes = [
 @NgModule({
   imports: [
     CommonModule,FormsModule,SharedModule,ConfirmationPopoverModule,OwlDateTimeModule, OwlNativeDateTimeModule,
-    RouterModule.forChild(routes),ReactiveFormsModule,TreeModule
+    RouterModule.forChild(routes),ReactiveFormsModule,TreeModule 
   ],
   declarations: [//TaskmanagerComponent,AlertsTmComponent//, ReportsComponentManageOrdersComponent,
     AddNewPatientOrdersComponent,

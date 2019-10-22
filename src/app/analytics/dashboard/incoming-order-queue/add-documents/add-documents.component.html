@@ -2,55 +2,61 @@
   Additional Documents</h3>
 <h5><span style="font-weight: bold;margin-left: 16px;">You can upload multiple documents here:</span></h5>
 
-<div fxLayout="row wrap" class="row"  mat-dialog-content>
-  <div class="col-sm-12">
-    <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
-      <thead class="tbl-head">
-        <tr class="tr-grid-header">
-          <th>Document Title</th>
-          <th class="text-center">Documents</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of Document">
-          <td>
-            {{item.title}}
-          </td>
-          <td class="text-center">
-            <a>
-              <mat-icon>cloud_download</mat-icon>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5]">
-    </mat-paginator>
-  </div>
-  <div class="col-sm-12">
-    <h4 style="font-weight: bold;">New Document</h4>
-    <h5>You can add a new document here</h5>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="row">
-          <div class="col-sm-6" style="margin-left:7px">
-            <input type="text" class="form-control" id="email" placeholder="Document Title">
-          </div>
-          <div class="col-sm-5">
-            <input type="file" />
+<form class="form-horizontal" [formGroup]="Form" novalidate>
+  <div fxLayout="row wrap" class="row" mat-dialog-content>
+    <div class="col-sm-12">
+      <table id="example2" class="table table-bordered table-responsive-md btn-table table-hover">
+        <thead class="tbl-head">
+          <tr class="tr-grid-header">
+            <th>Document Title</th>
+            <th class="text-center">Documents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pageDocumentList">
+            <td>
+              {{item.DocumentTitle}}
+            </td>
+            <td class="text-center">
+              <a [href]="'http://'+ item.FilePath" target="_blank">
+                <mat-icon>cloud_download</mat-icon>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
+      </mat-paginator>
+    </div>
+    <div class="col-sm-12">
+      <h4 style="font-weight: bold;">New Document</h4>
+      <h5>You can add a new document here</h5>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-6" style="margin-left:7px">
+              <input type="text" class="form-control" formControlName="DocumentTitle" id="email"
+                placeholder="Document Title">
+            </div>
+            <div class="col-sm-5">
+              <input class="file" #fileInput type="file" (click)="fileInput.value = null" name="file"
+                (change)="getFileDetails($event)"
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>
 <mat-dialog-actions align="center" style="padding: 17px 0 17px 0 !important;">
   <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
     (click)="close()">
     <mat-icon>cancel</mat-icon>
     <span>&nbsp;Cancel</span>
   </button>
-  <button mat-raised-button class="add-hover btn-success" type="submit">
+  <button mat-raised-button class="add-hover btn-success" (click)="uploadFiles()">
     <mat-icon>backup</mat-icon>
     <span>&nbsp;Upload</span>
   </button>
