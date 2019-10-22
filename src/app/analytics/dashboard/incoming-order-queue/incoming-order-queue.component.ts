@@ -47,12 +47,12 @@ export class IncomingOrderQueueComponent implements OnInit {
       'Age': [null],
       'fromDate': [new Date()],
       'toDate': [new Date()],
-      'Pregnant': [null],
+      'Pregnant': [false],
     });
   }
 
+  public dateTime1: Date;
   public dateTime2: Date;
-  public dateTime3: Date;
   referringOptions = ["Stephen McGill", "Otto Rieder", "Joe Deu-Ngoc", "Chris Soles", "Brad Kewalramani", "Michael Persaud", "Habib Kharsa"];
   stepsOptionSelected: any;
   age = [">30", "<30", ">=50", "<=50"];
@@ -123,7 +123,7 @@ export class IncomingOrderQueueComponent implements OnInit {
         (formValues.keyWord == null || JSON.stringify(x).toLowerCase().includes(formValues.keyWord.toLowerCase())) &&
         (formValues.fromDate == undefined || new Date(x.OrderDate) >= new Date(formValues.fromDate)) &&
         (formValues.toDate == undefined || new Date(x.OrderDate) <= new Date(formValues.toDate)) &&
-        (formValues.Pregnant == null || JSON.stringify(x.Pregnant_Lactate).toLowerCase().includes(formValues.Pregnant.toLowerCase()))
+        (formValues.Pregnant == null || x.Pregnant_Lactate == formValues.Pregnant)
       );
       console.log(filteredEvents, 'filteredEventssadA')
       let filteredEvents2 = [];
@@ -206,12 +206,13 @@ export class IncomingOrderQueueComponent implements OnInit {
     });
   }
   
-  public openDocumentDialog() {
+  public openDocumentDialog(id) {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       height: 'auto',
       width: '600px',
       autoFocus: false,
     });
+    (<AddDocumentsComponent>dialogRef.componentInstance).id = id;
     dialogRef.afterClosed().subscribe(data => {
     });
   }

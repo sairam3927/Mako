@@ -10,8 +10,6 @@
 .input-icon.right>i {
     right:25px;
     float: right;
-    
-
 }
 .input-icon>i {
     color: #ccc;
@@ -54,4 +52,7 @@
 .form-control[readonly] {
     background-color: white;
     opacity: 1;
+}
+.mat-error {
+    color: red !important;
 }

@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { AlertService } from '../../shared/services/alert.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-otp-reset-password',
@@ -17,7 +18,8 @@ export class OtpResetPasswordComponent implements OnInit {
 
   public form: FormGroup;
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public fb: FormBuilder, public router:Router,public alertService:AlertService){
+  constructor(public appSettings:AppSettings, public fb: FormBuilder, public router:Router,
+    public loginService: LoginService,public alertService:AlertService){
     this.settings = this.appSettings.settings; 
     this.form = this.fb.group({
       'otp': [null,Validators.compose([Validators.required, Validators.minLength(6)])]
@@ -27,10 +29,26 @@ export class OtpResetPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(emailId:Object):void {
+  onSubmit(values:Object):void {
     if (this.form.valid) {
-      this.alertService.createAlert('OTP Verified!', 1);
-      this.router.navigate(['/reset']);
+      let body = {
+        "otp": values['otp'],
+      }
+      console.log(body,"body");
+      this.loginService.otpVerification(body).subscribe(
+        data => {
+          console.log(data)
+
+          if (data['Success'] == true) {
+            this.router.navigate(['/reset']);
+            this.alertService.createAlert(data['Message'], 1);
+          } else {
+            this.alertService.createAlert(data['Message'], 0);
+          }
+
+        }
+      );
+      
     }
     
   }

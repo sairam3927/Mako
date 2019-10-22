@@ -7,6 +7,9 @@ import { PatientReportsComponent } from "./patient-reports/patient-reports.compo
 import { PatientDocumentsComponent } from "./patient-documents/patient-documents.component";
 import { SharedModule } from "../../shared/shared.module";
 import { MenuService } from "src/app/theme/components/menu/menu.service";
+import { ConfirmationPopoverModule } from "angular-confirmation-popover";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { TreeModule } from "primeng/primeng";
 
 export const routes = [
   { path: "", redirectTo: "patient-basicinfo", pathMatch: "full" },
@@ -34,10 +37,8 @@ export const routes = [
     PatientDocumentsComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    SharedModule
+    CommonModule,FormsModule,SharedModule,ConfirmationPopoverModule,OwlDateTimeModule, OwlNativeDateTimeModule,
+    RouterModule.forChild(routes),ReactiveFormsModule,TreeModule 
   ],
   entryComponents: [
     PatientBasicinfoComponent,

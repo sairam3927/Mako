@@ -21,35 +21,52 @@ export class AnalyticsService {
   private getnationalitylisturl = 'api/get-nationality-list';
   private getstate_provincelisturl = 'api/get-state_province-list';
 
+  private addorder_docscsvurl = 'api/add-order_docs-csv';
+  private getdocs_datalisturl = 'api/get-docs_data-list';
+
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'userId':  localStorage.getItem('UserId') ,
+      'authToken': localStorage.getItem('AuthToken')
+    })
+  };
+
   constructor(private _http: HttpClient) { }
 
   public getorderslist() {
-    return this._http.get(environment.apiUrl + this.getorderslisturl)
+    return this._http.get(environment.apiUrl + this.getorderslisturl, this.httpOptions)
   }
   public addorders_regist(data) {
-    return this._http.post(environment.apiUrl + this.addorders_registurl, data)
+    return this._http.post(environment.apiUrl + this.addorders_registurl, data, this.httpOptions)
   }
   public editorders(data) {
-    return this._http.post(environment.apiUrl + this.editordersurl, data)
+    return this._http.post(environment.apiUrl + this.editordersurl, data, this.httpOptions)
   }
   public deleteorder(data) {
-    return this._http.post(environment.apiUrl + this.deleteorderurl, data)
+    return this._http.post(environment.apiUrl + this.deleteorderurl, data, this.httpOptions)
   }
 
   public getgenderslist() {
-    return this._http.get(environment.apiUrl + this.getgenderslisturl)
+    return this._http.get(environment.apiUrl + this.getgenderslisturl, this.httpOptions)
   }
   public getethnicitylist() {
-    return this._http.get(environment.apiUrl + this.getethnicitylisturl)
+    return this._http.get(environment.apiUrl + this.getethnicitylisturl, this.httpOptions)
   }
   public getcountrieslist() {
-    return this._http.get(environment.apiUrl + this.getcountrieslisturl)
+    return this._http.get(environment.apiUrl + this.getcountrieslisturl, this.httpOptions)
   }
   public getnationalitylist() {
-    return this._http.get(environment.apiUrl + this.getnationalitylisturl)
+    return this._http.get(environment.apiUrl + this.getnationalitylisturl, this.httpOptions)
   }
   public getstate_provincelist(data) {
-    return this._http.post(environment.apiUrl + this.getstate_provincelisturl,data)
+    return this._http.post(environment.apiUrl + this.getstate_provincelisturl,data, this.httpOptions)
+  }
+
+  public addorder_docscsv(body){
+    return this._http.post(environment.apiUrl + this.addorder_docscsvurl,body, this.httpOptions)
+  }
+  public getdocs_datalist(body){
+    return this._http.post(environment.apiUrl + this.getdocs_datalisturl,body, this.httpOptions)
   }
 
 }

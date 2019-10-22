@@ -74,7 +74,7 @@
                                         <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY"
                                             class="form-control" formControlName="toDate" id="db"
                                             [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2"
-                                            [(ngModel)]="dates">
+                                            [(ngModel)]="dateTime1">
                                         <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                         <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY"
                                             class="form-control" formControlName="fromDate" id="db"
                                             [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1"
-                                            [(ngModel)]="dates">
+                                            [(ngModel)]="dateTime2">
                                         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                                     </div>
                                 </div>
@@ -125,7 +125,10 @@
                             <th style="min-width: 120px;">Patient Name</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">Gender</th>
-                            <!-- <th class="text-center" style="min-width: 105px;">Date of Birth</th> -->
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Mobile No</th>
+                            <th class="text-center">Address</th>
+                            <th class="text-center">Nationalty</th>
                             <th>Country</th>
                             <th style="min-width: 125px;">State / Province</th>
                             <th>City</th>
@@ -156,7 +159,10 @@
                             <td>{{item.FirstName}}&nbsp;{{item.LastName}}</td>
                             <td class="text-center">{{item.Age}}</td>
                             <td class="text-center">{{item.sGender}}</td>
-                            <!-- <td class="text-center">{{item.dob}}</td> -->
+                            <td class="text-center">{{item.Email}}</td>
+                            <td class="text-center">{{item.MobileNumber}}</td>
+                            <td class="text-center">{{item.StreetAddress}}</td>
+                            <td class="text-center">{{item.sNationality}}</td>
                             <td>{{item.sCountry}}</td>
                             <td>{{item.sState_Province}}</td>
                             <td>{{item.City}}</td>
@@ -181,9 +187,16 @@
                                 </a>
                                 <span *ngIf="item.Status != 'Done'">-</span>
                             </td>
-                            <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Documents"
-                                    (click)="openDocumentDialog()">{{item.Docs_Count}}</a></td>
+                            <td class="text-center">
+                                <a *ngIf="item.Docs_Count != 0" class="inner-screen" style="cursor: pointer;"
+                                    title="Documents" (click)="openDocumentDialog(item.OrdersId)">{{item.Docs_Count}}</a>
+                                <a *ngIf="item.Docs_Count == 0" class="inner-screen" style="cursor: pointer;"
+                                    title="Documents" (click)="openDocumentDialog(item.OrdersId)">Add</a>
+                            </td>
                             <td>{{item.Status}}</td>
+                        </tr>
+                        <tr *ngIf="pageOrderList?.length <=0">
+                            <td colspan="18" style="text-align: center !important">No Record's Found</td>
                         </tr>
                     </tbody>
                 </table>
