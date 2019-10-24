@@ -18,30 +18,37 @@ export class UsersService {
     getuserpermissionsurl = 'api/get-user-permissions';
     saveuserpermissionsurl = 'api/save-user-permissions';
 
+    public httpOptions = {
+        headers: new HttpHeaders({
+            'userId': localStorage.getItem('UserId'),
+            'authToken': localStorage.getItem('AuthToken')
+        })
+    };
+
     constructor(private _http: HttpClient) { }
 
     public getUser() {
-        return this._http.get(environment.apiUrl + this.getUsersUrl);
+        return this._http.get(environment.apiUrl + this.getUsersUrl, this.httpOptions);
     }
 
     public upsertuser(data) {
-        return this._http.post(environment.apiUrl + this.upsertuserurl, data);
+        return this._http.post(environment.apiUrl + this.upsertuserurl, data, this.httpOptions);
     }
 
     public updateuserstatus(data) {
-        return this._http.post(environment.apiUrl + this.updateuserstatusurl, data);
+        return this._http.post(environment.apiUrl + this.updateuserstatusurl, data, this.httpOptions);
     }
 
     public deleteuser(data) {
-        return this._http.post(environment.apiUrl + this.deleteuserurl, data);
+        return this._http.post(environment.apiUrl + this.deleteuserurl, data, this.httpOptions);
     }
 
     //Permission Screen.
     public getuserpermissions(data) {
-        return this._http.post(environment.apiUrl + this.getuserpermissionsurl,data);
+        return this._http.post(environment.apiUrl + this.getuserpermissionsurl, data, this.httpOptions);
     }
     public saveuserpermissions(data) {
-        return this._http.post(environment.apiUrl + this.saveuserpermissionsurl, data);
+        return this._http.post(environment.apiUrl + this.saveuserpermissionsurl, data, this.httpOptions);
     }
 
 

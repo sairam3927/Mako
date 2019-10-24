@@ -7,6 +7,7 @@ import { LogicTestsComponent } from './logic-tests/logic-tests.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DictionaryService } from '../dictionary.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 @Component({
   selector: 'app-tests',
@@ -14,7 +15,13 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
   styleUrls: ['./tests.component.scss']
 })
 export class TestsComponent implements OnInit {
-  filterToggle:boolean;
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
+
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
@@ -25,7 +32,7 @@ export class TestsComponent implements OnInit {
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
   public currentPage = 0;
-  public totalSize = 0; 
+  public totalSize = 0;
   public currentPageTemp = 0;
   public totalSizeTemp = 0;
 
@@ -38,11 +45,31 @@ export class TestsComponent implements OnInit {
 
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
     private dictionaryService: DictionaryService) {
-      this.filterForm = this._fb.group({
-        'keyWord': [null]
-      });
-    } 
+    this.filterForm = this._fb.group({
+      'keyWord': [null]
+    });
+  }
   ngOnInit() {
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Tests') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getTestList();
   }
 
@@ -58,41 +85,51 @@ export class TestsComponent implements OnInit {
         this.totalSize = this.TestList.length;
       }
     );
-    
+
   }
 
   public addTestDialog(id, action, item) {
-    let dialogRef = this.dialog.open(AddTestComponent, {
-      height: 'auto',
-      width: '600px',
-      autoFocus: false,
+    if (this.UpdatePermission == true) {
+      let dialogRef = this.dialog.open(AddTestComponent, {
+        height: 'auto',
+        width: '600px',
+        autoFocus: false,
 
-    });
-    (<AddTestComponent>dialogRef.componentInstance).id = id;
-    (<AddTestComponent>dialogRef.componentInstance).action = action;
-    (<AddTestComponent>dialogRef.componentInstance).item = item;
-    dialogRef.afterClosed().subscribe(data => {
-      this.getTestList();
-    });
+      });
+      (<AddTestComponent>dialogRef.componentInstance).id = id;
+      (<AddTestComponent>dialogRef.componentInstance).action = action;
+      (<AddTestComponent>dialogRef.componentInstance).item = item;
+      dialogRef.afterClosed().subscribe(data => {
+        this.getTestList();
+      });
+    } else {
+      this.restrictionDialog('Update');
+    }
+
   }
 
   deleteTest(data) {
     let body = {
       'TestsId': data
     }
-    console.log("this.deleteTest",body)
-    this.dictionaryService.deletetests(body).subscribe(
-      data => {
-        console.log(data)
-        if (data['Success'] == true) {
-          this.getTestList();
-          this.alertService.createAlert('Successfully Deleted', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
+    console.log("this.deleteTest", body)
+    if (this.DeletePermission == true) {
+      this.dictionaryService.deletetests(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Success'] == true) {
+            this.getTestList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
 
-      }
-    );
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
   }
 
   filterBy(formValues) {
@@ -136,48 +173,29 @@ export class TestsComponent implements OnInit {
     this.pageTestList = this.TestList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
   }
 
-  public deleteDialog(id){
+  public deleteDialog(id) {
     let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log("datr",data)
-      if (data == true){
+      console.log("datr", data)
+      if (data == true) {
         this.deleteTest(id)
       }
     });
   }
 
-  // public patientDataDialog() {
-  //   let dialogRef = this.dialog.open(AddTestComponent, {
-  //     height: 'auto',
-  //     width: '500px',
-  //     autoFocus: false,
-  //   });
-  //   dialogRef.afterClosed().subscribe(data => {
-  //   });
-  // }
-  
-  // public uploadCSVTestDialog() {
-  //   let dialogRef = this.dialog.open(UploadTestComponent, {
-  //     height: 'auto',
-  //     width: '400px',
-  //     autoFocus: false,
-      
-  //   });
-  //   dialogRef.afterClosed().subscribe(data => {
-  //   });
-  // }
-  // public openLogicDialog() {
-  //   let dialogRef = this.dialog.open(LogicTestsComponent, {
-  //     height: 'auto',
-  //     width: '600px',
-  //     autoFocus: false,
-  //   });
-  //   dialogRef.afterClosed().subscribe(data => {
-  //   });
-  // }
-  
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
+
 }

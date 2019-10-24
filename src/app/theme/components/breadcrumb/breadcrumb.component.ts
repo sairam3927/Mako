@@ -28,6 +28,7 @@ export class BreadcrumbComponent {
         this.settings = this.appSettings.settings;
         this.description = {
             "Dashboard": "The summary metrics, activity trends and alerts appear here.",
+            "QC": "The summary metrics, activity trends and alerts appear here.",
             "Analytics": "Central quality audits are provided on this screen",
             'Settings':"Default settings for the whole application can be managed from this screen",
             "Users": "Users & Permissions level settings can be managed from this screen.",

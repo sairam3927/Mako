@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl : 'http://qa.makodnaapi.optionmatrix.org/'
+  apiUrl : 'http://qa.makodnaapi.optionmatrix.org/',
 };

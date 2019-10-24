@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" [formGroup]="PatientForm" novalidate>
   <div style="margin-top: 30px;overflow:auto!important;">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
@@ -6,98 +6,55 @@
         <div class="form-group">
           <label class="control-label col-sm-4 "> Patient Name : </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="Stephen Carter"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="PatientName"  required />
           </div>
         </div>
-
         <div class="form-group">
           <label class="control-label col-sm-4 "> Age: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="21"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="Age"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> Gender: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="Male"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="Gender"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> Country: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="USA"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="Country"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> State: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="New York"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="State"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> City: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="New York City"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="City"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> Ethnicity: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="African"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="Ethnicity"  required />
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-4 "> Sample Name: </label>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input
-              disabled
-              type="text"
-              class="form-control"
-              placeholder="H170600552"
-              required
-            />
+            <input disabled type="text" class="form-control" formControlName="SampleName"  required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 "> Fedex Awb: </label>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <input disabled type="text" class="form-control" formControlName="FedexAwb"  required />
           </div>
         </div>
       </div>

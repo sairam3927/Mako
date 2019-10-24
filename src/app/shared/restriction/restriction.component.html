@@ -1,0 +1,18 @@
+<div class="cust-red">
+  <h3 style="font-weight: 300; margin-bottom: 5px !important;margin-top: 5px;" mat-dialog-title>
+    User Permission</h3>
+</div>
+
+
+<div mat-dialog-content style="text-align: center;" >
+  
+    <p style="font-weight: 400;">User doesn't have permission to {{action}}</p>
+  
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+  <button type="button" mat-raised-button class="add-dark-hover btn-default" (click)="close()" style="cursor: pointer;">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+</mat-dialog-actions>

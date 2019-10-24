@@ -1,0 +1,86 @@
+<div class="row" style="padding-left: 20px; padding-right: 20px;">
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat red-intense">
+            <div class="visual">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    25
+                </div>
+                <div class="desc">
+                    <b>Pending Samples</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat green-haze">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    120
+                </div>
+                <div class="desc">
+                    <b> Reserved Samples</b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    20
+                </div>
+                <div class="desc">
+                    <b>Not Reserved</b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div fxLayout="row wrap" style="padding-left: 20px; padding-right: 20px;">
+    <div class="table-responsive">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head ">
+                <tr class="tr-grid-header">
+                    <th class="text-center">Case Number</th>
+                    <th class="text-center">Patient Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of tableList">
+                    <td class="text-center" style="text-align: center !important;">{{item.code}}</td>
+                    <td class="text-center" style="text-align: center !important;">{{item.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="row" style="padding-left: 20px; padding-right: 20px;">
+    <div class="col-sm-12" [chart]="barChartDataforExceptions"></div>
+    <!-- <div class="">
+        <div class="col-sm-6" style="margin-top:20px !important;" [chart]="exceptionDimensionSpecific"></div>
+        <div class="col-sm-6" style="margin-top:20px !important;" [chart]="exceptionCategorySpecific"></div>
+    </div> -->
+
+    <!-- <div [chart]="dimensionsummarychart" class="col-sm-6 charts"></div>
+<div [chart]="krasummarychart" class="col-sm-6 charts"></div>
+<div [chart]="kpisummarychart" class="col-sm-6 charts"></div>
+<div [chart]="exceptionschart" class="col-sm-6 charts"></div> -->
+</div>

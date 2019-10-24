@@ -1,0 +1,43 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="w-100">
+
+        <div class="row wrap" style="margin-bottom:15px;margin-top: 15px;margin-left:1px">
+            <div class="col-lg-12">
+                <div class="pills w-100">
+                    <ul class="nav nav-pills">
+                        <li *ngIf="dictionaryCreatePermission == true" routerLinkActive="active">
+                            <a mat-raised-button [routerLink]="['/mako/billing/Dictionary']"
+                                style="margin-right: 20px!important; padding: 0px 10px;">
+                                <mat-icon>outlined_flag</mat-icon>Dictionary
+                            </a>
+                        </li>
+                        <li *ngIf="calculationsCreatePermission == true" routerLinkActive="active">
+                            <a mat-raised-button style="margin-right: 20px!important; padding: 0px 10px;">
+                                <mat-icon>outlined_flag</mat-icon><span style="color: blue">Calculations</span>
+                            </a>
+                        </li>
+                        <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
+                      style="margin-right: 20px!important; padding: 0px 10px;">
+                      <mat-icon>outlined_flag</mat-icon> Final Output Variables List
+                    </a></li> -->
+                        <li *ngIf="detailedReportCreatePermission == true" routerLinkActive="active">
+                            <a mat-raised-button _ngcontent-c37
+                                style="margin-right: 20px!important; padding: 0px 10px;">
+                                <mat-icon>outlined_flag</mat-icon><span style="color: blue">Detailed Report</span>
+                            </a>
+                        </li>
+                        <li *ngIf="summaryReportCreatePermission == true" routerLinkActive="active">
+                            <a mat-raised-button _ngcontent-c37>
+                                <mat-icon>outlined_flag</mat-icon><span style="color: blue">Summary Report</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>

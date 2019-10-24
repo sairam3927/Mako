@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
-import { ScopeUploadCSVComponent } from './upload-csv/upload-csv.component';
-import { PersonalComponent } from '../Personal/Personal.component';
 import { AddScopeComponent } from './add-scope/add-scope.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DictionaryService } from '../dictionary.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 @Component({
   selector: 'app-Scope',
@@ -15,7 +14,13 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
   styleUrls: ['./Scope.component.scss']
 })
 export class ScopeComponent implements OnInit {
-  filterToggle:boolean;
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
+
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
@@ -37,23 +42,34 @@ export class ScopeComponent implements OnInit {
   public cancelClicked: boolean = false;
   filterForm: FormGroup;
 
-  
+
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
     private dictionaryService: DictionaryService) {
-      this.filterForm = this._fb.group({
-        'keyWord': [null]
-      });
-    }
+    this.filterForm = this._fb.group({
+      'keyWord': [null]
+    });
+  }
   ngOnInit() {
-    this.fakedata = [
-      {id: "1" , AlleleName: "rs4846048",Gene:"LCT",Active:true,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted."},
-      {id: "2" , AlleleName: "rs1537514",Gene:"TPK ",Active:false,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "3" , AlleleName: "rs868014",Gene:"ADA ",Active:false,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "4" , AlleleName: "rs2274976",Gene:"TPK",Active:true,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "5" , AlleleName: "tvc.novel.1",Gene:"ADA ",Active:true,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "6" , AlleleName: "tvc.novel.2",Gene:"LCT",Active:false,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." },
-      {id: "7" , AlleleName: "rs1801131",Gene:"TPK",Active:true,Description:"The anchor position for this RefSNP. Includes all nucleotides potentially affected by this change, thus it can differ from HGVS, which is right-shifted." }
-    ];
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Scope') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getScopeList();
   }
 
@@ -66,49 +82,54 @@ export class ScopeComponent implements OnInit {
         if (this.ScopeList != null && this.ScopeList.length >= 0) {
           this.pageScopeList = this.ScopeList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
-        this.totalSize = this.ScopeList !=null? this.ScopeList.length : 0;
+        this.totalSize = this.ScopeList != null ? this.ScopeList.length : 0;
       }
     );
-    // this.ScopeList = this.fakedata;
-    // if (this.ScopeList.length >= 0) {
-    //   this.pageScopeList = this.ScopeList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
-    // }
-    // this.totalSize = this.ScopeList.length;
   }
 
   public addScopeDialog(id, action, item) {
-    let dialogRef = this.dialog.open(AddScopeComponent, {
-      height: 'auto',
-      width: '400px',
-      autoFocus: false,
-    }); 
-    (<AddScopeComponent>dialogRef.componentInstance).id = id;
-    (<AddScopeComponent>dialogRef.componentInstance).action = action;
-    (<AddScopeComponent>dialogRef.componentInstance).item = item;
-    dialogRef.afterClosed().subscribe(data => {
-      this.getScopeList();
-    });
+    if (this.UpdatePermission == true) {
+      let dialogRef = this.dialog.open(AddScopeComponent, {
+        height: 'auto',
+        width: '400px',
+        autoFocus: false,
+      });
+      (<AddScopeComponent>dialogRef.componentInstance).id = id;
+      (<AddScopeComponent>dialogRef.componentInstance).action = action;
+      (<AddScopeComponent>dialogRef.componentInstance).item = item;
+      dialogRef.afterClosed().subscribe(data => {
+        this.getScopeList();
+      });
+    } else {
+      this.restrictionDialog('Update');
+    }
+
   }
 
   deleteScope(data) {
     let body = {
       'ScopeId': data
     }
-    this.dictionaryService.deletescope(body).subscribe(
-      data => {
-        console.log(data)
-        if (data['Status'] == true) {
-          this.getScopeList();
-          this.alertService.createAlert('Successfully Deleted', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
+    if (this.DeletePermission == true) {
+      this.dictionaryService.deletescope(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Status'] == true) {
+            this.getScopeList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
 
-      }
-    );
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
   }
 
-  public ConfirmDialog(id,data){
+  public ConfirmDialog(id, data) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: 'auto',
       width: '400px',
@@ -116,18 +137,18 @@ export class ScopeComponent implements OnInit {
     });
     (<ConfirmDialogComponent>dialogRef.componentInstance).check = data;
     dialogRef.afterClosed().subscribe(data => {
-      console.log("datr",data)
-      if(data != undefined){
-        this.checkActive(id,data);
-      }else{
+      console.log("datr", data)
+      if (data != undefined) {
+        this.checkActive(id, data);
+      } else {
         this.getScopeList();
       }
     });
   }
-  checkActive(data,active){
+  checkActive(data, active) {
     let body = {
       'ScopeId': data,
-      'Active':active
+      'Active': active
     }
     console.log(body)
     this.dictionaryService.checkactivescope(body).subscribe(
@@ -183,17 +204,28 @@ export class ScopeComponent implements OnInit {
     this.pageSize = e.pageSize;
     this.pageScopeList = this.ScopeList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
   }
-  public deleteDialog(id){
+  public deleteDialog(id) {
     let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log("datr",data)
-      if (data == true){
+      console.log("datr", data)
+      if (data == true) {
         this.deleteScope(id)
       }
+    });
+  }
+
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
     });
   }
 

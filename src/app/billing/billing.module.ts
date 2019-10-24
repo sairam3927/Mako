@@ -17,8 +17,6 @@ import { TableModule } from 'primeng/table';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-// import { AlgorithmComponent } from './Algorithm/Algorithm.component';
-import { BillingComponent } from './billing.component';
 import { CalculationsComponent } from './Calculations/Calculations.component';
 import { ReportComponent } from './Report/Report.component';
 import { SamplePatientDataComponent } from './SamplePatientData/SamplePatientData.component';
@@ -47,7 +45,7 @@ export const routes = [
 ];
 
 @NgModule({
-  declarations: [ DictionaryComponent, BillingComponent, CalculationsComponent, ReportComponent, 
+  declarations: [ DictionaryComponent, CalculationsComponent, ReportComponent, 
     SamplePatientDataComponent, StepsComponent, AddStepsComponent, AddCalcComponent, FinalOutputComponent, 
     PersonalComponent,LogicModelpopupComponent,LogicAdultnutritionComponent,LogicTestsComponent,LogicNutrientComponent,
     UploadCSVComponent,LogicReportvariableComponent],

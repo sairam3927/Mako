@@ -45,96 +45,103 @@ export class DictionaryService {
   edittestsurl = 'api/edit-tests';
   deletetestsurl = 'api/delete-tests';
 
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'userId':  localStorage.getItem('UserId') ,
+      'authToken': localStorage.getItem('AuthToken')
+    })
+  };
+
   constructor(private _http: HttpClient) { }
 
   public getscopelist() {
-    return this._http.get(environment.apiUrl + this.getscopelisturl)
+    return this._http.get(environment.apiUrl + this.getscopelisturl, this.httpOptions)
   }
   public editscope(data) {
-    return this._http.post(environment.apiUrl + this.editscopeurl,data)
+    return this._http.post(environment.apiUrl + this.editscopeurl,data, this.httpOptions)
   }
   public deletescope(data) {
-    return this._http.post(environment.apiUrl + this.deletescopeurl,data)
+    return this._http.post(environment.apiUrl + this.deletescopeurl,data, this.httpOptions)
   }
   public checkactivescope(data) {
-    return this._http.post(environment.apiUrl + this.checkactivescopeurl,data)
+    return this._http.post(environment.apiUrl + this.checkactivescopeurl,data, this.httpOptions)
   }
 
   public DRIgetsectionslist() {
-    return this._http.get(environment.apiUrl + this.DRIgetsectionslisturl)
+    return this._http.get(environment.apiUrl + this.DRIgetsectionslisturl, this.httpOptions)
   }
   public DRIeditsections(data) {
-    return this._http.post(environment.apiUrl + this.DRIeditsectionsurl,data)
+    return this._http.post(environment.apiUrl + this.DRIeditsectionsurl,data, this.httpOptions)
   }
   public DRIdeletesection(data) {
-    return this._http.post(environment.apiUrl + this.DRIdeletesectionurl,data)
+    return this._http.post(environment.apiUrl + this.DRIdeletesectionurl,data, this.httpOptions)
   }
 
   public Sectionsgetlist() {
-    return this._http.get(environment.apiUrl + this.Sectionsgetlisturl)
+    return this._http.get(environment.apiUrl + this.Sectionsgetlisturl, this.httpOptions)
   }
   public Sectionsedit(data) {
-    return this._http.post(environment.apiUrl + this.Sectionsediturl,data)
+    return this._http.post(environment.apiUrl + this.Sectionsediturl,data, this.httpOptions)
   }
   public Sectionsdelete(data) {
-    return this._http.post(environment.apiUrl + this.Sectionsdeleteurl,data)
+    return this._http.post(environment.apiUrl + this.Sectionsdeleteurl,data, this.httpOptions)
   }
 
   public getnutrients_conditionslist() {
-    return this._http.get(environment.apiUrl + this.getnutrients_conditionslisturl)
+    return this._http.get(environment.apiUrl + this.getnutrients_conditionslisturl, this.httpOptions)
   }
   public editnutrients_conditions(data) {
-    return this._http.post(environment.apiUrl + this.editnutrients_conditionsurl,data)
+    return this._http.post(environment.apiUrl + this.editnutrients_conditionsurl,data, this.httpOptions)
   }
   public deletenutrients_conditions(data) {
-    return this._http.post(environment.apiUrl + this.deletenutrients_conditionsurl,data)
+    return this._http.post(environment.apiUrl + this.deletenutrients_conditionsurl,data, this.httpOptions)
   }
 
   public getSequence_results_masterlist() {
-    return this._http.get(environment.apiUrl + this.getSequence_results_masterlisturl)
+    return this._http.get(environment.apiUrl + this.getSequence_results_masterlisturl, this.httpOptions)
   }
   public editSequence_results_master(data) {
-    return this._http.post(environment.apiUrl + this.editSequence_results_masterurl,data)
+    return this._http.post(environment.apiUrl + this.editSequence_results_masterurl,data, this.httpOptions)
   }
   public deletesequence_results_master(data) {
-    return this._http.post(environment.apiUrl + this.deletesequence_results_masterurl,data)
+    return this._http.post(environment.apiUrl + this.deletesequence_results_masterurl,data, this.httpOptions)
   }
   public upsertsequence_results_mastercsv(data) {
-    return this._http.post(environment.apiUrl + this.upsertsequence_results_mastercsvurl,data)
+    return this._http.post(environment.apiUrl + this.upsertsequence_results_mastercsvurl,data, this.httpOptions)
   }
 
   public getmessageslist() {
-    return this._http.get(environment.apiUrl + this.getmessageslisturl)
+    return this._http.get(environment.apiUrl + this.getmessageslisturl, this.httpOptions)
   }
   public editmessages(data) {
-    return this._http.post(environment.apiUrl + this.editmessagesurl,data)
+    return this._http.post(environment.apiUrl + this.editmessagesurl,data, this.httpOptions)
   }
   public deletemessage(data) {
-    return this._http.post(environment.apiUrl + this.deletemessageurl,data)
+    return this._http.post(environment.apiUrl + this.deletemessageurl,data, this.httpOptions)
   }
 
   public gettestslist() {
-    return this._http.get(environment.apiUrl + this.gettestslisturl)
+    return this._http.get(environment.apiUrl + this.gettestslisturl, this.httpOptions)
   }
   public edittests(data) {
-    return this._http.post(environment.apiUrl + this.edittestsurl,data)
+    return this._http.post(environment.apiUrl + this.edittestsurl,data, this.httpOptions)
   }
   public deletetests(data) {
-    return this._http.post(environment.apiUrl + this.deletetestsurl,data)
+    return this._http.post(environment.apiUrl + this.deletetestsurl,data, this.httpOptions)
   }
 
 
   public getlastpersonaldata() {
-    return this._http.get(environment.apiUrl + this.getlastpersonaldataurl)
+    return this._http.get(environment.apiUrl + this.getlastpersonaldataurl, this.httpOptions)
   }
   public savepersonaldata(data) {
-    return this._http.post(environment.apiUrl + this.savepersonaldataurl,data)
+    return this._http.post(environment.apiUrl + this.savepersonaldataurl,data, this.httpOptions)
   }
   public genderlist() {
-    return this._http.get(environment.apiUrl + this.genderlisturl)
+    return this._http.get(environment.apiUrl + this.genderlisturl, this.httpOptions)
   }
   public ethinicitylist() {
-    return this._http.get(environment.apiUrl + this.ethinicitylisturl)
+    return this._http.get(environment.apiUrl + this.ethinicitylisturl, this.httpOptions)
   }
 
 }

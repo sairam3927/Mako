@@ -8,7 +8,8 @@ import { PersonalComponent } from '../Personal/Personal.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DictionaryService } from '../dictionary.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
- 
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
+
 @Component({
   selector: 'app-Messages',
   templateUrl: './Messages.component.html',
@@ -16,7 +17,12 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
 })
 export class MessagesComponent implements OnInit {
 
-  filterToggle:boolean;
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
+
+  filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
   }
@@ -27,7 +33,7 @@ export class MessagesComponent implements OnInit {
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
   public currentPage = 0;
-  public totalSize = 0; 
+  public totalSize = 0;
   public currentPageTemp = 0;
   public totalSizeTemp = 0;
 
@@ -45,6 +51,26 @@ export class MessagesComponent implements OnInit {
     });
   }
   ngOnInit() {
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Messages') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getMessageList();
   }
 
@@ -60,44 +86,50 @@ export class MessagesComponent implements OnInit {
         this.totalSize = this.MessageList.length;
       }
     );
-    // this.SectionList = this.fakedata;
-    // if (this.SectionList.length >= 0) {
-    //   this.pageMessageList = this.SectionList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
-    // }
-    // this.totalSize = this.SectionList.length;
+
   }
 
   public addMessageDialog(id, action, item) {
-    let dialogRef = this.dialog.open(AddMessageComponent, {
-      height: 'auto',
-      width: '610px',
-      autoFocus: false,
+    if (this.UpdatePermission == true) {
+      let dialogRef = this.dialog.open(AddMessageComponent, {
+        height: 'auto',
+        width: '610px',
+        autoFocus: false,
 
-    });
-    (<AddMessageComponent>dialogRef.componentInstance).id = id;
-    (<AddMessageComponent>dialogRef.componentInstance).action = action;
-    (<AddMessageComponent>dialogRef.componentInstance).item = item;
-    dialogRef.afterClosed().subscribe(data => {
-      this.getMessageList();
-    });
+      });
+      (<AddMessageComponent>dialogRef.componentInstance).id = id;
+      (<AddMessageComponent>dialogRef.componentInstance).action = action;
+      (<AddMessageComponent>dialogRef.componentInstance).item = item;
+      dialogRef.afterClosed().subscribe(data => {
+        this.getMessageList();
+      });
+    } else {
+      this.restrictionDialog('Update');
+    }
+
   }
 
   deleteMessages(data) {
     let body = {
       'MessagesId': data
     }
-    this.dictionaryService.deletemessage(body).subscribe(
-      data => {
-        console.log(data)
-        if (data['Success'] == true) {
-          this.getMessageList();
-          this.alertService.createAlert('Successfully Deleted', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
+    if (this.DeletePermission == true) {
+      this.dictionaryService.deletemessage(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Success'] == true) {
+            this.getMessageList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
 
-      }
-    );
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
   }
 
   filterBy(formValues) {
@@ -141,28 +173,29 @@ export class MessagesComponent implements OnInit {
     this.pageMessageList = this.MessageList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
   }
 
-  public deleteDialog(id){
+  public deleteDialog(id) {
     let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
       height: 'auto',
       width: '500px',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log("datr",data)
-      if (data == true){
+      console.log("datr", data)
+      if (data == true) {
         this.deleteMessages(id)
       }
     });
   }
 
-  // public uploadDialog() {
-  //   let dialogRef = this.dialog.open(MessagesUploadComponent, {
-  //     height: 'auto',
-  //     width: '400px',
-  //     autoFocus: false,
-  //   });
-  //   dialogRef.afterClosed().subscribe(data => {
-  //   });
-  // }
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
 
 }

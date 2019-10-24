@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { DictionaryService } from '../dictionary.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 export interface Sample {
   value: string;
@@ -15,6 +16,11 @@ export interface Sample {
   styleUrls: ['./Personal.component.scss']
 })
 export class PersonalComponent implements OnInit {
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
 
   gender: any;
   ethnicity: any;
@@ -30,14 +36,7 @@ export class PersonalComponent implements OnInit {
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
 
-  ethnicitys: Sample[] = [
-    { value: '0', viewValue: 'Non-Hispanic White' },
-    { value: '1', viewValue: 'Hispanic' },
-    { value: '2', viewValue: 'African American' },
-    { value: '3', viewValue: 'Asian' },
-    { value: '4', viewValue: 'Others' }
-  ];
-  constructor(public alertService: AlertService, public dialogRef: MatDialogRef<PersonalComponent>, private dictionaryService: DictionaryService,
+  constructor(public alertService: AlertService, public dialogRef: MatDialogRef<PersonalComponent>, public dialog: MatDialog, private dictionaryService: DictionaryService,
     public fb: FormBuilder) {
     this.PersonalForm = this.fb.group({
       Age: new FormControl('', [Validators.required]),
@@ -47,6 +46,26 @@ export class PersonalComponent implements OnInit {
     })
   }
   ngOnInit() {
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Personal Data') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getData();
   }
 
@@ -69,7 +88,7 @@ export class PersonalComponent implements OnInit {
         console.log(data)
         this.previousData = data['data'][0];
         console.log("previousData", this.previousData.Age);
-        if (this.previousData.Gender == 2 ){
+        if (this.previousData.Gender == 2) {
           this.setradio('Female');
         }
         this.PersonalForm = this.fb.group({
@@ -85,7 +104,7 @@ export class PersonalComponent implements OnInit {
   addSelections() {
     this.formValue = this.PersonalForm.value;
     console.log("values:", this.formValue);
-    if (this.formValue['Gender'] == 1){
+    if (this.formValue['Gender'] == 1) {
       this.formValue['Pregnant'] = false;
     }
     this.gridObject = {
@@ -97,17 +116,22 @@ export class PersonalComponent implements OnInit {
     console.log("Entered data", this.gridObject);
     this.close()
 
-    this.dictionaryService.savepersonaldata(this.gridObject).subscribe(
-      data => {
-        console.log('add/update response', data)
-        if (data['Status'] == true) {
-          this.alertService.createAlert('Successfully Updated', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
+    if (this.UpdatePermission == true) {
+      this.dictionaryService.savepersonaldata(this.gridObject).subscribe(
+        data => {
+          console.log('add/update response', data)
+          if (data['Status'] == true) {
+            this.alertService.createAlert('Successfully Updated', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+          this.close()
         }
-        this.close()
-      }
-    );
+      );
+    } else {
+      this.restrictionDialog('Update');
+    }
+
 
   }
 
@@ -124,6 +148,17 @@ export class PersonalComponent implements OnInit {
       return false;
     }
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+  }
+
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
   }
 
 }

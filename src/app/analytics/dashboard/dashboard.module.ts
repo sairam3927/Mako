@@ -6,16 +6,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
-import { GoogleeMapsComponent } from './googlee-maps/googlee-maps.component';
 import { AgmCoreModule } from '@agm/core';
 import { PieComponent } from './pie/pie.component';
 import { PieeComponent } from './piee/piee.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-import { AuditeepieComponent } from './auditeepie/auditeepie.component';
-import { RemarksturnaroundpieComponent } from './remarksturnaroundpie/remarksturnaroundpie.component';
-import { TrendChartComponent } from './trend-chart/trend-chart.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { GenotypeComponent } from './genotype/genotype.component';
 import { AlleleCallsComponent } from './allele-calls/allele-calls.component';
@@ -49,14 +44,9 @@ export const routes = [
     NgxPaginationModule
   ],
   declarations: [
-    
-    AnalyticsComponent,
-    GoogleeMapsComponent,
+    DashboardComponent,
     PieComponent,
     PieeComponent,
-    AuditeepieComponent,
-    RemarksturnaroundpieComponent,
-    TrendChartComponent,
     AlleleCallsComponent,
     GenotypeComponent,
     GenotypeTotalPieComponent,
