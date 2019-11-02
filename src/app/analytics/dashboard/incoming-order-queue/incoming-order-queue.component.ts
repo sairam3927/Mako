@@ -1,8 +1,6 @@
 import { AddPatientDataComponent } from './addPatientData/addPatientData.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { AppSettings } from '../../../app.settings';
-import { Settings } from '../../../app.settings.model';
 import { AddIncomingOrderComponent } from './add-incoming-order/add-incoming-order.component';
 import { ProfileAndInsuranceDialogComponent } from './profile-and-insurance-dialog/profile-and-insurance-dialog.component'
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -10,6 +8,7 @@ import { AddDocumentsComponent } from './add-documents/add-documents.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AnalyticsService } from '../../analytics.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 @Component({
   selector: 'app-incoming-order-queue',
@@ -17,6 +16,11 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
   styleUrls: ['./incoming-order-queue.component.scss'],
 })
 export class IncomingOrderQueueComponent implements OnInit {
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
 
   filterToggle: boolean;
   toggleFilter() {
@@ -26,6 +30,7 @@ export class IncomingOrderQueueComponent implements OnInit {
   fakedata: any;
   OrderList: any;
   pageOrderList: any;
+  public todayDate: any = new Date();
 
   public pageSize = 10;
   public pageSizeTemp = this.pageSize;
@@ -40,6 +45,7 @@ export class IncomingOrderQueueComponent implements OnInit {
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
   filterForm: FormGroup;
+
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
     private analyticsService: AnalyticsService) {
     this.filterForm = this._fb.group({
@@ -61,22 +67,54 @@ export class IncomingOrderQueueComponent implements OnInit {
   }
 
   public addOrderDialog(id, action, item) {
-    let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
-      data: id,
-      height: 'auto',
-      width: '600px',
-      autoFocus: false,
 
-    });
-    (<AddIncomingOrderComponent>dialogRef.componentInstance).id = id;
-    (<AddIncomingOrderComponent>dialogRef.componentInstance).action = action;
-    (<AddIncomingOrderComponent>dialogRef.componentInstance).item = item;
-    dialogRef.afterClosed().subscribe(data => {
-      this.getOrderList()
-    });
+    if (this.CreatePermission == true) {
+      if (this.UpdatePermission == true) {
+        let dialogRef = this.dialog.open(AddIncomingOrderComponent, {
+          data: id,
+          height: 'auto',
+          width: '600px',
+          autoFocus: false,
+          disableClose: false
+
+        });
+        (<AddIncomingOrderComponent>dialogRef.componentInstance).id = id;
+        (<AddIncomingOrderComponent>dialogRef.componentInstance).action = action;
+        (<AddIncomingOrderComponent>dialogRef.componentInstance).item = item;
+        dialogRef.afterClosed().subscribe(data => {
+          this.getOrderList()
+        });
+      } else {
+        this.restrictionDialog('Update');
+      }
+    } else {
+      this.restrictionDialog('Create');
+    }
+
   }
 
   ngOnInit() {
+
+    // console.log(localStorage.getItem('Permissions'),'localStorage.getItem("Permissions")')
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Orders') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getOrderList();
   }
 
@@ -86,7 +124,7 @@ export class IncomingOrderQueueComponent implements OnInit {
       data => {
         console.log(data)
         this.OrderList = data['OrdersList'];
-        if (this.OrderList != null && this.OrderList.length >= 0) {
+        if (this.OrderList && this.OrderList.length >= 0) {
           this.pageOrderList = this.OrderList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
         }
         this.totalSize = this.OrderList != null ? this.OrderList.length : 0;
@@ -99,7 +137,30 @@ export class IncomingOrderQueueComponent implements OnInit {
     let body = {
       "OrdersId": data
     }
-    this.analyticsService.deleteorder(body).subscribe(
+    if (this.DeletePermission == true) {
+      this.analyticsService.deleteorder(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Success'] == true) {
+            this.getOrderList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
+  }
+
+  checkRecieved(data) {
+    let body = {
+      "OrdersId": data
+    }
+    this.analyticsService.checkrecieved(body).subscribe(
       data => {
         console.log(data)
         if (data['Success'] == true) {
@@ -111,6 +172,7 @@ export class IncomingOrderQueueComponent implements OnInit {
 
       }
     );
+
   }
 
   filterBy(formValues) {
@@ -127,7 +189,7 @@ export class IncomingOrderQueueComponent implements OnInit {
       );
       console.log(filteredEvents, 'filteredEventssadA')
       let filteredEvents2 = [];
-      if (formValues.Age != null){
+      if (formValues.Age != null) {
         if (formValues.Age == ">30") {
           filteredEvents2 = filteredEvents.filter(x =>
             (formValues.Age == null || (x.Age) > 30)
@@ -148,10 +210,10 @@ export class IncomingOrderQueueComponent implements OnInit {
             (formValues.Age == null || (x.Age) <= 50)
           );
         }
-      }else{
+      } else {
         filteredEvents2 = filteredEvents;
       }
-      
+
       console.log(filteredEvents2, 'filteredEvents2')
 
       this.OrderList = filteredEvents2;
@@ -196,6 +258,17 @@ export class IncomingOrderQueueComponent implements OnInit {
     });
   }
 
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
+
   public addPatientDataDialog() {
     let dialogRef = this.dialog.open(AddPatientDataComponent, {
       height: 'auto',
@@ -205,15 +278,17 @@ export class IncomingOrderQueueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
     });
   }
-  
+
   public openDocumentDialog(id) {
     let dialogRef = this.dialog.open(AddDocumentsComponent, {
       height: 'auto',
       width: '600px',
       autoFocus: false,
+      disableClose: false
     });
     (<AddDocumentsComponent>dialogRef.componentInstance).id = id;
     dialogRef.afterClosed().subscribe(data => {
+      this.getOrderList()
     });
   }
   public openInsuranceDialog(id) {

@@ -1,0 +1,20 @@
+<h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+  Genotype Distribution ({{id}})</h3>
+
+<div fxLayout="column" mat-dialog-content>
+  <mat-card>
+    <div class="w-100 h-300p">
+      <ngx-charts-pie-chart [scheme]="colorScheme" [results]="GenotypeSingle" [legend]="showLegend"
+        [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient"
+        (select)="onSelect($event)">
+      </ngx-charts-pie-chart>
+    </div>
+  </mat-card>
+</div>
+<mat-dialog-actions align="center" style="padding: 17px 0 17px 0 !important;">
+  <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 10px " type="button"
+    (click)="close()">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+</mat-dialog-actions>

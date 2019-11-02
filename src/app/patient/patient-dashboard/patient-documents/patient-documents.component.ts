@@ -18,7 +18,7 @@ export class PatientDocumentsComponent implements OnInit {
 
   getPatientData() {
     let body = {
-      "OrderId" : 1
+      "OrderId" : null
     }
     console.log("body", body)
     this.patientDashboardService.getdocs_datalist(body).subscribe(

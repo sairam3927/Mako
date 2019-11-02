@@ -1,0 +1,145 @@
+<div class="row" style="padding-left: 20px; padding-right: 20px;">
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat red-intense">
+            <div class="visual">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{PendingSamples}}
+                </div>
+                <div class="desc">
+                    <b>Pending Samples</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat green-haze">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{ReservedSamples}}
+                </div>
+                <div class="desc">
+                    <b> Received Samples</b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    N/A
+                </div>
+                <div class="desc">
+                    <b>Not Received</b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div fxLayout="row wrap" style="padding-left: 20px; padding-right: 20px;padding-bottom: 10px;">
+    <h3>
+        RECEIVED: (total number of Pending samples that have been marked as Received)
+    </h3>
+</div>
+<div fxLayout="row wrap" style="padding-left: 20px; padding-right: 20px;">
+    <div class="table-responsive">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head ">
+                <tr class="tr-grid-header">
+                    <th class="text-center">Subject (Customer) Name</th>
+                    <th class="text-center">Barcode (Sample Name) </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pageTableList1">
+                    <td class="text-center" style="text-align: center !important;">{{item.FirstName}}&nbsp;{{item.LastName}}</td>
+                    <td class="text-center" style="text-align: center !important;">{{item.SampleName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
+</mat-paginator>
+<div fxLayout="row wrap" style="padding-left: 20px; padding-right: 20px;padding-bottom: 10px;">
+    <h3>
+        NOT RECEIVED: (total number of Pending samples that have NOT been marked as Received)
+    </h3>
+</div>
+<div fxLayout="row wrap" style="padding-left: 20px; padding-right: 20px;">
+    <div class="table-responsive">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head ">
+                <tr class="tr-grid-header">
+                    <th class="text-center">Subject (Customer) Name</th>
+                    <th class="text-center">Barcode (Sample Name) </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pageTableList2">
+                    <td class="text-center" style="text-align: center !important;">{{item.FirstName}}&nbsp;{{item.LastName}}</td>
+                    <td class="text-center" style="text-align: center !important;">{{item.SampleName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<mat-paginator [length]="totalSizeTable2" [pageIndex]="currentPageTable2" [pageSize]="pageSizeTable2"
+    [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePageTable2($event)">
+</mat-paginator>
+<!-- <form>
+    <div class="row wrap " style="padding: 10px;">
+        <div class="col-sm-12">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+                                Pick Year:
+                            </div>
+                            <div class="col-sm-8">
+                                <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY"
+                                    class="form-control" id="db" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                                    name="dt1" [(ngModel)]="dateTime1">
+                                <owl-date-time [pickerType]="'calendar'" [startView]="'year'" #dt1></owl-date-time>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="col-sm-8">
+                                <button type="button" class="add-hover-reset btn btn-reset">Reset</button>
+                                <button type="button"
+                                    class="filter-hover btn btn-success pull-left margin-right-10">Search</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 newMarginClass">
+
+                            </div>
+                            <div class="col-sm-8">
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+</form> -->
+<div class="row" style="padding-left: 20px; padding-right: 20px;">
+    <div class="col-sm-12" [chart]="barChartDataforExceptions"></div>
+</div>

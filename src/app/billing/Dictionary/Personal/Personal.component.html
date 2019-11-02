@@ -16,12 +16,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><label style="font-weight: 100;">Age :</label></td>
+                  <td><label style="font-weight: 100;">Age:</label></td>
                   <td><input type="text" class="form-control" id="age" formControlName="Age" placeholder="Enter Age"
                       required></td>
                 </tr>
                 <tr>
-                  <td><label style="font-weight: 100;">Gender :</label></td>
+                  <td><label style="font-weight: 100;">Gender:</label></td>
                   <td>
                     <mat-radio-group class="pull-left" formControlName="Gender" style="margin-top: 5px"
                       aria-label="Select an option">
@@ -31,14 +31,14 @@
                   </td>
                 </tr>
                 <tr *ngIf="isSelected('Female')">
-                  <td><label style="font-weight: 100;">Pregnant / Lactating :</label></td>
+                  <td><label style="font-weight: 100;">Pregnant / Lactating:</label></td>
                   <td>
                     <mat-checkbox class="w-100" formControlName="Pregnant" id="lactating">
                     </mat-checkbox>
                   </td>
                 </tr>
                 <tr>
-                  <td><label style="font-weight: 100;">Ethinicity :</label></td>
+                  <td><label style="font-weight: 100;">Ethinicity:</label></td>
                   <td>
                     <mat-select placeholder="--Select by Ethinicity--" formControlName="Ethinicity"
                       class="form-control">

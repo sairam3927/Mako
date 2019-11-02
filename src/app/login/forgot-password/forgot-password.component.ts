@@ -27,26 +27,6 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  // For Forgot Password
-  // public onSubmit(emailId:Object):void {
-  //   if (this.form.valid) {
-  //    this.forgotpwservice.forgotPassword(emailId).subscribe(
-  //      data=>{
-  //           //Sending message to Snackbar
-  //           // this.snackBar.open(data['message'], 'OK'
-  //           // );
-  //           this.router.navigate(['/login'])
-  //      },
-  //      error=>{
-  //        console.log(error)
-  //      }
-  //    )
-  //   }
-  // }
-
-  // ngAfterViewInit(){
-  //   this.settings.loadingSpinner = false;
-  // }
   ngOnInit() {
   }
 
@@ -59,10 +39,10 @@ export class ForgotPasswordComponent implements OnInit {
       this.loginService.forgotuserpassword(body).subscribe(
         data => {
           console.log(data)
-
+          localStorage.setItem('email', values['email']);
           if (data['Success'] == true) {
             this.router.navigate(['/otp']);
-            this.alertService.createAlert(data['Message'], 1);
+            this.alertService.createAlert('OTP sent to your email sucessfully', 1);
           } else {
             this.alertService.createAlert(data['Message'], 0);
           }

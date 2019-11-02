@@ -43,7 +43,7 @@ export const routes = [
   { path: 'DRI', component: DRIComponent, data: { breadcrumb: 'DRI' } },
   { path: 'Messages', component: MessagesComponent, data: { breadcrumb: 'Messages' } },
   { path: 'Sections', component: SectionsComponent, data: { breadcrumb: 'Sections' } },
-  { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrients/Conditions' } },
+  { path: 'Nutrient', component: NutrientComponent, data: { breadcrumb: 'Nutrients/Condition' } },
   { path: 'SeqResults', component: SeqResultsComponent, data: { breadcrumb: 'SEQ Results Master' } },
   { path: 'Algorithm', component: AlgorithmComponent, data: { breadcrumb: 'ALGO REF' } },
   { path: 'haplotypes', component: HaplotypesComponent, data: { breadcrumb: 'Haplotypes' } },

@@ -8,7 +8,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { UsersComponent } from './users.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
-import { Data } from '../../fake backend/data.backend.data';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component'
@@ -26,7 +25,8 @@ export const routes = [
     ReactiveFormsModule,
     NgxPaginationModule,
     SharedModule,
-    PipesModule,InMemoryWebApiModule.forFeature(Data, { delay: 500 }),ConfirmationPopoverModule
+    PipesModule,
+    ConfirmationPopoverModule
   ],
   declarations: [
     UsersComponent,

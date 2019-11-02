@@ -47,7 +47,7 @@
                 <div fxLayout="row" style="float: right !important;" class="pull-right hidden-xs">
                     <a *ngIf="router.url != '/'" routerLink="/mako" class="breadcrumb-item" fxLayout="row" fxLayoutAlign="start center"
                         (click)="closeSubMenus()">
-                        <mat-icon style="margin-right: 5px">home</mat-icon>
+                        <mat-icon style="margin-right: 5px;margin-top: 3px;">home</mat-icon>
                         <span class="breadtitle breadcrumb-title">Home</span>
                     </a>
                     <div *ngFor="let breadcrumb of breadcrumbs; let i = index;" class="breadcrumb-item" fxLayout="row"

@@ -1,0 +1,121 @@
+<div class="col-sm-12 flex-p">
+    <div class="row">
+        <div class="col-sm-12 m-b-10">
+            <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover"
+                (click)="filterToggle = !filterToggle">
+                <mat-icon>filter_list</mat-icon> Filter
+            </button>
+        </div>
+        <div class="col-sm-12 m-b-10" *ngIf="filterToggle">
+            <form [formGroup]="filterForm">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-4">
+                                <div class="col-sm-4 newMarginClass">
+                                    Keyword search:
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" formControlName="keyWord"
+                                        placeholder="--Keyword search--">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+
+                                <div class="col-sm-8">
+                                    <button type="button" class="add-hover-reset btn btn-reset"
+                                        (click)="resetFilter()">Reset</button>
+                                    <button type="button" class="btn btn-success pull-left margin-right-10"
+                                        (click)="filterBy(filterForm.value)">Search</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4 newMarginClass">
+
+                                </div>
+                                <div class="col-sm-8">
+
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-12" style="padding: 0 !important;">
+                <div class="col-sm-6 m-b-10">
+                    <div class="table-responsive">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead class="tbl-head">
+                                <tr class="tr-grid-header">
+                                    <th>rsID</th>
+                                    <th class="text-center">Gene</th>
+                                    <th class="text-center">A/A</th>
+                                    <th class="text-center">A/T</th>
+                                    <th class="text-center">A/G</th>
+                                    <th class="text-center">G/C</th>
+                                    <th class="text-center">G/T</th>
+                                    <th class="text-center">G/G</th>
+                                    <th class="text-center">C/C</th>
+                                    <th class="text-center">C/T</th>
+                                    <th class="text-center">T/T</th>
+                                    <!-- <th>Total</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pagePatientList">
+
+                                    <td>
+                                        <a class="inner-screen" style="cursor: pointer;" title="view pie chart"
+                                            (click)="openpieDataDialog(item.rsId,item)">
+                                            {{item.rsId}}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">{{item.Gene}}</td>
+                                    <td class="text-center">{{item.AbyA}}</td>
+                                    <td class="text-center">{{item.AbyT}}</td>
+                                    <td class="text-center">{{item.AbyG}}</td>
+                                    <td class="text-center">{{item.GbyC}}</td>
+                                    <td class="text-center">{{item.GbyT}}</td>
+                                    <td class="text-center">{{item.GbyG}}</td>
+                                    <td class="text-center">{{item.CbyC}}</td>
+                                    <td class="text-center">{{item.CbyT}}</td>
+                                    <td class="text-center">{{item.TbyT}}</td>
+                                    <!-- <td>{{item.City}}</td> -->
+                                </tr>
+                                <tr *ngIf="pagePatientList?.length <=0">
+                                    <td colspan="11" style="text-align: center !important">No Record's Found</td>
+                                </tr>
+                            </tbody>
+                            <tfoot *ngIf="pagePatientList?.length !=0">
+                                <tr>
+                                    <th colspan="2" class="text-center tr-grid-header tbl-head">Total</th>
+                                    <td class="text-center">{{AbyATotal}}</td>
+                                    <td class="text-center">{{AbyTTotal}}</td>
+                                    <td class="text-center">{{AbyGTotal}}</td>
+                                    <td class="text-center">{{GbyCTotal}}</td>
+                                    <td class="text-center">{{GbyTTotal}}</td>
+                                    <td class="text-center">{{GbyGTotal}}</td>
+                                    <td class="text-center">{{CbyCTotal}}</td>
+                                    <td class="text-center">{{CbyTTotal}}</td>
+                                    <td class="text-center">{{TbyTTotal}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+                        [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
+                    </mat-paginator>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <app-genotype-total-pie></app-genotype-total-pie>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

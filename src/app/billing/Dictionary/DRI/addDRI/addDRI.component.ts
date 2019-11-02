@@ -40,14 +40,14 @@ export class AddDRIComponent implements OnInit {
 
       this.addDRIForm = this.fb.group({
         Nutrient: new FormControl(this.item.Nutrient, [Validators.required]),
-        Pregnant_G: new FormControl(this.item.PregnantGthan30, [Validators.required ]),
-        Pregnant_L: new FormControl(this.item.PregnantLthan30, [Validators.required  ]),
+        Pregnant_G: new FormControl(this.item.PregnantGthan30, [Validators.required]),
+        Pregnant_L: new FormControl(this.item.PregnantLthan30, [Validators.required]),
         Lactate_G: new FormControl(this.item.LactateGthan30, [Validators.required]),
         Lactate_L: new FormControl(this.item.LactateLthan30, [Validators.required]),
         Female_L: new FormControl(this.item.FemaleLthanEqualto50, [Validators.required]),
         Female_G: new FormControl(this.item.FemaleGthan50, [Validators.required]),
-        Male_L: new FormControl(this.item.MaleLthanEqualto50, [Validators.required ]),
-        Male_G: new FormControl(this.item.MaleGthan50, [Validators.required ]),
+        Male_L: new FormControl(this.item.MaleLthanEqualto50, [Validators.required]),
+        Male_G: new FormControl(this.item.MaleGthan50, [Validators.required]),
       })
       console.log('form Data', this.formData);
     }
@@ -60,31 +60,35 @@ export class AddDRIComponent implements OnInit {
     this.formValue = this.addDRIForm.value;
     console.log("values:", this.formValue);
 
-    this.gridObject = {
-      "DriId": this.id,
-      "PregnantGthan30": this.formValue['Pregnant_G'],
-      "PregnantLthan30": this.formValue['Pregnant_L'],
-      "LactateGthan30": this.formValue['Lactate_G'],
-      "LactateLthan30": this.formValue['Lactate_L'],
-      "FemaleLthanEqualto50": this.formValue['Female_L'],
-      "FemaleGthan50": this.formValue['Female_G'],
-      "MaleLthanEqualto50": this.formValue['Male_L'],
-      "MaleGthan50": this.formValue['Male_G'],
-    };
-    console.log("Entered data", this.gridObject);
-    this.close()
+    if (this.addDRIForm.valid) {
+      this.gridObject = {
+        "DriId": this.id,
+        "PregnantGthan30": this.formValue['Pregnant_G'],
+        "PregnantLthan30": this.formValue['Pregnant_L'],
+        "LactateGthan30": this.formValue['Lactate_G'],
+        "LactateLthan30": this.formValue['Lactate_L'],
+        "FemaleLthanEqualto50": this.formValue['Female_L'],
+        "FemaleGthan50": this.formValue['Female_G'],
+        "MaleLthanEqualto50": this.formValue['Male_L'],
+        "MaleGthan50": this.formValue['Male_G'],
+      };
+      console.log("Entered data", this.gridObject);
+      this.close()
 
-    this.dictionaryService.DRIeditsections(this.gridObject).subscribe(
-      data => {
-        console.log('add/update response', data)
-        if (data['Success'] == true) {
-          this.alertService.createAlert('Successfully Updated', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
+      this.dictionaryService.DRIeditsections(this.gridObject).subscribe(
+        data => {
+          console.log('add/update response', data)
+          if (data['Success'] == true) {
+            this.alertService.createAlert('Successfully Updated', 1);
+          } else {
+            this.alertService.createAlert(data['Message'], 0);
+          }
+          this.close()
         }
-        this.close()
-      }
-    );
+      );
+    } else {
+      this.alertService.createAlert('All fields are mandatory', 0);
+    }
 
   }
 

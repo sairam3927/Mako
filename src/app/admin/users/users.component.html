@@ -19,43 +19,43 @@
                 </div>
             </div>
         </div>
-
-        <div fxLayout="row wrap">
-            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
-                <mat-card class="filter">
-                    <mat-card-content>
-                        <div class="row col-sm-12">
-                            <div class="col-sm-4">
-                                <div class="col-sm-4 newMarginClass">
-                                    User Name :
+        <form [formGroup]="filterForm">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" *ngIf="filterToggle">
+                    <mat-card class="filter">
+                        <mat-card-content>
+                            <div class="row col-sm-12">
+                                <div class="col-sm-3">
+                                    <div class="col-sm-4 newMarginClass">
+                                        user name:
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" formControlName="username" class="form-control" placeholder="--Enter User Name--">
+                                    </div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="--Enter User Name--">
+                                <div class="col-sm-3">
+                                    <div class="col-sm-3 newMarginClass">
+                                        status:
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <mat-select placeholder="--Search by Status--" formControlName="status" class="form-control">
+                                            <mat-option *ngFor="let option of status" [value]="">{{option}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <button type="button" class="add-hover-reset btn btn-reset"
+                                        (click)="resetFilter()">Reset</button>
+                                    <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                                        (click)="filterBy(filterForm.value)">Search</button>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-4 newMarginClass">
-                                    Status :
-                                </div>
-                                <div class="col-sm-8">
-                                    <mat-select placeholder="--Search by Status--" class="form-control">
-                                        <mat-option *ngFor="let option of status" [value]="">{{option}}</mat-option>
-                                    </mat-select>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1">
-                                <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
-                            </div>
-                            <div class="col-lg-1"></div>
-                        </div>
-
-
-                    </mat-card-content>
-                </mat-card>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </div>
-        </div>
-
+        </form>
 
         <div fxLayout="row wrap">
             <div class="table-responsive">
@@ -76,7 +76,8 @@
                             <td>{{item.Email}}</td>
                             <td>{{item.Mobile}}</td>
                             <td>
-                                <a routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a>
+                                <a
+                                    routerLink="permissions/{{item.UserId}}">{{item.UserPermissions}}/{{item.TotalPermissions}}</a>
                             </td>
                             <td class="pad-left inner-screen text-center">
                                 <a (click)="changeStatus(item.UserId,!item.status)">

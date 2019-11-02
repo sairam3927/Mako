@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,27 +10,71 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
- 
+  settingList: any;
   public popoverStatusTitle: string = 'Confirm Save Change';
   public popoverStatusMessage: string = 'Are you sure you want to save changes.?';
   public cancelClicked: boolean = false;
+  Form: FormGroup;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private _fb: FormBuilder, private alertService: AlertService, public adminService: AdminService) {
+    this.Form = this._fb.group({
+      'newValue': new FormControl('', [Validators.required, this.noWhiteSpaceValidator]),
+    });
   }
 
-  tableList: Object[] = [
-    { intSettingsId: 1, name: 'Fax Number', description:'Default fax number', old_value:'+1-201-254-5690'},
-    // { intSettingsId: 2, name: 'Opportunity Follow-up Days', description:'Opportunity Follow-up Days', old_value:'10'},
-    { intSettingsId: 2, name: 'Grid Length', description:'Default Grid Length', old_value:'10'},
-    { intSettingsId: 3, name: 'Notification Email', description:'Default Admin Notification Email	', old_value:'admin@sapphire.com'},
-    // { intSettingsId: 4, name: 'Time Zone', description:'Default Time Zone', old_value:'EDT'},
+  ngOnInit() {
+    this.getSetting();
+  }
 
-  ];
+  getSetting() {
+    this.adminService.getsettingslist().subscribe(
+      data => {
+        console.log(data)
+        this.settingList = data['data'];
+      }
+    );
+  }
 
-  saveSettings() {
-    
+  editsettings(id) {
+
+    let body = {
+      "SettingId": id,
+      "NewValue": this.Form.value.newValue
+    }
+
+    if (this.Form.value.newValue == null) {
+      this.alertService.createAlert('Please Enter Value', 0);
+    } else {
+      console.log(body, 'body');
+      this.adminService.editsettings(body).subscribe(
+        data => {
+          console.log('add/update response', data)
+          this.getSetting();
+          if (data['Success'] == true) {
+            this.alertService.createAlert(data['Message'], 1);
+          } else {
+            this.alertService.createAlert(data['Message'], 0);
+          }
+        }
+      );
+    }
+
+  }
+
+  numberOnly(event): boolean {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (!pattern.test(inputChar) && charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  noWhiteSpaceValidator(control: FormControl) {
+    let isWhiteSpace = (control.value || '').trim().length === 0;
+    let isValid = !isWhiteSpace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

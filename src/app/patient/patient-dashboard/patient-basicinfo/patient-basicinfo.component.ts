@@ -28,7 +28,7 @@ export class PatientBasicinfoComponent implements OnInit {
   public toggleSearchBar: boolean = false;
   private defaultMenu: string; //declared for return default menu when window resized 
 
-  
+
   public PatientForm: FormGroup;
 
   constructor(public appSettings: AppSettings, public router: Router, private menuService: MenuService, public fb: FormBuilder,
@@ -56,18 +56,19 @@ export class PatientBasicinfoComponent implements OnInit {
     this.menuOption = this.settings.menu;
     this.menuTypeOption = this.settings.menuType;
     this.defaultMenu = this.settings.menu;
-    // this.getPatientData();
+    this.getPatientData();
   }
 
   getPatientData() {
     let body = {
-      "PatientId": 1
+      "PatientId": null
     }
     console.log("body", body)
     this.patientDashboardService.getpatientinfolist(body).subscribe(
       data => {
         console.log(data)
-        let PatientData = data['PatientInfoList'];
+        console.log(data['PatientInfoList'][0], "data['PatientInfoList'][0]")
+        let PatientData = data['PatientInfoList'][0];
 
         this.PatientForm = this.fb.group({
           PatientName: new FormControl(PatientData["FirstName"]),

@@ -1,0 +1,67 @@
+<!-- <app-info-cards></app-info-cards>
+    
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="45" class="flex-p">
+            <app-disk-space></app-disk-space>
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="55" class="flex-p">
+            <app-todo></app-todo>
+        </div>
+    </div> -->
+<!-- <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" class="flex-p"> 
+            <div fxFlex="100" class="flex-p">
+                <mat-card>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="muted-text">
+                        <mat-icon class="icon-lg">monetization_on</mat-icon>
+                        <div>
+                            <h2>$ 35700</h2>
+                            <h3 class="fw-400">Profit</h3>
+                        </div>                
+                    </div>            
+                </mat-card>
+            </div>
+            <div fxFlex="100" class="flex-p">
+                <mat-card>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="muted-text">
+                        <mat-icon class="icon-lg">cloud_download</mat-icon>
+                        <div>
+                            <h2>187230</h2>
+                            <h3 class="fw-400">Downloads</h3>
+                        </div>                
+                    </div>            
+                </mat-card>
+            </div>       
+            <div fxFlex="100" class="flex-p">
+                <mat-card>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="muted-text">
+                        <mat-icon class="icon-lg">shopping_cart</mat-icon>
+                        <div>
+                            <h2>78,25 %</h2>
+                            <h3 class="fw-400">Sales</h3>
+                        </div>                
+                    </div>            
+                </mat-card>
+            </div>
+        </div>
+    </div> -->
+
+<div fxLayout="row wrap">
+    <div class=" w-100">
+        <div class="row wrap" style="margin-top:10px;margin-left: 1px">
+            <div class="col-lg-12">
+                <div class="pills w-100 ">
+                    <ul class="nav nav-pills">
+                        <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/qc/allelecalls']" style="margin-right: 10px!important; padding: 0px 10px;">Allele Calls</a></li>
+                        <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/qc/genotypes']" style="margin-right: 10px!important; padding: 0px 10px;">Genotypes</a></li>
+                        <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/qc/trendanalysis']" style="margin-right: 10px!important; padding: 0px 10px;">Trend Analysis</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>

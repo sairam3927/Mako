@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
-import { DragulaService } from 'ng2-dragula';
 import { DataTableModule } from 'primeng/primeng';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -21,14 +20,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 export const routes = [
   { path: '', redirectTo: 'rawdata', pathMatch: 'full' },
-  //{ path: 'users', loadChildren: './users/users.module#UsersModule', data: { breadcrumb: 'Users' } },
-  { path: 'rawdata', component: IncomingOrdersComponent, data: { breadcrumb: 'Raw Data' } },
-  // { path: 'patientstatus', component: PatientStatusComponent, data: { breadcrumb: 'Patient Status' } },
-  // { path: 'lostsalesreport', component: LostSalesReportComponent, data: { breadcrumb: 'Lost Sales Report' } },
-  // { path: 'billingstatus', component: BillingStatusComponent, data: { breadcrumb: 'Billing Status' } },
-  // { path: 'incomingreferral', component: IncomingStatusComponent, data: { breadcrumb: 'Incoming Referral' } },
-  // { path: 'outgoingreferral', component: OutgoingReferralComponent, data: { breadcrumb: 'Outgoing Referral' } },
- 
+  { path: 'rawdata', component: IncomingOrdersComponent, data: { breadcrumb: 'Raw Data' } }
 ];
 
 @NgModule({

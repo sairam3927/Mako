@@ -13,7 +13,7 @@
                 <mat-icon>backup</mat-icon> Upload CSV
             </button>
             <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
-                <mat-icon>cloud_download</mat-icon><a href="assets/data/sampledataseq.csv"
+                <mat-icon>cloud_download</mat-icon><a href="assets/data/SampleSequence.csv"
                     style="color: white">&nbsp;Download Sample </a>
             </button>
         </div>
@@ -60,43 +60,41 @@
 
 <form [formGroup]="filterForm">
     <div class="row wrap " style="padding: 10px;">
-        <div class="col-sm-12" *ngIf="filterToggle">
-            <mat-card class="filter">
-                <mat-card-content>
-                    <div class="row col-sm-12">
-                        <div class="col-sm-4">
-                            <div class="col-sm-4 newMarginClass">
-                                Keyword search :
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" formControlName="keyWord"
-                                    placeholder="--Keyword search--">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-
-                            <div class="col-sm-8">
-                                <button type="button" class="add-hover-reset btn btn-reset"
-                                    (click)="resetFilter()">Reset</button>
-                                <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
-                                    (click)="filterBy(filterForm.value)">Search</button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="col-sm-4 newMarginClass">
-
-                            </div>
-                            <div class="col-sm-8">
-
-                            </div>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
-
+      <div class="col-sm-12" *ngIf="filterToggle">
+        <mat-card class="filter">
+          <mat-card-content>
+            <div class="row col-sm-12">
+              <div class="col-sm-4">
+                <div class="col-sm-4 " style="margin-top: 5px;">
+                  Keyword search:
+                </div>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" formControlName="keyWord" placeholder="--Keyword search--">
+                </div>
+              </div>
+              <div class="col-sm-4">
+  
+                <div class="col-sm-8">
+                  <button type="button" class="add-hover-reset btn btn-reset" (click)="resetFilter()">Reset</button>
+                  <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                    (click)="filterBy(filterForm.value)">Search</button>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="col-sm-4 newMarginClass">
+  
+                </div>
+                <div class="col-sm-8">
+  
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  
     </div>
-</form>
+  </form>
 
 <div fxLayout="row wrap">
     <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">

@@ -2,40 +2,44 @@
     Add Orders</h3>
 
 <form class="form-horizontal" [formGroup]="addOrderForm" novalidate>
-    <div mat-dialog-content style="margin-top: 30px">
+    <div data-keyboard="true" data-backdrop="static" mat-dialog-content style="margin-top: 30px">
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">First Name : </label>
+            <label class="control-label col-sm-4 add-member-label">First Name: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" formControlName="FirstName" placeholder="Enter First Name"
-                    required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.FirstName.errors?.required">First Name is required
+                <input type="text" pattern="[a-zA-Z][a-zA-Z ]+" class="form-control" formControlName="FirstName"
+                    placeholder="Enter First Name" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FirstName.errors?.required">First Name is
+                    required
                 </mat-error>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Last Name : </label>
+            <label class="control-label col-sm-4 add-member-label">Last Name: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="LastName" placeholder="Enter Last Name"
                     required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.LastName.errors?.required">Last Name is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.LastName.errors?.required">Last Name is
+                    required
                 </mat-error>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date of Birth : </label>
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Date of Birth: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <div class="input-icon right">
                     <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
                     <input readonly="readonly" class="form-control" placeholder="MM/DD/YYYY" class="form-control"
-                        formControlName="DateofBirth" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                        [max]="todayDate" formControlName="DateofBirth" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1"
+                        name="dt1">
                     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                    <mat-error *ngIf="submit == true && addOrderForm.controls.DateofBirth.errors?.required">Date of Birth is required
+                    <mat-error *ngIf="submit == true && addOrderForm.controls.DateofBirth.errors?.required">Date of
+                        Birth is required
                     </mat-error>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Gender : </label>
+            <label class="control-label col-sm-4 add-member-label">Gender: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <mat-radio-group class="pull-left" formControlName="Gender" style="margin-top: 5px"
                     aria-label="Select an option">
@@ -43,49 +47,57 @@
                         (click)="setradio(gen.Name)"><small style="font-size: 14px;">{{gen.Name}}</small>
                     </mat-radio-button>
                 </mat-radio-group>
-                <mat-error style="margin-left: 20px;margin-top: 5px;" *ngIf="submit == true && addOrderForm.controls.Gender.errors?.required">Gender is required
+                <mat-error style="margin-left: 20px;margin-top: 5px;"
+                    *ngIf="submit == true && addOrderForm.controls.Gender.errors?.required">Gender is required
                 </mat-error>
             </div>
         </div>
         <div *ngIf="isSelected('Female')" class="form-group">
-            <label class="control-label col-sm-4">Pregnant / Lactating : </label>
+            <label class="control-label col-sm-4">Pregnant / Lactating: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="top: 10px">
                 <mat-checkbox formControlName="PregnantLactating"></mat-checkbox>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Nationality : </label>
+        <!-- <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Nationality: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <mat-select placeholder="--Select by Nationality--" formControlName="Nationality" class="form-control">
                     <mat-option *ngFor="let Nationality of NationalityList" [value]="Nationality.Value">
                         {{Nationality.Name}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.Nationality.errors?.required">Nationality is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Nationality.errors?.required">Nationality is
+                    required
                 </mat-error>
             </div>
-        </div>
+        </div> -->
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Email : </label>
+            <label class="control-label col-sm-4 add-member-label">Email: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="Email" placeholder="Enter Email" required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.errors?.required">Email is required</mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.hasError('invalidEmail')">Invalid email address
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.errors?.required">Email is required
+                </mat-error>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Email.hasError('invalidEmail')">Invalid email
+                    address
                 </mat-error>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Street Address : </label>
+            <label class="control-label col-sm-4 add-member-label">Street Address: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" id="email" formControlName="StreetAddress"
-                    placeholder="Enter Street Address" required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.StreetAddress.errors?.required">Street Address is required
+                <!-- <input type="text" class="form-control" id="email" formControlName="StreetAddress"
+                    placeholder="Enter Street Address" required> -->
+                <textarea matInput cdkTextareaAutosize formControlName="StreetAddress" class="form-control"
+                    placeholder="Enter Street Address" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="10" style="margin-top: 10px;"></textarea>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.StreetAddress.errors?.required">Street Address
+                    is required
                 </mat-error>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Country : </label>
+            <label class="control-label col-sm-4 add-member-label">Country: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <mat-select placeholder="--Select by Country--" formControlName="Country" class="form-control"
                     (selectionChange)="getProvince($event.value)">
@@ -99,7 +111,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">State / Province : </label>
+            <label class="control-label col-sm-4 add-member-label">State / Province: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <mat-select placeholder="--Select by State / Province--" formControlName="StateProvince"
                     class="form-control">
@@ -108,13 +120,14 @@
                         {{StateProvince.State_Province}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.StateProvince.errors?.required">State / Province is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.StateProvince.errors?.required">State /
+                    Province is required
                 </mat-error>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">City : </label>
+            <label class="control-label col-sm-4 add-member-label">City: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="City" placeholder="Enter City" required>
                 <mat-error *ngIf="submit == true && addOrderForm.controls.City.errors?.required">City is required
@@ -123,16 +136,19 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Zip Code / Postal Code : </label>
+            <label class="control-label col-sm-4 add-member-label">Zip Code / Postal Code: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" formControlName="ZipCodePostalCode"
+                <input (keypress)="noSpecialCharacters($event)" class="form-control" formControlName="ZipCodePostalCode"
                     placeholder="Enter Zip Code / Postal Code" required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.errors?.required">Zip Code / Postal Code is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.errors?.required">Zip Code /
+                    Postal Code is required
                 </mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('minlength')">Zip Code / Postal Code isn't
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('minlength')">Zip
+                    Code / Postal Code isn't
                     long enough,
                     minimum of 4 characters</mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('maxlength')">Zip Code / Postal Code is long
+                <mat-error *ngIf="submit == true && addOrderForm.controls.ZipCodePostalCode.hasError('maxlength')">Zip
+                    Code / Postal Code is long
                     enough,
                     maximum of 10 characters</mat-error>
             </div>
@@ -142,22 +158,26 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" formControlName="SampleName" placeholder="Enter Sample Name"
                     required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.errors?.required">Sample Name Code is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.errors?.required">Sample Name is
+                    required
                 </mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('minlength')">Sample Name Code isn't
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('minlength')">Sample Name
+                    Code isn't
                     long enough,
                     minimum of 5 characters</mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('maxlength')">Sample Name Code is long
+                <mat-error *ngIf="submit == true && addOrderForm.controls.SampleName.hasError('maxlength')">Sample Name
+                    Code is long
                     enough,
                     maximum of 20 characters</mat-error>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4 add-member-label">Mobile No : </label>
+            <label class="control-label col-sm-4 add-member-label">Mobile No: </label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <input type="number" class="form-control" formControlName="MobileNo" placeholder="Enter Mobile No"
-                    required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.MobileNo.errors?.required">Mobile No is required
+                <input (keypress)="numberOnly($event)" class="form-control" formControlName="MobileNo"
+                    placeholder="Enter Mobile No" required>
+                <mat-error *ngIf="submit == true && addOrderForm.controls.MobileNo.errors?.required">Mobile No is
+                    required
                 </mat-error>
             </div>
         </div>
@@ -169,7 +189,8 @@
                         {{Ethnicity.Name}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.Ethnicity.errors?.required">Ethnicity is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.Ethnicity.errors?.required">Ethnicity is
+                    required
                 </mat-error>
             </div>
         </div>
@@ -179,12 +200,15 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <input type="text" class="form-control" id="email" formControlName="FEDEXAWB"
                     placeholder="Enter FEDEX AWB" required>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.errors?.required">FEDEX AWB is required
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.errors?.required">FEDEX AWB is
+                    required
                 </mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('minlength')">FEDEX AWB isn't
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('minlength')">FEDEX AWB
+                    isn't
                     long enough,
                     minimum of 5 characters</mat-error>
-                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('maxlength')">FEDEX AWB is long
+                <mat-error *ngIf="submit == true && addOrderForm.controls.FEDEXAWB.hasError('maxlength')">FEDEX AWB is
+                    long
                     enough,
                     maximum of 20 characters</mat-error>
             </div>

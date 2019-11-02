@@ -10,61 +10,52 @@ import { MatMenuTrigger, MatDialog } from '@angular/material';
   templateUrl: './horizontal-menu.component.html',
   styleUrls: ['./horizontal-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [ MenuService ]
+  providers: [MenuService]
 })
 export class HorizontalMenuComponent implements OnInit {
   @Input('menuParentId') menuParentId;
-  public menuItems:Array<any>;
+  public menuItems: Array<any>;
   public settings: Settings;
   public currentYear: String;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-  constructor(public appSettings:AppSettings, public dialog : MatDialog, public menuService:MenuService, public router:Router) { 
+  constructor(public appSettings: AppSettings, public dialog: MatDialog, public menuService: MenuService, public router: Router) {
     this.settings = this.appSettings.settings;
   }
 
   ngOnInit() {
-    this.currentYear = ''+ (new Date()).getFullYear();
+    this.currentYear = '' + (new Date()).getFullYear();
     this.menuItems = this.menuService.getHorizontalMenuItems();
     this.menuItems = this.menuItems.filter(item => item.parentId == this.menuParentId);
   }
 
   public openoppurtunityDialog(oppurtunity) {
-    // let dialogRef = this.dialog.open(, {
-    //     data: "ssds",
-    //     height: 'auto',
-    //     width: '600px',
 
-    // });
-    // dialogRef.afterClosed().subscribe(oppurtunity => {
-    //   if(oppurtunity == 'save')
-    //    this.router.navigateByUrl('/sapphire/billing/createclaims/claimreport')
-    // });
-}
+  }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if(this.settings.fixedHeader){
+        if (this.settings.fixedHeader) {
           let mainContent = document.getElementById('main-content');
-          if(mainContent){
+          if (mainContent) {
             mainContent.scrollTop = 0;
           }
         }
-        else{
+        else {
           document.getElementsByClassName('mat-drawer-content')[0].scrollTop = 0;
         }
-      }                
+      }
     });
   }
-  
-  checkMenuLink(menuId){
+
+  checkMenuLink(menuId) {
     console.log(menuId);
-    if(menuId == 24){
+    if (menuId == 24) {
       this.openoppurtunityDialog(null);
     }
-   
-    
-   
+
+
+
   }
 
 }

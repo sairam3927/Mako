@@ -74,28 +74,34 @@ export class AddDocumentsComponent implements OnInit {
   }
 
   uploadFiles() {
-    const frmData = new FormData();
-    for (var i = 0; i < this.myFiles.length; i++) {
-      frmData.append("OrderId", this.id);
-      frmData.append("DocumentTitle", this.Form.value.DocumentTitle);
-      frmData.append("FileName", this.myFiles[i]);
-    }
-    
-    console.log("body", frmData);
-    this.analyticsService.addorder_docscsv(frmData).subscribe(
-      data => {
 
-        console.log(data);
-        // let Response = data['Response']
-
-        if (data['Success'] == true) {
-          this.alertService.createAlert(data['Message'], 1);
-          this.getData();
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
+    if (this.myFiles.length == 0) {
+      this.alertService.createAlert('Please Choose the file', 0);
+    } else {
+      const frmData = new FormData();
+      for (var i = 0; i < this.myFiles.length; i++) {
+        frmData.append("OrderId", this.id);
+        frmData.append("DocumentTitle", this.Form.value.DocumentTitle);
+        frmData.append("FileName", this.myFiles[i]);
       }
-    );
+
+      console.log("body", frmData);
+      this.analyticsService.addorder_docscsv(frmData).subscribe(
+        data => {
+
+          console.log(data);
+          // let Response = data['Response']
+
+          if (data['Success'] == true) {
+            this.alertService.createAlert(data['Message'], 1);
+            this.getData();
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+        }
+      );
+    }
+
   }
 
   close(): void {
@@ -117,7 +123,7 @@ export class AddDocumentsComponent implements OnInit {
 
   downloadMyFile(href) {
     let filtHref = href.substr(31);
-    console.log("filtHref",filtHref)
+    console.log("filtHref", filtHref)
     const link = document.createElement('a');
     link.setAttribute('target', '_blank');
     link.setAttribute('href', filtHref);

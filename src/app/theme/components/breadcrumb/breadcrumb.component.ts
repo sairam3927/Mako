@@ -28,6 +28,7 @@ export class BreadcrumbComponent {
         this.settings = this.appSettings.settings;
         this.description = {
             "Dashboard": "The summary metrics, activity trends and alerts appear here.",
+            "QC": "The summary metrics, activity trends and alerts appear here.",
             "Analytics": "Central quality audits are provided on this screen",
             'Settings':"Default settings for the whole application can be managed from this screen",
             "Users": "Users & Permissions level settings can be managed from this screen.",
@@ -35,9 +36,15 @@ export class BreadcrumbComponent {
             'Patients':'The patient details can be managed from this screen',
             "Orders" : 'The order details can be managed from this screen',           
             'Master Data':'Patient sample raw data can be managed from this screen',
-            'Setup':'The core setup of the master data and the algorith functionality of the application can be managed from this screen',
+            'Setup':'The core setup of the master data and the algorithm functionality of the application can be managed from this screen',
             'Raw Data':'Patient Raw Data can be uploaded and managed from this screen',
-            'Steps': 'The calculation steps for both condition and formula can be managed from here'
+            'Steps': 'The calculation steps for both condition and formula can be managed from here',
+            'Allele Calls':'The sum total of Allele calls specific to an allele over a period of time can be seen from this screen.',
+            'Genotypes':'The sum total of Genotype calls specific to an allele over a period of time can be seen from this screen.',
+            // 'Trend Analysis':'',
+            'Basic Info':'The Basic information of the individual can be viewed from this screen.',
+            'Reports':'The reference documents for the individual can be viewed from this screen.',
+            'Documents':'The generated Nutritional report specific to the individual can be obtained from here.',
         };
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {

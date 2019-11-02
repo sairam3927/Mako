@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AppSettings } from '../app.settings';
-import { emailValidator, matchingPasswords } from '../theme/utils/app-validators';
+import { emailValidator } from '../theme/utils/app-validators';
 import { Settings } from '../app.settings.model';
 import { AlertService } from '../shared/services/alert.service';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 export interface Sample {
   value: string;
@@ -18,60 +19,28 @@ export interface Sample {
   providers: [AlertService]
 })
 export class RegisterComponent implements OnInit {
-  selectedValueStepType: string= "0";
+
+  GendersList: any;
+  EthnicityList: any;
+  CountryList: any;
+  NationalityList: any;
+  State_Province_List: any;
+  submit = false;
+
+  public dateTime1: Date;
+  public dateTime2: Date;
+  public addOrderForm: FormGroup;
+  public gridObject: any = {};
+  public formValue: any = {};
+  public formData: any = {};
+  gender = ["Male", "Female", "Others"];
+  selectedValueStepType: string = "0";
+  currDate = new Date();
+  public minDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth(), this.currDate.getDate());
+
   public form: FormGroup;
   public settings: Settings;
-  ethnicitys: Sample[] = [
-    { value: '0', viewValue: 'Non-Hispanic White' },
-    { value: '1', viewValue: 'Hispanic' },
-    { value: '2', viewValue: 'African American' },
-    { value: '3', viewValue: 'Asian' },
-    { value: '4', viewValue: 'Others' }
-  ];
-  countries: Sample[] = [
-    { value: '0', viewValue: 'Cananda' },
-    { value: '1', viewValue: 'USA' }
-   
-  ];
-  nationalities: Sample[] = [
-    { value: '0', viewValue: 'White' },
-    { value: '1', viewValue: 'Black' },
-    { value: '2', viewValue: 'Asian' },
-    { value: '3', viewValue: 'Middle Eastern' },
-    { value: '4', viewValue: 'Spanish' }
-  ];
-  states: Sample[] = [
-    { value: '0', viewValue: 'Alberta' },
-    { value: '1', viewValue: 'British Columbia' },
-    { value: '2', viewValue: 'Manitoba' },
-    { value: '3', viewValue: 'New Brunswick' },
-    { value: '4', viewValue: 'Newfoundland and Labrador' },
-    { value: '5', viewValue: 'Northwest Territories' },
-    { value: '6', viewValue: 'Nova Scotia' },
-    { value: '7', viewValue: 'Nunavut' },
-    { value: '8', viewValue: 'Ontario' },
-    { value: '9', viewValue: 'Prince Edward Island' },
-    { value: '10', viewValue: 'Quebec' },
-    { value: '11', viewValue: 'Saskatchewan' },
-    { value: '12', viewValue: 'Yukon' }
-   
-  ];
-  cities: Sample[] = [
-    { value: '0', viewValue: 'Edmonton' },
-    { value: '1', viewValue: 'Victoria' },
-    { value: '2', viewValue: 'Winnipeg' },
-    { value: '3', viewValue: 'Fredericton' },
-    { value: '4', viewValue: 'St. Johns' },
-    { value: '5', viewValue: 'Halifax' },
-    { value: '6', viewValue: 'Toronto' },
-    { value: '7', viewValue: 'Charlottetown' },
-    { value: '8', viewValue: 'Quebec City' },
-    { value: '9', viewValue: 'Regina' },
-    { value: '10', viewValue: 'Yellowknife' },
-    { value: '11', viewValue: 'Iqaluit' },
-    { value: '12', viewValue: 'Whitehorse' }
-   
-  ];
+
   private selectedLink: string = "Male";
   setradio(e: string): void {
     this.selectedLink = e;
@@ -83,28 +52,184 @@ export class RegisterComponent implements OnInit {
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
   }
 
-  constructor(public appSettings: AppSettings, public fb: FormBuilder, public router: Router, public alertService: AlertService) {
-    // this.settings = this.appSettings.settings;
-    this.form = this.fb.group({
-      'name': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'email': [null, Validators.compose([Validators.required, emailValidator])],
-      'password': ['', Validators.required],
-      'confirmPassword': ['', Validators.required]
-    }, { validator: matchingPasswords('password', 'confirmPassword') });
+  constructor(public appSettings: AppSettings, public fb: FormBuilder, public router: Router, public alertService: AlertService, private analyticsService: AnalyticsService) {
+
+    this.addOrderForm = this.fb.group({
+      FirstName: new FormControl('', Validators.compose([Validators.required])),
+      LastName: new FormControl('', Validators.compose([Validators.required])),
+      DateofBirth: new FormControl('', Validators.compose([Validators.required])),
+      Gender: new FormControl('', Validators.compose([Validators.required])),
+      PregnantLactating: new FormControl(false, Validators.compose([Validators.required])),
+      Email: new FormControl('', Validators.compose([Validators.required, emailValidator])),
+      StreetAddress: new FormControl('', Validators.compose([Validators.required])),
+      Country: new FormControl('', Validators.compose([Validators.required])),
+      StateProvince: new FormControl('', Validators.compose([Validators.required])),
+      City: new FormControl('', Validators.compose([Validators.required])),
+      ZipCodePostalCode: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])),
+      SampleName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])),
+      MobileNo: new FormControl('', Validators.compose([Validators.required])),
+      Ethnicity: new FormControl('', Validators.compose([Validators.required])),
+      FEDEXAWB: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])),
+    })
+
+  }
+  async ngOnInit() {
+    await this.getValues();
   }
 
-  // public onSubmit(values: Object): void {
-  //   if (this.form.valid) {
-  //     this.router.navigate(['/login']);
-  //   }
-  // }
+  addOrder(submit) {
+    this.submit = submit;
+
+    this.formValue = this.addOrderForm.value;
+    console.log("values:", this.formValue);
+
+    if (this.addOrderForm.valid) {
+
+      if (this.formValue['Gender'] == 1) {
+        this.formValue['PregnantLactating'] = false;
+      }
+
+      this.gridObject = {
+        "OrdersId": null,
+        "FirstName": this.formValue['FirstName'],
+        "LastName": this.formValue['LastName'],
+        "Email": this.formValue['Email'],
+        "Gender": this.formValue['Gender'],
+        "Pregnant_Lactate": this.formValue['PregnantLactating'],
+        "DateOfBirth": this.formValue['DateofBirth'],
+        "Age": 0,
+        "Country": this.formValue['Country'],
+        "State_Province": this.formValue['StateProvince'],
+        "City": this.formValue['City'],
+        "StreetAddress": this.formValue['StreetAddress'],
+        "ZipCode_PostalCode": this.formValue['ZipCodePostalCode'],
+        "Ethnicity": this.formValue['Ethnicity'],
+        "SampleName": this.formValue['SampleName'],
+        "MobileNumber": this.formValue['MobileNo'],
+        "Fedex_Awb": this.formValue['FEDEXAWB'],
+        "OrderDate": new Date,
+      };
+      console.log(this.gridObject, 'this.gridObject');
+      this.analyticsService.addregistration(this.gridObject).subscribe(
+        data => {
+          console.log('add/update response', data)
+          if (data['Success'] == true) {
+            this.alertService.createAlert('A link has been sent to your email ID to setup the password', 1);
+            this.router.navigate(['/login']);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+
+        }
+      );
+
+
+
+      console.log("Entered data", this.gridObject);
+
+    } else {
+      if (this.formValue['FirstName'] == '' || this.formValue['LastName'] == '' || this.formValue['Email'] == '' ||
+        this.formValue['Nationality'] == '' || this.formValue['Gender'] == '' || this.formValue['DateofBirth'] == '' ||
+        this.formValue['Country'] == '' || this.formValue['StateProvince'] == '' || this.formValue['City'] == '' ||
+        this.formValue['StreetAddress'] == '' || this.formValue['ZipCodePostalCode'] == '' || this.formValue['Ethnicity'] == '' ||
+        this.formValue['SampleName'] == '' || this.formValue['MobileNo'] == '' || this.formValue['FEDEXAWB'] == '') {
+
+        this.alertService.createAlert('All fields are mandatory', 0);
+
+      } else {
+        this.alertService.createAlert('Please enter valid data', 0);
+      }
+
+    }
+  }
+
+  getValues() {
+
+    this.analyticsService.getgenderslist().subscribe(
+      data => {
+        console.log(data)
+        this.GendersList = data['data'];
+      }
+    );
+
+    this.analyticsService.getethnicitylist().subscribe(
+      data => {
+        console.log(data)
+        this.EthnicityList = data['data'];
+      }
+    );
+    this.analyticsService.getcountrieslist().subscribe(
+      data => {
+        console.log(data)
+        this.CountryList = data['CountryList'];
+      }
+    );
+    this.analyticsService.getnationalitylist().subscribe(
+      data => {
+        console.log(data)
+        this.NationalityList = data['data'];
+      }
+    );
+
+  }
+
+  getProvince(e) {
+    let body = {
+      "CountryId": e
+    }
+    console.log("body", body)
+    this.analyticsService.getstate_provincelist(body).subscribe(
+      data => {
+        console.log(data)
+        this.State_Province_List = data['State_Province_List'];
+      }
+    );
+  }
+
   public onRegister(values: Object): void {
     this.alertService.createAlert("Register Successful", 1)
   }
 
-  ngOnInit() {
+  numberOnly(event): boolean {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (!pattern.test(inputChar) && charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
 
-    // this.settings.loadingSpinner = false;
   }
+
+  onlyAlphabats(event): boolean {
+    const pattern = /[^A-Za-z ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    // const charCode = (event.which) ? event.which : event.keyCode;
+    if (!pattern.test(inputChar) ) {
+      return false;
+    }
+    return true;
+  }
+
+  noSpecialCharacters(event) {
+    let arabicRegex = '[\u0600-\u06FF]';
+    const e = <KeyboardEvent>event;
+    if (e.key === 'Tab' || e.key === 'TAB') {
+      return;
+    }
+    let k;
+    k = event.keyCode;  // k = event.charCode;  (Both can be used)
+    if ((k > 64 && k < 91) || (k > 96 && k < 123) || k === 8 || k === 32 || (k >= 48 && k <= 57)) {
+      return;
+    }
+    const ch = String.fromCharCode(e.keyCode);
+    const regEx = new RegExp(arabicRegex);
+    if (regEx.test(ch)) {
+      return;
+    }
+    e.preventDefault();
+  }
+
+
 
 }

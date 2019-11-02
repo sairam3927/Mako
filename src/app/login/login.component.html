@@ -17,28 +17,29 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" fxFlex="80" fxFlex.gt-sm="30" fxFlex.sm="60">
             <mat-card class="p-0 mat-elevation-z24 box">
                 <div fxLayout="column" fxLayoutAlign="center center" class="bg-primary box-header">
-                    <img [src]="imagePath" style="width:60%; height: 50%; margin-bottom: 40px;">
+                    <img [src]="imagepath" style="width:60%; height: 50%; margin-bottom: 40px;">
                 </div>
                 <mat-card-content fxLayout="column" fxLayoutAlign="end center" class="box-content">
                     <mat-card fxLayout="column" fxLayoutAlign="center center"
                         class="mat-elevation-z12 box-content-inner">
-                        <mat-form-field class="w-100">
+                        <mat-form-field [floatLabel]="'never'" class="w-100">
                             <input matInput placeholder="Email" formControlName="email">
-                            <!-- <mat-error *ngIf="form.controls.email.errors?.required">Email is required</mat-error>
-                            <mat-error *ngIf="form.controls.email.hasError('invalidEmail')">Invalid email address -->
-                            <!-- </mat-error> -->
+                            <mat-error *ngIf="form.controls.email.errors?.required">Email is required</mat-error>
+                            <mat-error *ngIf="form.controls.email.hasError('invalidEmail')">Invalid email address
+                            </mat-error>
                         </mat-form-field>
-                        <mat-form-field class="w-100">
+                        <mat-form-field [floatLabel]="'never'" class="w-100">
                             <input matInput placeholder="Password" [type]=TypeString formControlName="password">
                             <mat-icon matSuffix style="cursor: pointer;  font-size: 14px!important;"
                                 (click)="ChangetextType(isPassword = ! isPassword)">remove_red_eye</mat-icon>
-                            <!-- <mat-error *ngIf="form.controls.password.errors?.required">Password is required</mat-error>
-                            <mat-error *ngIf="form.controls.password.hasError('minlength')">Password isn't long enough, -->
-                                <!-- minimum of 6 characters</mat-error> -->
+                            <mat-error *ngIf="form.controls.password.errors?.required">Password is required</mat-error>
+                            <mat-error *ngIf="form.controls.password.hasError('minlength')">Password isn't long enough,
+                                minimum of 8 characters</mat-error>
                         </mat-form-field>
                         <div class="w-100">
                             <mat-checkbox color='warn'>Remember me!</mat-checkbox>
-                            <a class="pull-right" routerLink="/forgotPassword" style="color: #1c76c3;">Forgot Password?</a>
+                            <a class="pull-right" routerLink="/forgotPassword" style="color: #1c76c3;">Forgot
+                                Password?</a>
                         </div>
                     </mat-card>
                     <div class="w-100 ">

@@ -1,37 +1,47 @@
-<div fxLayout="row wrap">
-  <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100" style="margin-bottom: 10px">
+<form [formGroup]="filterForm">
+  <div class="row wrap " style="padding: 10px;">
+    <div class="col-sm-12" >
+      <mat-card class="filter">
+        <mat-card-content>
+          <div class="row col-sm-12">
+            <div class="col-sm-4">
+              <div class="col-sm-4 " style="margin-top: 5px;">
+                Keyword search:
+              </div>
+              <div class="col-sm-8" style="padding: 0px;">
+                <input type="text" class="form-control" formControlName="keyWord" placeholder="--Keyword search--">
+              </div>
+            </div>
+            <div class="col-sm-4">
 
-    <div class="row col-sm-12" class="flex-p">
+              <div class="col-sm-8">
+                <button type="button" class="add-hover-reset btn btn-reset" (click)="resetFilter()">Reset</button>
+                <button type="button" class="filter-hover btn btn-success pull-left margin-right-10"
+                  (click)="filterBy(filterForm.value)">Search</button>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4 newMarginClass">
 
-      <div class="col-sm-4">
-        <input type="text" class="form-control pull-left" style="width: 50%;margin-right: 15px;"
-          placeholder="Keyword Search" required>
-        <button type="button" class="add-hover btn btn-success  pull-left">Search</button>
-      </div>
+              </div>
+              <div class="col-sm-8">
 
-      <div class="col-lg-8" style="padding: 0px">
-        <div fxLayout="row" style="float: right !important;">
-
-          <!-- <button mat-raised-button style="margin-right: 20px" class="pull-right add-hover btn-success">
-              <mat-icon>add_box</mat-icon> Add CALC
-            </button> -->
-          <!-- <button mat-raised-button class="pull-right add-hover btn-success">
-            <mat-icon>refresh</mat-icon> Refresh
-          </button> -->
-
-        </div>
-      </div>
-
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
+
   </div>
-</div>
+</form>
 
 <div fxLayout="row wrap">
   <div class="table-responsive" style="margin-left: 15px;margin-right: 10px">
     <table id="example2" class="table table-bordered table-hover">
       <thead class="tbl-head">
         <tr class="tr-grid-header">
-          <th class="text-center">Actions</th>
+          <!-- <th class="text-center">Actions</th> -->
           <th>Nutrient</th>
           <th>Units</th>
           <th class="text-center">Pregnancy</th>
@@ -41,8 +51,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of List">
-          <td class="text-center">
+        <tr *ngFor="let item of pagePregnancyList">
+          <!-- <td class="text-center">
             <a title="Edit User" style="margin-right: 10px; cursor: pointer;">
               <i class="fa fa-edit"></i>
             </a>
@@ -50,18 +60,19 @@
               (confirm)="deletePatientOrder()" (cancel)="cancelClicked = true">
               <i style="cursor: pointer;" title="Delete User" class="fa fa-trash red"></i>
             </a>
-          </td>
+          </td> -->
           <td>{{item.Nutrient}}</td>
           <td>{{item.Units}}</td>
-          <td class="text-center">{{item.Pregnancy}}</td>
-          <td class="text-center">{{item.Lactation}}</td>
+          <td class="text-center">{{item.RecPregnancy}}</td>
+          <td class="text-center">{{item.RecLactation}}</td>
           <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Calculation">View</a></td>
           <td class="text-center"><a class="inner-screen" style="cursor: pointer;" title="Logic"
-            (click)="openLogicDialog()">View</a></td>
+              (click)="openLogicDialog()">View</a></td>
         </tr>
       </tbody>
     </table>
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="handlePage($event)">
     </mat-paginator>
   </div>
 </div>

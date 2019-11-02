@@ -3,6 +3,7 @@ import { PasswordDialogComponent } from './password-dialog/password-dialog.compo
 import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AlertService } from '../../../shared/services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -13,7 +14,7 @@ import { AlertService } from '../../../shared/services/alert.service';
 })
 export class UserMenuComponent implements OnInit {
   public userImage = '../assets/img/users/navin_malik.png';
-  constructor(public dialog: MatDialog,public alertService:AlertService) { }
+  constructor(public dialog: MatDialog,public alertService:AlertService, private router: Router) { }
   public openUserDialog(id) {
     let dialogRef = this.dialog.open(PasswordDialogComponent, {
         data: id,
@@ -37,6 +38,10 @@ public openUserDialogs(id) {
 
   logoutUser() {
     this.alertService.createAlert("Logged out Successfully",1);
+    this.router.navigate(['/login']);
+    localStorage.clear();
+    // window.location.reload();
+    // setTimeout(function(){window.location.reload() }, 1000);
   }
 
 }

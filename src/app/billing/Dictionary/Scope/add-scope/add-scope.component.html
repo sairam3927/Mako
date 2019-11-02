@@ -11,10 +11,11 @@
           <!-- <mat-select class="form-control" formControlName="AlleleName" placeholder="--Select Allele Name--">
             <mat-option value = "addScopeForm"></mat-option>
           </mat-select> -->
-          <input disabled type="text" class="form-control" formControlName="AlleleName" placeholder="Enter Allele Name" required>
+          <input disabled type="text" class="form-control" formControlName="AlleleName" placeholder="Enter Allele Name"
+            required>
         </div>
       </div>
- 
+
       <div class="form-group">
         <label class="control-label col-sm-4 add-member-label">Gene: </label>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -29,6 +30,9 @@
           <textarea matInput cdkTextareaAutosize formControlName="Description" class="form-control"
             placeholder="Enter Description" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4"
             cdkAutosizeMaxRows="10" style="margin-top: 10px;"></textarea>
+          <mat-error *ngIf="addScopeForm.controls.Description.errors?.required">
+            Description is required
+          </mat-error>
         </div>
       </div>
 

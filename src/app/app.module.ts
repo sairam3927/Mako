@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -52,10 +52,14 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { OtpResetPasswordComponent } from './login/otp-reset-password/otp-reset-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
-import { DashboardComponent } from './analytics/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeleteConfirmDailogComponent } from './shared/delete-confirm-dailog/delete-confirm-dailog.component';
 import { PatientLoginComponent } from './patient/patient-login/patient-login.component';
 import { PatientDashboardComponent } from './patient/patient-dashboard/patient-dashboard.component';
+import { RestrictionComponent } from './shared/restriction/restriction.component';
+import { BillingComponent } from './billing/billing.component';
+import { QcComponent } from './qc/qc.component';
+import { ChartModule } from 'angular-highcharts';
 
 
 
@@ -71,6 +75,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule, AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDQDn2o5lkzBI4Sc09UUNiHPtNqlxQTYeA'
     }),
+    ChartModule,
     PerfectScrollbarModule,
     ToasterModule.forRoot(),
     CalendarModule.forRoot({
@@ -97,7 +102,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     
   ],
   declarations: [
-    AppComponent,DashboardComponent,
+    AppComponent,
+    DashboardComponent,
     LayoutComponent,
     NotFoundComponent,
     SidenavComponent,
@@ -110,6 +116,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MessagesComponent,
     UserMenuComponent,
     LoginComponent,
+    BillingComponent,
     ForgotPasswordComponent,
     PasswordDialogComponent,
     ConfirmDialogComponent,
@@ -117,7 +124,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddNoteDialogComponent,HelpVideoDialogComponent, RegisterComponent, OtpResetPasswordComponent, ResetPasswordComponent,
      PatientLoginComponent,
      PatientDashboardComponent,
-     DeleteConfirmDailogComponent
+     DeleteConfirmDailogComponent,
+     RestrictionComponent,
+     QcComponent
   ],
   entryComponents: [
     VerticalMenuComponent,
@@ -126,7 +135,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileDialogComponent,
     AddNoteDialogComponent,
     HelpVideoDialogComponent,
-    DeleteConfirmDailogComponent
+    DeleteConfirmDailogComponent,
+    RestrictionComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
     AppSettings,
@@ -134,8 +144,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
   { provide: OverlayContainer, useClass: CustomOverlayContainer }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }   
-
-//ng module InMemoryWebApiModule.forFeature(Data, { delay: 500 })

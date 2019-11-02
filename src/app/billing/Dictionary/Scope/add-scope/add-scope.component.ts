@@ -16,8 +16,8 @@ export class AddScopeComponent implements OnInit {
   action: any;
   item: any;
   public addScopeForm: FormGroup;
-  public gridObject: any = {}; 
-  public formValue: any = {}; 
+  public gridObject: any = {};
+  public formValue: any = {};
   public formData: any = {};
   constructor(public alertService: AlertService, private _fb: FormBuilder, public dialogRef: MatDialogRef<AddSectionComponent>, private dictionaryService: DictionaryService,
     public fb: FormBuilder) { }
@@ -47,26 +47,31 @@ export class AddScopeComponent implements OnInit {
     this.formValue = this.addScopeForm.value;
     console.log("values:", this.formValue);
 
-    this.gridObject = {
-      "ScopeId": this.id,
-      "AlleleName": this.formValue['AlleleName'],
-      "Gene": this.formValue['Gene'],
-      "Description": this.formValue['Description'],
-    };
-    console.log("Entered data", this.gridObject);
-    this.close()
+    if (this.addScopeForm.valid) {
+      this.gridObject = {
+        "ScopeId": this.id,
+        "AlleleName": this.formValue['AlleleName'],
+        "Gene": this.formValue['Gene'],
+        "Description": this.formValue['Description'],
+      };
+      console.log("Entered data", this.gridObject);
+      this.close()
 
-    this.dictionaryService.editscope(this.gridObject).subscribe(
-      data => {
-        console.log('add/update response', data)
-        if (data['Status'] == true) {
-          this.alertService.createAlert('Successfully Updated', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
+      this.dictionaryService.editscope(this.gridObject).subscribe(
+        data => {
+          console.log('add/update response', data)
+          if (data['Status'] == true) {
+            this.alertService.createAlert('Successfully Updated', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+          this.close()
         }
-        this.close()
-      }
-    );
+      );
+    } else {
+      this.alertService.createAlert('Description is mandatory', 0);
+    }
+
 
   }
 

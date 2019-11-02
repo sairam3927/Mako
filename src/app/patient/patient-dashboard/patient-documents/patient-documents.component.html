@@ -1,14 +1,23 @@
 <div fxLayout="row wrap">
     <div class="table-responsive flex-p" style="width:50%;margin-left: 10px; margin-right: 10px">
         <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head">
+                <tr class="tr-grid-header">
+                    <th>Document Title</th>
+                    <th class="text-center">Documents</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let item of DocumentList">
-                    <td>{{item.DocumentTitle}}</td>
-                    <td>
+                    <td>{{item.FileName}}</td>
+                    <td class="text-center">
                         <a [href]="'http://'+ item.FilePath" target="_blank">
                             <mat-icon>cloud_download</mat-icon>
                         </a>
                     </td>
+                </tr>
+                <tr *ngIf="DocumentList?.length <=0">
+                    <td colspan="2" style="text-align: center !important">No Record Found</td>
                 </tr>
             </tbody>
         </table>

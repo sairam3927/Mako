@@ -50,7 +50,7 @@ export class DictionaryService {
       'userId':  localStorage.getItem('UserId') ,
       'authToken': localStorage.getItem('AuthToken')
     })
-  };
+  }; 
 
   constructor(private _http: HttpClient) { }
 

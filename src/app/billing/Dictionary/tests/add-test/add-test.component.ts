@@ -11,7 +11,7 @@ import { DictionaryService } from '../../dictionary.service';
   styleUrls: ['./add-test.component.scss']
 })
 export class AddTestComponent implements OnInit {
-  
+
   id: any;
   action: any;
   item: any;
@@ -56,7 +56,7 @@ export class AddTestComponent implements OnInit {
     this.gridObject = {
       "TestsId": this.id,
       "TestName": this.formValue['TestName'],
-      "Nutrient_Condition":this.formValue['NutrientCondition'],
+      "Nutrient_Condition": this.formValue['NutrientCondition'],
       "Para1": this.formValue['Para1'],
       "Para2": this.formValue['Para2'],
       "RecommendedValue1": this.formValue['RecommendedValue1'],

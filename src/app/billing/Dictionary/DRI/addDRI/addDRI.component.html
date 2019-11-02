@@ -1,74 +1,99 @@
 <h3 class="custom-header" style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
-    Edit DRI</h3>
+    Update DRI</h3>
 
 <form class="form-horizontal" [formGroup]="addDRIForm" novalidate>
     <div mat-dialog-content style="overflow: hidden;margin-top: 30px">
         <div class="col-sm-12 ">
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Nutrient : </label>
+                <label class="control-label col-sm-4 add-member-label">Nutrient: </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input disabled type="text" class="form-control" formControlName="Nutrient" placeholder="Enter Nutrient" required>
+                    <input disabled type="text" class="form-control" formControlName="Nutrient"
+                        placeholder="Enter Nutrient" required>
+                    <mat-error *ngIf="addDRIForm.controls.Nutrient.errors?.required">
+                        Nutrient is required
+                    </mat-error>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Pregnant > 30 : </label>
+                <label class="control-label col-sm-4 add-member-label">Pregnant > 30: </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Pregnant_G" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Pregnant_G" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Pregnant_G.errors?.required">
+                        Pregnant > 30 is required
+                    </mat-error>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Pregnant < 30 : </label> 
-                <div
-                        class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" formControlName="Pregnant_L" placeholder="Enter Value" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Lactate > 30 : </label>
+                <label class="control-label col-sm-4 add-member-label">Pregnant &lt; 30: </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Lactate_G" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Pregnant_L" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Pregnant_L.errors?.required">
+                        Pregnant &lt; 30 is required </mat-error>
                 </div>
             </div>
-
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Lactate < 30 : </label> 
-                <div
-                        class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" formControlName="Lactate_L" placeholder="Enter Value" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Female <= 50 : </label> 
-                <div
-                        class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" formControlName="Female_L" placeholder="Enter Value" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Female > 50 : </label>
+                <label class="control-label col-sm-4 add-member-label">Lactate > 30: </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <input type="text" class="form-control" formControlName="Female_G" placeholder="Enter Value" required>
+                    <input type="text" class="form-control" formControlName="Lactate_G" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Lactate_G.errors?.required">
+                        Lactate > 30 is required
+                    </mat-error>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Male <= 50 : </label> 
-                <div
-                        class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" formControlName="Male_L" placeholder="Enter Value" required>
+                <label class="control-label col-sm-4 add-member-label">Lactate &lt; 30: </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" formControlName="Lactate_L" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Lactate_L.errors?.required">
+                        Lactate &lt; 30 is required </mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Female &lt;= 50: </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" formControlName="Female_L" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Female_L.errors?.required">
+                        Female &lt;= 50 is required </mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Female > 50:
+                </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" formControlName="Female_G" placeholder="Enter Value"
+                        required>
+                    <mat-error *ngIf="addDRIForm.controls.Female_G.errors?.required">
+                        Female > 50 is required
+                    </mat-error>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-4 add-member-label">Male > 50 : </label>
+                <label class="control-label col-sm-4 add-member-label">Male &lt;= 50: </label>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" formControlName="Male_L" placeholder="Enter Value" required>
+                    <mat-error *ngIf="addDRIForm.controls.Male_L.errors?.required">
+                        Male &lt;= 50 is required
+                    </mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Male > 50:
+                </label>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <input type="text" class="form-control" formControlName="Male_G" placeholder="Enter Value" required>
+                    <mat-error *ngIf="addDRIForm.controls.Male_G.errors?.required">
+                        Male > 50 is required
+                    </mat-error>
                 </div>
             </div>
 

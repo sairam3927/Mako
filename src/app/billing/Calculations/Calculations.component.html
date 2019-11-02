@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" #resizedDiv>
+<!-- <div fxLayout="row wrap" #resizedDiv>
   <div class="w-100">
 
     <div class="row wrap" style="margin-bottom:15px;margin-top: 15px;margin-left: 1px">
@@ -13,10 +13,10 @@
                 style="margin-right: 20px!important; padding: 0px 10px;">
                 <mat-icon>outlined_flag</mat-icon> Calculations
               </a></li>
-            <!-- <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
+            <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/finalOutput']"
                 style="margin-right: 20px!important; padding: 0px 10px;">
                 <mat-icon>outlined_flag</mat-icon> Final Output Variables List
-              </a></li> -->
+              </a></li> 
             <li routerLinkActive="active"><a mat-raised-button _ngcontent-c37
                 href="../../../assets/img/vendor/leaflet/Nutritional DNA Results (SAMPLE-1).pdf" target="_blank"
                 style="margin-right: 20px!important; padding: 0px 10px;">
@@ -32,7 +32,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <div fxLayout="row wrap">
   <div class="w-100">
@@ -41,17 +41,17 @@
       <div class="col-lg-12">
         <div class="pills w-100 ">
           <ul class="nav nav-pills">
-            <li routerLinkActive="active"><a mat-raised-button
+            <li *ngIf=" calculationsCreatePermission == true && pregnancyLactationPermission == true" routerLinkActive="active"><a mat-raised-button
                 [routerLink]="['/mako/billing/Calculations/PregnancyLactaion']"
                 style="margin-right: 10px!important; padding: 0px 10px;">Pregnancy/Lactation Table</a></li>
-            <li routerLinkActive="active"><a mat-raised-button
+            <li *ngIf=" calculationsCreatePermission == true && adultNutritionPermission == true" routerLinkActive="active"><a mat-raised-button
                 [routerLink]="['/mako/billing/Calculations/AdultNutrition']"
                 style="margin-right: 10px!important; padding: 0px 10px;"> Adult Nutrition table</a></li>
-            <li routerLinkActive="active"><a mat-raised-button
+            <li *ngIf=" calculationsCreatePermission == true && reportVariablePermission == true" routerLinkActive="active"><a mat-raised-button
                 [routerLink]="['/mako/billing/Calculations/ReportVariables']"
                 style="margin-right: 10px!important; padding: 0px 10px;">Report Variables</a></li>
-                <li routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations/Simulation']"
-                  style="margin-right: 10px!important; padding: 0px 10px;color:red">Simulation</a></li>
+            <li *ngIf=" calculationsCreatePermission == true && detailedReportPermission == true" routerLinkActive="active"><a mat-raised-button [routerLink]="['/mako/billing/Calculations/Simulation']"
+                style="margin-right: 10px!important; padding: 0px 10px;color:red">Simulation</a></li>
           </ul>
         </div>
       </div>
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div>
+<div *ngIf=" calculationsCreatePermission == true ">
   <router-outlet></router-outlet>
 </div>
 

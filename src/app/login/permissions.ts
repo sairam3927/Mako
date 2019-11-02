@@ -1,4 +1,4 @@
-export const response = {
+export const permissionsResponse = {
     "UserId": "WVBYJggLH-2B-g-3D-",
     "UserName": "Siddhant Chawade",
     "Email": "siddhant@optionmatrix.com",
@@ -78,7 +78,7 @@ export const response = {
         },
         {
             "ScreenId": 9,
-            "ScreenName": "Disctionary",
+            "ScreenName": "Dictionary",
             "UserId": null,
             "Create": true,
             "Read": true,

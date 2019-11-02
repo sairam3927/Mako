@@ -43,6 +43,7 @@ import {
   MatStepperModule
 } from '@angular/material';
 import { jqxKanbanComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxkanban';
+// import { RestrictionComponent } from './restriction/restriction.component';
 
 @NgModule({
   imports: [

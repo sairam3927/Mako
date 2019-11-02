@@ -7,6 +7,7 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { UnitsassignedComponent } from './unitsassigned/unitsassigned.component';
 import { AlertService } from '../../shared/services/alert.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-users',
@@ -18,7 +19,14 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
 export class UsersComponent implements OnInit {
 
 
-    tableList: any;
+    TableList: any;
+    pageTableList: any;
+    public pageSize = 10;
+    public pageSizeTemp = this.pageSize;
+    public currentPage = 0;
+    public totalSize = 0;
+    public currentPageTemp = 0;
+    public totalSizeTemp = 0;
 
     public popoverTitle: string = 'Confirm Delete';
     public popoverMessage: string = 'Are you sure you want to delete this.?';
@@ -41,10 +49,15 @@ export class UsersComponent implements OnInit {
     public searchText: string;
     public page: any;
     public settings: Settings;
+    filterForm: FormGroup;
+
     constructor(public appSettings: AppSettings,
-        public dialog: MatDialog,
+        public dialog: MatDialog, private _fb: FormBuilder,
         public usersService: UsersService, private alertService: AlertService) {
-        this.settings = this.appSettings.settings;
+        this.filterForm = this._fb.group({
+            'username': [null],
+            'status':[null]
+        });
     }
 
     ngOnInit() {
@@ -54,10 +67,14 @@ export class UsersComponent implements OnInit {
     getUser() {
         this.usersService.getUser().subscribe(
             data => {
-              console.log(data)
-              this.tableList = data['Users'];
+                console.log(data)
+                this.TableList = data['Users'];
+                if (this.TableList != null && this.TableList.length >= 0) {
+                    this.pageTableList = this.TableList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+                }
+                this.totalSize = this.TableList != null ? this.TableList.length : 0;
             }
-          );
+        );
     }
 
 
@@ -122,18 +139,59 @@ export class UsersComponent implements OnInit {
         )
 
     }
-    public deleteDialog(id){
+    public deleteDialog(id) {
         let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
-          height: 'auto',
-          width: '500px',
-          autoFocus: false,
+            height: 'auto',
+            width: '500px',
+            autoFocus: false,
         });
         dialogRef.afterClosed().subscribe(data => {
-          console.log("datr",data)
-          if (data == true){
-            this.deleteUser(id)
-          }
+            console.log("datr", data)
+            if (data == true) {
+                this.deleteUser(id)
+            }
         });
-      }
+    }
+
+    filterBy(formValues) {
+        console.log(formValues, 'filter values')
+        console.log(formValues.keyWord, 'formValues.keyWord')
+
+        let events = this.TableList;
+        if (events != null) {
+            let filteredEvents = events.filter(x =>
+                (formValues.username == null || JSON.stringify(x).toLowerCase().includes(formValues.username.toLowerCase())) && 
+                (formValues.status == null || JSON.stringify(x).toLowerCase().includes(formValues.status.toLowerCase()))
+            );
+            console.log(filteredEvents, 'filteredEventssadA')
+
+            this.TableList = filteredEvents;
+            this.pageTableList = this.TableList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+            this.totalSize = filteredEvents.length;
+            this.handlePage({ pageIndex: 0, pageSize: this.pageSize });
+            this.currentPage = 0;
+        }
+
+    }
+
+    resetFilter() {
+        this.currentPage = 0;
+        this.pageSize = 10;
+        this.getUser();
+        this.filterForm.reset();
+    }
+
+    public handlePage(e: any) {
+        this.currentPage = e.pageIndex;
+        this.pageSize = e.pageSize;
+        this.pageTableList = this.TableList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+    }
+
+    public handlePageTemp(e: any) {
+        this.currentPageTemp = e.pageIndex;
+        console.log('pageSize', e.pageSize)
+        this.pageSize = e.pageSize;
+        this.pageTableList = this.TableList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
+    }
 
 }

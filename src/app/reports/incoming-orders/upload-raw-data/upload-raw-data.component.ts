@@ -36,26 +36,31 @@ export class UploadRawDataComponent implements OnInit {
   uploadFiles() {
     const frmData = new FormData();
 
-    for (var i = 0; i < this.myFiles.length; i++) {
-      frmData.append("fileUpload", this.myFiles[i]);
-    }
-    this.rawDataService.upload_raw_data(frmData).subscribe(
-      data => {
-        // SHOW A MESSAGE RECEIVED FROM THE WEB API.
-        // this.sMsg = data as string;
-        // console.log(data);
-        // let Response = data['Response']
-
-        if (data['Success'] == true) {
-          this.alertService.createAlert(data['Message'], 1);
-          this.close();
-        }else{
-          this.alertService.createAlert('Something Went Wrong', 0);
-          // this.errorList = data['ErrorList']
-          // console.log("this.errorList",this.errorList)
-        }
+    if (this.myFiles.length == 0){
+      this.alertService.createAlert('Please upload the file', 0);
+    }else{
+      for (var i = 0; i < this.myFiles.length; i++) {
+        frmData.append("fileUpload", this.myFiles[i]);
       }
-    );
+      this.rawDataService.upload_raw_data(frmData).subscribe(
+        data => {
+          // SHOW A MESSAGE RECEIVED FROM THE WEB API.
+          // this.sMsg = data as string;
+          // console.log(data);
+          // let Response = data['Response']
+  
+          if (data['Success'] == true) {
+            this.alertService.createAlert(data['Message'], 1);
+            this.close();
+          }else{
+            this.alertService.createAlert('Something Went Wrong', 0);
+            // this.errorList = data['ErrorList']
+            // console.log("this.errorList",this.errorList)
+          }
+        }
+      );
+    }
+
   }
 
   close(): void {

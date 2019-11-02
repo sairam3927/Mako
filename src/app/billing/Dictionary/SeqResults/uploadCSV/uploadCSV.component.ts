@@ -32,27 +32,31 @@ export class UploadCSVComponent implements OnInit {
   uploadFiles() {
     const frmData = new FormData();
 
-    for (var i = 0; i < this.myFiles.length; i++) {
-      frmData.append("fileUpload", this.myFiles[i]);
-    }
-    console.log(frmData)
-    this.dictionaryService.upsertsequence_results_mastercsv(frmData).subscribe(
-      data => {
-        // SHOW A MESSAGE RECEIVED FROM THE WEB API.
-        this.sMsg = data as string;
-        console.log(data);
-        let Response = data['Response']
-
-        if (Response['Success'] == true) {
-          this.alertService.createAlert('SEQ Results successfully updated', 1);
-          this.close();
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-          this.errorList = data['ErrorList']
-          console.log("this.errorList", this.errorList)
-        }
+    if (this.myFiles.length == 0) {
+      this.alertService.createAlert('Please choose the file', 0);
+    }else{
+      for (var i = 0; i < this.myFiles.length; i++) {
+        frmData.append("fileUpload", this.myFiles[i]);
       }
-    );
+      console.log(frmData)
+      this.dictionaryService.upsertsequence_results_mastercsv(frmData).subscribe(
+        data => {
+          // SHOW A MESSAGE RECEIVED FROM THE WEB API.
+          this.sMsg = data as string;
+          console.log(data);
+          let Response = data['Response']
+  
+          if (Response['Success'] == true) {
+            this.alertService.createAlert('SEQ Results successfully updated', 1);
+            this.close();
+          } else {
+            this.alertService.createAlert(Response['Message'], 0);
+            this.errorList = data['ErrorList']
+            console.log("this.errorList", this.errorList)
+          }
+        }
+      );
+    }
   }
 
   close(): void {

@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { DictionaryService } from '../dictionary.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 @Component({
   selector: 'app-SeqResults',
@@ -15,6 +16,12 @@ import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dail
   styleUrls: ['./SeqResults.component.scss']
 })
 export class SeqResultsComponent implements OnInit {
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
+
   filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
@@ -44,15 +51,26 @@ export class SeqResultsComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.fakedata = [
-      { id: "1", Used: "checked", AlleleName: "rs4846048", Ref: "G", Variant: "A", Gene: "LCT", Genotype: "G/A ", AlleleCall: "Heterozygous" },
-      { id: "2", Used: "", AlleleName: "rs1537514", Ref: "G", Variant: "C", Gene: "ADA ", Genotype: "G/G", AlleleCall: "Absent" },
-      { id: "3", Used: "checked", AlleleName: "rs868014", Ref: "A", Variant: "G", Gene: "TPK ", Genotype: "G/G", AlleleCall: "Homozygous" },
-      { id: "4", Used: "", AlleleName: "rs2274976", Ref: "C", Variant: "T", Gene: "ADA ", Genotype: "G/C", AlleleCall: "Absent" },
-      { id: "5", Used: "checked", AlleleName: "tvc.novel.1", Ref: "G", Variant: "C", Gene: "ADA ", Genotype: "G/G", AlleleCall: "Heterozygous" },
-      { id: "6", Used: "", AlleleName: "tvc.novel.2", Ref: "G", Variant: "A", Gene: "LCT", Genotype: "G/G", AlleleCall: "Homozygous" },
-      { id: "7", Used: "", AlleleName: "rs1801131", Ref: "T", Variant: "G", Gene: "TPK ", Genotype: "G/A", AlleleCall: "Homozygous" }
-    ];
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Sequency Results Master') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
     this.getSeqResultList();
   }
 
@@ -68,25 +86,26 @@ export class SeqResultsComponent implements OnInit {
         this.totalSize = this.SeqResultList.length;
       }
     );
-    // this.SeqResultList = this.fakedata;
-    // if (this.SeqResultList.length >= 0) {
-    //   this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
-    // }
-    // this.totalSize = this.SeqResultList.length;
+
   }
 
   public addSeqResultDialog(id, action, item) {
-    let dialogRef = this.dialog.open(AddSeqResultComponent, {
-      height: 'auto',
-      width: '600px',
-      autoFocus: false,
-    });
-    (<AddSeqResultComponent>dialogRef.componentInstance).id = id;
-    (<AddSeqResultComponent>dialogRef.componentInstance).action = action;
-    (<AddSeqResultComponent>dialogRef.componentInstance).item = item;
-    dialogRef.afterClosed().subscribe(data => {
-      this.getSeqResultList();
-    });
+    if (this.UpdatePermission == true) {
+      let dialogRef = this.dialog.open(AddSeqResultComponent, {
+        height: 'auto',
+        width: '600px',
+        autoFocus: false,
+      });
+      (<AddSeqResultComponent>dialogRef.componentInstance).id = id;
+      (<AddSeqResultComponent>dialogRef.componentInstance).action = action;
+      (<AddSeqResultComponent>dialogRef.componentInstance).item = item;
+      dialogRef.afterClosed().subscribe(data => {
+        this.getSeqResultList();
+      });
+    } else {
+      this.restrictionDialog('Update');
+    }
+
   }
 
   deleteSeqResult(data) {
@@ -94,18 +113,23 @@ export class SeqResultsComponent implements OnInit {
       'SequenceResultsMasterId': data
     }
     console.log(body)
-    this.dictionaryService.deletesequence_results_master(body).subscribe(
-      data => {
-        console.log(data)
-        if (data['Success'] == true) {
-          this.getSeqResultList();
-          this.alertService.createAlert('Successfully Deleted', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
+    if (this.DeletePermission == true) {
+      this.dictionaryService.deletesequence_results_master(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Success'] == true) {
+            this.getSeqResultList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
 
-      }
-    );
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
   }
 
   filterBy(formValues) {
@@ -142,19 +166,19 @@ export class SeqResultsComponent implements OnInit {
     this.pageSeqResultList = this.SeqResultList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
   }
 
-  public handlePageTemp(e: any) { 
+  public handlePageTemp(e: any) {
     this.currentPageTemp = e.pageIndex;
     console.log('pageSize', e.pageSize)
     this.pageSize = e.pageSize;
     this.pageSeqResultList = this.SeqResultList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
-  } 
+  }
 
- 
+
   public uploadCSVDialog() {
     let dialogRef = this.dialog.open(UploadCSVComponent, {
       height: 'auto',
       width: '400px',
-      autoFocus: false, 
+      autoFocus: false,
 
     });
     dialogRef.afterClosed().subscribe(data => {
@@ -176,5 +200,15 @@ export class SeqResultsComponent implements OnInit {
     });
   }
 
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
 
 }

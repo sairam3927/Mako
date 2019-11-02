@@ -20,7 +20,8 @@ export class AddIncomingOrderComponent implements OnInit {
   CountryList: any;
   NationalityList: any;
   State_Province_List: any;
-  submit= false;
+  submit = false;
+  public todayDate: any = new Date();
 
   public dateTime1: Date;
   public dateTime2: Date;
@@ -39,10 +40,10 @@ export class AddIncomingOrderComponent implements OnInit {
     this.addOrderForm = this.fb.group({
       FirstName: new FormControl('', Validators.compose([Validators.required])),
       LastName: new FormControl('', Validators.compose([Validators.required])),
-      DateofBirth: new FormControl( Date(), Validators.compose([Validators.required])),
+      DateofBirth: new FormControl('', Validators.compose([Validators.required])),
       Gender: new FormControl('', Validators.compose([Validators.required])),
       PregnantLactating: new FormControl(false, Validators.compose([Validators.required])),
-      Nationality: new FormControl('', Validators.compose([Validators.required])),
+      // Nationality: new FormControl('', Validators.compose([Validators.required])),
       Email: new FormControl('', Validators.compose([Validators.required, emailValidator])),
       StreetAddress: new FormControl('', Validators.compose([Validators.required])),
       Country: new FormControl('', Validators.compose([Validators.required])),
@@ -75,7 +76,7 @@ export class AddIncomingOrderComponent implements OnInit {
         DateofBirth: new FormControl(this.item.DateOfBirth, Validators.compose([Validators.required])),
         Gender: new FormControl(this.item.Gender, Validators.compose([Validators.required])),
         PregnantLactating: new FormControl(this.item.Pregnant_Lactate, Validators.compose([Validators.required])),
-        Nationality: new FormControl(this.item.Nationality, Validators.compose([Validators.required])),
+        // Nationality: new FormControl(this.item.Nationality, Validators.compose([Validators.required])),
         Email: new FormControl(this.item.Email, Validators.compose([Validators.required, emailValidator])),
         StreetAddress: new FormControl(this.item.StreetAddress, Validators.compose([Validators.required])),
         Country: new FormControl(this.item.Country, Validators.compose([Validators.required])),
@@ -100,99 +101,97 @@ export class AddIncomingOrderComponent implements OnInit {
       this.formValue = this.addOrderForm.value;
       console.log("values:", this.formValue);
 
-      const today = new Date();
-      const birthDay = this.formValue['DateofBirth'];
-      console.log("birthDay",birthDay);
-      let age = today.getFullYear() - birthDay.getFullYear();
-      const m = today.getMonth() - birthDay.getMonth();
+      // const today = new Date();
+      // const birthDay = this.formValue['DateofBirth'];
+      // console.log("birthDay",birthDay);
+      // let age = today.getFullYear() - birthDay.getFullYear();
+      // const m = today.getMonth() - birthDay.getMonth();
 
-      if (m < 0 || (m === 0 && today.getDate() < birthDay.getDate())) {
-        age--;
+      // if (m < 0 || (m === 0 && today.getDate() < birthDay.getDate())) {
+      //   age--;
+      // }
+      // console.log(age, "age");
+      // if (age >= 18) {
+
+      if (this.formValue['Gender'] == 1) {
+        this.formValue['PregnantLactating'] = false;
       }
-      console.log(age, "age");
-      if (age >= 18) {
 
-        if (this.formValue['Gender'] == 1) {
-          this.formValue['PregnantLactating'] = false;
-        }
+      if (this.action == 'Update') {
 
-        if (this.action == 'Update') {
-
-          this.gridObject = {
-            "OrdersId": this.id,
-            "FirstName": this.formValue['FirstName'],
-            "LastName": this.formValue['LastName'],
-            "Email": this.formValue['Email'],
-            "Nationality": this.formValue['Nationality'],
-            "Gender": this.formValue['Gender'],
-            "Pregnant_Lactate": this.formValue['PregnantLactating'],
-            "DateOfBirth": this.formValue['DateofBirth'],
-            "Age": 0,
-            "Country": this.formValue['Country'],
-            "State_Province": this.formValue['StateProvince'],
-            "City": this.formValue['City'],
-            "StreetAddress": this.formValue['StreetAddress'],
-            "ZipCode_PostalCode": this.formValue['ZipCodePostalCode'],
-            "Ethnicity": this.formValue['Ethnicity'],
-            "SampleName": this.formValue['SampleName'],
-            "MobileNumber": this.formValue['MobileNo'],
-            "Fedex_Awb": this.formValue['FEDEXAWB'],
-            "OrderDate": new Date,
-          };
-          console.log(this.gridObject);
-          this.analyticsService.editorders(this.gridObject).subscribe(
-            data => {
-              console.log('add/update response', data)
-              if (data['Success'] == true) {
-                this.alertService.createAlert('Successfully Updated', 1);
-              } else {
-                this.alertService.createAlert('Something Went Wrong', 0);
-              }
-              this.close()
+        this.gridObject = {
+          "OrdersId": this.id,
+          "FirstName": this.formValue['FirstName'],
+          "LastName": this.formValue['LastName'],
+          "Email": this.formValue['Email'],
+          // "Nationality": this.formValue['Nationality'],
+          "Gender": this.formValue['Gender'],
+          "Pregnant_Lactate": this.formValue['PregnantLactating'],
+          "DateOfBirth": this.formValue['DateofBirth'],
+          "Age": 0,
+          "Country": this.formValue['Country'],
+          "State_Province": this.formValue['StateProvince'],
+          "City": this.formValue['City'],
+          "StreetAddress": this.formValue['StreetAddress'],
+          "ZipCode_PostalCode": this.formValue['ZipCodePostalCode'],
+          "Ethnicity": this.formValue['Ethnicity'],
+          "SampleName": this.formValue['SampleName'],
+          "MobileNumber": this.formValue['MobileNo'],
+          "Fedex_Awb": this.formValue['FEDEXAWB'],
+          "OrderDate": new Date,
+        };
+        console.log(this.gridObject);
+        this.analyticsService.editorders(this.gridObject).subscribe(
+          data => {
+            console.log('add/update response', data)
+            if (data['Success'] == true) {
+              this.alertService.createAlert('Successfully Updated', 1);
+            } else {
+              this.alertService.createAlert('Something Went Wrong', 0);
             }
-          );
+            this.close()
+          }
+        );
 
-        } else {
-          this.gridObject = {
-
-            "FirstName": this.formValue['FirstName'],
-            "LastName": this.formValue['LastName'],
-            "Email": this.formValue['Email'],
-            "Nationality": this.formValue['Nationality'],
-            "Gender": this.formValue['Gender'],
-            "Pregnant_Lactate": this.formValue['PregnantLactating'],
-            "DateOfBirth": this.formValue['DateofBirth'],
-            "Age": 0,
-            "Country": this.formValue['Country'],
-            "State_Province": this.formValue['StateProvince'],
-            "City": this.formValue['City'],
-            "StreetAddress": this.formValue['StreetAddress'],
-            "ZipCode_PostalCode": this.formValue['ZipCodePostalCode'],
-            "Ethnicity": this.formValue['Ethnicity'],
-            "SampleName": this.formValue['SampleName'],
-            "MobileNumber": this.formValue['MobileNo'],
-            "Fedex_Awb": this.formValue['FEDEXAWB'],
-            "OrderDate": new Date,
-          };
-          console.log(this.gridObject);
-          this.analyticsService.addorders_regist(this.gridObject).subscribe(
-            data => {
-              console.log('add/update response', data)
-              if (data['Success'] == true) {
-                this.alertService.createAlert('Successfully Updated', 1);
-              } else {
-                this.alertService.createAlert('Something Went Wrong', 0);
-              }
-              this.close()
-            }
-          );
-        }
-
-        console.log("Entered data", this.gridObject);
-        this.close()
       } else {
-        this.alertService.createAlert('Age should be geater than 18', 0);
+        this.gridObject = {
+
+          "FirstName": this.formValue['FirstName'],
+          "LastName": this.formValue['LastName'],
+          "Email": this.formValue['Email'],
+          // "Nationality": this.formValue['Nationality'],
+          "Gender": this.formValue['Gender'],
+          "Pregnant_Lactate": this.formValue['PregnantLactating'],
+          "DateOfBirth": this.formValue['DateofBirth'],
+          "Age": 0,
+          "Country": this.formValue['Country'],
+          "State_Province": this.formValue['StateProvince'],
+          "City": this.formValue['City'],
+          "StreetAddress": this.formValue['StreetAddress'],
+          "ZipCode_PostalCode": this.formValue['ZipCodePostalCode'],
+          "Ethnicity": this.formValue['Ethnicity'],
+          "SampleName": this.formValue['SampleName'],
+          "MobileNumber": this.formValue['MobileNo'],
+          "Fedex_Awb": this.formValue['FEDEXAWB'],
+          "OrderDate": new Date,
+        };
+        console.log(this.gridObject);
+        this.analyticsService.addorders_regist(this.gridObject).subscribe(
+          data => {
+            console.log('add/update response', data)
+            if (data['Success'] == true) {
+              this.alertService.createAlert('Successfully Updated', 1);
+            } else {
+              this.alertService.createAlert('Something Went Wrong', 0);
+            }
+            this.close()
+          }
+        );
       }
+
+      console.log("Entered data", this.gridObject);
+      this.close()
+
 
     } else {
       if (this.formValue['FirstName'] == null || this.formValue['LastName'] == null || this.formValue['Email'] == null || this.formValue['Nationality'] == null || this.formValue['Gender'] == null || this.formValue['DateofBirth'] == null || this.formValue['Country'] == null || this.formValue['StateProvince'] == null || this.formValue['City'] == null || this.formValue['StreetAddress'] == null || this.formValue['ZipCodePostalCode'] == null || this.formValue['Ethnicity'] == null || this.formValue['SampleName'] == null || this.formValue['MobileNo'] == null || this.formValue['FEDEXAWB']) {
@@ -267,4 +266,43 @@ export class AddIncomingOrderComponent implements OnInit {
     return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
   }
 
+  numberOnly(event): boolean {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (!pattern.test(inputChar) && charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  onlyAlphabats(event): boolean {
+    const pattern = /[^A-Za-z ]/g;
+    let inputChar = String.fromCharCode(event.charCode);
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (!pattern.test(inputChar) && charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  noSpecialCharacters(event) {
+    let arabicRegex = '[\u0600-\u06FF]';
+    const e = <KeyboardEvent>event;
+    if (e.key === 'Tab' || e.key === 'TAB') {
+      return;
+    }
+    let k;
+    k = event.keyCode;  // k = event.charCode;  (Both can be used)
+    if ((k > 64 && k < 91) || (k > 96 && k < 123) || k === 8 || k === 32 || (k >= 48 && k <= 57)) {
+      return;
+    }
+    const ch = String.fromCharCode(e.keyCode);
+    const regEx = new RegExp(arabicRegex);
+    if (regEx.test(ch)) {
+      return;
+    }
+    e.preventDefault();
+  }
+  
 }

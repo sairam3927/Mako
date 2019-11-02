@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { MatDialog } from '@angular/material';
 import { UploadRawDataComponent } from './upload-raw-data/upload-raw-data.component';
-import { AppSettings } from 'src/app/app.settings';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { DictionaryService } from 'src/app/billing/Dictionary/dictionary.service';
 import { DeleteConfirmDailogComponent } from 'src/app/shared/delete-confirm-dailog/delete-confirm-dailog.component';
 import { RawDataService } from '../raw-data.service';
+import { RestrictionComponent } from 'src/app/shared/restriction/restriction.component';
 
 @Component({
   selector: 'app-incoming-orders',
@@ -14,6 +13,12 @@ import { RawDataService } from '../raw-data.service';
   styleUrls: ['./incoming-orders.component.scss']
 })
 export class IncomingOrdersComponent implements OnInit {
+
+  CreatePermission: any;
+  ReadPermission: any;
+  UpdatePermission: any;
+  DeletePermission: any;
+
   filterToggle: boolean;
   toggleFilter() {
     this.filterToggle = !this.filterToggle;
@@ -35,34 +40,57 @@ export class IncomingOrdersComponent implements OnInit {
   public popoverStatusMessage: string = 'Are you sure you want to change status.?';
   public cancelClicked: boolean = false;
   filterForm: FormGroup;
- 
+
   constructor(private _fb: FormBuilder, public dialog: MatDialog, private alertService: AlertService,
-    private rawDataService: RawDataService) {  
-      this.filterForm = this._fb.group({
-        'keyWord': [null]
-      });
-    }
- 
-  imagePath = '../../../../assets/img/vendor/leaflet/page_under_construction.png';
+    private rawDataService: RawDataService) {
+    this.filterForm = this._fb.group({
+      'keyWord': [null]
+    });
+  }
 
   onStepsOptionsSelected(event) {
     console.log(event);
   }
-  
-  public uploadCSVDialog() {
-    let dialogRef = this.dialog.open(UploadRawDataComponent, {
-      height: 'auto',
-      width: '400px',
-      autoFocus: false, 
 
-    });
-    dialogRef.afterClosed().subscribe(data => {
-      this.getRawDataList();
-    });
+  public uploadCSVDialog() {
+    if (this.CreatePermission == true) {
+      let dialogRef = this.dialog.open(UploadRawDataComponent, {
+        height: 'auto',
+        width: '450px',
+        autoFocus: false,
+
+      });
+      dialogRef.afterClosed().subscribe(data => {
+        this.getRawDataList();
+      });
+    } else {
+      this.restrictionDialog('Create');
+    }
+
   }
 
   ngOnInit() {
-    this.getRawDataList(); 
+
+    let getPermissions = JSON.parse(localStorage.getItem('Permissions'));
+    // console.log('Permissions: ', getPermissions);
+
+    if (getPermissions) {
+      for (let i = 0; i < getPermissions.length; i++) {
+        let ScreenName = getPermissions[i]['ScreenName']
+        if (ScreenName == 'Orders') {
+          this.CreatePermission = getPermissions[i]['Create']
+          this.ReadPermission = getPermissions[i]['Read']
+          this.UpdatePermission = getPermissions[i]['Update']
+          this.DeletePermission = getPermissions[i]['Delete']
+        }
+      }
+    }
+    // console.log(this.CreatePermission, 'CreatePermission');
+    // console.log(this.ReadPermission, 'ReadPermission');
+    // console.log(this.UpdatePermission, 'UpdatePermission');
+    // console.log(this.DeletePermission, 'DeletePermission');
+
+    this.getRawDataList();
   }
 
   getRawDataList() {
@@ -77,26 +105,32 @@ export class IncomingOrdersComponent implements OnInit {
         this.totalSize = this.RawDataList.length;
       }
     );
-  
+
   }
 
   deleteRawData(data) {
-    let body = {
-      'RawId': data
-    }
-    console.log(body)
-    this.rawDataService.deleterawdata(body).subscribe(
-      data => {
-        console.log(data)
-        if (data['Success'] == true) {
-          this.getRawDataList();
-          this.alertService.createAlert('Successfully Deleted', 1);
-        } else {
-          this.alertService.createAlert('Something Went Wrong', 0);
-        }
 
+    if (this.DeletePermission == true) {
+      let body = {
+        'RawId': data
       }
-    );
+      console.log(body)
+      this.rawDataService.deleterawdata(body).subscribe(
+        data => {
+          console.log(data)
+          if (data['Success'] == true) {
+            this.getRawDataList();
+            this.alertService.createAlert('Successfully Deleted', 1);
+          } else {
+            this.alertService.createAlert('Something Went Wrong', 0);
+          }
+
+        }
+      );
+    } else {
+      this.restrictionDialog('Delete');
+    }
+
   }
 
   filterBy(formValues) {
@@ -133,12 +167,12 @@ export class IncomingOrdersComponent implements OnInit {
     this.pageRawDataList = this.RawDataList.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
   }
 
-  public handlePageTemp(e: any) { 
+  public handlePageTemp(e: any) {
     this.currentPageTemp = e.pageIndex;
     console.log('pageSize', e.pageSize)
     this.pageSize = e.pageSize;
     this.pageRawDataList = this.RawDataList.slice(this.currentPageTemp * this.pageSize, (this.currentPageTemp * this.pageSize) + this.pageSize);
-  } 
+  }
 
   public deleteDialog(id) {
     let dialogRef = this.dialog.open(DeleteConfirmDailogComponent, {
@@ -154,6 +188,17 @@ export class IncomingOrdersComponent implements OnInit {
     });
   }
 
-  
+  public restrictionDialog(action) {
+    let dialogRef = this.dialog.open(RestrictionComponent, {
+      height: 'auto',
+      width: '500px',
+      autoFocus: false,
+    });
+    (<RestrictionComponent>dialogRef.componentInstance).action = action;
+    dialogRef.afterClosed().subscribe(data => {
+    });
+  }
+
+
 
 }
